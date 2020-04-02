@@ -9,8 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1>Pronto Socorro</h1>
-            <h2>HSPM</h2>
+            <h1>Pronto Socorro - HSPM</h1>
         </div>
     </form>
 </body>

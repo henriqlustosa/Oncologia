@@ -1,7 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" EnableEventValidation="false"
     CodeFile="AberturaFicha.aspx.cs" Inherits="Atendimento_AberturaFicha" Title="Pronto Socorro - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
 <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
         type="text/javascript"></script>
   <!-- iCheck -->
@@ -10,10 +11,10 @@
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/line/blue.css" rel="stylesheet" />
     
-    
-    
     <script type="text/javascript">
         $(document).ready(function() {
+        
+
             $('input').each(function() {
                 var self = $(this),
                label = self.next(),
@@ -22,13 +23,17 @@
                 label.remove();
                 self.iCheck({
                     checkboxClass: 'icheckbox_line-blue',
+                    radioClass: 'iradio_line-blue',
                     insert: '<div class="icheck_line-icon"></div>' + label_text
                 });
             });
         });
 </script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+<asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <h1>
         Boletin de Emergência</h1>
     <div class="container">
@@ -36,12 +41,12 @@
             <label for="txtBE" class="col-sm-1 col-form-label">
                 BE:</label>
             <div class="col-sm-2">
-                <asp:Label ID="txbBE" runat="server" Text="123456789"></asp:Label>
+                <asp:Label ID="lbBE" runat="server" Text="123456789"></asp:Label>
             </div>
-            <label for="txtData" class="col-sm-1 col-form-label">
+            <label for="txbData" class="col-sm-1 col-form-label">
                 Data:</label>
             <div>
-                <asp:Label ID="txtData" runat="server" Text="__/__/____"></asp:Label>
+                <asp:Label ID="lbData" runat="server" Text="03/04/2020 13:31"></asp:Label>
             </div>
         </div>
         <div class="x_panel">
@@ -63,6 +68,16 @@
                         Documento</label>
                     <asp:TextBox ID="txbDocumento" runat="server" class="form-control"></asp:TextBox>
                 </div>
+                
+                
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                <label>Tipo Paciente</label>
+                    <asp:RadioButtonList ID="rbTipoPaciente" RepeatDirection="Horizontal" runat="server">
+                        <asp:listitem text="Munícipe" Value="M" Selected ></asp:listitem>
+                        <asp:listitem text="Funcionário" Value="F"></asp:listitem>
+                    </asp:RadioButtonList>
+                     
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
@@ -74,22 +89,22 @@
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nascimento</label>
-                    <asp:TextBox ID="TextBox1" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbNascimento" runat="server" class="form-control" required ></asp:TextBox>
                 </div>
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
                         Idade</label>
-                    <asp:TextBox ID="TextBox2" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbIdade" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Sexo</label>
-                    <asp:TextBox ID="TextBox3" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbSexo" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Raça/Cor</label>
-                    <asp:TextBox ID="TextBox4" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbRaca" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 
             </div>
@@ -159,7 +174,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                     <label>
                         Queixa</label>
-                    <asp:TextBox ID="TextBox5" runat="server" class="form-control" TextMode="MultiLine"
+                    <asp:TextBox ID="txbQueixa" runat="server" class="form-control" TextMode="MultiLine"
                         Rows="4"></asp:TextBox>
                 </div>
             </div>
@@ -194,7 +209,7 @@
             </div>
         </div>
         <div class="x_content">
-            <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" />
+            <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
         </div>
     </div>
     

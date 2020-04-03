@@ -185,11 +185,11 @@ $(document).ready(function() {
 // Tooltip
 
 // Tooltip MEU COMENTARIO 23/03/2020
-////$(document).ready(function() {
-////    $('[data-toggle="tooltip"]').tooltip({
-////        container: 'body'
-////    });
-////});
+//$(document).ready(function() {
+//    $('[data-toggle="tooltip"]').tooltip({
+//        container: 'body'
+//    });
+//});
 // /Tooltip
 
 // Progressbar
@@ -5065,5 +5065,3 @@ if (typeof NProgress != 'undefined') {
 		init_autocomplete();
 				
 	});	
-	
-

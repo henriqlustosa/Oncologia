@@ -15,10 +15,8 @@
     <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- NProgress -->
     <link href="vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css" />
-    <!-- Animate.css -->
-    <link href="vendors/animate.css/animate.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="build/css/custom.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="login">
     <div>
@@ -30,7 +28,7 @@
              <asp:Image ID="Image1" runat="server" ImageUrl="imagens/HSPM_LOGO.jpg"></asp:Image>
               
               <p></p>
-              <asp:Login ID="Login1" runat="server"  Width="100%">
+              <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Atendimento/AberturaFicha.aspx"  Width="100%">
                   <LayoutTemplate>
                   
                     <div class="col-md-12 form-group">

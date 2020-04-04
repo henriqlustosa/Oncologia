@@ -3,17 +3,117 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-<script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
+
+    <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
         type="text/javascript"></script>
-  <!-- iCheck -->
+<!-- iCheck -->
     <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
 
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/line/blue.css" rel="stylesheet" />
     
+
+
+<style type="text/css">
+        @font-face
+        {
+            font-family: 'BebasNeueRegular';
+            src: url('../build/relogio/BebasNeue-webfont.eot');
+            src: url('../build/relogio/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'), url('../build/relogio/BebasNeue-webfont.woff') format('woff'), url('../build/relogio/BebasNeue-webfont.ttf') format('truetype'), url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .clock
+        {
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+            color: #2A3F54;
+        }
+        #Date
+        {
+            font-family: 'BebasNeueRegular' , Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            text-align: center;
+            text-shadow: 0 0 1px #2A3F54;
+        }
+        .relogio
+        {
+            width: 500px;
+            margin: 0 auto;
+            padding: 0px;
+            list-style: none;
+            text-align: center;
+        }
+        .relogio li
+        {
+            display: inline;
+            font-size: 30px;
+            text-align: center;
+            font-family: 'BebasNeueRegular' , Arial, Helvetica, sans-serif;
+            text-shadow: 0 0 1px #2A3F54;
+        }
+        #point
+        {
+            position: relative;
+            -moz-animation: mymove 1s ease infinite;
+            -webkit-animation: mymove 1s ease infinite;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        @-webkit-keyframes mymove 
+        {
+            0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+            50% {opacity:0; text-shadow:none; }
+            100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
+        }
+
+        @-moz-keyframes mymove 
+        {
+            0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
+            50% {opacity:0; text-shadow:none; }
+            100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
+        }
+       
+       </style>
+
+
     <script type="text/javascript">
         $(document).ready(function() {
-        
+            // Create two variable with the names of the months and days in an array
+            var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+            var dayNames = ["Domungo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+
+            // Create a newDate() object
+            var newDate = new Date();
+            // Extract the current date from Date object
+            newDate.setDate(newDate.getDate());
+            // Output the day, date, month and year    
+            $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
+
+            setInterval(function() {
+                // Create a newDate() object and extract the seconds of the current time on the visitor's
+                var seconds = new Date().getSeconds();
+                // Add a leading zero to seconds value
+                $("#sec").html((seconds < 10 ? "0" : "") + seconds);
+            }, 1000);
+
+            setInterval(function() {
+                // Create a newDate() object and extract the minutes of the current time on the visitor's
+                var minutes = new Date().getMinutes();
+                // Add a leading zero to the minutes value
+                $("#min").html((minutes < 10 ? "0" : "") + minutes);
+            }, 1000);
+
+            setInterval(function() {
+                // Create a newDate() object and extract the hours of the current time on the visitor's
+                var hours = new Date().getHours();
+                // Add a leading zero to the hours value
+                $("#hours").html((hours < 10 ? "0" : "") + hours);
+            }, 1000);
+
+
+
 
             $('input').each(function() {
                 var self = $(this),
@@ -26,35 +126,30 @@
                     radioClass: 'iradio_line-blue',
                     insert: '<div class="icheck_line-icon"></div>' + label_text
                 });
-            });
-        });
-</script>
+            });            
+        }); 
+    </script> 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-<asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
-    <h1>
-        Boletin de Emergência</h1>
-    <div class="container">
-        <div class="form-group row">
-            <label for="txtBE" class="col-sm-1 col-form-label">
-                BE:</label>
-            <div class="col-sm-2">
-                <asp:Label ID="lbBE" runat="server" Text="123456789"></asp:Label>
+        <div class="clock">
+            <div id="Date">
             </div>
-            <label for="txbData" class="col-sm-1 col-form-label">
-                Data:</label>
-            <div>
-                <asp:Label ID="lbData" runat="server" Text="03/04/2020 13:31"></asp:Label>
-            </div>
+            <ul class="relogio">
+                <li id="hours"></li>
+                <li id="point">:</li>
+                <li id="min"></li>
+                <li id="point">:</li>
+                <li id="sec"></li>
+            </ul>
         </div>
+    
+    
+    <div class="container">
         <div class="x_panel">
             <div class="x_title">
-                <h2>
-                    Informações do Paciente
-                    <asp:Label ID="lbProntuario" runat="server" Text="" Style="color: Black"></asp:Label></h2>
-                <div class="clearfix">
+               <h2>Boletim de Emergência<small><i>- Informações do Paciente</i></small></h2>
+               <div class="clearfix">
                 </div>
             </div>
             <div class="row">
@@ -80,13 +175,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nome</label>
                     <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 
-                <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nascimento</label>
                     <asp:TextBox ID="txbNascimento" runat="server" class="form-control" required ></asp:TextBox>
@@ -99,12 +194,25 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Sexo</label>
-                    <asp:TextBox ID="txbSexo" runat="server" class="form-control"></asp:TextBox>
+                    <asp:DropDownList ID="ddlSexo" runat="server" DataSourceID="SqlDataSource1" autopostback = "true"
+                        DataTextField="descricao_sexo" DataValueField="cod_sexo" class="form-control">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 
+                        SelectCommand="SELECT [cod_sexo], [descricao_sexo] FROM [sexo]">
+                    </asp:SqlDataSource>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Raça/Cor</label>
-                    <asp:TextBox ID="txbRaca" runat="server" class="form-control"></asp:TextBox>
+                    <asp:DropDownList ID="ddlRaca" runat="server" class="form-control" autopostback = "true" 
+                        DataSourceID="SqlDataSource2" DataTextField="descricao_raca" 
+                        DataValueField="cod_raca">
+                    </asp:DropDownList>   
+                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 
+                        SelectCommand="SELECT [cod_raca], [descricao_raca] FROM [raca]">
+                    </asp:SqlDataSource>
                 </div>
                 
             </div>
@@ -182,11 +290,11 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                     <asp:checkboxlist runat="server" id="chkFormaChegada" RepeatDirection="Horizontal" >
-                        <asp:listitem text="Caso Policial" value="1"></asp:listitem>
-                        <asp:listitem text="Plano de Saúde" value="2"></asp:listitem>
-                        <asp:listitem text="Trauma" value="3"></asp:listitem>
-                        <asp:listitem text="Acidente de Trabalho" value="4"></asp:listitem>
-                        <asp:listitem text="Veio de Ambulância" value="5"></asp:listitem>
+                        <asp:listitem text="Caso Policial"></asp:listitem>
+                        <asp:listitem text="Plano de Saúde"></asp:listitem>
+                        <asp:listitem text="Trauma" ></asp:listitem>
+                        <asp:listitem text="Acidente de Trabalho"></asp:listitem>
+                        <asp:listitem text="Veio de Ambulância"></asp:listitem>
                     </asp:checkboxlist>
                 </div>
             </div>
@@ -204,7 +312,14 @@
                 <label for="txbSetor" class="col-sm-1 col-form-label">
                     Setor:</label>
                 <div>
-                    <asp:TextBox ID="txbSetor" runat="server" class="form-control"></asp:TextBox>
+                    <asp:DropDownList ID="ddlSetor" runat="server" class="form-control" autopostback = "true"
+                        DataSourceID="SqlDataSource3" DataTextField="descricao_setor" 
+                        DataValueField="cod_setor">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 
+                        SelectCommand="SELECT [cod_setor], [descricao_setor] FROM [setor]">
+                    </asp:SqlDataSource>
                 </div>
             </div>
         </div>

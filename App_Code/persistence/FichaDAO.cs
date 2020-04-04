@@ -34,13 +34,14 @@ public class FichaDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = new SqlCommand();
+
             cmm.Connection = cnn;
             cnn.Open();
             SqlTransaction mt = cnn.BeginTransaction();
             cmm.Transaction = mt;
             try
             {
-                cmm.CommandText = "INSERT INTO [hspmPs].[dbo].[ficha] "+
+                cmm.CommandText = "INSERT INTO [hspmPs].[dbo].[ficha] " +
                                                "(dt_hr_be " +
                                                ",setor " +
                                                ",nome_paciente " +
@@ -56,48 +57,49 @@ public class FichaDAO
                                                ",cep " +
                                                ",nome_pai_mae " +
                                                ",responsavel " +
-                                               ",telefone " + 
+                                               ",telefone " +
                                                ",procedencia " +
                                                ",queixa " +
-                                               //",caso_policial " +
-                                               //",plano_saude " +
-                                               //",trauma " +
-                                               //",acidente_trabalho " +
-                                               //",veio_ambulancia " +
+                    //",caso_policial " +
+                    //",plano_saude " +
+                    //",trauma " +
+                    //",acidente_trabalho " +
+                    //",veio_ambulancia " +
                                                ",tipo_paciente " +
                                                ",prontuario " +
-                                               ",documento"+
+                                               ",documento" +
                                                 ", usuario) " +
                                          "VALUES (" +
-                                               "@dt_hr_be"+
-                                               ",@setor"+
-                                               ",@nome_paciente"+
-                                               ",@dt_nascimento"+
-                                               ",@sexo"+
-                                               ",@raca"+
-                                               ",@endereco_rua"+
-                                               ",@numero_casa"+
-                                               ",@complemento"+
-                                               ",@bairro"+
-                                               ",@municipio"+
-                                               ",@uf"+
-                                               ",@cep"+
-                                               ",@nome_pai_mae"+
-                                               ",@responsavel"+
-                                               ",@telefone"+
-                                               ",@procedencia"+
-                                               ",@queixa"+
-                                               //",@caso_policial"+
-                                               //",@plano_saude"+
-                                               //",@trauma"+
-                                               //",@acidente_trabalho"+
-                                               //",@veio_ambulancia"+
-                                               ",@tipo_paciente"+
-                                               ",@prontuario"+
-                                               ",@documento"+
-                                               ",@usuario)";
+                                               "@dt_hr_be" +
+                                               ",@setor" +
+                                               ",@nome_paciente" +
+                                               ",@dt_nascimento" +
+                                               ",@sexo" +
+                                               ",@raca" +
+                                               ",@endereco_rua" +
+                                               ",@numero_casa" +
+                                               ",@complemento" +
+                                               ",@bairro" +
+                                               ",@municipio" +
+                                               ",@uf" +
+                                               ",@cep" +
+                                               ",@nome_pai_mae" +
+                                               ",@responsavel" +
+                                               ",@telefone" +
+                                               ",@procedencia" +
+                                               ",@queixa" +
+                    //",@caso_policial"+
+                    //",@plano_saude"+
+                    //",@trauma"+
+                    //",@acidente_trabalho"+
+                    //",@veio_ambulancia"+
+                                               ",@tipo_paciente" +
+                                               ",@prontuario" +
+                                               ",@documento" +
+                                               ",@usuario);" +
+                                               "SELECT SCOPE_IDENTITY()";
 
-                cmm.Parameters.Add("@dt_hr_be", SqlDbType.DateTime).Value = dt_rh_be;
+                cmm.Parameters.Add("@dt_hr_be", SqlDbType.DateTime).Value = DateTime.Now;
                 cmm.Parameters.Add("@setor", SqlDbType.Int).Value = setor;
                 cmm.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = nome_paciente;
                 cmm.Parameters.Add("@dt_nascimento", SqlDbType.DateTime).Value = dt_nascimento;
@@ -128,10 +130,13 @@ public class FichaDAO
                 cmm.Parameters.Add("@usuario", SqlDbType.Int).Value = usuario;
 
                 cmm.ExecuteNonQuery();
+                // retorna o id cadastrado
+                int id_ficha = Convert.ToInt32(cmm.ExecuteScalar());
+
                 mt.Commit();
                 mt.Dispose();
                 cnn.Close();
-                mensagem = "Cadastro realizado com sucesso!";
+                mensagem = "Ficha nº " + id_ficha +" cadastrada com sucesso!";
             }
             catch (Exception ex)
             {
@@ -145,7 +150,6 @@ public class FichaDAO
                 { }
             }
         }
-
         return mensagem;
     }
 

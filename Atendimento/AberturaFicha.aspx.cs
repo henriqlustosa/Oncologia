@@ -15,21 +15,21 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
     }
 
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         Ficha be = new Ficha();
-        be.dt_rh_be = Convert.ToDateTime(lbData.Text);
+        //be.dt_rh_be = Convert.ToDateTime(lbData.Text);
         be.prontuario = Convert.ToInt32(txbProntuario.Text);
         be.documento = txbDocumento.Text;
         be.tipo_paciente = rbTipoPaciente.SelectedValue;
         be.nome_paciente = txbNomePaciente.Text;
         be.dt_nascimento = Convert.ToDateTime(txbNascimento.Text);
-        be.sexo = Convert.ToInt32(txbSexo.Text);
-        be.raca = Convert.ToInt32(txbRaca.Text);
+        be.sexo = Convert.ToInt32(ddlSexo.SelectedValue);
+        be.raca = Convert.ToInt32(ddlRaca.SelectedValue);
         be.endereco_rua = txbEndereco.Text;
         be.numero_casa = txbNumero.Text;
         be.complemento = txbComplemento.Text;
@@ -43,8 +43,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         be.procedencia = txbProcedencia.Text;
         be.queixa = txbQueixa.Text;
 
-        be.setor = Convert.ToInt32(txbSetor.Text);
-
+        be.setor = Convert.ToInt32(ddlSetor.SelectedValue);
 
         string mensagem = FichaDAO.GravaFicha(be.dt_rh_be
                                                 ,be.prontuario
@@ -68,11 +67,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
                                                 , be.queixa
                                                 ,be.setor
                                                );
-
-
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        sb.Append(mensagem);
-        ScriptManager.RegisterStartupScript(Page, this.Page.GetType(), "clientscript", sb.ToString(), true);
+        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
 
         ClearInputs(Page.Controls);// limpa os textbox
 

@@ -28,8 +28,8 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         be.tipo_paciente = rbTipoPaciente.SelectedValue;
         be.nome_paciente = txbNomePaciente.Text;
         be.dt_nascimento = Convert.ToDateTime(txbNascimento.Text);
-        be.sexo = Convert.ToInt32(ddlSexo.SelectedValue);
-        be.raca = Convert.ToInt32(ddlRaca.SelectedValue);
+        be.sexo = ddlSexo.SelectedValue;
+        be.raca = ddlRaca.SelectedValue;
         be.endereco_rua = txbEndereco.Text;
         be.numero_casa = txbNumero.Text;
         be.complemento = txbComplemento.Text;
@@ -43,7 +43,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         be.procedencia = txbProcedencia.Text;
         be.queixa = txbQueixa.Text;
 
-        be.setor = Convert.ToInt32(ddlSetor.SelectedValue);
+        be.setor = ddlSetor.SelectedValue;
 
         string mensagem = FichaDAO.GravaFicha(be.dt_rh_be
                                                 ,be.prontuario

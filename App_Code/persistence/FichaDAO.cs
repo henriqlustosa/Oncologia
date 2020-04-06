@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 /// <summary>
 /// Summary description for FichaDAO
@@ -22,10 +23,44 @@ public class FichaDAO
 		// TODO: Add constructor logic here
 		//
 	}
+
+    public List<Ficha> fichaLista = new List<Ficha>();
+
+    public List<Ficha> GetFicha()
+    {
+        Ficha ficha = new Ficha();
+        ficha.cod_ficha = 1;
+        ficha.dt_rh_be = DateTime.Now;
+        ficha.prontuario = 5234646;
+        ficha.cns = "0";
+        ficha.setor = "Clínico - Funcionário";
+
+        ficha.nome_paciente = "Bhuvana";
+        ficha.documento = "rg 235656565";
+        ficha.idade = 50;
+        ficha.dt_nascimento = Convert.ToDateTime("30/03/1978");
+        ficha.endereco_rua = "Rua castro Alves";
+        ficha.numero_casa = "60";
+        ficha.complemento = "Apt 6";
+        ficha.bairro = "Aclimação";
+        ficha.municipio = "São Paulo";
+        ficha.uf = "SP";
+        ficha.cep = "01532-000";
+        ficha.nome_pai_mae = "José Alfrino";
+        ficha.responsavel = "O mesmo";
+        ficha.telefone = "(11) 96485-3256";
+        ficha.queixa = "Dor de barriga";
+        ficha.usuario = "Luciano";
+        fichaLista.Add(ficha);
+
+        return fichaLista;
+    }
+
+
       
     public static string GravaFicha(DateTime dt_rh_be, int prontuario, string documento, string tipo_paciente, string nome_paciente, DateTime dt_nascimento
-        , int sexo, int raca, string endereco_rua, string numero_casa, string complemento, string bairro, string municipio, string uf
-        , string cep, string nome_pai_mae, string responsavel, string telefone, string procedencia, string queixa, int setor)
+        , string sexo, string raca, string endereco_rua, string numero_casa, string complemento, string bairro, string municipio, string uf
+        , string cep, string nome_pai_mae, string responsavel, string telefone, string procedencia, string queixa, string setor)
     {
         string mensagem = "";
 
@@ -152,5 +187,4 @@ public class FichaDAO
         }
         return mensagem;
     }
-
 }

@@ -283,7 +283,7 @@
                     <label>
                         Queixa</label>
                     <asp:TextBox ID="txbQueixa" runat="server" class="form-control" TextMode="MultiLine"
-                        Rows="4"></asp:TextBox>
+                        Rows="4" required ></asp:TextBox>
                 </div>
             </div>
             

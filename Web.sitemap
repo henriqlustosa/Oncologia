@@ -1,21 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="~/Default.aspx" title="Principal"  description="Página principal do web site">
-
-    <siteMapNode url="" title="Administração" roles="Administradores" description="Administração do Site">
-      <siteMapNode url="~/Restrito/cargaMailling.aspx" title="Carga Consultas"  description="" />
-       </siteMapNode>
-
-    <siteMapNode url="" title="Relatórios" roles="Administradores" description="Páginas relácionadas a informações relatórios" >
-         </siteMapNode>
-
-
-    <siteMapNode url="" title="Atendimento"  description="">
-      <siteMapNode url="~/Atendimento/AberturaFicha.aspx" title="Abertura de Ficha"  description="Abertura de Ficha de Atendimento" />
-      
+    <siteMapNode url="" title="Atendimento" roles="atendimento" description="">
+      <siteMapNode url="~/Atendimento/AberturaFicha.aspx" title="Abertura de Ficha"  description="" />
     </siteMapNode>
-
-   
-
   </siteMapNode>
 </siteMap>

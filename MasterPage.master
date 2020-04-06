@@ -1,7 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,14 +32,13 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;padding-left: 5px;">
-                        <a href="#" class="site_title"><i class="fa fa-hospital-o"></i><span style="padding: 10px">HSPM - PS</span></a>
+                        <a href="#" class="site_title"><i class="fa fa-hospital-o"></i><span style="padding: 10px">HSPM PS</span></a>
                     </div>
                     <div class="clearfix">
                     </div>
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                         <div class="profile_pic">
-                            <!-- <img runat="server" id="imgAvatar" src="" class="img-circle profile_img" style="border-radius: 50%;" alt="Avatar" title="Avatar" /> -->
                             
                           </div>
                         <div class="profile_info">
@@ -65,7 +62,7 @@
                                     <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource1">
                                         <ItemTemplate>
                                             <li>
-                                                <asp:HyperLink ID="HyperLink1" Style="padding-left: 5px;" runat="server" NavigateUrl='<%# Eval("Url") %>'><i class="fa fa-phone"></i> <%# Eval("Title") %> <span class="fa fa-chevron-down"></asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink1" Style="padding-left: 5px;" runat="server" NavigateUrl='<%# Eval("Url") %>'><i class="fa fa-hospital-o"></i> <%# Eval("Title") %> <span class="fa fa-chevron-down"></asp:HyperLink>
                                                 <asp:Repeater ID="Repeater1" runat="server" DataSource='<%# ((SiteMapNode) Container.DataItem).ChildNodes %>'>
                                                     <HeaderTemplate>
                                                         <ul class="nav child_menu">

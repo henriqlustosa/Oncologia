@@ -135,10 +135,10 @@ public class FichaDAO
                                                "SELECT SCOPE_IDENTITY()";
 
                 cmm.Parameters.Add("@dt_hr_be", SqlDbType.DateTime).Value = DateTime.Now;
-                cmm.Parameters.Add("@setor", SqlDbType.Int).Value = setor;
+                cmm.Parameters.Add("@setor", SqlDbType.VarChar).Value = setor;
                 cmm.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = nome_paciente;
                 cmm.Parameters.Add("@dt_nascimento", SqlDbType.DateTime).Value = dt_nascimento;
-                cmm.Parameters.Add("@sexo", SqlDbType.Int).Value = sexo;
+                cmm.Parameters.Add("@sexo", SqlDbType.VarChar).Value = sexo;
                 cmm.Parameters.Add("@raca", SqlDbType.VarChar).Value = raca;
                 cmm.Parameters.Add("@endereco_rua", SqlDbType.VarChar).Value = endereco_rua;
                 cmm.Parameters.Add("@numero_casa", SqlDbType.VarChar).Value = numero_casa;
@@ -162,7 +162,7 @@ public class FichaDAO
                 cmm.Parameters.Add("@tipo_paciente", SqlDbType.VarChar).Value = tipo_paciente;
                 cmm.Parameters.Add("@prontuario", SqlDbType.Int).Value = prontuario;
                 cmm.Parameters.Add("@documento", SqlDbType.VarChar).Value = documento;
-                cmm.Parameters.Add("@usuario", SqlDbType.Int).Value = usuario;
+                cmm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario;
 
                 cmm.ExecuteNonQuery();
                 // retorna o id cadastrado

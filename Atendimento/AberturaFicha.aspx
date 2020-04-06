@@ -194,25 +194,23 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Sexo</label>
-                    <asp:DropDownList ID="ddlSexo" runat="server" DataSourceID="SqlDataSource1" autopostback = "true"
-                        DataTextField="descricao_sexo" DataValueField="cod_sexo" class="form-control">
+                    <asp:DropDownList ID="ddlSexo" runat="server" autopostback = "true" class="form-control">
+                        <asp:ListItem>Masculino</asp:ListItem>
+                        <asp:ListItem>Feminino</asp:ListItem>
+                        <asp:ListItem>Não Informado</asp:ListItem>
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 
-                        SelectCommand="SELECT [cod_sexo], [descricao_sexo] FROM [sexo]">
-                    </asp:SqlDataSource>
+                   
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Raça/Cor</label>
-                    <asp:DropDownList ID="ddlRaca" runat="server" class="form-control" autopostback = "true" 
-                        DataSourceID="SqlDataSource2" DataTextField="descricao_raca" 
-                        DataValueField="cod_raca">
+                    <asp:DropDownList ID="ddlRaca" runat="server" class="form-control" autopostback = "true" >
+                        <asp:ListItem>Branca</asp:ListItem>
+                        <asp:ListItem>Preta</asp:ListItem>
+                        <asp:ListItem>Parda</asp:ListItem>
+                        <asp:ListItem>Amarela</asp:ListItem>
+                        <asp:ListItem>Indígena</asp:ListItem>
                     </asp:DropDownList>   
-                    <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 
-                        SelectCommand="SELECT [cod_raca], [descricao_raca] FROM [raca]">
-                    </asp:SqlDataSource>
                 </div>
                 
             </div>
@@ -314,7 +312,7 @@
                 <div>
                     <asp:DropDownList ID="ddlSetor" runat="server" class="form-control" autopostback = "true"
                         DataSourceID="SqlDataSource3" DataTextField="descricao_setor" 
-                        DataValueField="cod_setor">
+                        DataValueField="descricao_setor">
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
                         ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 

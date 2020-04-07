@@ -5,6 +5,10 @@
       <siteMapNode url="~/Atendimento/AberturaFicha.aspx" title="Abertura de Ficha"  description="" />
     </siteMapNode>
 
+    <siteMapNode url="" title="Administrativo" roles="administrativo" description="">
+      <siteMapNode url="~/Administrativo/checkout.aspx" title="Baixa de Ficha"  description="" />
+    </siteMapNode>
+
     <siteMapNode url="" title="Administração" roles="administrador" description="Administração do Site">
       <siteMapNode url="~/Admin/CadastroUsuario.aspx" title="Cadastro Usuário" description="Cadastro de novos usuários do sistema" />
       <siteMapNode url="~/Admin/Permissao.aspx" title="Permissões" description="Cadastro de permissões para usuários do sistema" />
@@ -13,6 +17,7 @@
       <siteMapNode url="~/Admin/Alterarcadastro.aspx" title="Alterar Usuário" description="Página para alterar Login de Usuário" />
       <siteMapNode url="~/Admin/DeletarUsuario.aspx" title="Excluir Usuário" description="Página para exclusão de Usuário" />
     </siteMapNode>
+    
     
     </siteMapNode>
 </siteMap>

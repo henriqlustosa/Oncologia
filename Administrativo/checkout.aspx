@@ -18,12 +18,11 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div class="container">
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
+        
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>
-                            Check-Out<small><i>- Baixa dos BE</i></small></h2>
+                            Check-Out</h2>
                         <div class="clearfix">
                         </div>
                     </div>
@@ -44,13 +43,14 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-4 col-xs-8 ">
-                                    <asp:Button ID="SearchButton" Text="Pesquisar" runat="server" class="btn btn-primary"
-                                        OnClick="btnPesquisar_Click" />
+                                    <asp:Button ID="SearchButton" runat="server" Text="Pesquisar" class="btn btn-primary" OnClick="btnPesquisar_Click" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
                 <div class="x_panel">
                     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                         DataKeyNames="cod_ficha" OnRowCommand="grdMain_RowCommand" CellPadding="4" ForeColor="#333333"

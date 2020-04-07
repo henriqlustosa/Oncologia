@@ -80,7 +80,7 @@
         $(document).ready(function() {
             // Create two variable with the names of the months and days in an array
             var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-            var dayNames = ["Domungo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+            var dayNames = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
 
             // Create a newDate() object
             var newDate = new Date();

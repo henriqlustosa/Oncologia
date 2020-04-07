@@ -36,14 +36,14 @@ public partial class Administrativo_checkout : System.Web.UI.Page
         {
             index = Convert.ToInt32(e.CommandArgument);
             int _be = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
-            Response.Redirect("~/Administrativo/atualizabe.aspx?prontuario=" + _be);
+            Response.Redirect("~/Administrativo/atualizabe.aspx?be=" + _be);
         }
 
         if (e.CommandName.Equals("checkoutRecord"))
         {
             index = Convert.ToInt32(e.CommandArgument);
             int _be = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
-            Response.Redirect("~/Administrativo/checkoutbe.aspx?prontuario=" + _be);
+            Response.Redirect("~/Administrativo/checkoutbe.aspx?be=" + _be);
         }
     }
 }

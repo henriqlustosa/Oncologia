@@ -4,5 +4,15 @@
     <siteMapNode url="" title="Atendimento" roles="atendimento" description="">
       <siteMapNode url="~/Atendimento/AberturaFicha.aspx" title="Abertura de Ficha"  description="" />
     </siteMapNode>
-  </siteMapNode>
+
+    <siteMapNode url="" title="Administração" roles="administrador" description="Administração do Site">
+      <siteMapNode url="~/Admin/CadastroUsuario.aspx" title="Cadastro Usuário" description="Cadastro de novos usuários do sistema" />
+      <siteMapNode url="~/Admin/Permissao.aspx" title="Permissões" description="Cadastro de permissões para usuários do sistema" />
+      <siteMapNode url="~/Admin/DesbloqueioUsuario.aspx" title="Desbloquear Usuário" description="Página para desbloquear de Usuário" />
+      <siteMapNode url="~/Admin/ResetSenha.aspx" title="Resetar Senha" description="Resetar Senha do Usuário" />
+      <siteMapNode url="~/Admin/Alterarcadastro.aspx" title="Alterar Usuário" description="Página para alterar Login de Usuário" />
+      <siteMapNode url="~/Admin/DeletarUsuario.aspx" title="Excluir Usuário" description="Página para exclusão de Usuário" />
+    </siteMapNode>
+    
+    </siteMapNode>
 </siteMap>

@@ -106,6 +106,7 @@
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
+                   
                    <li><asp:HyperLink id="hyperlink1" NavigateUrl="~/Profile/Perfil.aspx" Text="Meu Perfil" runat="server"/></li>
                            
                     <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="Default.aspx"></asp:LoginStatus></li>

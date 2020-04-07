@@ -27,11 +27,7 @@
                         </div>
                     </div>
                     <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left input_mask">
-                        <div class="row">
-                            <div class="form-group">
-                                <asp:Label ID="Msg" runat="server" ForeColor="maroon" class="control-label col-md-12" /><br />
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="form-group">
                                 <label class="control-label col-md-3" for="UsernameTextBox">
@@ -52,6 +48,12 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="x_panel">
+                    <div class="row">
+                            <div class="form-group">
+                                <asp:Label ID="Msg" runat="server" ForeColor="maroon" class="control-label col-md-12" /><br />
+                            </div>
+                        </div>
+                        
                     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                         DataKeyNames="cod_ficha" OnRowCommand="grdMain_RowCommand" CellPadding="4" ForeColor="#333333"
                         GridLines="None" Width="100%">

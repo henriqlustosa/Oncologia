@@ -3,7 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-
     <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
         type="text/javascript"></script>
       
@@ -110,9 +109,6 @@
                 // Add a leading zero to the hours value
                 $("#hours").html((hours < 10 ? "0" : "") + hours);
             }, 1000);
-
-
-
 
             $('input').each(function() {
                 var self = $(this),
@@ -230,7 +226,7 @@
                 <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nome</label>
-                    <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control" required ></asp:TextBox>
                 </div>
                 
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">

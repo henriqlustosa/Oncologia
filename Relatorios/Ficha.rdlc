@@ -682,6 +682,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <BorderStyle>
             <Default>Solid</Default>
           </BorderStyle>
+          <TextAlign>Center</TextAlign>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -690,7 +691,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <ZIndex>63</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
-        <Value />
+        <Value>PRESCRIÇÃO</Value>
       </Textbox>
       <Textbox Name="textbox74">
         <Top>39.5cm</Top>
@@ -986,7 +987,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <ZIndex>57</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
-        <Value>Internação mo próprio hospital (setor)</Value>
+        <Value>Internação no próprio hospital (setor)</Value>
       </Textbox>
       <Rectangle Name="rectangle10">
         <Left>5.75cm</Left>
@@ -2291,7 +2292,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <CanGrow>true</CanGrow>
         <Left>13cm</Left>
         <Height>0.5cm</Height>
-        <Value>="Raça/Cor"&amp;First(Fields!raca.Value)</Value>
+        <Value>="Raça/Cor: "&amp;First(Fields!raca.Value)</Value>
       </Textbox>
       <Textbox Name="sexo">
         <rd:DefaultName>sexo</rd:DefaultName>

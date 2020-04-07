@@ -6,14 +6,13 @@
 
     <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
         type="text/javascript"></script>
+      
 <!-- iCheck -->
     <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
 
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/line/blue.css" rel="stylesheet" />
     
-
-
 <style type="text/css">
         @font-face
         {
@@ -126,7 +125,60 @@
                     radioClass: 'iradio_line-blue',
                     insert: '<div class="icheck_line-icon"></div>' + label_text
                 });
-            });            
+            });
+
+            $('.numeric').keyup(function() {
+                $(this).val(this.value.replace(/\D/g, ''));
+            });
+
+
+            $('.nasc').blur(function() {
+                var data = $('.nasc').val();
+                if (data == "") {
+                    $('.age').val("");
+                } else {
+                    var dateParts = data.split("/");
+                    var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+                    $('.age').val(calculateAge(dateObject));
+                }
+            });
+
+
+            function calculateAge(dobString) {
+                var dob = new Date(dobString);
+                var currentDate = new Date();
+                var currentYear = currentDate.getFullYear();
+                var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
+                var age = currentYear - dob.getFullYear();
+                if (birthdayThisYear > currentDate) {
+                    age--;
+                }
+                return age;
+            }
+
+            function calcular(data) {
+                var data = document.form.nascimento.value;
+                alert(data);
+                var partes = data.split("/");
+                var junta = partes[2] + "-" + partes[1] + "-" + partes[0];
+                document.form.idade.value = (calculateAge(junta));
+            }
+
+            var isDate_ = function(input) {
+                var status = false;
+                if (!input || input.length <= 0) {
+                    status = false;
+                } else {
+                    var result = new Date(input);
+                    if (result == 'Invalid Date') {
+                        status = false;
+                    } else {
+                        status = true;
+                    }
+                }
+                return status;
+            }
+
         }); 
     </script> 
 </asp:Content>
@@ -156,7 +208,7 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         RH/Prontuário</label>
-                    <asp:TextBox ID="txbProntuario" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbProntuario" runat="server" class="form-control numeric" ></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -184,12 +236,12 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nascimento</label>
-                    <asp:TextBox ID="txbNascimento" runat="server" class="form-control" required ></asp:TextBox>
+                    <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc" data-inputmask="'mask': '99/99/9999'" ></asp:TextBox>
                 </div>
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
                         Idade</label>
-                    <asp:TextBox ID="txbIdade" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbIdade" runat="server" class="form-control age"></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -324,6 +376,5 @@
         <div class="x_content">
             <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
         </div>
-    </div>
-    
+    </div>       
 </asp:Content>

@@ -23,19 +23,6 @@ public partial class Relatorios_ImpressaoBE : System.Web.UI.Page
     }
 
 
-    //private hspmPsDataSet CriarDataSet()
-    //{
-    //    var ds = new hspmPsDataSet();
-
-    //    for (int c = 1; c <= 200; c++)
-    //    {
-            
-    //        ds.ficha.AddItemRow(c, string.Format("Item {0}", c));
-    //    }
-
-    //    return ds;
-    //}
-
     protected void Button1_Click1(object sender, EventArgs e)
     {
         //using (var ds = CriarDataSet())
@@ -47,7 +34,10 @@ public partial class Relatorios_ImpressaoBE : System.Web.UI.Page
 
             FichaDAO sr = new FichaDAO();
             List<Ficha> sc = new List<Ficha>();
-            sc = sr.GetFicha();
+            //Ficha sc = new Ficha();
+
+            sc = sr.GetFicha(1);// ficha teste nº 1
+            
             IEnumerable<Ficha> ie;
             ie = sc.AsQueryable();
             ReportDataSource datasource = new ReportDataSource("Ficha", ie);

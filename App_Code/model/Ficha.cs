@@ -23,7 +23,7 @@ public class Ficha
     public string setor { get; set; }
     public string nome_paciente { get; set; }
     public DateTime dt_nascimento { get; set; }
-    public int idade { get; set; }
+    public string idade { get; set; }
     public string sexo { get; set; }
     public string raca { get; set; }
     public string endereco_rua { get; set; }
@@ -45,4 +45,5 @@ public class Ficha
     public int veio_ambulancia { get; set; }
     public string tipo_paciente { get; set; }
     public string usuario { get; set; }
+    public int status_ficha { get; set; }
 }

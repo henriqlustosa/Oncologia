@@ -59,7 +59,7 @@ public partial class Administrativo_checkoutbe : System.Web.UI.Page
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [cod_profissional], [nome_profissional] FROM [Profissional]";
+            cmm.CommandText = "SELECT [cod_profissional], [nome_profissional] FROM [Profissional] ORDER BY [nome_profissional] asc";
             try
             {
                 cnn.Open();

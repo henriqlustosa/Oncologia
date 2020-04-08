@@ -16,6 +16,7 @@
       <siteMapNode url="~/Admin/ResetSenha.aspx" title="Resetar Senha" description="Resetar Senha do Usuário" />
       <siteMapNode url="~/Admin/Alterarcadastro.aspx" title="Alterar Usuário" description="Página para alterar Login de Usuário" />
       <siteMapNode url="~/Admin/DeletarUsuario.aspx" title="Excluir Usuário" description="Página para exclusão de Usuário" />
+      <siteMapNode url="~/Admin/CadastroProfissional.aspx" title="Cadastro de Profissional" description="Página para Cadastro de Profissional" />
     </siteMapNode>
     
     

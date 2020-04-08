@@ -3,8 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-    <script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
-        type="text/javascript"></script>
+  <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
       
 <!-- iCheck -->
     <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
@@ -140,42 +139,42 @@
             });
 
 
-            function calculateAge(dobString) {
-                var dob = new Date(dobString);
-                var currentDate = new Date();
-                var currentYear = currentDate.getFullYear();
-                var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
-                var age = currentYear - dob.getFullYear();
-                if (birthdayThisYear > currentDate) {
-                    age--;
-                }
-                return age;
-            }
+        });
 
-            function calcular(data) {
-                var data = document.form.nascimento.value;
-                alert(data);
-                var partes = data.split("/");
-                var junta = partes[2] + "-" + partes[1] + "-" + partes[0];
-                document.form.idade.value = (calculateAge(junta));
+        function calculateAge(dobString) {
+            var dob = new Date(dobString);
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            var birthdayThisYear = new Date(currentYear, dob.getMonth(), dob.getDate());
+            var age = currentYear - dob.getFullYear();
+            if (birthdayThisYear > currentDate) {
+                age--;
             }
+            return age;
+        }
 
-            var isDate_ = function(input) {
-                var status = false;
-                if (!input || input.length <= 0) {
+        function calcular(data) {
+            var data = document.form.nascimento.value;
+            alert(data);
+            var partes = data.split("/");
+            var junta = partes[2] + "-" + partes[1] + "-" + partes[0];
+            document.form.idade.value = (calculateAge(junta));
+        }
+
+        var isDate_ = function(input) {
+            var status = false;
+            if (!input || input.length <= 0) {
+                status = false;
+            } else {
+                var result = new Date(input);
+                if (result == 'Invalid Date') {
                     status = false;
                 } else {
-                    var result = new Date(input);
-                    if (result == 'Invalid Date') {
-                        status = false;
-                    } else {
-                        status = true;
-                    }
+                    status = true;
                 }
-                return status;
             }
-
-        }); 
+            return status;
+        }
     </script> 
 </asp:Content>
 
@@ -211,7 +210,11 @@
                         Documento</label>
                     <asp:TextBox ID="txbDocumento" runat="server" class="form-control"></asp:TextBox>
                 </div>
-                
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Cartão SUS</label>
+                    <asp:TextBox ID="txbCNS" runat="server" class="form-control"></asp:TextBox>
+                </div>
                 
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                 <label>Tipo Paciente</label>
@@ -219,7 +222,6 @@
                         <asp:listitem text="Munícipe" Value="M" Selected ></asp:listitem>
                         <asp:listitem text="Funcionário" Value="F"></asp:listitem>
                     </asp:RadioButtonList>
-                     
                 </div>
             </div>
             <div class="row">
@@ -252,7 +254,7 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Raça/Cor</label>
-                    <asp:DropDownList ID="ddlRaca" runat="server" class="form-control" autopostback = "true" >
+                    <asp:DropDownList ID="ddlRaca" runat="server" class="form-control" autopostback="true" >
                         <asp:ListItem>Branca</asp:ListItem>
                         <asp:ListItem>Preta</asp:ListItem>
                         <asp:ListItem>Parda</asp:ListItem>
@@ -364,7 +366,7 @@
                     </asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
                         ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 
-                        SelectCommand="SELECT [cod_setor], [descricao_setor] FROM [setor]">
+                        SelectCommand="SELECT [cod_setor], [descricao_setor] FROM [setor] WHERE ([ativo_setor] = 1)">
                     </asp:SqlDataSource>
                 </div>
             </div>

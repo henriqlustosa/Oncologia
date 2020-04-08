@@ -18,7 +18,7 @@
     <!-- Custom Theme Style -->
     <link href="build/css/custom.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="login">
+<body class="login" style="background-image: url('imagens/stethoscope1.jpg'); background-attachment: fixed">
     <div>
         <div class="login_wrapper">
             <div class="form">

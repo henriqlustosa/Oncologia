@@ -2,8 +2,7 @@
     CodeFile="checkout.aspx.cs" Inherits="Administrativo_checkout" Title="Pronto Socorro - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-<script src='<%= ResolveUrl("https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js") %>'
-        type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
         
     <script type="text/javascript">
         $(document).ready(function() {
@@ -71,21 +70,12 @@
                                 HeaderStyle-CssClass="hidden-xs" />
                             <asp:BoundField DataField="setor" HeaderText="Setor" SortExpression="setor" ItemStyle-CssClass="hidden-xs"
                                 HeaderStyle-CssClass="hidden-xs" />
-                            <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                <ItemTemplate>
-                                    <div class="form-inline">
-                                        <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                            CssClass="btn btn-info" runat="server">
-                                    <i class="fa fa-pencil-square-o" title="Atualizar"></i> 
-                                        </asp:LinkButton>
-                                    </div>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            
                             <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
                                 <ItemTemplate>
                                     <div class="form-inline">
                                         <asp:LinkButton ID="gvlnkCheckOut" CommandName="checkoutRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                            CssClass="btn btn-info" runat="server">
+                                            CssClass="btn btn-success" runat="server">
                                     <i class="fa fa-check-square-o" title="Baixa"></i> 
                                         </asp:LinkButton>
                                     </div>

@@ -23,10 +23,6 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
        
     }
 
-    private void CarregarImpressoras()
-    {
-       
-    }
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
@@ -40,6 +36,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         Ficha be = new Ficha();
         be.prontuario = _pront;
         be.documento = txbDocumento.Text;
+        be.cns = txbCNS.Text;
         be.tipo_paciente = rbTipoPaciente.SelectedValue;
         be.nome_paciente = txbNomePaciente.Text;
 
@@ -75,6 +72,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         int _cod_ficha_be = FichaDAO.GravaFicha(be.dt_rh_be
                                                 ,be.prontuario
                                                 , be.documento
+                                                , be.cns
                                                 , be.tipo_paciente
                                                 , be.nome_paciente
                                                 , be.dt_nascimento
@@ -93,7 +91,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
                                                 , be.telefone
                                                 , be.procedencia
                                                 , be.queixa
-                                                ,be.setor
+                                                , be.setor
                                                 , be.usuario
                                                );
 
@@ -220,6 +218,4 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         _streamAtual++;
         e.HasMorePages = _streamAtual < _streams.Count;
     }
-
-
 }

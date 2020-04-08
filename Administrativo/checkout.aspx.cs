@@ -56,7 +56,21 @@ public partial class Administrativo_checkout : System.Web.UI.Page
             {
                 string mensagem = "Ficha com status: " + _status + " - ALTA ";
                 Msg.Text = mensagem;
-                //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+            }
+            if (_status == 2)
+            {
+                string mensagem = "Ficha com status: " + _status + " - DESISTÊNCIA ";
+                Msg.Text = mensagem;
+            }
+            if (_status == 3)
+            {
+                string mensagem = "Ficha com status: " + _status + " - BE EXTRAVIADO ";
+                Msg.Text = mensagem;
+            }
+            if (_status == 4)
+            {
+                string mensagem = "Ficha com status: " + _status + " - BE CANCELADO ";
+                Msg.Text = mensagem;
             }
             
         }

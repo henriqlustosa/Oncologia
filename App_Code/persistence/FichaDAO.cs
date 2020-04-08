@@ -62,6 +62,7 @@ public class FichaDAO
                                   ",[tipo_paciente]" +
                                   ",[prontuario]" +
                                   ",[documento]" +
+                                  ",[cns]" +
                                   ",[usuario] " +
                               "FROM [hspmPs].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _cod_ficha;
@@ -98,8 +99,9 @@ public class FichaDAO
                     ficha.tipo_paciente = dr1.GetString(20);
                     ficha.prontuario = dr1.GetInt32(21);
                     ficha.documento = dr1.GetString(22);
-                    ficha.usuario = dr1.GetString(23);
-                    //ficha.cns = "0";
+                    ficha.cns = dr1.GetString(23);
+                    ficha.usuario = dr1.GetString(24);
+                    
 
                     fichaLista.Add(ficha);
                 }
@@ -114,7 +116,7 @@ public class FichaDAO
 
 
 
-    public static int GravaFicha(DateTime dt_rh_be, int prontuario, string documento, string tipo_paciente, string nome_paciente, DateTime dt_nascimento, string idade
+    public static int GravaFicha(DateTime dt_rh_be, int prontuario, string documento, string cns, string tipo_paciente, string nome_paciente, DateTime dt_nascimento, string idade
         , string sexo, string raca, string endereco_rua, string numero_casa, string complemento, string bairro, string municipio, string uf
         , string cep, string nome_pai_mae, string responsavel, string telefone, string procedencia, string queixa, string setor, string usuario)
     {
@@ -134,32 +136,33 @@ public class FichaDAO
             {
                 cmm.CommandText = "INSERT INTO [hspmPs].[dbo].[ficha] " +
                                                "(dt_hr_be " +
-                                               ",setor " +
-                                               ",nome_paciente " +
-                                               ",dt_nascimento " +
-                                               ",idade " +
-                                               ",sexo " +
-                                               ",raca " +
-                                               ",endereco_rua " +
-                                               ",numero_casa " +
-                                               ",complemento " +
-                                               ",bairro " +
-                                               ",municipio " +
-                                               ",uf " +
-                                               ",cep " +
-                                               ",nome_pai_mae " +
-                                               ",responsavel " +
-                                               ",telefone " +
-                                               ",procedencia " +
-                                               ",queixa " +
+                                               ", setor " +
+                                               ", nome_paciente " +
+                                               ", dt_nascimento " +
+                                               ", idade " +
+                                               ", sexo " +
+                                               ", raca " +
+                                               ", endereco_rua " +
+                                               ", numero_casa " +
+                                               ", complemento " +
+                                               ", bairro " +
+                                               ", municipio " +
+                                               ", uf " +
+                                               ", cep " +
+                                               ", nome_pai_mae " +
+                                               ", responsavel " +
+                                               ", telefone " +
+                                               ", procedencia " +
+                                               ", queixa " +
                     //",caso_policial " +
                     //",plano_saude " +
                     //",trauma " +
                     //",acidente_trabalho " +
                     //",veio_ambulancia " +
-                                               ",tipo_paciente " +
-                                               ",prontuario " +
-                                               ",documento " +
+                                               ", tipo_paciente " +
+                                               ", prontuario " +
+                                               ", documento " +
+                                               ", cns " +
                                                ", status_ficha " +
                                                ", usuario) " +
                                          "VALUES (" +
@@ -190,6 +193,7 @@ public class FichaDAO
                                                ",@tipo_paciente" +
                                                ",@prontuario" +
                                                ",@documento" +
+                                               ",@cns" +
                                                ",@status_ficha" +
                                                ",@usuario);" +
                                                "SELECT SCOPE_IDENTITY()";
@@ -223,6 +227,7 @@ public class FichaDAO
                 cmm.Parameters.Add("@tipo_paciente", SqlDbType.VarChar).Value = tipo_paciente;
                 cmm.Parameters.Add("@prontuario", SqlDbType.Int).Value = prontuario;
                 cmm.Parameters.Add("@documento", SqlDbType.VarChar).Value = documento;
+                cmm.Parameters.Add("@cns", SqlDbType.VarChar).Value = cns;
                 cmm.Parameters.Add("@status_ficha", SqlDbType.Int).Value = _status_ficha;
                 cmm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario;
 
@@ -286,6 +291,7 @@ public class FichaDAO
                                   ",[tipo_paciente]" +
                                   ",[prontuario]" +
                                   ",[documento]" +
+                                  ",[cns]" +
                                   ",[usuario] " +
                               "FROM [hspmPs].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _nr_be;
@@ -321,8 +327,8 @@ public class FichaDAO
                     ficha.tipo_paciente = dr1.GetString(20);
                     ficha.prontuario = dr1.GetInt32(21);
                     ficha.documento = dr1.GetString(22);
-                    ficha.usuario = dr1.GetString(23);
-                    //ficha.cns = "0";
+                    ficha.cns = dr1.GetString(23);
+                    ficha.usuario = dr1.GetString(24);
                     lista.Add(ficha);
                 }
             }
@@ -370,6 +376,7 @@ public class FichaDAO
                                   ",[tipo_paciente]" +
                                   ",[prontuario]" +
                                   ",[documento]" +
+                                  ",[cns]" +
                                   ",[usuario] " +
                                   ",[status_ficha]" +
                               "FROM [hspmPs].[dbo].[ficha] " +
@@ -406,8 +413,9 @@ public class FichaDAO
                     ficha.tipo_paciente = dr1.GetString(20);
                     ficha.prontuario = dr1.GetInt32(21);
                     ficha.documento = dr1.GetString(22);
-                    ficha.usuario = dr1.GetString(23);
-                    ficha.status_ficha = dr1.GetInt32(24);
+                    ficha.cns = dr1.GetString(23);
+                    ficha.usuario = dr1.GetString(24);
+                    ficha.status_ficha = dr1.GetInt32(25);
                     //ficha.cns = "0";
                 }
             }
@@ -418,6 +426,4 @@ public class FichaDAO
         }
         return ficha;
     }
-
-
 }

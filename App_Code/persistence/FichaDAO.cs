@@ -426,4 +426,94 @@ public class FichaDAO
         }
         return ficha;
     }
+
+
+    public static List<Ficha> GetListaFicha(string _nome)
+    {
+        List<Ficha> listagem = new List<Ficha>();
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+            cmm.CommandText = "SELECT [cod_ficha] " +
+                                  ",[dt_hr_be]" +
+                //",[cns]" +
+                                  ",[setor]" +
+                                  ",[nome_paciente]" +
+                                  ",[dt_nascimento]" +
+                                  ",[idade]" +
+                                  ",[sexo]" +
+                                  ",[raca]" +
+                                  ",[endereco_rua]" +
+                                  ",[numero_casa]" +
+                                  ",[complemento]" +
+                                  ",[bairro]" +
+                                  ",[municipio]" +
+                                  ",[uf]" +
+                                  ",[cep]" +
+                                  ",[nome_pai_mae]" +
+                                  ",[responsavel]" +
+                                  ",[telefone]" +
+                                  ",[procedencia]" +
+                                  ",[queixa]" +
+                //",[caso_policial]" +
+                //",[plano_saude]" +
+                //",[trauma]" +
+                //",[acidente_trabalho]" +
+                //",[veio_ambulancia]" +
+                                  ",[tipo_paciente]" +
+                                  ",[prontuario]" +
+                                  ",[documento]" +
+                                  ",[cns]" +
+                                  ",[usuario] " +
+                              "FROM [hspmPs].[dbo].[ficha] " +
+                              "WHERE nome_paciente LIKE '%" + _nome + "%'";
+            try
+            {
+                cnn.Open();
+
+                SqlDataReader dr1 = cmm.ExecuteReader();
+
+                while (dr1.Read())
+                {
+
+                    Ficha ficha = new Ficha();
+                    ficha.cod_ficha = dr1.GetInt32(0);
+                    ficha.dt_rh_be = dr1.GetDateTime(1);
+                    ficha.setor = dr1.GetString(2);
+                    ficha.nome_paciente = dr1.GetString(3);
+                    ficha.dt_nascimento = dr1.GetDateTime(4);
+                    ficha.idade = dr1.GetString(5);
+                    ficha.sexo = dr1.GetString(6);
+                    ficha.raca = dr1.GetString(7);
+                    ficha.endereco_rua = dr1.GetString(8);
+                    ficha.numero_casa = dr1.GetString(9);
+                    ficha.complemento = dr1.GetString(10);
+                    ficha.bairro = dr1.GetString(11);
+                    ficha.municipio = dr1.GetString(12);
+                    ficha.uf = dr1.GetString(13);
+                    ficha.cep = dr1.GetString(14);
+                    ficha.nome_pai_mae = dr1.GetString(15);
+                    ficha.responsavel = dr1.GetString(16);
+                    ficha.telefone = dr1.GetString(17);
+                    ficha.procedencia = dr1.GetString(18);
+                    ficha.queixa = dr1.GetString(19);
+                    ficha.tipo_paciente = dr1.GetString(20);
+                    ficha.prontuario = dr1.GetInt32(21);
+                    ficha.documento = dr1.GetString(22);
+                    ficha.cns = dr1.GetString(23);
+                    ficha.usuario = dr1.GetString(24);
+
+
+                    listagem.Add(ficha);
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }
+        return listagem;
+    }
+
 }

@@ -18,7 +18,10 @@
       <siteMapNode url="~/Admin/DeletarUsuario.aspx" title="Excluir Usuário" description="Página para exclusão de Usuário" />
       <siteMapNode url="~/Admin/CadastroProfissional.aspx" title="Cadastro de Profissional" description="Página para Cadastro de Profissional" />
     </siteMapNode>
-    
+
+    <siteMapNode url="" title="Meu Perfil" roles="administrador, atendimento, administrativo" description="Páginas relácionadas ao perfil de usuário" >
+      <siteMapNode url="~/Profile/AlterarSenha.aspx" title="Alterar Senha" description="Alteração de senha do usuário" />
+    </siteMapNode>
     
     </siteMapNode>
 </siteMap>

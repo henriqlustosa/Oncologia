@@ -25,10 +25,11 @@ public class ImpressaoFicha
         // TODO: Add constructor logic here
         //
     }
+    public static string nome_impressora { get; set; }
 
-    public static void imprimirFicha(int _cod_ficha_be)
+    public static void imprimirFicha(int _cod_ficha_be, string _nome_impressora)
     {
-
+        nome_impressora = _nome_impressora;
         // Imprimir o BE
         if (_cod_ficha_be > 0)
         {
@@ -104,7 +105,7 @@ public class ImpressaoFicha
         {
             //configurar impressora
             //pd.PrinterSettings.PrinterName = "Microsoft Print to PDF";
-            pd.PrinterSettings.PrinterName = "Lexmark MX710";
+            pd.PrinterSettings.PrinterName = nome_impressora;
             
 
             var pageSettings = new System.Drawing.Printing.PageSettings();

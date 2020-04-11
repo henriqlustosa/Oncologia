@@ -3,8 +3,18 @@
     Title="Pronto Socorro - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" />
+    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#<%=txbNumeroconselho.ClientID%>').keyup(function() {
+                $(this).val(this.value.replace(/\D/g, ''));
+            });
+        });
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -57,16 +67,16 @@
                 <div class="clearfix">
                 </div>
             </div>
-            
-                <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False"
-                 DataKeyNames="cod_profissional" 
-                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1" Width="100%" OnPreRender="GridView1_PreRender" >
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_profissional"
+                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                Width="100%" OnPreRender="GridView1_PreRender">
+                
                 <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
                 <Columns>
                     <asp:BoundField DataField="cod_profissional" HeaderText="COD PROFISSIONAL" SortExpression="cod_profissional"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                    <asp:BoundField DataField="nome_profissional" HeaderText="Nome Profissional" SortExpression="nome_profissional" ItemStyle-CssClass="hidden-md"
-                        HeaderStyle-CssClass="hidden-md" />
+                    <asp:BoundField DataField="nome_profissional" HeaderText="Nome Profissional" SortExpression="nome_profissional"
+                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
                     <asp:BoundField DataField="sigla_conselho" HeaderText="CONSELHO" SortExpression="sigla_conselho"
                         HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
                     <asp:BoundField DataField="nr_conselho" HeaderText="NR CONSELHO" SortExpression="nr_conselho"
@@ -74,36 +84,35 @@
                     <asp:BoundField DataField="status_profissional" HeaderText="status" SortExpression="status_profissional"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
                 </Columns>
-                
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <EditRowStyle BackColor="#999999" />
             </asp:GridView>
-            
-            
         </div>
     </div>
-     
-  <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
-  
-  <script src='<%= ResolveUrl("https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js") %>' type="text/javascript"></script>
+
+    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+
+    <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
+
     <script type="text/javascript">
-            $(document).ready(function() {
-                $.noConflict();
+        $(document).ready(function() {
+            $.noConflict();
 
-                $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-                    language: {
-                        search: "<i class='fa fa-search' aria-hidden='true'></i>",
-                        processing: "Processando...",
-                        lengthMenu: "Mostrando _MENU_ registros por páginas",
-                        info: "Mostrando página _PAGE_ de _PAGES_",
-                        infoEmpty: "Nenhum registro encontrado",
-                        infoFiltered: "(filtrado de _MAX_ registros no total)"
-                    }
-                });
-
+            $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                language: {
+                    search: "<i class='fa fa-search' aria-hidden='true'></i>",
+                    processing: "Processando...",
+                    lengthMenu: "Mostrando _MENU_ registros por páginas",
+                    info: "Mostrando página _PAGE_ de _PAGES_",
+                    infoEmpty: "Nenhum registro encontrado",
+                    infoFiltered: "(filtrado de _MAX_ registros no total)"
+                }
             });
-         </script>
+
+        });
+    </script>
+
 </asp:Content>

@@ -35,7 +35,6 @@ public class FichaDAO
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_ficha] " +
                                   ",[dt_hr_be]" +
-                                  //",[cns]" +
                                   ",[setor]" +
                                   ",[nome_paciente]" +
                                   ",[dt_nascimento]" +
@@ -52,13 +51,12 @@ public class FichaDAO
                                   ",[nome_pai_mae]" +
                                   ",[responsavel]" +
                                   ",[telefone]" +
+                                  ",[telefone1]" +
+                                  ",[telefone2]" +
+                                  ",[email]" +
                                   ",[procedencia]" +
+                                  ", informacao_complementar " +
                                   ",[queixa]" +
-                //",[caso_policial]" +
-                //",[plano_saude]" +
-                //",[trauma]" +
-                //",[acidente_trabalho]" +
-                //",[veio_ambulancia]" +
                                   ",[tipo_paciente]" +
                                   ",[prontuario]" +
                                   ",[documento]" +
@@ -94,14 +92,24 @@ public class FichaDAO
                     ficha.nome_pai_mae = dr1.GetString(15);
                     ficha.responsavel = dr1.GetString(16);
                     ficha.telefone = dr1.GetString(17);
-                    ficha.procedencia = dr1.GetString(18);
-                    ficha.queixa = dr1.GetString(19);
-                    ficha.tipo_paciente = dr1.GetString(20);
-                    ficha.prontuario = dr1.GetInt32(21);
-                    ficha.documento = dr1.GetString(22);
-                    ficha.cns = dr1.GetString(23);
-                    ficha.usuario = dr1.GetString(24);
-                    
+                    ficha.telefone1 = dr1.GetString(18);
+                    ficha.telefone2 = dr1.GetString(19);
+                    ficha.email = dr1.GetString(20);
+                    ficha.procedencia = dr1.GetString(21);
+                    ficha.informacao_complementar = dr1.GetString(22);
+                    ficha.queixa = dr1.GetString(23);
+                    if (dr1.GetString(24) == "F")
+                    {
+                        ficha.tipo_paciente = "FUNCIONÁRIO";
+                    }
+                    if (dr1.GetString(24) == "M")
+                    {
+                        ficha.tipo_paciente = "MUNÍCIPE";
+                    }
+                    ficha.prontuario = dr1.GetInt32(25);
+                    ficha.documento = dr1.GetString(26);
+                    ficha.cns = dr1.GetString(27);
+                    ficha.usuario = dr1.GetString(28);
 
                     fichaLista.Add(ficha);
                 }
@@ -118,7 +126,7 @@ public class FichaDAO
 
     public static int GravaFicha(DateTime dt_rh_be, int prontuario, string documento, string cns, string tipo_paciente, string nome_paciente, DateTime dt_nascimento, string idade
         , string sexo, string raca, string endereco_rua, string numero_casa, string complemento, string bairro, string municipio, string uf
-        , string cep, string nome_pai_mae, string responsavel, string telefone, string procedencia, string queixa, string setor, string usuario)
+        , string cep, string nome_pai_mae, string responsavel, string telefone, string telefone1, string telefone2, string email, string procedencia, string informacao_complementar, string queixa, string setor, string usuario)
     {
         int _cod_ficha = 0;
 
@@ -152,13 +160,12 @@ public class FichaDAO
                                                ", nome_pai_mae " +
                                                ", responsavel " +
                                                ", telefone " +
+                                               ", telefone1 " +
+                                               ", telefone2 " +
+                                               ", email " +
                                                ", procedencia " +
+                                               ", informacao_complementar " +
                                                ", queixa " +
-                    //",caso_policial " +
-                    //",plano_saude " +
-                    //",trauma " +
-                    //",acidente_trabalho " +
-                    //",veio_ambulancia " +
                                                ", tipo_paciente " +
                                                ", prontuario " +
                                                ", documento " +
@@ -183,13 +190,12 @@ public class FichaDAO
                                                ",@nome_pai_mae" +
                                                ",@responsavel" +
                                                ",@telefone" +
+                                               ",@telefone1" +
+                                               ",@telefone2" +
+                                               ",@email" +
                                                ",@procedencia" +
+                                               ",@informacao_complementar " +
                                                ",@queixa" +
-                    //",@caso_policial"+
-                    //",@plano_saude"+
-                    //",@trauma"+
-                    //",@acidente_trabalho"+
-                    //",@veio_ambulancia"+
                                                ",@tipo_paciente" +
                                                ",@prontuario" +
                                                ",@documento" +
@@ -213,17 +219,14 @@ public class FichaDAO
                 cmm.Parameters.Add("@uf", SqlDbType.VarChar).Value = uf;
                 cmm.Parameters.Add("@cep", SqlDbType.VarChar).Value = cep;
                 cmm.Parameters.Add("@nome_pai_mae", SqlDbType.VarChar).Value = nome_pai_mae;
-
-
                 cmm.Parameters.Add("@responsavel", SqlDbType.VarChar).Value = responsavel;
                 cmm.Parameters.Add("@telefone", SqlDbType.VarChar).Value = telefone;
+                cmm.Parameters.Add("@telefone1", SqlDbType.VarChar).Value = telefone1;
+                cmm.Parameters.Add("@telefone2", SqlDbType.VarChar).Value = telefone2;
+                cmm.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 cmm.Parameters.Add("@procedencia", SqlDbType.VarChar).Value = procedencia;
+                cmm.Parameters.Add("@informacao_complementar", SqlDbType.VarChar).Value = informacao_complementar;
                 cmm.Parameters.Add("@queixa", SqlDbType.VarChar).Value = queixa;
-                //cmm.Parameters.Add("@caso_policial", SqlDbType.Int).Value = caso_policial;
-                //cmm.Parameters.Add("@plano_saude", SqlDbType.VarChar).Value = plano_saude;
-                //cmm.Parameters.Add("@trauma", SqlDbType.VarChar).Value = trauma;
-                //cmm.Parameters.Add("@acidente_trabalho", SqlDbType.VarChar).Value = acidente_trabalho;
-                //cmm.Parameters.Add("@veio_ambulancia", SqlDbType.VarChar).Value = veio_ambulancia;
                 cmm.Parameters.Add("@tipo_paciente", SqlDbType.VarChar).Value = tipo_paciente;
                 cmm.Parameters.Add("@prontuario", SqlDbType.Int).Value = prontuario;
                 cmm.Parameters.Add("@documento", SqlDbType.VarChar).Value = documento;
@@ -264,7 +267,6 @@ public class FichaDAO
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_ficha] " +
                                   ",[dt_hr_be]" +
-                //",[cns]" +
                                   ",[setor]" +
                                   ",[nome_paciente]" +
                                   ",[dt_nascimento]" +
@@ -281,13 +283,12 @@ public class FichaDAO
                                   ",[nome_pai_mae]" +
                                   ",[responsavel]" +
                                   ",[telefone]" +
+                                  ",[telefone1]" +
+                                  ",[telefone2]" +
+                                  ",[email]" +
                                   ",[procedencia]" +
+                                  ",[informacao_complementar]" +
                                   ",[queixa]" +
-                //",[caso_policial]" +
-                //",[plano_saude]" +
-                //",[trauma]" +
-                //",[acidente_trabalho]" +
-                //",[veio_ambulancia]" +
                                   ",[tipo_paciente]" +
                                   ",[prontuario]" +
                                   ",[documento]" +
@@ -322,13 +323,24 @@ public class FichaDAO
                     ficha.nome_pai_mae = dr1.GetString(15);
                     ficha.responsavel = dr1.GetString(16);
                     ficha.telefone = dr1.GetString(17);
-                    ficha.procedencia = dr1.GetString(18);
-                    ficha.queixa = dr1.GetString(19);
-                    ficha.tipo_paciente = dr1.GetString(20);
-                    ficha.prontuario = dr1.GetInt32(21);
-                    ficha.documento = dr1.GetString(22);
-                    ficha.cns = dr1.GetString(23);
-                    ficha.usuario = dr1.GetString(24);
+                    ficha.telefone1 = dr1.GetString(18);
+                    ficha.telefone2 = dr1.GetString(19);
+                    ficha.email = dr1.GetString(20);
+                    ficha.procedencia = dr1.GetString(21);
+                    ficha.informacao_complementar = dr1.GetString(22);
+                    ficha.queixa = dr1.GetString(23);
+                    if (dr1.GetString(24) == "F")
+                    {
+                        ficha.tipo_paciente = "FUNCIONÁRIO";
+                    }
+                    if (dr1.GetString(24) == "M")
+                    {
+                        ficha.tipo_paciente = "MUNÍCIPE";
+                    }
+                    ficha.prontuario = dr1.GetInt32(25);
+                    ficha.documento = dr1.GetString(26);
+                    ficha.cns = dr1.GetString(27);
+                    ficha.usuario = dr1.GetString(28);
                     lista.Add(ficha);
                 }
             }
@@ -349,7 +361,6 @@ public class FichaDAO
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_ficha] " +
                                   ",[dt_hr_be]" +
-                //",[cns]" +
                                   ",[setor]" +
                                   ",[nome_paciente]" +
                                   ",[dt_nascimento]" +
@@ -366,13 +377,12 @@ public class FichaDAO
                                   ",[nome_pai_mae]" +
                                   ",[responsavel]" +
                                   ",[telefone]" +
+                                  ",[telefone1]" +
+                                  ",[telefone2]" +
+                                  ",[email]" +
                                   ",[procedencia]" +
+                                  ",[informacao_complementar]" +
                                   ",[queixa]" +
-                //",[caso_policial]" +
-                //",[plano_saude]" +
-                //",[trauma]" +
-                //",[acidente_trabalho]" +
-                //",[veio_ambulancia]" +
                                   ",[tipo_paciente]" +
                                   ",[prontuario]" +
                                   ",[documento]" +
@@ -408,14 +418,24 @@ public class FichaDAO
                     ficha.nome_pai_mae = dr1.GetString(15);
                     ficha.responsavel = dr1.GetString(16);
                     ficha.telefone = dr1.GetString(17);
-                    ficha.procedencia = dr1.GetString(18);
-                    ficha.queixa = dr1.GetString(19);
-                    ficha.tipo_paciente = dr1.GetString(20);
-                    ficha.prontuario = dr1.GetInt32(21);
-                    ficha.documento = dr1.GetString(22);
-                    ficha.cns = dr1.GetString(23);
-                    ficha.usuario = dr1.GetString(24);
-                    ficha.status_ficha = dr1.GetInt32(25);
+                    ficha.telefone1 = dr1.GetString(18);
+                    ficha.telefone2 = dr1.GetString(19);
+                    ficha.email = dr1.GetString(20);
+                    ficha.procedencia = dr1.GetString(21);
+                    ficha.informacao_complementar = dr1.GetString(22);
+                    ficha.queixa = dr1.GetString(23);
+                    if (dr1.GetString(24) == "F")
+                    {
+                        ficha.tipo_paciente = "FUNCIONÁRIO";
+                    }
+                    if (dr1.GetString(24) == "M")
+                    {
+                        ficha.tipo_paciente = "MUNÍCIPE";
+                    }
+                    ficha.prontuario = dr1.GetInt32(25);
+                    ficha.documento = dr1.GetString(26);
+                    ficha.cns = dr1.GetString(27);
+                    ficha.usuario = dr1.GetString(28);
                     //ficha.cns = "0";
                 }
             }
@@ -437,7 +457,6 @@ public class FichaDAO
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_ficha] " +
                                   ",[dt_hr_be]" +
-                //",[cns]" +
                                   ",[setor]" +
                                   ",[nome_paciente]" +
                                   ",[dt_nascimento]" +
@@ -454,13 +473,12 @@ public class FichaDAO
                                   ",[nome_pai_mae]" +
                                   ",[responsavel]" +
                                   ",[telefone]" +
+                                  ",[telefone1]" +
+                                  ",[telefone2]" +
+                                  ",[email]" +
                                   ",[procedencia]" +
+                                  ",[informacao_complementar]" +
                                   ",[queixa]" +
-                //",[caso_policial]" +
-                //",[plano_saude]" +
-                //",[trauma]" +
-                //",[acidente_trabalho]" +
-                //",[veio_ambulancia]" +
                                   ",[tipo_paciente]" +
                                   ",[prontuario]" +
                                   ",[documento]" +
@@ -496,14 +514,24 @@ public class FichaDAO
                     ficha.nome_pai_mae = dr1.GetString(15);
                     ficha.responsavel = dr1.GetString(16);
                     ficha.telefone = dr1.GetString(17);
-                    ficha.procedencia = dr1.GetString(18);
-                    ficha.queixa = dr1.GetString(19);
-                    ficha.tipo_paciente = dr1.GetString(20);
-                    ficha.prontuario = dr1.GetInt32(21);
-                    ficha.documento = dr1.GetString(22);
-                    ficha.cns = dr1.GetString(23);
-                    ficha.usuario = dr1.GetString(24);
-
+                    ficha.telefone1 = dr1.GetString(18);
+                    ficha.telefone2 = dr1.GetString(19);
+                    ficha.email = dr1.GetString(20);
+                    ficha.procedencia = dr1.GetString(21);
+                    ficha.informacao_complementar = dr1.GetString(22);
+                    ficha.queixa = dr1.GetString(23);
+                    if (dr1.GetString(24) == "F")
+                    {
+                        ficha.tipo_paciente = "FUNCIONÁRIO";
+                    }
+                    if (dr1.GetString(24) == "M")
+                    {
+                        ficha.tipo_paciente = "MUNÍCIPE";
+                    }
+                    ficha.prontuario = dr1.GetInt32(25);
+                    ficha.documento = dr1.GetString(26);
+                    ficha.cns = dr1.GetString(27);
+                    ficha.usuario = dr1.GetString(28);
 
                     listagem.Add(ficha);
                 }
@@ -515,5 +543,4 @@ public class FichaDAO
         }
         return listagem;
     }
-
 }

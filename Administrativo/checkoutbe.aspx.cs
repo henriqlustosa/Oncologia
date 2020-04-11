@@ -70,7 +70,7 @@ public partial class Administrativo_checkoutbe : System.Web.UI.Page
                 }
                 cnn.Close();
                 //inserido na posições 0 do DDL, texto: "Selecione a empresa", e valor: "0".
-                ddlProfissional.Items.Insert(0, new ListItem("PROFISSIONAL NÃO INFORMADO", "0"));
+                //ddlProfissional.Items.Insert(0, new ListItem("PROFISSIONAL NÃO INFORMADO", "0"));
             }
             catch (Exception ex)
             {

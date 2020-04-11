@@ -36,13 +36,12 @@ public class Ficha
     public string nome_pai_mae { get; set; }
     public string responsavel { get; set; }
     public string telefone { get; set; }
+    public string telefone1 { get; set; }
+    public string telefone2 { get; set; }
+    public string email { get; set; }
     public string procedencia { get; set; }
     public string queixa { get; set; }
-    public int caso_policial { get; set; }
-    public int plano_saude { get; set; }
-    public int trauma { get; set; }
-    public int acidente_trabalho { get; set; }
-    public int veio_ambulancia { get; set; }
+    public string informacao_complementar { get; set; }
     public string tipo_paciente { get; set; }
     public string usuario { get; set; }
     public int status_ficha { get; set; }

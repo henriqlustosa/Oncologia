@@ -122,6 +122,18 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <DataField>telefone</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="telefone1">
+          <DataField>telefone1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="telefone2">
+          <DataField>telefone2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="email">
+          <DataField>email</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="procedencia">
           <DataField>procedencia</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -130,25 +142,9 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <DataField>queixa</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="caso_policial">
-          <DataField>caso_policial</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="plano_saude">
-          <DataField>plano_saude</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="trauma">
-          <DataField>trauma</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="acidente_trabalho">
-          <DataField>acidente_trabalho</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="veio_ambulancia">
-          <DataField>veio_ambulancia</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="informacao_complementar">
+          <DataField>informacao_complementar</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="tipo_paciente">
           <DataField>tipo_paciente</DataField>
@@ -175,6 +171,101 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
+      <Textbox Name="tipo_paciente">
+        <rd:DefaultName>tipo_paciente</rd:DefaultName>
+        <Top>3.75cm</Top>
+        <Width>4cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>87</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>14.5cm</Left>
+        <Height>0.5cm</Height>
+        <Value>=First(Fields!tipo_paciente.Value)</Value>
+      </Textbox>
+      <Textbox Name="informacao_complementar">
+        <rd:DefaultName>informacao_complementar</rd:DefaultName>
+        <Top>7.25cm</Top>
+        <Width>18.5cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>86</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.5cm</Height>
+        <Value>="Informações Complementares: "&amp;First(Fields!informacao_complementar.Value)</Value>
+      </Textbox>
+      <Textbox Name="email">
+        <rd:DefaultName>email</rd:DefaultName>
+        <Top>5.75cm</Top>
+        <Width>8cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>85</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.5cm</Left>
+        <Height>0.5cm</Height>
+        <Value>="E-mail: "&amp;First(Fields!email.Value)</Value>
+      </Textbox>
+      <Textbox Name="telefone2">
+        <rd:DefaultName>telefone2</rd:DefaultName>
+        <Top>5.75cm</Top>
+        <Width>3.5cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>84</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>7cm</Left>
+        <Height>0.5cm</Height>
+        <Value>="Tel3: "&amp;First(Fields!telefone2.Value)</Value>
+      </Textbox>
+      <Textbox Name="telefone1">
+        <rd:DefaultName>telefone1</rd:DefaultName>
+        <Top>5.75cm</Top>
+        <Width>3.5cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>83</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>3.5cm</Left>
+        <Height>0.5cm</Height>
+        <Value>="Tel2: "&amp;First(Fields!telefone1.Value)</Value>
+      </Textbox>
       <Textbox Name="textbox103">
         <rd:DefaultName>textbox103</rd:DefaultName>
         <Top>48.08598cm</Top>
@@ -188,7 +279,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>88</ZIndex>
+        <ZIndex>82</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -207,7 +298,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>87</ZIndex>
+        <ZIndex>81</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -226,7 +317,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>86</ZIndex>
+        <ZIndex>80</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -245,7 +336,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>85</ZIndex>
+        <ZIndex>79</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -264,7 +355,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>84</ZIndex>
+        <ZIndex>78</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -283,7 +374,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>83</ZIndex>
+        <ZIndex>77</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -302,7 +393,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>82</ZIndex>
+        <ZIndex>76</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -321,7 +412,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>81</ZIndex>
+        <ZIndex>75</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -340,7 +431,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>80</ZIndex>
+        <ZIndex>74</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -359,7 +450,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>79</ZIndex>
+        <ZIndex>73</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -378,7 +469,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>78</ZIndex>
+        <ZIndex>72</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -397,7 +488,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>77</ZIndex>
+        <ZIndex>71</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -416,7 +507,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>76</ZIndex>
+        <ZIndex>70</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -434,7 +525,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>75</ZIndex>
+        <ZIndex>69</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -452,7 +543,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>74</ZIndex>
+        <ZIndex>68</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -470,7 +561,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>73</ZIndex>
+        <ZIndex>67</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -488,7 +579,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>72</ZIndex>
+        <ZIndex>66</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -506,7 +597,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>71</ZIndex>
+        <ZIndex>65</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -524,7 +615,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>70</ZIndex>
+        <ZIndex>64</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -542,7 +633,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>69</ZIndex>
+        <ZIndex>63</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -560,7 +651,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>68</ZIndex>
+        <ZIndex>62</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -578,7 +669,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>67</ZIndex>
+        <ZIndex>61</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -596,7 +687,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>66</ZIndex>
+        <ZIndex>60</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -614,7 +705,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>65</ZIndex>
+        <ZIndex>59</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -632,7 +723,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>64</ZIndex>
+        <ZIndex>58</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -651,7 +742,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>63</ZIndex>
+        <ZIndex>57</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value>PRESCRIÇÃO</Value>
@@ -669,7 +760,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>62</ZIndex>
+        <ZIndex>56</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -689,7 +780,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>61</ZIndex>
+        <ZIndex>55</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>0.75cm</Height>
@@ -708,14 +799,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>60</ZIndex>
+        <ZIndex>54</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.75cm</Left>
         <Height>2.75cm</Height>
         <Value>Assinatura/Carimbo do Médico</Value>
       </Textbox>
       <Rectangle Name="rectangle11">
-        <ZIndex>59</ZIndex>
+        <ZIndex>53</ZIndex>
         <ReportItems>
           <Textbox Name="textbox72">
             <rd:DefaultName>textbox72</rd:DefaultName>
@@ -931,7 +1022,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>58</ZIndex>
+        <ZIndex>52</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value>Transferência (Unidade de Saúde)</Value>
@@ -949,14 +1040,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>57</ZIndex>
+        <ZIndex>51</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value>Internação no próprio hospital (setor)</Value>
       </Textbox>
       <Rectangle Name="rectangle10">
         <Left>5.75cm</Left>
-        <ZIndex>56</ZIndex>
+        <ZIndex>50</ZIndex>
         <ReportItems>
           <Line Name="line2">
             <Top>1.5cm</Top>
@@ -1184,7 +1275,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>55</ZIndex>
+        <ZIndex>49</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>3cm</Left>
         <Height>1.75cm</Height>
@@ -1204,7 +1295,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>54</ZIndex>
+        <ZIndex>48</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>1.75cm</Height>
         <Value>Data da saída</Value>
@@ -1222,7 +1313,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>53</ZIndex>
+        <ZIndex>47</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>7cm</Left>
         <Height>1.5cm</Height>
@@ -1242,13 +1333,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>52</ZIndex>
+        <ZIndex>46</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>1.5cm</Height>
         <Value>Hipótese diagnóstica</Value>
       </Textbox>
       <Rectangle Name="rectangle8">
-        <ZIndex>51</ZIndex>
+        <ZIndex>45</ZIndex>
         <Top>26.77381cm</Top>
         <Width>18.5cm</Width>
         <Style>
@@ -1271,7 +1362,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>50</ZIndex>
+        <ZIndex>44</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>7.65344cm</Height>
         <Value>Dados Clínicos:</Value>
@@ -1289,7 +1380,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>49</ZIndex>
+        <ZIndex>43</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>13cm</Left>
         <Height>2.25cm</Height>
@@ -1307,7 +1398,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>48</ZIndex>
+        <ZIndex>42</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -1324,7 +1415,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>47</ZIndex>
+        <ZIndex>41</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -1342,7 +1433,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>46</ZIndex>
+        <ZIndex>40</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value />
@@ -1360,7 +1451,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>45</ZIndex>
+        <ZIndex>39</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>13cm</Left>
         <Height>0.75cm</Height>
@@ -1380,7 +1471,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>44</ZIndex>
+        <ZIndex>38</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.75cm</Height>
         <Value>Estado do paciente:</Value>
@@ -1399,7 +1490,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>43</ZIndex>
+        <ZIndex>37</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>1.25cm</Height>
         <Value>Medicação em usos:</Value>
@@ -1417,7 +1508,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>42</ZIndex>
+        <ZIndex>36</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>12.51191cm</Left>
         <Height>0.5cm</Height>
@@ -1436,7 +1527,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>41</ZIndex>
+        <ZIndex>35</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>6.25cm</Left>
         <Height>0.5cm</Height>
@@ -1456,7 +1547,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>40</ZIndex>
+        <ZIndex>34</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>0.0119cm</Left>
         <Height>0.5cm</Height>
@@ -1475,7 +1566,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>39</ZIndex>
+        <ZIndex>33</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>13cm</Left>
         <Height>0.5cm</Height>
@@ -1494,7 +1585,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>38</ZIndex>
+        <ZIndex>32</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>8.75cm</Left>
         <Height>0.5cm</Height>
@@ -1513,7 +1604,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>37</ZIndex>
+        <ZIndex>31</ZIndex>
         <CanGrow>true</CanGrow>
         <Left>4.5cm</Left>
         <Height>0.5cm</Height>
@@ -1534,14 +1625,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>36</ZIndex>
+        <ZIndex>30</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>0.5cm</Height>
         <Value>Sinais Vitais:</Value>
       </Textbox>
       <Rectangle Name="rectangle7">
         <Left>8.75cm</Left>
-        <ZIndex>35</ZIndex>
+        <ZIndex>29</ZIndex>
         <ReportItems>
           <Line Name="line1">
             <Top>0.88228cm</Top>
@@ -1633,7 +1724,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <Height>1.74603cm</Height>
       </Rectangle>
       <Rectangle Name="rectangle6">
-        <ZIndex>34</ZIndex>
+        <ZIndex>28</ZIndex>
         <ReportItems>
           <Textbox Name="textbox17">
             <rd:DefaultName>textbox17</rd:DefaultName>
@@ -1811,32 +1902,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>33</ZIndex>
+        <ZIndex>27</ZIndex>
         <CanGrow>true</CanGrow>
         <Height>1.5cm</Height>
         <Value>Queixa principal:</Value>
       </Textbox>
-      <Textbox Name="textbox14">
-        <rd:DefaultName>textbox14</rd:DefaultName>
-        <Top>9.25cm</Top>
-        <Width>18.5cm</Width>
-        <Style>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>32</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Height>0.75cm</Height>
-        <Value />
-      </Textbox>
       <Textbox Name="textbox13">
         <rd:DefaultName>textbox13</rd:DefaultName>
-        <Top>8.75cm</Top>
+        <Top>9.25cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1848,13 +1921,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
-        <ZIndex>31</ZIndex>
+        <ZIndex>26</ZIndex>
         <CanGrow>true</CanGrow>
-        <Height>0.5cm</Height>
+        <Height>0.75cm</Height>
         <Value>Reclasificação:</Value>
       </Textbox>
       <Rectangle Name="rectangle1">
-        <ZIndex>30</ZIndex>
+        <ZIndex>25</ZIndex>
         <ReportItems>
           <Rectangle Name="rectangle2">
             <Left>15.75cm</Left>
@@ -1987,7 +2060,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
             <Value>CLASSIFICAÇÃO DE RISCO:* Clínica Médica 7:00 às 19:00h</Value>
           </Textbox>
         </ReportItems>
-        <Top>7.25cm</Top>
+        <Top>7.75cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1996,99 +2069,9 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <Height>1.5cm</Height>
       </Rectangle>
-      <Textbox Name="textbox7">
-        <Top>6.75cm</Top>
-        <Width>4cm</Width>
-        <Style>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>29</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>14.5cm</Left>
-        <Height>0.5cm</Height>
-        <Value>Veio de Ambulância:</Value>
-      </Textbox>
-      <Textbox Name="textbox6">
-        <Top>6.75cm</Top>
-        <Width>4.25cm</Width>
-        <Style>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>28</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>10.25cm</Left>
-        <Height>0.5cm</Height>
-        <Value>Acidente de Trabalho:</Value>
-      </Textbox>
-      <Textbox Name="textbox5">
-        <Top>6.75cm</Top>
-        <Width>2.75cm</Width>
-        <Style>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>27</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>7.5cm</Left>
-        <Height>0.5cm</Height>
-        <Value>Trauma:</Value>
-      </Textbox>
-      <Textbox Name="textbox4">
-        <Top>6.75cm</Top>
-        <Width>4cm</Width>
-        <Style>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>26</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>3.5cm</Left>
-        <Height>0.5cm</Height>
-        <Value>Plano de Saúde:</Value>
-      </Textbox>
-      <Textbox Name="textbox3">
-        <rd:DefaultName>textbox3</rd:DefaultName>
-        <Top>6.75cm</Top>
-        <Width>3.52381cm</Width>
-        <Style>
-          <BorderStyle>
-            <Default>Solid</Default>
-          </BorderStyle>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>25</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Height>0.5cm</Height>
-        <Value>Caso Policial:</Value>
-      </Textbox>
       <Textbox Name="queixa">
         <rd:DefaultName>queixa</rd:DefaultName>
-        <Top>6.25cm</Top>
+        <Top>6.75cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2106,7 +2089,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="procedencia">
         <rd:DefaultName>procedencia</rd:DefaultName>
-        <Top>5.75cm</Top>
+        <Top>6.25cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2124,8 +2107,8 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="telefone">
         <rd:DefaultName>telefone</rd:DefaultName>
-        <Top>5.25cm</Top>
-        <Width>4.75cm</Width>
+        <Top>5.75cm</Top>
+        <Width>3.5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2138,14 +2121,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>22</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>13.75cm</Left>
         <Height>0.5cm</Height>
         <Value>="Tel: "&amp;First(Fields!telefone.Value)</Value>
       </Textbox>
       <Textbox Name="responsavel">
         <rd:DefaultName>responsavel</rd:DefaultName>
         <Top>5.25cm</Top>
-        <Width>13.75cm</Width>
+        <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2242,7 +2224,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       <Textbox Name="raca">
         <rd:DefaultName>raca</rd:DefaultName>
         <Top>3.75cm</Top>
-        <Width>5.5cm</Width>
+        <Width>4.5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2255,14 +2237,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>16</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>13cm</Left>
+        <Left>10cm</Left>
         <Height>0.5cm</Height>
         <Value>="Raça/Cor: "&amp;First(Fields!raca.Value)</Value>
       </Textbox>
       <Textbox Name="sexo">
         <rd:DefaultName>sexo</rd:DefaultName>
         <Top>3.75cm</Top>
-        <Width>5.25cm</Width>
+        <Width>3.75cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2275,14 +2257,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>15</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>7.75cm</Left>
+        <Left>6.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="Sexo: "&amp;First(Fields!sexo.Value)</Value>
       </Textbox>
       <Textbox Name="dt_nascimento">
         <rd:DefaultName>dt_nascimento</rd:DefaultName>
         <Top>3.75cm</Top>
-        <Width>4.75cm</Width>
+        <Width>4cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2295,14 +2277,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>14</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>3cm</Left>
+        <Left>2.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="Nascimento: "&amp;First(Fields!dt_nascimento.Value)</Value>
       </Textbox>
       <Textbox Name="idade">
         <rd:DefaultName>idade</rd:DefaultName>
         <Top>3.75cm</Top>
-        <Width>3cm</Width>
+        <Width>2.25cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>

@@ -1,17 +1,18 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" EnableEventValidation="false"
-    CodeFile="AberturaFicha.aspx.cs" Inherits="Atendimento_AberturaFicha" Title="Pronto Socorro - HSPM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+    EnableEventValidation="false" CodeFile="AberturaFicha.aspx.cs" Inherits="Atendimento_AberturaFicha"
+    Title="Pronto Socorro - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-  <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
-      
-<!-- iCheck -->
+    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+
+    <!-- iCheck -->
+
     <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
 
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/line/blue.css" rel="stylesheet" />
-    
-<style type="text/css">
+    <style type="text/css">
         @font-face
         {
             font-family: 'BebasNeueRegular';
@@ -58,25 +59,11 @@
             padding-left: 10px;
             padding-right: 10px;
         }
-        @-webkit-keyframes mymove 
-        {
-            0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
-            50% {opacity:0; text-shadow:none; }
-            100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
-        }
-
-        @-moz-keyframes mymove 
-        {
-            0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
-            50% {opacity:0; text-shadow:none; }
-            100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; }	
-        }
-       
-       </style>
-
+        @-webkit-keyframes@-webkit-keyframesmymove{0%{opacity:1.0;text-shadow:0020px#00c6ff;}50%{opacity:0;text-shadow:none;}100%{opacity:1.0;text-shadow:0020px#00c6ff;}@-moz-keyframesmymove{0%{opacity:1.0;text-shadow:0020px#00c6ff;}50%{opacity:0;text-shadow:none;}100%{opacity:1.0;text-shadow:0020px#00c6ff;}</style>
 
     <script type="text/javascript">
         $(document).ready(function() {
+
             // Create two variable with the names of the months and days in an array
             var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
             var dayNames = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
@@ -126,7 +113,7 @@
                 $(this).val(this.value.replace(/\D/g, ''));
             });
 
-
+           
             $('.nasc').blur(function() {
                 var data = $('.nasc').val();
                 if (data == "") {
@@ -175,52 +162,52 @@
             }
             return status;
         }
-    </script> 
-</asp:Content>
+    </script>
 
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-        <div class="clock">
-            <div id="Date">
-            </div>
-            <ul class="relogio">
-                <li id="hours"></li>
-                <li id="point">:</li>
-                <li id="min"></li>
-                <li id="point">:</li>
-                <li id="sec"></li>
-            </ul>
+  
+    <div class="clock">
+        <div id="Date">
         </div>
-    
-    
+        <ul class="relogio">
+            <li id="hours"></li>
+            <li id="point">:</li>
+            <li id="min"></li>
+            <li id="point">:</li>
+            <li id="sec"></li>
+        </ul>
+    </div>
     <div class="container">
         <div class="x_panel">
             <div class="x_title">
-               <h2>Boletim de Emergência<small><i>- Informações do Paciente</i></small></h2>
-               <div class="clearfix">
+                <h2>
+                    Boletim de Emergência<small><i>- Informações do Paciente</i></small></h2>
+                <div class="clearfix">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         RH/Prontuário</label>
-                    <asp:TextBox ID="txbProntuario" runat="server" class="form-control numeric" ></asp:TextBox>
+                    <asp:TextBox ID="txbProntuario" runat="server" class="form-control numeric"></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Documento</label>
-                    <asp:TextBox ID="txbDocumento" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbDocumento" MaxLength="100" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Cartão SUS</label>
-                    <asp:TextBox ID="txbCNS" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbCNS" MaxLength="50" runat="server" class="form-control"></asp:TextBox>
                 </div>
-                
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                <label>Tipo Paciente</label>
+                    <label>
+                        Tipo Paciente</label>
                     <asp:RadioButtonList ID="rbTipoPaciente" RepeatDirection="Horizontal" runat="server">
-                        <asp:listitem text="Munícipe" Value="M" Selected ></asp:listitem>
-                        <asp:listitem text="Funcionário" Value="F"></asp:listitem>
+                        <asp:ListItem Text="Munícipe" Value="M" Selected></asp:ListItem>
+                        <asp:ListItem Text="Funcionário" Value="F"></asp:ListItem>
                     </asp:RadioButtonList>
                 </div>
             </div>
@@ -228,13 +215,12 @@
                 <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nome</label>
-                    <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control" required ></asp:TextBox>
+                    <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control" required></asp:TextBox>
                 </div>
-                
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nascimento</label>
-                    <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc" data-inputmask="'mask': '99/99/9999'" ></asp:TextBox>
+                    <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc" data-inputmask="'mask': '99/99/9999'"></asp:TextBox>
                 </div>
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -244,25 +230,23 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Sexo</label>
-                    <asp:DropDownList ID="ddlSexo" runat="server" autopostback = "true" class="form-control">
+                    <asp:DropDownList ID="ddlSexo" runat="server" AutoPostBack="true" class="form-control">
                         <asp:ListItem>Masculino</asp:ListItem>
                         <asp:ListItem>Feminino</asp:ListItem>
                         <asp:ListItem>Não Informado</asp:ListItem>
                     </asp:DropDownList>
-                   
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Raça/Cor</label>
-                    <asp:DropDownList ID="ddlRaca" runat="server" class="form-control" autopostback="true" >
+                    <asp:DropDownList ID="ddlRaca" runat="server" class="form-control" AutoPostBack="true">
                         <asp:ListItem>Branca</asp:ListItem>
                         <asp:ListItem>Preta</asp:ListItem>
                         <asp:ListItem>Parda</asp:ListItem>
                         <asp:ListItem>Amarela</asp:ListItem>
                         <asp:ListItem>Indígena</asp:ListItem>
-                    </asp:DropDownList>   
+                    </asp:DropDownList>
                 </div>
-                
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
@@ -273,33 +257,32 @@
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
                         Número</label>
-                    <asp:TextBox ID="txbNumero" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbNumero" MaxLength="10" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
                         Complemento</label>
-                    <asp:TextBox ID="txbComplemento" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbComplemento" runat="server" MaxLength="50" class="form-control"></asp:TextBox>
                 </div>
-            
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Bairro</label>
-                    <asp:TextBox ID="txbBairro" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbBairro" MaxLength="100" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Município</label>
-                    <asp:TextBox ID="txbMunicipio" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbMunicipio" MaxLength="100" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
                         UF</label>
-                    <asp:TextBox ID="txbUF" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbUF" MaxLength="2" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
                         CEP</label>
-                    <asp:TextBox ID="txbCEP" runat="server" class="form-control"></asp:TextBox>
+                    <asp:TextBox ID="txbCEP" MaxLength="10" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
@@ -308,45 +291,59 @@
                         Nome do Pai/Mãe</label>
                     <asp:TextBox ID="txbPais" runat="server" class="form-control"></asp:TextBox>
                 </div>
-           
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                     <label>
                         Responsável</label>
                     <asp:TextBox ID="txbResponsavel" runat="server" class="form-control"></asp:TextBox>
                 </div>
-                <div class="col-md-1 col-sm-12 col-xs-12 form-group">
-                    <label>
-                        Telefone</label>
-                    <asp:TextBox ID="txbTelefone" runat="server" class="form-control"></asp:TextBox>
-                </div>
-            
-                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                     <label>
                         Procedência</label>
                     <asp:TextBox ID="txbProcedencia" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
-                        Queixa</label>
-                    <asp:TextBox ID="txbQueixa" runat="server" class="form-control" TextMode="MultiLine"
-                        Rows="4" required ></asp:TextBox>
+                        Telefone 1</label>
+                    <asp:TextBox ID="txbTelefone" MaxLength="20" runat="server" class="form-control"></asp:TextBox>
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Telefone 2</label>
+                    <asp:TextBox ID="txbTelefone1" MaxLength="20" runat="server" class="form-control"></asp:TextBox>
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Telefone 3</label>
+                    <asp:TextBox ID="txbTelefone2" MaxLength="20" runat="server" class="form-control"></asp:TextBox>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        E-mail</label>
+                    <asp:TextBox ID="txbEmail" MaxLength="100" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
             
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                    <asp:checkboxlist runat="server" id="chkFormaChegada" RepeatDirection="Horizontal" >
-                        <asp:listitem text="Caso Policial"></asp:listitem>
-                        <asp:listitem text="Plano de Saúde"></asp:listitem>
-                        <asp:listitem text="Trauma" ></asp:listitem>
-                        <asp:listitem text="Acidente de Trabalho"></asp:listitem>
-                        <asp:listitem text="Veio de Ambulância"></asp:listitem>
-                    </asp:checkboxlist>
+                    <label>
+                        Queixa</label>
+                    <asp:TextBox ID="txbQueixa" runat="server" class="form-control" TextMode="MultiLine"
+                        Rows="4" required></asp:TextBox>
                 </div>
             </div>
-      
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <asp:CheckBoxList runat="server"  ID="chkFormaChegada" RepeatDirection="Horizontal" Height="100px" Width="100%">
+                        <asp:ListItem Text="Caso Policial" ></asp:ListItem>
+                        <asp:ListItem Text="Plano de Saúde"></asp:ListItem>
+                        <asp:ListItem Text="Trauma"></asp:ListItem>
+                        <asp:ListItem Text="Acidente de Trabalho"></asp:ListItem>
+                        <asp:ListItem Text="Veio de Ambulância"></asp:ListItem>
+                    </asp:CheckBoxList>
+                </div>
+            </div>
         </div>
         <div class="x_panel">
             <div class="x_title">
@@ -360,19 +357,43 @@
                 <label for="txbSetor" class="col-sm-1 col-form-label">
                     Setor:</label>
                 <div>
-                    <asp:DropDownList ID="ddlSetor" runat="server" class="form-control" autopostback = "true"
-                        DataSourceID="SqlDataSource3" DataTextField="descricao_setor" 
-                        DataValueField="descricao_setor">
+                    <asp:DropDownList ID="ddlSetor" runat="server" class="form-control" AutoPostBack="true"
+                        DataSourceID="SqlDataSource3" DataTextField="descricao_setor" DataValueField="descricao_setor">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:psConnectionString %>" 
-                        SelectCommand="SELECT [cod_setor], [descricao_setor] FROM [setor] WHERE ([ativo_setor] = 1)">
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:psConnectionString %>"
+                        SelectCommand="SELECT [cod_setor], [descricao_setor] FROM [setor] WHERE ([ativo_setor] = 1) ORDER BY descricao_setor asc">
                     </asp:SqlDataSource>
                 </div>
             </div>
         </div>
         <div class="x_content">
-            <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
         </div>
-    </div>       
+    </div>
+    
+    <div class="container">
+       
+            <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+            Imprimir</button>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            Selecione a Impressora</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            Impressoras:
+                            <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
+                            </asp:DropDownList>
+                            <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary gravar" OnClick="btnGravar_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

@@ -30,7 +30,7 @@
                                       Display="Static" ErrorMessage="Required" /></td>
     </tr>
     <tr>
-      <td>Consirma senha:</td>
+      <td>Confirmar senha:</td>
       <td><asp:Textbox id="PasswordConfirmTextbox" class="form-control" runat="server" TextMode="Password" /></td>
       <td><asp:RequiredFieldValidator id="PasswordConfirmRequiredValidator" runat="server"
                                       ControlToValidate="PasswordConfirmTextbox" ForeColor="red"

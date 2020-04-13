@@ -299,7 +299,16 @@
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                     <label>
                         Procedência</label>
-                    <asp:TextBox ID="txbProcedencia" runat="server" class="form-control"></asp:TextBox>
+                   
+                    <asp:DropDownList ID="ddlProcedencia" runat="server" class="form-control">
+                        <asp:ListItem Text="Espontânea" ></asp:ListItem>
+                        <asp:ListItem Text="Bombeiro"></asp:ListItem>
+                        <asp:ListItem Text="Polícia Militar"></asp:ListItem>
+                        <asp:ListItem Text="GCM"></asp:ListItem>
+                        <asp:ListItem Text="Metrô"></asp:ListItem>
+                        <asp:ListItem Text="AMA - Sé"></asp:ListItem>
+                        <asp:ListItem Text="Ambulância Particular"></asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
             <div class="row">

@@ -206,33 +206,33 @@ public class FichaDAO
 
                 cmm.Parameters.Add("@dt_hr_be", SqlDbType.DateTime).Value = DateTime.Now;
                 cmm.Parameters.Add("@setor", SqlDbType.VarChar).Value = setor;
-                cmm.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = nome_paciente;
+                cmm.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = nome_paciente.ToUpper();
                 cmm.Parameters.Add("@dt_nascimento", SqlDbType.DateTime).Value = dt_nascimento;
                 cmm.Parameters.Add("@idade", SqlDbType.VarChar).Value = idade;
                 cmm.Parameters.Add("@sexo", SqlDbType.VarChar).Value = sexo;
                 cmm.Parameters.Add("@raca", SqlDbType.VarChar).Value = raca;
-                cmm.Parameters.Add("@endereco_rua", SqlDbType.VarChar).Value = endereco_rua;
+                cmm.Parameters.Add("@endereco_rua", SqlDbType.VarChar).Value = endereco_rua.ToUpper();
                 cmm.Parameters.Add("@numero_casa", SqlDbType.VarChar).Value = numero_casa;
-                cmm.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento;
-                cmm.Parameters.Add("@bairro", SqlDbType.VarChar).Value = bairro;
-                cmm.Parameters.Add("@municipio", SqlDbType.VarChar).Value = municipio;
-                cmm.Parameters.Add("@uf", SqlDbType.VarChar).Value = uf;
+                cmm.Parameters.Add("@complemento", SqlDbType.VarChar).Value = complemento.ToUpper();
+                cmm.Parameters.Add("@bairro", SqlDbType.VarChar).Value = bairro.ToUpper();
+                cmm.Parameters.Add("@municipio", SqlDbType.VarChar).Value = municipio.ToUpper();
+                cmm.Parameters.Add("@uf", SqlDbType.VarChar).Value = uf.ToUpper();
                 cmm.Parameters.Add("@cep", SqlDbType.VarChar).Value = cep;
-                cmm.Parameters.Add("@nome_pai_mae", SqlDbType.VarChar).Value = nome_pai_mae;
-                cmm.Parameters.Add("@responsavel", SqlDbType.VarChar).Value = responsavel;
+                cmm.Parameters.Add("@nome_pai_mae", SqlDbType.VarChar).Value = nome_pai_mae.ToUpper();
+                cmm.Parameters.Add("@responsavel", SqlDbType.VarChar).Value = responsavel.ToUpper();
                 cmm.Parameters.Add("@telefone", SqlDbType.VarChar).Value = telefone;
                 cmm.Parameters.Add("@telefone1", SqlDbType.VarChar).Value = telefone1;
                 cmm.Parameters.Add("@telefone2", SqlDbType.VarChar).Value = telefone2;
                 cmm.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
-                cmm.Parameters.Add("@procedencia", SqlDbType.VarChar).Value = procedencia;
-                cmm.Parameters.Add("@informacao_complementar", SqlDbType.VarChar).Value = informacao_complementar;
-                cmm.Parameters.Add("@queixa", SqlDbType.VarChar).Value = queixa;
+                cmm.Parameters.Add("@procedencia", SqlDbType.VarChar).Value = procedencia.ToUpper();
+                cmm.Parameters.Add("@informacao_complementar", SqlDbType.VarChar).Value = informacao_complementar.ToUpper();
+                cmm.Parameters.Add("@queixa", SqlDbType.VarChar).Value = queixa.ToUpper();
                 cmm.Parameters.Add("@tipo_paciente", SqlDbType.VarChar).Value = tipo_paciente;
                 cmm.Parameters.Add("@prontuario", SqlDbType.Int).Value = prontuario;
                 cmm.Parameters.Add("@documento", SqlDbType.VarChar).Value = documento;
                 cmm.Parameters.Add("@cns", SqlDbType.VarChar).Value = cns;
                 cmm.Parameters.Add("@status_ficha", SqlDbType.Int).Value = _status_ficha;
-                cmm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario;
+                cmm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.ToUpper();
 
                 //cmm.ExecuteNonQuery();
                 // retorna o id cadastrado

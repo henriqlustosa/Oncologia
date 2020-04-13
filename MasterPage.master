@@ -105,9 +105,9 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                    
-                   <li><asp:HyperLink id="hyperlink1" NavigateUrl="~/Profile/Perfil.aspx" Text="Meu Perfil" runat="server"/></li>
+                   <li><asp:HyperLink id="hyperlink1" NavigateUrl="~/Profile/AlterarSenha.aspx" Text="Alterar Senha" runat="server"/></li>
                            
-                    <li><asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="Default.aspx"></asp:LoginStatus></li>
+                    <li><asp:HyperLink id="hyperlink3" NavigateUrl="login.aspx" Text="Sair" runat="server"/></asp:LoginStatus></li>
                   </ul>
                 </li>
               </ul>

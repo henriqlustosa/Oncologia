@@ -63,7 +63,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-
+            $.noConflict();
             // Create two variable with the names of the months and days in an array
             var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
             var dayNames = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
@@ -307,6 +307,7 @@
                         <asp:ListItem Text="GCM"></asp:ListItem>
                         <asp:ListItem Text="Metrô"></asp:ListItem>
                         <asp:ListItem Text="AMA - Sé"></asp:ListItem>
+                        <asp:ListItem Text="SAMU"></asp:ListItem>
                         <asp:ListItem Text="Ambulância Particular"></asp:ListItem>
                     </asp:DropDownList>
                 </div>

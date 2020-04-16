@@ -6,6 +6,10 @@
 
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
+    <!-- Bootstrap -->
+
+    <script src='<%= ResolveUrl("~/vendors/bootstrap/dist/js/bootstrap431.js") %>' type="text/javascript"></script>
+
     <!-- iCheck -->
 
     <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
@@ -59,11 +63,12 @@
             padding-left: 10px;
             padding-right: 10px;
         }
-        @-webkit-keyframes@-webkit-keyframesmymove{0%{opacity:1.0;text-shadow:0020px#00c6ff;}50%{opacity:0;text-shadow:none;}100%{opacity:1.0;text-shadow:0020px#00c6ff;}@-moz-keyframesmymove{0%{opacity:1.0;text-shadow:0020px#00c6ff;}50%{opacity:0;text-shadow:none;}100%{opacity:1.0;text-shadow:0020px#00c6ff;}</style>
+        @-webkit-keyframes@-webkit-keyframes@-webkit-keyframes@-webkit-keyframesmymove{0%{opacity:1.0;text-shadow:0020px#00c6ff;}50%{opacity:0;text-shadow:none;}100%{opacity:1.0;text-shadow:0020px#00c6ff;}@-moz-keyframesmymove{0%{opacity:1.0;text-shadow:0020px#00c6ff;}50%{opacity:0;text-shadow:none;}100%{opacity:1.0;text-shadow:0020px#00c6ff;}</style>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $.noConflict();
+        $.noConflict();
+      
             // Create two variable with the names of the months and days in an array
             var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
             var dayNames = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
@@ -109,11 +114,12 @@
                 });
             });
 
+
             $('.numeric').keyup(function() {
                 $(this).val(this.value.replace(/\D/g, ''));
             });
 
-           
+
             $('.nasc').blur(function() {
                 var data = $('.nasc').val();
                 if (data == "") {
@@ -126,7 +132,10 @@
             });
 
 
+           
+
         });
+
 
         function calculateAge(dobString) {
             var dob = new Date(dobString);
@@ -162,11 +171,12 @@
             }
             return status;
         }
+
     </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-  
+ 
     <div class="clock">
         <div id="Date">
         </div>
@@ -194,7 +204,7 @@
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
-                        Documento</label>
+                        Outro Documento</label>
                     <asp:TextBox ID="txbDocumento" MaxLength="100" runat="server" class="form-control"></asp:TextBox>
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
@@ -299,9 +309,8 @@
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                     <label>
                         Procedência</label>
-                   
                     <asp:DropDownList ID="ddlProcedencia" runat="server" class="form-control">
-                        <asp:ListItem Text="Espontânea" ></asp:ListItem>
+                        <asp:ListItem Text="Espontânea"></asp:ListItem>
                         <asp:ListItem Text="Bombeiro"></asp:ListItem>
                         <asp:ListItem Text="Polícia Militar"></asp:ListItem>
                         <asp:ListItem Text="GCM"></asp:ListItem>
@@ -334,24 +343,29 @@
                     <asp:TextBox ID="txbEmail" MaxLength="100" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
-            
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                     <label>
                         Queixa</label>
                     <asp:TextBox ID="txbQueixa" runat="server" class="form-control" TextMode="MultiLine"
-                        Rows="4" required></asp:TextBox>
+                        Rows="3" required></asp:TextBox>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                    <asp:CheckBoxList runat="server"  ID="chkFormaChegada" RepeatDirection="Horizontal" Height="100px" Width="100%">
-                        <asp:ListItem Text="Caso Policial" ></asp:ListItem>
+                    <asp:CheckBoxList runat="server" ID="chkFormaChegada" RepeatDirection="Horizontal"
+                        Height="100px" Width="100%">
+                        <asp:ListItem Text="Caso Policial"></asp:ListItem>
                         <asp:ListItem Text="Plano de Saúde"></asp:ListItem>
                         <asp:ListItem Text="Trauma"></asp:ListItem>
                         <asp:ListItem Text="Acidente de Trabalho"></asp:ListItem>
                         <asp:ListItem Text="Veio de Ambulância"></asp:ListItem>
                     </asp:CheckBoxList>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Informações do resgate</label>
+                    <asp:TextBox ID="txbInfoResgate" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -379,31 +393,46 @@
         <div class="x_content">
         </div>
     </div>
-    
     <div class="container">
-       
-            <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-            Imprimir</button>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">
-                            Selecione a Impressora</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            Impressoras:
-                            <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-                            </asp:DropDownList>
-                            <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary gravar" OnClick="btnGravar_Click" />
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                    Imprimir</button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    Selecione a Impressora</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    Impressoras:
+                                    <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
+                                    </asp:DropDownList>
+                                    <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                                        OnClick="btnGravar_Click" data-toggle="modal" data-target="#modalAguarde" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
+    
+   <div class="modal fade" id="modalAguarde" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Aguarde a Impressão da Ficha</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body" align="center">
+           <h3><asp:Label ID="lbUserImprimir" runat="server" Text=""></asp:Label></h3>
+          <h2>Aguarde a Impressão da Ficha</h2>
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/imagens/imprimante-07.gif" alt="gif image" Width="100px" Height="100px" />
+        </div>
+      </div>
+    </div>
+  </div>
 </asp:Content>

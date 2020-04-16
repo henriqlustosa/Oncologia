@@ -15,13 +15,17 @@ using Microsoft.Reporting.WebForms;
 using Microsoft.SqlServer.ReportingServices2005.Execution;
 using System.Text;
 using System.Drawing.Printing;
+using System.Threading;
 
 public partial class Atendimento_AberturaFicha : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (!IsPostBack)
         {
+            lbUserImprimir.Text = System.Web.HttpContext.Current.User.Identity.Name;
             try
             {
                 foreach (String strPrinter in PrinterSettings.InstalledPrinters)
@@ -37,16 +41,16 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
     }
     public string nome_impressora { get; set; }
 
-    protected void btnImprimir_Click(object sender, EventArgs e)
-    {
-        string nome_impressora = ddlImpressora.SelectedValue;
+    //protected void btnImprimir_Click(object sender, EventArgs e)
+    //{
+    //    string nome_impressora = ddlImpressora.SelectedValue;
 
-        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + nome_impressora + "');", true);
-    }
+    //    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + nome_impressora + "');", true);
+    //}
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
-                
+        
         nome_impressora = ddlImpressora.SelectedValue;
         string mensagem = "";
         int _pront = 0;
@@ -106,6 +110,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         be.queixa = txbQueixa.Text;
         be.setor = ddlSetor.SelectedValue;
         be.usuario = System.Web.HttpContext.Current.User.Identity.Name;
+        be.info_resgate = txbInfoResgate.Text;
 
         int _cod_ficha_be = FichaDAO.GravaFicha(be.dt_rh_be
                                                 , be.prontuario
@@ -135,6 +140,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
                                                 , be.queixa
                                                 , be.setor
                                                 , be.usuario
+                                                , be.info_resgate
                                                );
 
         mensagem = "Ficha: " + Convert.ToString(_cod_ficha_be);

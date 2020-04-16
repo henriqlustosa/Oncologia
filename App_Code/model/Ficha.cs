@@ -19,6 +19,7 @@ public class Ficha
     public DateTime dt_rh_be { get; set; }
     public int prontuario { get; set; }
     public string documento { get; set; }
+    public string cpf { get; set; }
     public string cns { get; set; }
     public string setor { get; set; }
     public string nome_paciente { get; set; }
@@ -45,4 +46,5 @@ public class Ficha
     public string tipo_paciente { get; set; }
     public string usuario { get; set; }
     public int status_ficha { get; set; }
+    public string info_resgate { get; set; }
 }

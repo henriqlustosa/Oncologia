@@ -62,6 +62,7 @@ public class FichaDAO
                                   ",[documento]" +
                                   ",[cns]" +
                                   ",[usuario] " +
+                                  ",[info_resgate] " +
                               "FROM [hspmPs].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _cod_ficha;
             try
@@ -110,7 +111,7 @@ public class FichaDAO
                     ficha.documento = dr1.GetString(26);
                     ficha.cns = dr1.GetString(27);
                     ficha.usuario = dr1.GetString(28);
-
+                    ficha.info_resgate = dr1.GetString(29);
                     fichaLista.Add(ficha);
                 }
             }
@@ -126,7 +127,7 @@ public class FichaDAO
 
     public static int GravaFicha(DateTime dt_rh_be, int prontuario, string documento, string cns, string tipo_paciente, string nome_paciente, DateTime dt_nascimento, string idade
         , string sexo, string raca, string endereco_rua, string numero_casa, string complemento, string bairro, string municipio, string uf
-        , string cep, string nome_pai_mae, string responsavel, string telefone, string telefone1, string telefone2, string email, string procedencia, string informacao_complementar, string queixa, string setor, string usuario)
+        , string cep, string nome_pai_mae, string responsavel, string telefone, string telefone1, string telefone2, string email, string procedencia, string informacao_complementar, string queixa, string setor, string usuario, string info_resgate)
     {
         int _cod_ficha = 0;
 
@@ -171,7 +172,8 @@ public class FichaDAO
                                                ", documento " +
                                                ", cns " +
                                                ", status_ficha " +
-                                               ", usuario) " +
+                                               ", usuario "+
+                                               ", info_resgate)" +
                                          "VALUES (" +
                                                "@dt_hr_be" +
                                                ",@setor" +
@@ -201,7 +203,8 @@ public class FichaDAO
                                                ",@documento" +
                                                ",@cns" +
                                                ",@status_ficha" +
-                                               ",@usuario);" +
+                                               ",@usuario" +
+                                               ",@info_resgate);" +
                                                "SELECT SCOPE_IDENTITY()";
 
                 cmm.Parameters.Add("@dt_hr_be", SqlDbType.DateTime).Value = DateTime.Now;
@@ -225,7 +228,7 @@ public class FichaDAO
                 cmm.Parameters.Add("@telefone2", SqlDbType.VarChar).Value = telefone2;
                 cmm.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
                 cmm.Parameters.Add("@procedencia", SqlDbType.VarChar).Value = procedencia.ToUpper();
-                cmm.Parameters.Add("@informacao_complementar", SqlDbType.VarChar).Value = informacao_complementar.ToUpper();
+                cmm.Parameters.Add("@informacao_complementar", SqlDbType.VarChar).Value = informacao_complementar;
                 cmm.Parameters.Add("@queixa", SqlDbType.VarChar).Value = queixa.ToUpper();
                 cmm.Parameters.Add("@tipo_paciente", SqlDbType.VarChar).Value = tipo_paciente;
                 cmm.Parameters.Add("@prontuario", SqlDbType.Int).Value = prontuario;
@@ -233,6 +236,7 @@ public class FichaDAO
                 cmm.Parameters.Add("@cns", SqlDbType.VarChar).Value = cns;
                 cmm.Parameters.Add("@status_ficha", SqlDbType.Int).Value = _status_ficha;
                 cmm.Parameters.Add("@usuario", SqlDbType.VarChar).Value = usuario.ToUpper();
+                cmm.Parameters.Add("@info_resgate", SqlDbType.VarChar).Value = info_resgate;
 
                 //cmm.ExecuteNonQuery();
                 // retorna o id cadastrado
@@ -294,6 +298,7 @@ public class FichaDAO
                                   ",[documento]" +
                                   ",[cns]" +
                                   ",[usuario] " +
+                                  ",[info_resgate] " +
                               "FROM [hspmPs].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _nr_be;
             try
@@ -341,6 +346,7 @@ public class FichaDAO
                     ficha.documento = dr1.GetString(26);
                     ficha.cns = dr1.GetString(27);
                     ficha.usuario = dr1.GetString(28);
+                    ficha.info_resgate = dr1.GetString(29);
                     lista.Add(ficha);
                 }
             }
@@ -389,6 +395,7 @@ public class FichaDAO
                                   ",[cns]" +
                                   ",[usuario] " +
                                   ",[status_ficha]" +
+                                  ",[info_resgate]" +
                               "FROM [hspmPs].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _nr_be;
             try
@@ -436,6 +443,8 @@ public class FichaDAO
                     ficha.documento = dr1.GetString(26);
                     ficha.cns = dr1.GetString(27);
                     ficha.usuario = dr1.GetString(28);
+                    ficha.status_ficha = dr1.GetInt32(29);
+                    ficha.info_resgate = dr1.GetString(30);
                     //ficha.cns = "0";
                 }
             }
@@ -484,6 +493,7 @@ public class FichaDAO
                                   ",[documento]" +
                                   ",[cns]" +
                                   ",[usuario] " +
+                                  ",[info_resgate] " +
                               "FROM [hspmPs].[dbo].[ficha] " +
                               "WHERE nome_paciente LIKE '%" + _nome + "%'";
             try
@@ -532,6 +542,7 @@ public class FichaDAO
                     ficha.documento = dr1.GetString(26);
                     ficha.cns = dr1.GetString(27);
                     ficha.usuario = dr1.GetString(28);
+                    ficha.info_resgate = dr1.GetString(29);
 
                     listagem.Add(ficha);
                 }
@@ -542,5 +553,91 @@ public class FichaDAO
             }
         }
         return listagem;
+    }
+
+    public static string AtualizarFicha(int num_be, string documento, string cns, string tipo_paciente, string nome_paciente, DateTime dt_nascimento, string idade
+        , string sexo, string raca, string endereco_rua, string numero_casa, string complemento, string bairro, string municipio, string uf
+        , string cep, string nome_pai_mae, string responsavel, string telefone, string telefone1, string telefone2, string email, string procedencia)
+    {
+       
+        string mensagem = "";
+
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        {
+            SqlCommand cmm = new SqlCommand();
+
+            cmm.Connection = cnn;
+            cnn.Open();
+            SqlTransaction mt = cnn.BeginTransaction();
+            cmm.Transaction = mt;
+            try
+            {
+                cmm.CommandText = "UPDATE [hspmPs].[dbo].[ficha]" +
+                                            "SET " +
+                                               " nome_paciente = @nome_paciente " +
+                                               ", dt_nascimento = @dt_nascimento " +
+                                               ", idade = @idade" +
+                                               ", sexo = @sexo " +
+                                               ", raca = @raca" +
+                                               ", endereco_rua = @endereco_rua" +
+                                               ", numero_casa = @numero_casa" +
+                                               ", complemento = @complemento" +
+                                               ", bairro = @bairro" +
+                                               ", municipio = @municipio" +
+                                               ", uf = @uf" +
+                                               ", cep = @cep" +
+                                               ", nome_pai_mae = @nome_pai_mae" +
+                                               ", responsavel = @responsavel" +
+                                               ", telefone = @telefone" +
+                                               ", telefone1 = @telefone1" +
+                                               ", telefone2 = @telefone2" +
+                                               ", email = @email" +
+                                               ", procedencia = @procedencia" +
+                                               ", tipo_paciente = @tipo_paciente " +
+                                               ", documento = @documento" +
+                                               ", cns = @cns" +
+                                                " WHERE  cod_ficha = @cod_ficha";
+                cmm.Parameters.Add(new SqlParameter("@cod_ficha", num_be));
+                cmm.Parameters.Add(new SqlParameter("@nome_paciente", nome_paciente.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@dt_nascimento", dt_nascimento));
+                cmm.Parameters.Add(new SqlParameter("@idade", idade));
+                cmm.Parameters.Add(new SqlParameter("@sexo", sexo));
+                cmm.Parameters.Add(new SqlParameter("@raca", raca));
+                cmm.Parameters.Add(new SqlParameter("@endereco_rua", endereco_rua.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@numero_casa", numero_casa));
+                cmm.Parameters.Add(new SqlParameter("@complemento", complemento.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@bairro", bairro.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@municipio", municipio.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@uf", uf.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@cep", cep));
+                cmm.Parameters.Add(new SqlParameter("@nome_pai_mae", nome_pai_mae.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@responsavel", responsavel.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@telefone", telefone));
+                cmm.Parameters.Add(new SqlParameter("@telefone1", telefone1));
+                cmm.Parameters.Add(new SqlParameter("@telefone2", telefone2));
+                cmm.Parameters.Add(new SqlParameter("@email", email.ToUpper()));
+                cmm.Parameters.Add(new SqlParameter("@procedencia", procedencia));
+                cmm.Parameters.Add(new SqlParameter("@tipo_paciente", tipo_paciente));
+                cmm.Parameters.Add(new SqlParameter("@documento", documento));
+                cmm.Parameters.Add(new SqlParameter("@cns", cns));
+                
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+                mensagem = "Atualização de cadastro realizado com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                mensagem = ex.Message;
+                try
+                {
+                    mt.Rollback();
+                }
+                catch (Exception ex1)
+                { }
+            }
+        }
+        return mensagem;
     }
 }

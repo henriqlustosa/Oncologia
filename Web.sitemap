@@ -4,6 +4,7 @@
     <siteMapNode url="" title="Atendimento" roles="atendimento" description="">
       <siteMapNode url="~/Atendimento/AberturaFicha.aspx" title="Abertura de Ficha"  description="" />
       <siteMapNode url="~/Atendimento/Historico.aspx" title="2ª Via"  description="Pesquisa de BE e IMpressão de 2ª via" />
+      <siteMapNode url="~/Atendimento/AtualizarFicha.aspx" title="Atualizar Ficha"  description="Atualização da Ficha de Atendimento" />
     </siteMapNode>
 
     <siteMapNode url="" title="Administrativo" roles="administrativo" description="">
@@ -18,6 +19,10 @@
       <siteMapNode url="~/Admin/Alterarcadastro.aspx" title="Alterar Usuário" description="Página para alterar Login de Usuário" />
       <siteMapNode url="~/Admin/DeletarUsuario.aspx" title="Excluir Usuário" description="Página para exclusão de Usuário" />
       <siteMapNode url="~/Admin/CadastroProfissional.aspx" title="Cadastro de Profissional" description="Página para Cadastro de Profissional" />
+    </siteMapNode>
+
+    <siteMapNode url="" title="Relatórios" roles="administrador" description="">
+      <siteMapNode url="~/Controle/ConsolidadoMes.aspx" title="Consolidado Mês"  description="" />
     </siteMapNode>
 
     <siteMapNode url="" title="Meu Perfil" roles="administrador, atendimento, administrativo" description="Páginas relácionadas ao perfil de usuário" >

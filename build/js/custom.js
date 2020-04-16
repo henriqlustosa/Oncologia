@@ -132,9 +132,9 @@ $MENU_TOGGLE.on('click', function() {
 
 
 	// recompute content when resizing
-	$(window).smartresize(function(){  
-		setContentHeight();
-	});
+	//$(window).smartresize(function(){  
+	//	setContentHeight();
+	//});
 
 	setContentHeight();
 

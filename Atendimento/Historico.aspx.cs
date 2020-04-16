@@ -54,7 +54,7 @@ public partial class Historico_Historico : System.Web.UI.Page
             
             _be = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString());
 
-            lbBE.Text =  _be.ToString();
+            lbBE.Text = _be.ToString();
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");

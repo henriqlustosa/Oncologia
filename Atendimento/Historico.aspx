@@ -121,7 +121,6 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $.noConflict();
-
             $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
                 language: {
                     search: "<i class='fa fa-search' aria-hidden='true'></i>",

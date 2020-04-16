@@ -34,7 +34,7 @@
                                     B.E.: <span class="required">*</span>
                                 </label>
                                 <div class="col-md-8">
-                                    <asp:TextBox ID="txbBE" class="form-control numeric" runat="server" AutoPostBack="true" />
+                                    <asp:TextBox ID="txbBE" class="form-control numeric" runat="server" AutoPostBack="true" required />
                                 </div>
                             </div>
                             <div class="form-group">

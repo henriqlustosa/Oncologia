@@ -154,6 +154,10 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <DataField>usuario</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="info_resgate">
+          <DataField>info_resgate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>DummyDataSource</DataSourceName>
@@ -167,14 +171,105 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
     </DataSet>
   </DataSets>
   <Code />
-  <Width>18.75cm</Width>
+  <Width>18.791cm</Width>
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
+      <Textbox Name="cep">
+        <rd:DefaultName>cep</rd:DefaultName>
+        <Top>5cm</Top>
+        <Width>3.75cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>92</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>14.75cm</Left>
+        <Height>0.5cm</Height>
+        <Value>="CEP: "&amp;First(Fields!cep.Value)</Value>
+      </Textbox>
+      <Textbox Name="uf">
+        <rd:DefaultName>uf</rd:DefaultName>
+        <Top>5cm</Top>
+        <Width>2cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>91</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>12.75cm</Left>
+        <Height>0.5cm</Height>
+        <Value>="UF: "&amp;First(Fields!uf.Value)</Value>
+      </Textbox>
+      <Textbox Name="municipio">
+        <rd:DefaultName>municipio</rd:DefaultName>
+        <Top>5cm</Top>
+        <Width>5.75cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>90</ZIndex>
+        <Left>7cm</Left>
+        <Height>0.55291cm</Height>
+        <Value>="Município: "&amp;First(Fields!municipio.Value)</Value>
+      </Textbox>
+      <Textbox Name="bairro">
+        <rd:DefaultName>bairro</rd:DefaultName>
+        <Top>5cm</Top>
+        <Width>7cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>89</ZIndex>
+        <Height>0.55291cm</Height>
+        <Value>="Bairro: "&amp;First(Fields!bairro.Value)</Value>
+      </Textbox>
+      <Textbox Name="info_veiculo">
+        <rd:DefaultName>info_veiculo</rd:DefaultName>
+        <Top>8.5cm</Top>
+        <Width>18.5cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>88</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Height>0.5cm</Height>
+        <Value>="Informações do resgate: "&amp;First(Fields!info_resgate.Value)</Value>
+      </Textbox>
       <Textbox Name="tipo_paciente">
         <rd:DefaultName>tipo_paciente</rd:DefaultName>
-        <Top>3.75cm</Top>
-        <Width>4cm</Width>
+        <Top>2cm</Top>
+        <Width>6cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -187,14 +282,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>87</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>14.5cm</Left>
         <Height>0.5cm</Height>
         <Value>=First(Fields!tipo_paciente.Value)</Value>
       </Textbox>
       <Textbox Name="informacao_complementar">
         <rd:DefaultName>informacao_complementar</rd:DefaultName>
-        <Top>7.25cm</Top>
-        <Width>18.5cm</Width>
+        <Top>7cm</Top>
+        <Width>10.5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -205,13 +299,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <ZIndex>86</ZIndex>
-        <CanGrow>true</CanGrow>
+        <Left>8cm</Left>
         <Height>0.5cm</Height>
-        <Value>="Informações Complementares: "&amp;First(Fields!informacao_complementar.Value)</Value>
+        <Value>="Informações: "&amp;First(Fields!informacao_complementar.Value)</Value>
       </Textbox>
       <Textbox Name="email">
         <rd:DefaultName>email</rd:DefaultName>
-        <Top>5.75cm</Top>
+        <Top>6.5cm</Top>
         <Width>8cm</Width>
         <Style>
           <BorderStyle>
@@ -223,14 +317,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <ZIndex>85</ZIndex>
-        <CanGrow>true</CanGrow>
         <Left>10.5cm</Left>
         <Height>0.5cm</Height>
         <Value>="E-mail: "&amp;First(Fields!email.Value)</Value>
       </Textbox>
       <Textbox Name="telefone2">
         <rd:DefaultName>telefone2</rd:DefaultName>
-        <Top>5.75cm</Top>
+        <Top>6.5cm</Top>
         <Width>3.5cm</Width>
         <Style>
           <BorderStyle>
@@ -242,14 +335,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <ZIndex>84</ZIndex>
-        <CanGrow>true</CanGrow>
         <Left>7cm</Left>
         <Height>0.5cm</Height>
         <Value>="Tel3: "&amp;First(Fields!telefone2.Value)</Value>
       </Textbox>
       <Textbox Name="telefone1">
         <rd:DefaultName>telefone1</rd:DefaultName>
-        <Top>5.75cm</Top>
+        <Top>6.5cm</Top>
         <Width>3.5cm</Width>
         <Style>
           <BorderStyle>
@@ -261,7 +353,6 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <ZIndex>83</ZIndex>
-        <CanGrow>true</CanGrow>
         <Left>3.5cm</Left>
         <Height>0.5cm</Height>
         <Value>="Tel2: "&amp;First(Fields!telefone1.Value)</Value>
@@ -1351,7 +1442,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Rectangle>
       <Textbox Name="textbox43">
         <rd:DefaultName>textbox43</rd:DefaultName>
-        <Top>18.5cm</Top>
+        <Top>19.5cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1364,12 +1455,12 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>44</ZIndex>
         <CanGrow>true</CanGrow>
-        <Height>7.65344cm</Height>
+        <Height>6.75cm</Height>
         <Value>Dados Clínicos:</Value>
       </Textbox>
       <Textbox Name="textbox42">
         <rd:DefaultName>textbox42</rd:DefaultName>
-        <Top>16.25cm</Top>
+        <Top>17.25cm</Top>
         <Width>5.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1387,7 +1478,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <Value>Assinatura/Carimbo - enfermeiro</Value>
       </Textbox>
       <Textbox Name="textbox41">
-        <Top>17.75cm</Top>
+        <Top>18.75cm</Top>
         <Width>13cm</Width>
         <Style>
           <BorderStyle>
@@ -1404,7 +1495,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <Value />
       </Textbox>
       <Textbox Name="textbox40">
-        <Top>17cm</Top>
+        <Top>18cm</Top>
         <Width>13cm</Width>
         <Style>
           <BorderStyle>
@@ -1422,7 +1513,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="textbox39">
         <rd:DefaultName>textbox39</rd:DefaultName>
-        <Top>16.25cm</Top>
+        <Top>17.25cm</Top>
         <Width>13cm</Width>
         <Style>
           <BorderStyle>
@@ -1440,7 +1531,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="textbox38">
         <rd:DefaultName>textbox38</rd:DefaultName>
-        <Top>15.5cm</Top>
+        <Top>16.5cm</Top>
         <Width>5.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1459,7 +1550,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="textbox37">
         <rd:DefaultName>textbox37</rd:DefaultName>
-        <Top>15.5cm</Top>
+        <Top>16.5cm</Top>
         <Width>13cm</Width>
         <Style>
           <BorderStyle>
@@ -1478,7 +1569,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="textbox36">
         <rd:DefaultName>textbox36</rd:DefaultName>
-        <Top>14.25cm</Top>
+        <Top>15.25cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1496,7 +1587,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <Value>Medicação em usos:</Value>
       </Textbox>
       <Textbox Name="textbox35">
-        <Top>13.75cm</Top>
+        <Top>14.75cm</Top>
         <Width>6cm</Width>
         <Style>
           <BorderStyle>
@@ -1510,12 +1601,12 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>36</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>12.51191cm</Left>
+        <Left>12.5cm</Left>
         <Height>0.5cm</Height>
         <Value>FR:</Value>
       </Textbox>
       <Textbox Name="textbox34">
-        <Top>13.75cm</Top>
+        <Top>14.75cm</Top>
         <Width>6.25cm</Width>
         <Style>
           <BorderStyle>
@@ -1535,7 +1626,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="textbox33">
         <rd:DefaultName>textbox33</rd:DefaultName>
-        <Top>13.75cm</Top>
+        <Top>14.75cm</Top>
         <Width>6.25cm</Width>
         <Style>
           <BorderStyle>
@@ -1549,12 +1640,11 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>34</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>0.0119cm</Left>
         <Height>0.5cm</Height>
         <Value>Sat O²:</Value>
       </Textbox>
       <Textbox Name="textbox32">
-        <Top>13.25cm</Top>
+        <Top>14.25cm</Top>
         <Width>5.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1573,7 +1663,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <Value>Temperatura:</Value>
       </Textbox>
       <Textbox Name="textbox31">
-        <Top>13.25cm</Top>
+        <Top>14.25cm</Top>
         <Width>4.25cm</Width>
         <Style>
           <BorderStyle>
@@ -1592,7 +1682,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <Value>Pulso:</Value>
       </Textbox>
       <Textbox Name="textbox30">
-        <Top>13.25cm</Top>
+        <Top>14.25cm</Top>
         <Width>4.25cm</Width>
         <Style>
           <BorderStyle>
@@ -1612,7 +1702,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="textbox29">
         <rd:DefaultName>textbox29</rd:DefaultName>
-        <Top>13.25cm</Top>
+        <Top>14.25cm</Top>
         <Width>4.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1714,14 +1804,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
             <Value />
           </Textbox>
         </ReportItems>
-        <Top>11.5cm</Top>
+        <Top>12.5cm</Top>
         <Width>9.75cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
           </BorderStyle>
         </Style>
-        <Height>1.74603cm</Height>
+        <Height>1.75cm</Height>
       </Rectangle>
       <Rectangle Name="rectangle6">
         <ZIndex>28</ZIndex>
@@ -1879,7 +1969,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
             <Value />
           </Textbox>
         </ReportItems>
-        <Top>11.5cm</Top>
+        <Top>12.5cm</Top>
         <Width>8.75cm</Width>
         <Style>
           <BorderStyle>
@@ -1890,7 +1980,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Rectangle>
       <Textbox Name="textbox15">
         <rd:DefaultName>textbox15</rd:DefaultName>
-        <Top>10cm</Top>
+        <Top>11cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1909,7 +1999,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="textbox13">
         <rd:DefaultName>textbox13</rd:DefaultName>
-        <Top>9.25cm</Top>
+        <Top>10.25cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -1932,7 +2022,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <Rectangle Name="rectangle2">
             <Left>15.75cm</Left>
             <ZIndex>8</ZIndex>
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Width>0.75cm</Width>
             <Style>
               <BorderStyle>
@@ -1943,7 +2033,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           </Rectangle>
           <Textbox Name="textbox8">
             <rd:DefaultName>textbox8</rd:DefaultName>
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Style>
               <FontWeight>700</FontWeight>
               <PaddingLeft>2pt</PaddingLeft>
@@ -1960,7 +2050,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <Rectangle Name="rectangle5">
             <Left>12.75cm</Left>
             <ZIndex>6</ZIndex>
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Width>0.75cm</Width>
             <Style>
               <BorderStyle>
@@ -1972,7 +2062,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <Rectangle Name="rectangle4">
             <Left>9.5cm</Left>
             <ZIndex>5</ZIndex>
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Width>0.75cm</Width>
             <Style>
               <BorderStyle>
@@ -1984,7 +2074,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <Rectangle Name="rectangle3">
             <Left>6cm</Left>
             <ZIndex>4</ZIndex>
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Width>0.75cm</Width>
             <Style>
               <BorderStyle>
@@ -1994,7 +2084,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
             <Height>0.5cm</Height>
           </Rectangle>
           <Textbox Name="textbox9">
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Width>1.75cm</Width>
             <Style>
               <FontWeight>700</FontWeight>
@@ -2010,7 +2100,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
             <Value>VERDE</Value>
           </Textbox>
           <Textbox Name="textbox10">
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Width>2cm</Width>
             <Style>
               <FontWeight>700</FontWeight>
@@ -2026,7 +2116,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
             <Value>AMARELO</Value>
           </Textbox>
           <Textbox Name="textbox11">
-            <Top>0.5cm</Top>
+            <Top>0.36772cm</Top>
             <Width>2.25cm</Width>
             <Style>
               <FontWeight>700</FontWeight>
@@ -2060,18 +2150,18 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
             <Value>CLASSIFICAÇÃO DE RISCO:* Clínica Médica 7:00 às 19:00h</Value>
           </Textbox>
         </ReportItems>
-        <Top>7.75cm</Top>
+        <Top>9.01455cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
           </BorderStyle>
         </Style>
-        <Height>1.5cm</Height>
+        <Height>1.23545cm</Height>
       </Rectangle>
       <Textbox Name="queixa">
         <rd:DefaultName>queixa</rd:DefaultName>
-        <Top>6.75cm</Top>
+        <Top>7.5cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2084,13 +2174,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>24</ZIndex>
         <CanGrow>true</CanGrow>
-        <Height>0.5cm</Height>
+        <Height>1cm</Height>
         <Value>="Queixa: "&amp;First(Fields!queixa.Value)</Value>
       </Textbox>
       <Textbox Name="procedencia">
         <rd:DefaultName>procedencia</rd:DefaultName>
-        <Top>6.25cm</Top>
-        <Width>18.5cm</Width>
+        <Top>7cm</Top>
+        <Width>8cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2101,13 +2191,12 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <ZIndex>23</ZIndex>
-        <CanGrow>true</CanGrow>
         <Height>0.5cm</Height>
         <Value>="Procedência: "&amp;First(Fields!procedencia.Value)</Value>
       </Textbox>
       <Textbox Name="telefone">
         <rd:DefaultName>telefone</rd:DefaultName>
-        <Top>5.75cm</Top>
+        <Top>6.5cm</Top>
         <Width>3.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2120,13 +2209,12 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <ZIndex>22</ZIndex>
-        <CanGrow>true</CanGrow>
         <Height>0.5cm</Height>
         <Value>="Tel: "&amp;First(Fields!telefone.Value)</Value>
       </Textbox>
       <Textbox Name="responsavel">
         <rd:DefaultName>responsavel</rd:DefaultName>
-        <Top>5.25cm</Top>
+        <Top>6cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2145,7 +2233,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="nome_pai_mae">
         <rd:DefaultName>nome_pai_mae</rd:DefaultName>
-        <Top>4.75cm</Top>
+        <Top>5.5cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2164,7 +2252,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="complemento">
         <rd:DefaultName>complemento</rd:DefaultName>
-        <Top>4.25cm</Top>
+        <Top>4.5cm</Top>
         <Width>4.75cm</Width>
         <Style>
           <BorderStyle>
@@ -2178,14 +2266,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>19</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>13.72354cm</Left>
+        <Left>13.75cm</Left>
         <Height>0.5cm</Height>
         <Value>="Comp: "&amp;First(Fields!complemento.Value)</Value>
       </Textbox>
       <Textbox Name="numero_casa">
         <rd:DefaultName>numero_casa</rd:DefaultName>
-        <Top>4.25cm</Top>
-        <Width>2.5cm</Width>
+        <Top>4.5cm</Top>
+        <Width>3cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2198,14 +2286,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>18</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>11.25cm</Left>
+        <Left>10.75cm</Left>
         <Height>0.5cm</Height>
         <Value>="Nº: "&amp;First(Fields!numero_casa.Value)</Value>
       </Textbox>
       <Textbox Name="endereco_rua">
         <rd:DefaultName>endereco_rua</rd:DefaultName>
-        <Top>4.25cm</Top>
-        <Width>11.25cm</Width>
+        <Top>4.5cm</Top>
+        <Width>10.75cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2223,8 +2311,8 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="raca">
         <rd:DefaultName>raca</rd:DefaultName>
-        <Top>3.75cm</Top>
-        <Width>4.5cm</Width>
+        <Top>3.5cm</Top>
+        <Width>5.25cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2237,14 +2325,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>16</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>10cm</Left>
+        <Left>13.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="Raça/Cor: "&amp;First(Fields!raca.Value)</Value>
       </Textbox>
       <Textbox Name="sexo">
         <rd:DefaultName>sexo</rd:DefaultName>
-        <Top>3.75cm</Top>
-        <Width>3.75cm</Width>
+        <Top>3.5cm</Top>
+        <Width>5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2257,14 +2345,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>15</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>6.25cm</Left>
+        <Left>8.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="Sexo: "&amp;First(Fields!sexo.Value)</Value>
       </Textbox>
       <Textbox Name="dt_nascimento">
         <rd:DefaultName>dt_nascimento</rd:DefaultName>
-        <Top>3.75cm</Top>
-        <Width>4cm</Width>
+        <Top>3.5cm</Top>
+        <Width>5.25cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2277,14 +2365,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>14</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>2.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="Nascimento: "&amp;First(Fields!dt_nascimento.Value)</Value>
       </Textbox>
       <Textbox Name="idade">
         <rd:DefaultName>idade</rd:DefaultName>
-        <Top>3.75cm</Top>
-        <Width>2.25cm</Width>
+        <Top>3.5cm</Top>
+        <Width>3cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2297,13 +2384,14 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>13</ZIndex>
         <CanGrow>true</CanGrow>
+        <Left>5.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="Idade: "&amp;(Fields!idade.Value)</Value>
       </Textbox>
       <Textbox Name="documento">
         <rd:DefaultName>documento</rd:DefaultName>
-        <Top>3.25cm</Top>
-        <Width>7.25cm</Width>
+        <Top>4cm</Top>
+        <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2315,14 +2403,13 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>12</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>11.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="Documento: "&amp;First(Fields!documento.Value)</Value>
       </Textbox>
       <Textbox Name="nome_paciente">
         <rd:DefaultName>nome_paciente</rd:DefaultName>
-        <Top>3.25cm</Top>
-        <Width>11.25cm</Width>
+        <Top>3cm</Top>
+        <Width>12.25cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2338,7 +2425,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         <Value>="Nome: "&amp;First(Fields!nome_paciente.Value)</Value>
       </Textbox>
       <Textbox Name="identificacao">
-        <Top>2.75cm</Top>
+        <Top>2.5cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2397,8 +2484,8 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Textbox>
       <Textbox Name="prontuario">
         <rd:DefaultName>prontuario</rd:DefaultName>
-        <Top>2cm</Top>
-        <Width>6cm</Width>
+        <Top>3cm</Top>
+        <Width>6.25cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
@@ -2411,6 +2498,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>7</ZIndex>
         <CanGrow>true</CanGrow>
+        <Left>12.25cm</Left>
         <Height>0.5cm</Height>
         <Value>="RH: " &amp; First(Fields!prontuario.Value)</Value>
       </Textbox>

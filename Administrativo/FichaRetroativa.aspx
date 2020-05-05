@@ -1,8 +1,8 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    EnableEventValidation="false" CodeFile="AberturaFicha.aspx.cs" Inherits="Atendimento_AberturaFicha"
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" 
+    EnableEventValidation="false" CodeFile="FichaRetroativa.aspx.cs" Inherits="Administrativo_FichaRetroativa" 
     Title="Pronto Socorro - HSPM" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
     <meta http-equiv="refresh" content="1000" />
     
@@ -15,14 +15,7 @@
     <link href="../vendors/iCheck/skins/line/blue.css" rel="stylesheet" />
     
     <style type="text/css">
-        @font-face
-        {
-            font-family: 'BebasNeueRegular';
-            src: url('../build/relogio/BebasNeue-webfont.eot');
-            src: url('../build/relogio/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'), url('../build/relogio/BebasNeue-webfont.woff') format('woff'), url('../build/relogio/BebasNeue-webfont.ttf') format('truetype'), url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
-            font-weight: normal;
-            font-style: normal;
-        }
+      
         .clock
         {
             width: 100%;
@@ -30,74 +23,12 @@
             padding: 10px;
             color: #2A3F54;
         }
-        #Date
-        {
-            font-family: 'BebasNeueRegular' , Arial, Helvetica, sans-serif;
-            font-size: 30px;
-            text-align: center;
-            text-shadow: 0 0 1px #2A3F54;
-        }
-        .relogio
-        {
-            width: 500px;
-            margin: 0 auto;
-            padding: 0px;
-            list-style: none;
-            text-align: center;
-        }
-        .relogio li
-        {
-            display: inline;
-            font-size: 30px;
-            text-align: center;
-            font-family: 'BebasNeueRegular' , Arial, Helvetica, sans-serif;
-            text-shadow: 0 0 1px #2A3F54;
-        }
-        #point
-        {
-            position: relative;
-            -moz-animation: mymove 1s ease infinite;
-            -webkit-animation: mymove 1s ease infinite;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
+        
     </style>
 
     <script type="text/javascript">
         $(document).ready(function() {
-
             $("input").attr("autocomplete", "off");
-            // Create two variable with the names of the months and days in an array
-            var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-            var dayNames = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"]
-
-            // Create a newDate() object
-            var newDate = new Date();
-            // Extract the current date from Date object
-            newDate.setDate(newDate.getDate());
-            // Output the day, date, month and year    
-            $('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
-
-            setInterval(function() {
-                // Create a newDate() object and extract the seconds of the current time on the visitor's
-                var seconds = new Date().getSeconds();
-                // Add a leading zero to seconds value
-                $("#sec").html((seconds < 10 ? "0" : "") + seconds);
-            }, 1000);
-
-            setInterval(function() {
-                // Create a newDate() object and extract the minutes of the current time on the visitor's
-                var minutes = new Date().getMinutes();
-                // Add a leading zero to the minutes value
-                $("#min").html((minutes < 10 ? "0" : "") + minutes);
-            }, 1000);
-
-            setInterval(function() {
-                // Create a newDate() object and extract the hours of the current time on the visitor's
-                var hours = new Date().getHours();
-                // Add a leading zero to the hours value
-                $("#hours").html((hours < 10 ? "0" : "") + hours);
-            }, 1000);
 
             $('input').each(function() {
                 var self = $(this),
@@ -166,27 +97,22 @@
             return status;
         }
     </script>
-
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-  
-            <div class="clock">
-                <div id="Date">
-                </div>
-                <ul class="relogio">
-                    <li id="hours"></li>
-                    <li id="point">:</li>
-                    <li id="min"></li>
-                    <li id="point">:</li>
-                    <li id="sec"></li>
-                </ul>
-            </div>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+
             <div class="container">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>
-                            Boletim de Emergência<small><i>- Informações do Paciente</i></small></h2>
+                            Cadastro de Fichas Retroativas<small><i>- Informações do Paciente</i></small></h2>
                         <div class="clearfix">
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                            <label>
+                                Data e Hora da Abertura da Ficha</label>
+                            <asp:TextBox ID="txbDtFicha" runat="server" class="form-control numeric" data-inputmask="'mask': '99/99/9999 99:99'" required></asp:TextBox>
                         </div>
                     </div>
                     <div class="row">
@@ -419,6 +345,7 @@
                                             <asp:ListItem>Informatica</asp:ListItem>
                                             <asp:ListItem>Centro Respiratório</asp:ListItem>
                                             <asp:ListItem>Centro Obstétrico</asp:ListItem>
+                                            <asp:ListItem>Lexmark MX710</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="row">
@@ -472,5 +399,5 @@
             else return true;
         });   
     </script>
-
 </asp:Content>
+

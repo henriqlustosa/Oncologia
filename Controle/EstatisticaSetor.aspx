@@ -1,9 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="ConsolidadoMes.aspx.cs" Inherits="Controle_ConsolidadoMes" Title="Pronto Socorro - HSPM" %>
+    CodeFile="EstatisticaSetor.aspx.cs" Inherits="Controle_EstatisticaSetor" Title="Pronto Socorro - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+<script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -26,7 +25,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>
-                            CONTROLE GERAL CONSULTAS DIA - HSPM e RESGATE</h2>
+                            Estatística por Setor</h2>
                         <div class="clearfix">
                         </div>
                     </div>
@@ -45,86 +44,79 @@
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-4 col-xs-8 ">
                                     <asp:Button ID="btnPesquisa" runat="server" Text="Pesquisar" class="btn btn-primary"
-                                        OnClick="btnPesquisar_Click" />
+                                       OnClick="btnPesquisar_Click" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="x_panel titulo">
-                    <div class="x_title">
-                        <h2>
-                            Consultas Porta</h2>
-                        <div class="clearfix">
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <asp:GridView ID="GridView1" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
-                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                        </asp:GridView>
-                    </div>
-                </div>
+                
+                
                 <div id="Div1" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por Setor</h2>
+                            Clínica Médica</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvSetor" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvCM" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>
                 </div>
+                
                 <div id="Div2" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por Resgate SAMU</h2>
+                            Cirurgia Geral</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvSAMU" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvCG" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>
                 </div>
+                
                 <div id="Div3" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por Resgate Polícia Militar</h2>
+                            Neurocirurgia</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvPoliciaMilitar" OnRowDataBound="gvAplicaCor_RowDataBound" runat="server" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvNeuro" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>
                 </div>
+                
                 <div id="Div4" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por AMA - Sé</h2>
+                            Traumatologia</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvAMA" OnRowDataBound="gvAplicaCor_RowDataBound" runat="server" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvTrauma" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>
                 </div>
+                
                 <div id="Div5" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por Bombeiros</h2>
+                            Buco Maxilo</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvBombeiro" OnRowDataBound="gvAplicaCor_RowDataBound" runat="server" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvBuco" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>
@@ -132,12 +124,12 @@
                 <div id="Div6" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por Metrô</h2>
+                            Pediatria</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvMetro" OnRowDataBound="gvAplicaCor_RowDataBound" runat="server" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvPediatria" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>
@@ -145,25 +137,26 @@
                 <div id="Div7" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por GCM</h2>
+                            Obstetrícia</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvGCM" OnRowDataBound="gvAplicaCor_RowDataBound" runat="server" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvObstetricia" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>
                 </div>
+                
                 <div id="Div8" class="x_panel titulo">
                     <div class="x_title">
                         <h2>
-                            Consultas Por Ambulância Particular</h2>
+                            COVID</h2>
                         <div class="clearfix">
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:GridView ID="gvAP" OnRowDataBound="gvAplicaCor_RowDataBound" runat="server" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
+                        <asp:GridView ID="gvCOVID" runat="server" OnRowDataBound="gvAplicaCor_RowDataBound" ForeColor="#333333" CssClass="table table-sm table-striped table-bordered">
                             <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                         </asp:GridView>
                     </div>

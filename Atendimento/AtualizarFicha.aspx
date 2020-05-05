@@ -32,9 +32,8 @@
                 </div>
             </div>
         
-        
         <div class="row">
-            <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+        <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                 <label>
                     Setor</label>
                 <asp:TextBox ID="txbSetor" runat="server" class="form-control" Enabled="false"></asp:TextBox>
@@ -44,10 +43,17 @@
                     Data da Ficha</label>
                 <asp:TextBox ID="txbDtFicha" runat="server" class="form-control" Enabled="false"></asp:TextBox>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                 <label>
-                    RH/Prontuário</label>
+                    RH</label>
                 <asp:TextBox ID="txbProntuario" runat="server" class="form-control numeric"></asp:TextBox>
+            </div>
+             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                <label>
+                    RF</label>
+                <asp:TextBox ID="txbRF" runat="server" class="form-control numeric"></asp:TextBox>
             </div>
             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                 <label>

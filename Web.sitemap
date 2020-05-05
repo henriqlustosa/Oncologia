@@ -8,10 +8,16 @@
     </siteMapNode>
 
     <siteMapNode url="" title="Administrativo" roles="administrativo" description="">
-      <siteMapNode url="~/Administrativo/checkout.aspx" title="Baixa de Ficha"  description="" />
+      <siteMapNode url="~/Administrativo/checkoutbe.aspx" title="Baixa de Ficha"  description="" />
+      <siteMapNode url="~/Administrativo/FichaRetroativa.aspx" title="Fichas Retroativa"  description="Cadastro de Fichas com Data Retroativa" />
+    </siteMapNode>
+
+    <siteMapNode url="" title="Obstetrícia" roles="administrador, obstetrícia" description="Páginas relácionadas Obstetrícia" >
+      <siteMapNode url="~/Obstetricia/EstatisticaCO.aspx" title="Estatistica CO" description="" />
     </siteMapNode>
 
     <siteMapNode url="" title="Administração" roles="administrador" description="Administração do Site">
+      <siteMapNode url="~/Admin/UsuariosOnLine.aspx" title="Lista de Usuários" description="Lista de usuários do sistema" />
       <siteMapNode url="~/Admin/CadastroUsuario.aspx" title="Cadastro Usuário" description="Cadastro de novos usuários do sistema" />
       <siteMapNode url="~/Admin/Permissao.aspx" title="Permissões" description="Cadastro de permissões para usuários do sistema" />
       <siteMapNode url="~/Admin/DesbloqueioUsuario.aspx" title="Desbloquear Usuário" description="Página para desbloquear de Usuário" />
@@ -23,11 +29,15 @@
 
     <siteMapNode url="" title="Relatórios" roles="administrador" description="">
       <siteMapNode url="~/Controle/ConsolidadoMes.aspx" title="Consolidado Mês"  description="" />
+      <siteMapNode url="~/Controle/ListaAtendimentos.aspx" title="Lista de Atendimentos"  description="Exporta lista de atendimentos do dia pesquisado" />
+      <siteMapNode url="~/Graficos/StatusMes.aspx" title="Gráfico por Status"  description="" />
+      <siteMapNode url="~/Controle/EstatisticaSetor.aspx" title="Estatistica por Setor"  description="" />
+      <siteMapNode url="~/Graficos/GraficoProcedencia.aspx" title="Estatistica por Procedencia"  description="" />
     </siteMapNode>
 
     <siteMapNode url="" title="Meu Perfil" roles="administrador, atendimento, administrativo" description="Páginas relácionadas ao perfil de usuário" >
       <siteMapNode url="~/Profile/AlterarSenha.aspx" title="Alterar Senha" description="Alteração de senha do usuário" />
     </siteMapNode>
-    
-    </siteMapNode>
+
+  </siteMapNode>
 </siteMap>

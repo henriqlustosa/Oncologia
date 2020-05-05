@@ -46,43 +46,26 @@ public partial class Administrativo_checkout : System.Web.UI.Page
         {
             index = Convert.ToInt32(e.CommandArgument);
             int _be = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString());
-            int _status = getStatusFicha(_be);
+            string _status = getStatusFicha(_be);
             
-            if (_status == 0)
+            if (_status == "CADASTRADO")
             {
                 Response.Redirect("~/Administrativo/checkoutbe.aspx?be=" + _be);
-            }
-            if(_status == 1)
+            }else
             {
-                string mensagem = "Ficha com status: " + _status + " - ALTA ";
+                string mensagem = "Ficha com status: " + _status ;
                 Msg.Text = mensagem;
             }
-            if (_status == 2)
-            {
-                string mensagem = "Ficha com status: " + _status + " - DESISTÊNCIA ";
-                Msg.Text = mensagem;
-            }
-            if (_status == 3)
-            {
-                string mensagem = "Ficha com status: " + _status + " - BE EXTRAVIADO ";
-                Msg.Text = mensagem;
-            }
-            if (_status == 4)
-            {
-                string mensagem = "Ficha com status: " + _status + " - BE CANCELADO ";
-                Msg.Text = mensagem;
-            }
-            
         }
     }
 
-    public int status;
-    protected int getStatusFicha(int _nr_be)
+    public string status;
+    protected string getStatusFicha(int _nr_be)
     {
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT status_ficha FROM [hspmPs].[dbo].[ficha] WHERE cod_ficha = " + _nr_be;
+            cmm.CommandText = "SELECT descricao_status FROM [hspmPs].[dbo].[ficha] f, [hspmPs].[dbo].[status_ficha] s WHERE  f.status_ficha = s.cod_status and cod_ficha = " + _nr_be;
             try
             {
                 cnn.Open();
@@ -91,7 +74,7 @@ public partial class Administrativo_checkout : System.Web.UI.Page
 
                 if (dr1.Read())
                 {
-                    status = dr1.GetInt32(0);
+                    status = dr1.GetString(0);
                 }
 
             }
@@ -99,10 +82,7 @@ public partial class Administrativo_checkout : System.Web.UI.Page
             {
                 string error = ex.Message;
             }
-
         }
         return status;
     }
-
-
 }

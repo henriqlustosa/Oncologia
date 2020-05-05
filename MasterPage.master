@@ -30,7 +30,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;padding-left: 5px;">
-                        <a href="#" class="site_title"><i class="fa fa-hospital-o"></i><span style="padding: 10px">HSPM PS</span></a>
+                        <a href="<%= ResolveUrl("~/Home.aspx") %>" class="site_title"><i class="fa fa-hospital-o"></i><span style="padding: 10px">HSPM PS</span></a>
                     </div>
                     <div class="clearfix">
                     </div>
@@ -51,10 +51,7 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                            <!--
-                <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" >
-                </asp:TreeView>
-                 -->
+                           
                             <div id="navigation">
                                 <ul class="nav side-menu">
                                     <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource1">
@@ -99,15 +96,13 @@
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                    
-                   <img runat="server" id="img1" src="" /><asp:LoginName ID="LoginName2" runat="server" />
+                   <img alt="Avatar" runat="server" id="img1" src="~/imagens/user.png" /><asp:LoginName ID="LoginName2" runat="server" />
                    
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                   
                    <li><asp:HyperLink id="hyperlink1" NavigateUrl="~/Profile/AlterarSenha.aspx" Text="Alterar Senha" runat="server"/></li>
-                           
-                    <li><asp:HyperLink id="hyperlink3" NavigateUrl="login.aspx" Text="Sair" runat="server"/></asp:LoginStatus></li>
+                    <li><asp:HyperLink id="hyperlink3" NavigateUrl="login.aspx" Text="Sair" runat="server"/></li>
                   </ul>
                 </li>
               </ul>

@@ -18,6 +18,7 @@ public class Ficha
     public int cod_ficha { get; set; }
     public DateTime dt_rh_be { get; set; }
     public int prontuario { get; set; }
+    public string rf { get; set; }
     public string documento { get; set; }
     public string cpf { get; set; }
     public string cns { get; set; }

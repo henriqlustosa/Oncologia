@@ -99,7 +99,7 @@
                                             </asp:DropDownList>
                                             
                                             
-                                            <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+                                            <asp:Button ID="btnGravar" runat="server" Text="Imprimir" class="btn btn-primary" OnClick="btnGravar_Click" />
                                         </div>
                                     </div>
                                 </div>

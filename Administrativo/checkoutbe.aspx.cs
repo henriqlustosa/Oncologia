@@ -18,11 +18,49 @@ public partial class Administrativo_checkoutbe : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            int be = Convert.ToInt32(Request.QueryString["be"]);
-            lbBE.Text = be.ToString();
-            BindFicha(be);
+            //int be = Convert.ToInt32(Request.QueryString["be"]);
+            //lbBE.Text = be.ToString();
+            //BindFicha(be);
             listProfissionais();
         }
+    }
+
+    protected void btnPesquisar_Click(object sender, EventArgs e)
+    {
+        int _be = Convert.ToInt32(txbBE.Text);
+        
+        BindFicha(_be);
+
+        string mensagem = "Ficha com status: " + getStatusFicha(_be);
+        lbstatus.Text = mensagem;
+        lbBE.Text = _be.ToString();
+    }
+
+    public string status;
+    protected string getStatusFicha(int _nr_be)
+    {
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        {
+            SqlCommand cmm = cnn.CreateCommand();
+            cmm.CommandText = "SELECT descricao_status FROM [hspmPs].[dbo].[ficha] f, [hspmPs].[dbo].[status_ficha] s WHERE  f.status_ficha = s.cod_status and cod_ficha = " + _nr_be;
+            try
+            {
+                cnn.Open();
+
+                SqlDataReader dr1 = cmm.ExecuteReader();
+
+                if (dr1.Read())
+                {
+                    status = dr1.GetString(0);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }
+        return status;
     }
 
     private void BindFicha(int _nr_be)
@@ -44,6 +82,7 @@ public partial class Administrativo_checkoutbe : System.Web.UI.Page
 
         txbDtFicha.Text = ficha.dt_rh_be.ToString();
         txbProntuario.Text = ficha.prontuario.ToString();
+        txbRF.Text = ficha.rf;
         txbNomePaciente.Text = ficha.nome_paciente;
         txbNascimento.Text = ficha.dt_nascimento.ToShortDateString();
         txbIdade.Text = ficha.idade;
@@ -173,7 +212,7 @@ public partial class Administrativo_checkoutbe : System.Web.UI.Page
 
         ClearInputs(Page.Controls);// limpa os textbox
 
-        Response.Redirect("~/Administrativo/checkout.aspx");
+        Response.Redirect("~/Administrativo/checkoutbe.aspx");
     }
 
     void ClearInputs(ControlCollection ctrls)

@@ -106,7 +106,6 @@ public class ImpressaoFicha
             //configurar impressora
             //pd.PrinterSettings.PrinterName = "Microsoft Print to PDF";
             pd.PrinterSettings.PrinterName = nome_impressora;
-            
 
             var pageSettings = new System.Drawing.Printing.PageSettings();
             var pageSettingsRelatorio = relatorio.GetDefaultPageSettings();
@@ -117,7 +116,6 @@ public class ImpressaoFicha
             pd.PrintPage += Pd_PrintPage;
             _streamAtual = 0;
 
-          
             pd.Print();
         }
     }

@@ -11,11 +11,10 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
 /// <summary>
-/// Summary description for ConsolidadoMesTipoPaciente
+/// Summary description for Mes
 /// </summary>
-public class ConsolidadoMesTipoPaciente
+public class Mes
 {
-    public string tipo_paciente { get; set; }
     public int mes { get; set; }
     public int ano { get; set; }
     public int dia1 { get; set; }
@@ -49,5 +48,6 @@ public class ConsolidadoMesTipoPaciente
     public int dia29 { get; set; }
     public int dia30 { get; set; }
     public int dia31 { get; set; }
+    
     public int total { get; set; }
 }

@@ -10,40 +10,23 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using System.Collections.Generic;
-using Microsoft.Reporting.WebForms;
-using Microsoft.SqlServer.ReportingServices2005.Execution;
-using System.Text;
-using System.Drawing.Printing;
-using System.Threading;
 
-public partial class Atendimento_AberturaFicha : System.Web.UI.Page
+public partial class Administrativo_FichaRetroativa : System.Web.UI.Page
 {
-
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (!IsPostBack)
         {
             lbUserImprimir.Text = System.Web.HttpContext.Current.User.Identity.Name;
-            //try
-            //{
-            //    foreach (String strPrinter in PrinterSettings.InstalledPrinters)
-            //    {
-            //        ddlImpressora.Items.Add(strPrinter);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    string erro = ex.Message;
-            //}
+           
             ClearInputs(Page.Controls);// limpa os textbox
         }
     }
+
     public string nome_impressora { get; set; }
     public int vias { get; set; }
 
-    
+
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         nome_impressora = ddlImpressora.SelectedValue;
@@ -71,7 +54,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
         }
 
         Ficha be = new Ficha();
-        be.dt_rh_be = DateTime.Now;
+        be.dt_rh_be = Convert.ToDateTime(txbDtFicha.Text);
         be.prontuario = _pront;
         be.rf = txbRF.Text;
         be.documento = txbDocumento.Text;
@@ -152,7 +135,7 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
             vias--;
         }
 
-        Response.Redirect("~/Atendimento/AberturaFicha.aspx");
+        Response.Redirect("~/Administrativo/FichaRetroativa.aspx");
     }
 
     void ClearInputs(ControlCollection ctrls)

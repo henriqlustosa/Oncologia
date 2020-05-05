@@ -43,6 +43,7 @@ public partial class Atendimento_AtualizarFicha : System.Web.UI.Page
 
         txbDtFicha.Text = ficha.dt_rh_be.ToString();
         txbProntuario.Text = ficha.prontuario.ToString();
+        txbRF.Text = ficha.rf;
         txbNomePaciente.Text = ficha.nome_paciente;
         txbNascimento.Text = ficha.dt_nascimento.ToShortDateString();
         txbIdade.Text = ficha.idade;
@@ -137,6 +138,7 @@ public partial class Atendimento_AtualizarFicha : System.Web.UI.Page
         Ficha f = new Ficha();
         f.cod_ficha = Convert.ToInt32(lbBE.Text);
         f.documento = txbDocumento.Text;
+        f.rf = txbRF.Text;
         f.cns = txbCNS.Text;
         f.tipo_paciente = ddlTipoPaciente.SelectedValue;
         f.nome_paciente = txbNomePaciente.Text;
@@ -169,7 +171,7 @@ public partial class Atendimento_AtualizarFicha : System.Web.UI.Page
 
         mensagem = FichaDAO.AtualizarFicha(f.cod_ficha, f.documento, f.cns, f.tipo_paciente, f.nome_paciente,
             f.dt_nascimento, f.idade, f.sexo, f.raca, f.endereco_rua, f.numero_casa, f.complemento, f.bairro, f.municipio, f.uf, f.cep,
-            f.nome_pai_mae, f.responsavel, f.telefone, f.telefone1, f.telefone2, f.email, f.procedencia);
+            f.nome_pai_mae, f.responsavel, f.telefone, f.telefone1, f.telefone2, f.email, f.procedencia, f.rf);
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
     }
 }

@@ -28,7 +28,7 @@
              <asp:Image ID="Image1" runat="server" ImageUrl="imagens/HSPM_LOGO.jpg"></asp:Image>
               
               <p></p>
-              <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Atendimento/AberturaFicha.aspx"  Width="100%">
+              <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Home.aspx"  Width="100%">
                   <LayoutTemplate>
                   
                     <div class="col-md-12 form-group">

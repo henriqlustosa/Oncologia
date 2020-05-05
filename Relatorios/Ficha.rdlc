@@ -54,6 +54,10 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <DataField>documento</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+		<Field Name="rf">
+          <DataField>rf</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="cns">
           <DataField>cns</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -175,6 +179,25 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
+      <Textbox Name="rf">
+        <rd:DefaultName>rf</rd:DefaultName>
+        <Top>4cm</Top>
+        <Width>5.25cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>93</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>13.25cm</Left>
+        <Height>0.5cm</Height>
+        <Value>="RF: "&amp;First(Fields!rf.Value)</Value>
+      </Textbox>
       <Textbox Name="cep">
         <rd:DefaultName>cep</rd:DefaultName>
         <Top>5cm</Top>
@@ -2391,7 +2414,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       <Textbox Name="documento">
         <rd:DefaultName>documento</rd:DefaultName>
         <Top>4cm</Top>
-        <Width>18.5cm</Width>
+        <Width>13.25cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>

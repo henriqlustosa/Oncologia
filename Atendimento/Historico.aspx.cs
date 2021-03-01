@@ -68,7 +68,9 @@ public partial class Historico_Historico : System.Web.UI.Page
     {
         _nome_impressora = ddlImpressora.SelectedValue;
         _be = Convert.ToInt32(lbBE.Text);
+
         ImpressaoFicha.imprimirFicha(_be, _nome_impressora);
+
         Page.Response.Redirect(Page.Request.Url.ToString(), true);
     }
 }

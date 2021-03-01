@@ -105,35 +105,35 @@ public partial class Administrativo_checkoutbe : System.Web.UI.Page
 
         if (ficha.procedencia == "ESPONTÂNEA")
         {
-            ddlTipoPaciente.SelectedIndex = 0;
+            ddlProcedencia.SelectedIndex = 0;
         }
         if (ficha.procedencia == "BOMBEIRO")
         {
-            ddlTipoPaciente.SelectedIndex = 1;
+            ddlProcedencia.SelectedIndex = 1;
         }
         if (ficha.procedencia == "POLÍCIA MILITAR")
         {
-            ddlTipoPaciente.SelectedIndex = 2;
+            ddlProcedencia.SelectedIndex = 2;
         }
         if (ficha.procedencia == "GCM")
         {
-            ddlTipoPaciente.SelectedIndex = 3;
+            ddlProcedencia.SelectedIndex = 3;
         }
         if (ficha.procedencia == "METRÔ")
         {
-            ddlTipoPaciente.SelectedIndex = 4;
+            ddlProcedencia.SelectedIndex = 4;
         }
         if (ficha.procedencia == "AMA - SÉ")
         {
-            ddlTipoPaciente.SelectedIndex = 5;
+            ddlProcedencia.SelectedIndex = 5;
         }
         if (ficha.procedencia == "SAMU")
         {
-            ddlTipoPaciente.SelectedIndex = 6;
+            ddlProcedencia.SelectedIndex = 6;
         }
         if (ficha.procedencia == "AMBULÂNCIA PARTICULAR")
         {
-            ddlTipoPaciente.SelectedIndex = 5;
+            ddlProcedencia.SelectedIndex = 7;
         }
 
         if(ficha.sexo == "Masculino"){

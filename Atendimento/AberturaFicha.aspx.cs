@@ -16,16 +16,17 @@ using Microsoft.SqlServer.ReportingServices2005.Execution;
 using System.Text;
 using System.Drawing.Printing;
 using System.Threading;
+using System.Net;
 
 public partial class Atendimento_AberturaFicha : System.Web.UI.Page
 {
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        if (!IsPostBack)
+        if (!this.IsPostBack)
         {
             lbUserImprimir.Text = System.Web.HttpContext.Current.User.Identity.Name;
+
             //try
             //{
             //    foreach (String strPrinter in PrinterSettings.InstalledPrinters)
@@ -37,17 +38,16 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
             //{
             //    string erro = ex.Message;
             //}
+            
             ClearInputs(Page.Controls);// limpa os textbox
         }
     }
     public string nome_impressora { get; set; }
     public int vias { get; set; }
-
     
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         nome_impressora = ddlImpressora.SelectedValue;
-
         vias = Convert.ToInt32(ddlVias.SelectedValue);
 
         string mensagem = "";
@@ -152,7 +152,33 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
             vias--;
         }
 
+        // imprimir etiquetas
+        int qtd_etiquetas = Convert.ToInt32(ddlQtdEtiquetas.SelectedValue);
+        if (qtd_etiquetas > 0)
+        {
+            ImprimirEtiqueta(_cod_ficha_be, qtd_etiquetas);
+        }
+
         Response.Redirect("~/Atendimento/AberturaFicha.aspx");
+    }
+
+    public void ImprimirEtiqueta(int cod_ficha, int qtdEtiquetas)
+    {
+        int _cod_ficha_be = Convert.ToInt32(cod_ficha);
+        //Computador pc = new Computador();
+        //string _hostname = "HSPMINS17";
+        //pc = ComputadorDAO.getInfoComputador(_hostname);
+
+        if (nome_impressora == "PS - Guichê" )
+        {
+            string nome_impressora_etiqueta = "TSC_GUICHE_PS"; // impressora termica
+            ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
+        }
+        if (nome_impressora == "Centro Respiratório")
+        {
+            string nome_impressora_etiqueta = "TSC_GRIPARIO"; // impressora termica
+            ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
+        }
     }
 
     void ClearInputs(ControlCollection ctrls)
@@ -169,4 +195,5 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
             item.Selected = false;
         }
     }
+
 }

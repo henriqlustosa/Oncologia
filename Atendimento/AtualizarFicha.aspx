@@ -202,6 +202,13 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                            <label>
+                                Informações do resgate</label>
+                            <asp:TextBox ID="txbInfoResgate" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                 <label>
                     Queixa</label>
                 <asp:TextBox ID="txbQueixa" runat="server" class="form-control" TextMode="MultiLine"

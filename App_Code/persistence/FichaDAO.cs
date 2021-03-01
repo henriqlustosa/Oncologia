@@ -236,7 +236,8 @@ public class FichaDAO
                                                ",@usuario" +
                                                ",@info_resgate" +
                                                ",@rf);" +
-                                               "SELECT SCOPE_IDENTITY();";
+                                               " SELECT IDENT_CURRENT('ficha');";
+                                               //"SELECT SCOPE_IDENTITY();";
 
             cmm.Parameters.Add("@dt_hr_be", SqlDbType.DateTime).Value = f.dt_rh_be;
             cmm.Parameters.Add("@setor", SqlDbType.VarChar).Value = f.setor;
@@ -610,7 +611,7 @@ public class FichaDAO
 
     public static string AtualizarFicha(int num_be, string documento, string cns, string tipo_paciente, string nome_paciente, DateTime dt_nascimento, string idade
         , string sexo, string raca, string endereco_rua, string numero_casa, string complemento, string bairro, string municipio, string uf
-        , string cep, string nome_pai_mae, string responsavel, string telefone, string telefone1, string telefone2, string email, string procedencia, string rf)
+        , string cep, string nome_pai_mae, string responsavel, string telefone, string telefone1, string telefone2, string email, string procedencia, string rf, string info_resgate)
     {
 
         string mensagem = "";
@@ -650,6 +651,7 @@ public class FichaDAO
                                                ", documento = @documento" +
                                                ", cns = @cns" +
                                                ", rf = @rf" +
+                                               ", info_resgate = @info_resgate" +
                                                 " WHERE  cod_ficha = @cod_ficha";
                 cmm.Parameters.Add(new SqlParameter("@cod_ficha", num_be));
                 cmm.Parameters.Add(new SqlParameter("@nome_paciente", nome_paciente.ToUpper()));
@@ -675,6 +677,7 @@ public class FichaDAO
                 cmm.Parameters.Add(new SqlParameter("@documento", documento));
                 cmm.Parameters.Add(new SqlParameter("@cns", cns));
                 cmm.Parameters.Add(new SqlParameter("@rf", rf));
+                cmm.Parameters.Add(new SqlParameter("@info_resgate", info_resgate));
 
                 cmm.ExecuteNonQuery();
                 mt.Commit();

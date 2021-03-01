@@ -5,6 +5,7 @@
       <siteMapNode url="~/Atendimento/AberturaFicha.aspx" title="Abertura de Ficha"  description="" />
       <siteMapNode url="~/Atendimento/Historico.aspx" title="2ª Via"  description="Pesquisa de BE e IMpressão de 2ª via" />
       <siteMapNode url="~/Atendimento/AtualizarFicha.aspx" title="Atualizar Ficha"  description="Atualização da Ficha de Atendimento" />
+      <siteMapNode url="~/Atendimento/EtiquetasAvulso.aspx" title="Etiquetas Avulso"  description="Impressão de Etiquetas Avulso" />
     </siteMapNode>
 
     <siteMapNode url="" title="Administrativo" roles="administrativo" description="">
@@ -25,14 +26,19 @@
       <siteMapNode url="~/Admin/Alterarcadastro.aspx" title="Alterar Usuário" description="Página para alterar Login de Usuário" />
       <siteMapNode url="~/Admin/DeletarUsuario.aspx" title="Excluir Usuário" description="Página para exclusão de Usuário" />
       <siteMapNode url="~/Admin/CadastroProfissional.aspx" title="Cadastro de Profissional" description="Página para Cadastro de Profissional" />
+      <siteMapNode url="~/Admin/CadastroImpressora.aspx" title="Cadastro de Impressora" description="Cadastro de impressoras para impressão de etiquetas" /> 
+      <siteMapNode url="~/Admin/CadastroComputador.aspx" title="Cadastro de Computador" description="Cadastro de Computador para impressão de etiquetas" />
     </siteMapNode>
 
     <siteMapNode url="" title="Relatórios" roles="administrador" description="">
       <siteMapNode url="~/Controle/ConsolidadoMes.aspx" title="Consolidado Mês"  description="" />
-      <siteMapNode url="~/Controle/ListaAtendimentos.aspx" title="Lista de Atendimentos"  description="Exporta lista de atendimentos do dia pesquisado" />
+      <siteMapNode url="~/Controle/ListaAtendimentos.aspx" title="Lista de Atendimentos Dia"  description="Exporta lista de atendimentos do dia pesquisado" />
+      <siteMapNode url="~/Controle/ListaAtendimentosMes.aspx" title="Lista de Atendimentos Mês"  description="Exporta lista de atendimentos do mês pesquisado" />
       <siteMapNode url="~/Graficos/StatusMes.aspx" title="Gráfico por Status"  description="" />
       <siteMapNode url="~/Controle/EstatisticaSetor.aspx" title="Estatistica por Setor"  description="" />
       <siteMapNode url="~/Graficos/GraficoProcedencia.aspx" title="Estatistica por Procedencia"  description="" />
+      <siteMapNode url="~/Controle/ConsolidadoMesProfissional.aspx" title="Consolidado Mês Profissional"  description="" />
+      <siteMapNode url="~/Controle/ConsolidadoMesProfissionalStatus.aspx" title="Consolidado Mês Profissional e Status"  description="" />
     </siteMapNode>
 
     <siteMapNode url="" title="Meu Perfil" roles="administrador, atendimento, administrativo" description="Páginas relácionadas ao perfil de usuário" >

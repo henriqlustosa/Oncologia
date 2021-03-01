@@ -345,6 +345,7 @@
                                             <asp:ListItem>Informatica</asp:ListItem>
                                             <asp:ListItem>Centro Respiratório</asp:ListItem>
                                             <asp:ListItem>Centro Obstétrico</asp:ListItem>
+                                            <asp:ListItem>PS - Secretaria</asp:ListItem>
                                             <asp:ListItem>Lexmark MX710</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>

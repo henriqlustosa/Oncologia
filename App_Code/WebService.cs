@@ -46,6 +46,7 @@ public class WebService : System.Web.Services.WebService
                                      " Count(*) as Quantidade" +
                                       " FROM [hspmPs].[dbo].[ficha] " +
                                       " WHERE      status_ficha != 8 AND status_ficha != 4 " +
+                                      " AND MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano +
                                       " group by CASE " +
                                        " WHEN procedencia != 'Espontânea' THEN 'Resgate' " +
                                        " ELSE procedencia " +
@@ -122,9 +123,10 @@ public class WebService : System.Web.Services.WebService
                                        " WHEN procedencia != 'Espontânea' THEN 'Resgate' " +
                                        " ELSE procedencia " +
                                    " END AS Procedencia , " +
-                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [hspmPs].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = " + mes + ") AND (YEAR(dt_hr_be) = " + ano + ")) AS decimal(5, 2)) AS porcentagem " +
+                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [hspmPs].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = " + mes + ") AND (YEAR(dt_hr_be) = " + ano + ") AND  status_ficha != 8 AND status_ficha != 4) AS decimal(5, 2)) AS porcentagem " +
                                       " FROM [hspmPs].[dbo].[ficha] " +
                                       " WHERE      status_ficha != 8 AND status_ficha != 4 " +
+                                      " AND MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano +
                                       " group by CASE " +
                                        " WHEN procedencia != 'Espontânea' THEN 'Resgate' " +
                                        " ELSE procedencia " +
@@ -722,9 +724,10 @@ public class WebService : System.Web.Services.WebService
 	                                   " ELSE procedencia "+
                                    " END AS Procedencia , "+
                                    " COUNT(*) as qtd, "+
-                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [hspmPs].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = "+ mes +") AND (YEAR(dt_hr_be) = "+ ano +")) AS decimal(5, 2)) AS porcentagem "+
+                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [hspmPs].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = "+ mes +") AND (YEAR(dt_hr_be) = "+ ano +") AND  status_ficha != 8 AND status_ficha != 4 ) AS decimal(5, 2)) AS porcentagem "+
                                       " FROM [hspmPs].[dbo].[ficha] "+
                                       " WHERE      status_ficha != 8 AND status_ficha != 4 " +
+                                      " AND MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano +
                                       " group by CASE " +
 	                                   " WHEN procedencia != 'Espontânea' THEN 'Resgate' "+
 	                                   " ELSE procedencia " +

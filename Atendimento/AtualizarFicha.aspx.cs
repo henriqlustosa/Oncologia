@@ -63,26 +63,26 @@ public partial class Atendimento_AtualizarFicha : System.Web.UI.Page
         txbTelefone1.Text = ficha.telefone1;
         txbTelefone2.Text = ficha.telefone2;
         txbEmail.Text = ficha.email;
-
+        txbInfoResgate.Text = ficha.info_resgate;
         if (ficha.procedencia == "ESPONTÂNEA")
         {
-            ddlTipoPaciente.SelectedIndex = 0;
+            ddlProcedencia.SelectedIndex = 0;
         }
         if (ficha.procedencia == "BOMBEIRO")
         {
-            ddlTipoPaciente.SelectedIndex = 1;
+            ddlProcedencia.SelectedIndex = 1;
         }
         if (ficha.procedencia == "POLÍCIA MILITAR")
         {
-            ddlTipoPaciente.SelectedIndex = 2;
+            ddlProcedencia.SelectedIndex = 2;
         }
         if (ficha.procedencia == "GCM")
         {
-            ddlTipoPaciente.SelectedIndex = 3;
+            ddlProcedencia.SelectedIndex = 3;
         }
         if (ficha.procedencia == "METRÔ")
         {
-            ddlTipoPaciente.SelectedIndex = 4;
+            ddlProcedencia.SelectedIndex = 4;
         }
         if (ficha.procedencia == "AMA - SÉ")
         {
@@ -90,11 +90,11 @@ public partial class Atendimento_AtualizarFicha : System.Web.UI.Page
         }
         if (ficha.procedencia == "SAMU")
         {
-            ddlTipoPaciente.SelectedIndex = 6;
+            ddlProcedencia.SelectedIndex = 6;
         }
         if (ficha.procedencia == "AMBULÂNCIA PARTICULAR")
         {
-            ddlTipoPaciente.SelectedIndex = 5;
+            ddlProcedencia.SelectedIndex = 5;
         }
 
         if (ficha.sexo == "Masculino")
@@ -168,10 +168,11 @@ public partial class Atendimento_AtualizarFicha : System.Web.UI.Page
         f.telefone2 = txbTelefone2.Text;
         f.email = txbEmail.Text;
         f.procedencia = ddlProcedencia.SelectedValue;
+        f.info_resgate = txbInfoResgate.Text;
 
         mensagem = FichaDAO.AtualizarFicha(f.cod_ficha, f.documento, f.cns, f.tipo_paciente, f.nome_paciente,
             f.dt_nascimento, f.idade, f.sexo, f.raca, f.endereco_rua, f.numero_casa, f.complemento, f.bairro, f.municipio, f.uf, f.cep,
-            f.nome_pai_mae, f.responsavel, f.telefone, f.telefone1, f.telefone2, f.email, f.procedencia, f.rf);
+            f.nome_pai_mae, f.responsavel, f.telefone, f.telefone1, f.telefone2, f.email, f.procedencia, f.rf, f.info_resgate);
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
     }
 }

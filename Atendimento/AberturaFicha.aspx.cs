@@ -17,6 +17,8 @@ using System.Text;
 using System.Drawing.Printing;
 using System.Threading;
 using System.Net;
+using System.Web.Services;
+using System.Data.SqlClient;
 
 public partial class Atendimento_AberturaFicha : System.Web.UI.Page
 {
@@ -41,7 +43,73 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
             
             ClearInputs(Page.Controls);// limpa os textbox
         }
+ 
+
+
+
+
     }
+    [WebMethod]
+
+    public static List<Ficha> GetNomeDePacientes(string prefixo)
+    {
+        List<Ficha> cliente = new List<Ficha>();
+        using (SqlConnection conn = new SqlConnection())
+        {
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["psConnectionString"].ConnectionString;
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText =string.Format( "SELECT TOP 10 * FROM [hspmPs].[dbo].[ficha] where [nome_paciente] like '{0}%'",prefixo);
+               
+                cmd.Connection = conn;
+                conn.Open();
+                Ficha c = null;
+                using (SqlDataReader sdr = cmd.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        c = new Ficha();
+                      
+                        c.dt_rh_be = Convert.ToDateTime(sdr["dt_rh_be"]);
+                                                 c.prontuario = Convert.ToInt32(sdr["prontuario"]);
+                                                 c.documento = Convert.ToString(sdr["documento"]);
+                                                 c.cns = Convert.ToString(sdr["cns"]);
+                                                 c.tipo_paciente = Convert.ToString(sdr["tipo_paciente"]);
+                                                 c.nome_paciente = Convert.ToString(sdr["nome_paciente"]);
+                                                 c.dt_nascimento = Convert.ToDateTime(sdr["dt_nascimento"]);
+                                                 c.idade = Convert.ToString(sdr["idade"]);
+                                                 c.sexo = Convert.ToString(sdr["sexo"]);
+                                                 c.raca = Convert.ToString(sdr["raca"]);
+                                                 c.endereco_rua = Convert.ToString(sdr["endereco_rua"]);
+                                                 c.numero_casa = Convert.ToString(sdr["numero_casa"]);
+                                                 c.complemento = Convert.ToString(sdr["complemento"]);
+                                                 c.bairro = Convert.ToString(sdr["bairro"]);
+                                                 c.municipio = Convert.ToString(sdr["municipio"]);
+                                                 c.uf = Convert.ToString(sdr["uf"]);
+                                                 c.cep = Convert.ToString(sdr["cep"]);
+                                                 c.nome_pai_mae = Convert.ToString(sdr["nome_pai_mae"]);
+                                                 c.responsavel = Convert.ToString(sdr["responsavel"]);
+                                                 c.telefone = Convert.ToString(sdr["telefone"]);
+                                                 c.telefone1 = Convert.ToString(sdr["telefone1"]);
+                                                 c.telefone2 = Convert.ToString(sdr["telefone2"]);
+                                                 c.email = Convert.ToString(sdr["email"]);
+                                                 c.procedencia = Convert.ToString(sdr["procedencia"]);
+                                                 c.informacao_complementar = Convert.ToString(sdr["informacao_complementar"]);
+                                                 c.queixa = Convert.ToString(sdr["queixa"]);
+                                                 c.setor = Convert.ToString(sdr["setor"]);
+                                                c.usuario = Convert.ToString(sdr["usuario"]);
+                                                 c.info_resgate = Convert.ToString(sdr["info_resgate"]);
+                                                c.rf = Convert.ToString(sdr["rf"]);
+                        cliente.Add(c);
+                    }
+                }
+                conn.Close();
+            }
+        }
+        return cliente;
+    }
+
+
     public string nome_impressora { get; set; }
     public int vias { get; set; }
     

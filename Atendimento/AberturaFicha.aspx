@@ -4,16 +4,30 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
+  
+   
     <meta http-equiv="refresh" content="1000" />
-    
+
+
+    <!--
+     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+        -->
+    <!-- iCheck 
+
+    <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
+        -->
+
+
+
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
-    <!-- iCheck -->
-    <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
 
+    <script src="../vendors/jquery/dist/jquery-ui.js" type="text/javascript"></script>
+    <link href="../vendors/jquery/dist/jquery-ui.css" rel="stylesheet" />
+
+    <script src="../vendors/iCheck/icheck.min.js" type="text/javascript"></script>
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/line/blue.css" rel="stylesheet" />
-    
     <style type="text/css">
         fieldset.scheduler-border
         {
@@ -37,9 +51,105 @@
             color: #2A3F54;
         }
     </style>
+    
+    <script type="text/javascript">
+        
+        $(document).ready(function () {
+            $.noConflict();
+            $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+                source: function(request, response) {
+                    var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
+                    $.ajax({
+                        url: "AberturaFicha.aspx/GetNomeDePacientes",
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            //console.log(JSON.stringify(data));
+                            console.log("passando");
+                            response($.map(data.d, function (item) {
+                            
+                                return {
+                                 
+                                    label: item.nome_paciente,
+                                    value: item.nome_paciente,
+
+                                    dt_rh_be: item.dt_rh_be,
+                                    prontuario: item.prontuario,
+                                    documento: item.documento,
+                                    cns : item.cns,
+                                    tipo_paciente : item.tipo_paciente,
+                                    nome_paciente : item.nome_paciente,
+                                    dt_nascimento : item.dt_nascimento,
+                                    idade : item.idade,
+                                    sexo : item.sexo,
+                                    raca :item.raca,
+                                    endereco_rua : item.endereco_rua,
+                                    numero_casa : item.numero_casa,
+                                    complemento : item.complemento,
+                                    bairro : item.bairro,
+                                    municipio :  item.municipio,
+                                    uf :  item.uf,
+                                    cep : item.cep,
+                                    nome_pai_mae :  item.nome_pai_mae,
+                                    responsavel :   item.responsavel,
+                                    telefone : item.telefone,
+                                    telefone1 :  item.telefone1,
+                                    telefone2 : item.telefone2,
+                                    email : item.email ,
+                                    procedencia : item.procedencia ,
+                                    informacao_complementar : item.informacao_complementar,
+                                    queixa : item.queixa,
+                                    setor : item.setor,
+                                    usuario :  item.usuario,
+                                    info_resgate : item.info_resgate,
+                                   rf : item.rf
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var err = eval("(" + XMLHttpRequest.responseText + ")");
+                            alert(err.Message)
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    console.log(i.item.name);
+                    $("[id$=txbProntuario").val(i.item.prontuario);
+                    $("[id$=txbDocumento").val(i.item.documento);
+                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                    $("[id$=txbIdade").val(i.item.idade);
+                    $("[id$=txbEndereco").val(i.item.endereco_rua);
+                    $("[id$=txbNumero").val(i.item.numero_casa);
+                    $("[id$=txbComplemento").val(i.item.complemento);
+                    $("[id$=txbBairro").val(i.item.bairro);
+                    $("[id$=txbMunicipio").val(i.item.municipio);
+                    $("[id$=txbUF").val(i.item.uf);
+                    $("[id$=txbPais").val(i.item.nome_pai_mae);
+                    $("[id$=txbResponsavel").val(i.item.responsavel);
+                    $("[id$=txbTelefone").val(i.item.telefone);
+                    $("[id$=txbTelefone1").val(i.item.telefone1);
+                    $("[id$=txbTelefone2").val(i.item.telefone2);
+                    $("[id$=txbEmail").val(i.item.email);
+                    $("[id$=txbIdade").val(i.item.informacao_complementar);
+                    $("[id$=txbQueixa").val(i.item.queixa);
+                    $("[id$=txbInfoResgate").val(i.item.info_resgate);
+                    $("[id$=txbRF").val(i.item.rf);
+                },
+                minLength: 1 //This is the Char length of inputTextBox    
+               
+            });
+          
+        });
+    </script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+  
+        $(document).ready(function () {
+       
 
             $("input").attr("autocomplete", "off");
 
@@ -50,6 +160,7 @@
                label_text = label.text();
 
                 label.remove();
+             
                 self.iCheck({
                     checkboxClass: 'icheckbox_line-blue',
                     radioClass: 'iradio_line-blue',
@@ -110,8 +221,8 @@
             }
             return status;
         }
+        
     </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
   

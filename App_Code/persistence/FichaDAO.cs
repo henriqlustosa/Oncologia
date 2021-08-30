@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Web.Services;
 
 /// <summary>
 /// Summary description for FichaDAO
@@ -306,8 +307,9 @@ public class FichaDAO
         }
         return _cod_ficha;
     }
-
-    public static List<Ficha> GetBE(int _nr_be)
+    
+  
+        public static List<Ficha> GetBE(int _nr_be)
     {
         var lista = new List<Ficha>();
 

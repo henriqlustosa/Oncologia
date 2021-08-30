@@ -150,8 +150,8 @@
     </div>
     </form>
     <!-- Ficava no rodapé da página -->
-    <!-- jQuery   -->
-
+    <!-- jQuery  
+         -->
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
   
    

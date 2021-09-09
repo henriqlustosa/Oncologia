@@ -105,7 +105,7 @@
                                     setor : item.setor,
                                     usuario :  item.usuario,
                                     info_resgate : item.info_resgate,
-                                   rf : item.rf
+                                    rf : item.rf
                                 }
                             }))
                         },
@@ -115,12 +115,23 @@
                         }
                     });
                 },
+
+
                 select: function (e, i) {
-                    console.log(i.item.name);
+
+            
+                  $("input[id=rbTipoPaciente][value=" + i.item.tipo_paciente + "]").attr('checked', 'checked');
+                    
+                  //  $("input[id=rbTipoPaciente][value=" + i.item.tipo_paciente + "]").prop('checked', true);
+               
+                    $("[id$=ddlSetor").val(i.item.setor);
+                    $("[id$=ddlProcedencia").val(i.item.procedencia);
+                    $("[id$=ddlRaca").val(i.item.raca);
+                    $("[id$=ddlSexo").val(i.item.sexo);
                     $("[id$=txbProntuario").val(i.item.prontuario);
                     $("[id$=txbDocumento").val(i.item.documento);
                     $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                    $("[id$=txbNascimento").val(dateFormat(new Date(parseInt((i.item.dt_nascimento).match(/\d+/)[0]))));
                     $("[id$=txbIdade").val(i.item.idade);
                     $("[id$=txbEndereco").val(i.item.endereco_rua);
                     $("[id$=txbNumero").val(i.item.numero_casa);
@@ -134,7 +145,6 @@
                     $("[id$=txbTelefone1").val(i.item.telefone1);
                     $("[id$=txbTelefone2").val(i.item.telefone2);
                     $("[id$=txbEmail").val(i.item.email);
-                    $("[id$=txbIdade").val(i.item.informacao_complementar);
                     $("[id$=txbQueixa").val(i.item.queixa);
                     $("[id$=txbInfoResgate").val(i.item.info_resgate);
                     $("[id$=txbRF").val(i.item.rf);
@@ -144,6 +154,12 @@
             });
           
         });
+
+        function dateFormat(d) {
+            return (d.getDate() + "").padStart(2, "0")
+                + "/" + ((d.getMonth() +1) + "").padStart(2, "0")
+                + "/" + d.getFullYear();
+        }
     </script>
 
     <script type="text/javascript">
@@ -258,9 +274,9 @@
                         <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                             <label>
                                 Tipo Paciente</label>
-                            <asp:RadioButtonList ID="rbTipoPaciente" RepeatDirection="Horizontal" runat="server">
-                                <asp:ListItem Text="Munícipe" Value="M" Selected></asp:ListItem>
-                                <asp:ListItem Text="Funcionário" Value="F"></asp:ListItem>
+                            <asp:RadioButtonList ID="rbTipoPaciente"  RepeatDirection="Horizontal" runat="server" AutoPostBack="True" >
+                                <asp:ListItem  Value="M" Selected="True" >Munícipe</asp:ListItem>
+                                <asp:ListItem Value="F">Funcionário</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                     </div>
@@ -468,6 +484,7 @@
                                             <asp:ListItem>Centro Obstétrico</asp:ListItem>
                                             <asp:ListItem>PS - Secretaria</asp:ListItem>
                                             <asp:ListItem>Lexmark MX710</asp:ListItem>
+                                            <asp:ListItem>UTI_NEO_NATAL</asp:ListItem>
                                             <%--<asp:ListItem>Informatica</asp:ListItem>--%>
                                            
                                     </asp:DropDownList>
@@ -490,6 +507,8 @@
                                                     <asp:ListItem>2</asp:ListItem>
                                                     <asp:ListItem>3</asp:ListItem>
                                                     <asp:ListItem>4</asp:ListItem>
+                                                    <asp:ListItem>5</asp:ListItem>
+                                                    <asp:ListItem>6</asp:ListItem>
                                                 </asp:DropDownList>
                                         </div>
                                     

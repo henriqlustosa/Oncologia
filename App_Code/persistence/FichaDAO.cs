@@ -695,7 +695,9 @@ public class FichaDAO
                     mt.Rollback();
                 }
                 catch (Exception ex1)
-                { }
+                {  string msg =ex1.Message; 
+                
+                }
             }
         }
         return mensagem;

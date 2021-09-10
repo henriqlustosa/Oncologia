@@ -17,11 +17,10 @@
     <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
         -->
 
-
-
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+    
 
-
+<script src="./JavaScript.js" type="text/javascript"></script>
     <script src="../vendors/jquery/dist/jquery-ui.js" type="text/javascript"></script>
     <link href="../vendors/jquery/dist/jquery-ui.css" rel="stylesheet" />
 
@@ -51,12 +50,17 @@
             color: #2A3F54;
         }
     </style>
+  
     
+  
+
     <script type="text/javascript">
-        
-        $(document).ready(function () {
+
+        $(document).ready(function() {
             $.noConflict();
+
             $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+
                 source: function(request, response) {
                     var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
                     $.ajax({
@@ -65,51 +69,51 @@
                         dataType: "json",
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
+                        dataFilter: function(data) { return data; },
+                        success: function(data) {
                             //console.log(JSON.stringify(data));
                             console.log("passando");
-                            response($.map(data.d, function (item) {
-                            
+                            response($.map(data.d, function(item) {
+
                                 return {
-                                 
+
                                     label: item.nome_paciente,
                                     value: item.nome_paciente,
 
                                     dt_rh_be: item.dt_rh_be,
                                     prontuario: item.prontuario,
                                     documento: item.documento,
-                                    cns : item.cns,
-                                    tipo_paciente : item.tipo_paciente,
-                                    nome_paciente : item.nome_paciente,
-                                    dt_nascimento : item.dt_nascimento,
-                                    idade : item.idade,
-                                    sexo : item.sexo,
-                                    raca :item.raca,
-                                    endereco_rua : item.endereco_rua,
-                                    numero_casa : item.numero_casa,
-                                    complemento : item.complemento,
-                                    bairro : item.bairro,
-                                    municipio :  item.municipio,
-                                    uf :  item.uf,
-                                    cep : item.cep,
-                                    nome_pai_mae :  item.nome_pai_mae,
-                                    responsavel :   item.responsavel,
-                                    telefone : item.telefone,
-                                    telefone1 :  item.telefone1,
-                                    telefone2 : item.telefone2,
-                                    email : item.email ,
-                                    procedencia : item.procedencia ,
-                                    informacao_complementar : item.informacao_complementar,
-                                    queixa : item.queixa,
-                                    setor : item.setor,
-                                    usuario :  item.usuario,
-                                    info_resgate : item.info_resgate,
-                                    rf : item.rf
+                                    cns: item.cns,
+                                    tipo_paciente: item.tipo_paciente,
+                                    nome_paciente: item.nome_paciente,
+                                    dt_nascimento: item.dt_nascimento,
+                                    idade: item.idade,
+                                    sexo: item.sexo,
+                                    raca: item.raca,
+                                    endereco_rua: item.endereco_rua,
+                                    numero_casa: item.numero_casa,
+                                    complemento: item.complemento,
+                                    bairro: item.bairro,
+                                    municipio: item.municipio,
+                                    uf: item.uf,
+                                    cep: item.cep,
+                                    nome_pai_mae: item.nome_pai_mae,
+                                    responsavel: item.responsavel,
+                                    telefone: item.telefone,
+                                    telefone1: item.telefone1,
+                                    telefone2: item.telefone2,
+                                    email: item.email,
+                                    procedencia: item.procedencia,
+                                    informacao_complementar: item.informacao_complementar,
+                                    queixa: item.queixa,
+                                    setor: item.setor,
+                                    usuario: item.usuario,
+                                    info_resgate: item.info_resgate,
+                                    rf: item.rf
                                 }
                             }))
                         },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
                             var err = eval("(" + XMLHttpRequest.responseText + ")");
                             alert(err.Message)
                         }
@@ -117,13 +121,13 @@
                 },
 
 
-                select: function (e, i) {
+                select: function(e, i) {
 
-            
-                  $("input[id=rbTipoPaciente][value=" + i.item.tipo_paciente + "]").attr('checked', 'checked');
-                    
-                  //  $("input[id=rbTipoPaciente][value=" + i.item.tipo_paciente + "]").prop('checked', true);
-               
+
+                    $("input[id=rbTipoPaciente][value=" + i.item.tipo_paciente + "]").attr('checked', 'checked');
+
+                    //  $("input[id=rbTipoPaciente][value=" + i.item.tipo_paciente + "]").prop('checked', true);
+
                     $("[id$=ddlSetor").val(i.item.setor);
                     $("[id$=ddlProcedencia").val(i.item.procedencia);
                     $("[id$=ddlRaca").val(i.item.raca);
@@ -148,25 +152,65 @@
                     $("[id$=txbQueixa").val(i.item.queixa);
                     $("[id$=txbInfoResgate").val(i.item.info_resgate);
                     $("[id$=txbRF").val(i.item.rf);
+                    $("[id$=txbCEP").val(i.item.cep);
                 },
                 minLength: 1 //This is the Char length of inputTextBox    
-               
+
             });
-          
-        });
 
-        function dateFormat(d) {
-            return (d.getDate() + "").padStart(2, "0")
-                + "/" + ((d.getMonth() +1) + "").padStart(2, "0")
+
+            function dateFormat(d) {
+                return (d.getDate() + "").padStart(2, "0")
+                + "/" + ((d.getMonth() + 1) + "").padStart(2, "0")
                 + "/" + d.getFullYear();
-        }
-    </script>
+            }
 
-    <script type="text/javascript">
-  
-        $(document).ready(function () {
-       
 
+            //Quando o campo cep perde o foco.
+            $("#<%=txbCEP.ClientID%>").blur(function() {
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#<%=txbEndereco.ClientID%>").val("...");
+                        $("#<%=txbBairro.ClientID%>").val("...");
+                        $("#<%=txbMunicipio.ClientID%>").val("...");
+                        $("#<%=txbUF.ClientID%>").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#<%=txbEndereco.ClientID%>").val(dados.logradouro);
+                                $("#<%=txbBairro.ClientID%>").val(dados.bairro);
+                                $("#<%=txbMunicipio.ClientID%>").val(dados.localidade);
+                                $("#<%=txbUF.ClientID%>").val(dados.uf);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário
+                }
+            });
             $("input").attr("autocomplete", "off");
 
 
@@ -176,7 +220,7 @@
                label_text = label.text();
 
                 label.remove();
-             
+
                 self.iCheck({
                     checkboxClass: 'icheckbox_line-blue',
                     radioClass: 'iradio_line-blue',
@@ -185,6 +229,7 @@
             });
 
 
+            
             $('.numeric').keyup(function() {
                 $(this).val(this.value.replace(/\D/g, ''));
             });
@@ -202,7 +247,8 @@
             });
 
         });
-
+        $("#txbNascimento").mask("99/99/9999");
+        
         function calculateAge(dobString) {
             var dob = new Date(dobString);
             var currentDate = new Date();
@@ -237,6 +283,13 @@
             }
             return status;
         }
+     
+        $(document).ready(function() {
+
+           
+                $("input[id*='txbNascimento']").mask('99/99/9999');
+            
+        });
         
     </script>
 </asp:Content>
@@ -289,7 +342,7 @@
                         <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                             <label>
                                 Nascimento</label>
-                            <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc" data-inputmask="'mask': '99/99/9999'"></asp:TextBox>
+                            <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc" ></asp:TextBox>
                         </div>
                         <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                             <label>
@@ -318,6 +371,11 @@
                         </div>
                     </div>
                     <div class="row">
+                       <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                            <label>
+                                CEP</label>
+                            <asp:TextBox ID="txbCEP" MaxLength="10" runat="server" class="form-control"></asp:TextBox>
+                        </div>
                         <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                             <label>
                                 Endereço</label>
@@ -348,11 +406,7 @@
                                 UF</label>
                             <asp:TextBox ID="txbUF" MaxLength="2" runat="server" class="form-control"></asp:TextBox>
                         </div>
-                        <div class="col-md-1 col-sm-12 col-xs-12 form-group">
-                            <label>
-                                CEP</label>
-                            <asp:TextBox ID="txbCEP" MaxLength="10" runat="server" class="form-control"></asp:TextBox>
-                        </div>
+                     
                     </div>
                     <div class="row">
                         <div class="col-md-4 col-sm-12 col-xs-12 form-group">

@@ -102,7 +102,7 @@ public partial class Restrito_DesbloqueioUsuario : System.Web.UI.Page
         }
         catch (MembershipPasswordException e)
         {
-            Msg.Text = "Não foi possivel desbloquear. Tente novamente.";
+            Msg.Text = "Não foi possivel desbloquear. Tente novamente." + e.Message;
             return;
         }
         catch (Exception e)

@@ -69,7 +69,7 @@ public partial class publico_ResetSenha : System.Web.UI.Page
         }
         catch (MembershipPasswordException e)
         {
-            Msg.Text = "Invalid password answer. Please re-enter and try again.";
+            Msg.Text = "Invalid password answer. Please re-enter and try again." + e.Message;
             return;
         }
         catch (Exception e)

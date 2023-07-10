@@ -135,8 +135,8 @@
                     $("[id$=txbProntuario").val(i.item.prontuario);
                     $("[id$=txbDocumento").val(i.item.documento);
                     $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(dateFormat(new Date(parseInt((i.item.dt_nascimento).match(/\d+/)[0]))));
-                    $("[id$=txbIdade").val(i.item.idade);
+                    $("[id$=txbNascimento").val(dateFormat(eval(i.item.dt_nascimento.replace('/', 'new ').replace('/', ''))));
+                    $("[id$=txbIdade").val(calculateAge(eval(i.item.dt_nascimento.replace('/', 'new ').replace('/', ''))));
                     $("[id$=txbEndereco").val(i.item.endereco_rua);
                     $("[id$=txbNumero").val(i.item.numero_casa);
                     $("[id$=txbComplemento").val(i.item.complemento);
@@ -531,14 +531,18 @@
                                 <div class="col-md-6 form-group">
                                     Impressoras:
                                     <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server" >
-                                         <%--<asp:ListItem>PSI - Guichê</asp:ListItem>--%>
-                                            <asp:ListItem>PS - Guichê</asp:ListItem>
+                                           <asp:ListItem>PS - Guichê</asp:ListItem>
+                                           <asp:ListItem>PSI - Guichê</asp:ListItem>
+                                          
                                             <asp:ListItem>PS - CO 3 Andar</asp:ListItem>
-                                            <asp:ListItem>Centro Respiratório</asp:ListItem>
+                                            <%-- asp:ListItem>Centro Respiratório</asp:ListItem>--%>
                                             <asp:ListItem>Centro Obstétrico</asp:ListItem>
                                             <asp:ListItem>PS - Secretaria</asp:ListItem>
                                             <asp:ListItem>Lexmark MX710</asp:ListItem>
                                             <asp:ListItem>UTI_NEO_NATAL</asp:ListItem>
+                                         
+                                          
+                                            
                                             <%--<asp:ListItem>Informatica</asp:ListItem>--%>
                                            
                                     </asp:DropDownList>

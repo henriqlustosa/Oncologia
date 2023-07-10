@@ -48,17 +48,26 @@ public partial class Atendimento_EtiquetasAvulso : System.Web.UI.Page
             nome_impressora_etiqueta = "TSC_GUICHE_PS"; // impressora termica
             //nome_impressora_etiqueta = "TSC"; // impressora para teste na informática cac999
             ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
-        } else if (nome_impressora_etiqueta == "TSC_GRIPARIO")
+        } 
+        else if (nome_impressora_etiqueta == "TSC_CO")
+        {
+            nome_impressora_etiqueta = "TSC_CO"; // impressora termica
+            //nome_impressora_etiqueta = "TSC"; // impressora para teste na informática cac999
+            ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
+        }
+      
+        
+        else if (nome_impressora_etiqueta == "TSC_GRIPARIO")
         {
             nome_impressora_etiqueta = "TSC_GRIPARIO"; // impressora termica
             ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
         }
 
-        //string nome_impressora = pc.nome_impressora; // impressora termica
+       // string nome_impressora = pc.nome_impressora; // impressora termica
         //string nome_impressora = "Lexmark MX710";
         //if (nome_impressora_etiqueta != "")
         //{
-        //    ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
+           // ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
         //}
     }
 }

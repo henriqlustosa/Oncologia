@@ -234,7 +234,8 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
     {
         int _cod_ficha_be = Convert.ToInt32(cod_ficha);
         //Computador pc = new Computador();
-        //string _hostname = "HSPMINS17";
+        //string _hostname = "
+        //";
         //pc = ComputadorDAO.getInfoComputador(_hostname);
 
         if (nome_impressora == "PS - Guichê")
@@ -242,11 +243,18 @@ public partial class Atendimento_AberturaFicha : System.Web.UI.Page
             string nome_impressora_etiqueta = "TSC_GUICHE_PS"; // impressora termica
             ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
         }
-        if (nome_impressora == "Centro Respiratório")
+        /*if (nome_impressora == "Centro Respiratório")
+        {
+            string nome_impressora_etiqueta = "TSC_GRIPARIO"; // impressora termica
+            ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
+        }*/
+
+        if (nome_impressora == "PSI - Guichê")
         {
             string nome_impressora_etiqueta = "TSC_GRIPARIO"; // impressora termica
             ImpressaoFicha.imprimirEtiqueta(_cod_ficha_be, nome_impressora_etiqueta, qtdEtiquetas);
         }
+   
     }
 
     void ClearInputs(ControlCollection ctrls)

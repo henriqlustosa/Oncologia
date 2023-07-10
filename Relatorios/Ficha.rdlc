@@ -54,7 +54,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
           <DataField>documento</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-		<Field Name="rf">
+        <Field Name="rf">
           <DataField>rf</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
@@ -179,6 +179,94 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
   <Body>
     <ColumnSpacing>1cm</ColumnSpacing>
     <ReportItems>
+      <Rectangle Name="rectangle9">
+        <Left>2.59259cm</Left>
+        <ZIndex>94</ZIndex>
+        <ReportItems>
+          <Textbox Name="textbox5">
+            <Top>0.3955cm</Top>
+            <Width>2.25cm</Width>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <ZIndex>5</ZIndex>
+            <Left>1.59722cm</Left>
+            <Height>0.5cm</Height>
+            <Value>Clínico</Value>
+          </Textbox>
+          <Textbox Name="textbox4">
+            <Top>0.33069cm</Top>
+            <Width>2.25cm</Width>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <ZIndex>4</ZIndex>
+            <Left>12.11442cm</Left>
+            <Height>0.5cm</Height>
+            <Value>Ortopedia</Value>
+          </Textbox>
+          <Textbox Name="textbox3">
+            <Top>0.34524cm</Top>
+            <Width>2.25cm</Width>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+            <ZIndex>3</ZIndex>
+            <Left>6.94709cm</Left>
+            <Value>Cirurgia</Value>
+          </Textbox>
+          <Rectangle Name="rectangle14">
+            <Left>5.75cm</Left>
+            <ZIndex>2</ZIndex>
+            <Top>0.35714cm</Top>
+            <Width>0.77645cm</Width>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <Height>0.5cm</Height>
+          </Rectangle>
+          <Rectangle Name="rectangle15">
+            <Left>0.58201cm</Left>
+            <ZIndex>1</ZIndex>
+            <Top>0.39683cm</Top>
+            <Width>0.75cm</Width>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <Height>0.5cm</Height>
+          </Rectangle>
+          <Rectangle Name="rectangle13">
+            <Left>11cm</Left>
+            <Top>0.35582cm</Top>
+            <Width>0.67063cm</Width>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <Height>0.5cm</Height>
+          </Rectangle>
+        </ReportItems>
+        <Top>10.37037cm</Top>
+        <Width>15.71429cm</Width>
+        <Height>0.95899cm</Height>
+      </Rectangle>
       <Textbox Name="rf">
         <rd:DefaultName>rf</rd:DefaultName>
         <Top>4cm</Top>
@@ -1478,7 +1566,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>44</ZIndex>
         <CanGrow>true</CanGrow>
-        <Height>6.75cm</Height>
+        <Height>6.48545cm</Height>
         <Value>Dados Clínicos:</Value>
       </Textbox>
       <Textbox Name="textbox42">
@@ -2003,7 +2091,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
       </Rectangle>
       <Textbox Name="textbox15">
         <rd:DefaultName>textbox15</rd:DefaultName>
-        <Top>11cm</Top>
+        <Top>11.58202cm</Top>
         <Width>18.5cm</Width>
         <Style>
           <BorderStyle>
@@ -2017,7 +2105,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>27</ZIndex>
         <CanGrow>true</CanGrow>
-        <Height>1.5cm</Height>
+        <Height>0.91798cm</Height>
         <Value>Queixa principal:</Value>
       </Textbox>
       <Textbox Name="textbox13">
@@ -2036,7 +2124,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
         </Style>
         <ZIndex>26</ZIndex>
         <CanGrow>true</CanGrow>
-        <Height>0.75cm</Height>
+        <Height>1.35847cm</Height>
         <Value>Reclasificação:</Value>
       </Textbox>
       <Rectangle Name="rectangle1">
@@ -2170,7 +2258,7 @@ f8ErvAfhoKzosjL12R7c0UVjUxtaS1kdVLAYemvcgl8keteDP2TvBPg2FRb6TCzIMBnGTXoGm+HbPSIg
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
             <CanGrow>true</CanGrow>
-            <Value>CLASSIFICAÇÃO DE RISCO:* Clínica Médica 7:00 às 19:00h</Value>
+            <Value>CLASSIFICAÇÃO DE RISCO:*</Value>
           </Textbox>
         </ReportItems>
         <Top>9.01455cm</Top>

@@ -48,9 +48,10 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                     <label>Impressoras:</label>
                                     <asp:DropDownList ID="ddlImpressoraEtiqueta" class="form-control" runat="server" >
-                                         <%--<asp:ListItem>PSI - Guichê</asp:ListItem>--%>
+                                            <asp:ListItem>PSI - Guichê</asp:ListItem>
                                             <asp:ListItem>TSC_GUICHE_PS</asp:ListItem>
                                             <asp:ListItem>TSC_GRIPARIO</asp:ListItem>
+                                            <asp:ListItem>TSC_CO</asp:ListItem>
                                             <%--<asp:ListItem>Informatica</asp:ListItem>--%>
                                            
                                     </asp:DropDownList>

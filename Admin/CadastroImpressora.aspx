@@ -14,7 +14,7 @@
                 </div>
             </div>
            
-            <h4>Para a impressão de Ficha e Etiquetas as impressoras devem estar instaladas no servidor HSPMINS17</h4>
+            <h4>Para a impressão de Ficha e Etiquetas as impressoras devem estar instaladas no servidor HSPMINS18</h4>
             
             <h4>Importante renomear e especificar o nome da impressora e a localização no servidor . Ex. TSC_Pronto_Socorro</h4>
             

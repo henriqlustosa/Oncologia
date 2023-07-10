@@ -35,7 +35,7 @@ public partial class Etiqueta_ImprimirEtiqueta : System.Web.UI.Page
         string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_addr"]).HostName.Split(new Char[] { '.' });
         //lbhostname1.Text = computer_name[0].ToString();
 
-        string hostname = "HSPMINS17";
+        string hostname = "HSPMINS18";
        
         // Buscar impresora no cadastro para impressão
         Computador pc = new Computador();

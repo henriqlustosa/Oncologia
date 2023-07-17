@@ -48,7 +48,7 @@ public partial class Report_TesteReport : System.Web.UI.Page
     {
         rprt.Load(Server.MapPath("~/CrystalReport.rpt"));
 
-        SqlConnection con = new SqlConnection(@"Data Source=10.48.16.28;database=hspmPs; Persist Security Info=True;user id=hspmApp;password=SoundG@rden=1");
+        SqlConnection con = new SqlConnection(@"Data Source=10.48.16.28;database=Oncologia_Desenv; Persist Security Info=True;user id=hspmApp;password=SoundG@rden=1");
         string sqlString = "SELECT nome_profissional, descricao_status, qtd " +
                              " FROM vw_baixa_por_profissional_mes " +
                              " WHERE mes = " + mes +

@@ -30,7 +30,7 @@ public class ConselhoDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [cod_conselho], [sigla_conselho], [descricao_conselho] FROM [hspmPs].[dbo].[conselho]";
+            cmm.CommandText = "SELECT [cod_conselho], [sigla_conselho], [descricao_conselho] FROM [Oncologia_Desenv].[dbo].[conselho]";
             try
             {
                 cnn.Open();

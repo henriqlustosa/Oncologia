@@ -65,7 +65,7 @@ public partial class Administrativo_checkout : System.Web.UI.Page
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT descricao_status FROM [hspmPs].[dbo].[ficha] f, [hspmPs].[dbo].[status_ficha] s WHERE  f.status_ficha = s.cod_status and cod_ficha = " + _nr_be;
+            cmm.CommandText = "SELECT descricao_status FROM [Oncologia_Desenv].[dbo].[ficha] f, [Oncologia_Desenv].[dbo].[status_ficha] s WHERE  f.status_ficha = s.cod_status and cod_ficha = " + _nr_be;
             try
             {
                 cnn.Open();

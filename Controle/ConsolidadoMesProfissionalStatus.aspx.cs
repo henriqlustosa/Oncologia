@@ -44,7 +44,7 @@ public partial class Controle_ConsolidadoMesProfissionalStatus : System.Web.UI.P
     {
         rprt.Load(Server.MapPath("~/Controle/CrystalReport.rpt"));
 
-        SqlConnection con = new SqlConnection(@"Data Source=10.48.16.28;database=hspmPs; Persist Security Info=True;user id=hspmApp;password=SoundG@rden=1");
+        SqlConnection con = new SqlConnection(@"Data Source=10.48.16.28;database=Oncologia_Desenv; Persist Security Info=True;user id=hspmApp;password=SoundG@rden=1");
         string sqlString = "SELECT nome_profissional, descricao_status, qtd " +
                              " FROM vw_baixa_por_profissional_mes " +
                              " WHERE mes = " + mes +

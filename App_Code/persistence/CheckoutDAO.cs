@@ -34,7 +34,7 @@ public class CheckoutDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "INSERT INTO [hspmPs].[dbo].[baixa]" +
+                cmm.CommandText = "INSERT INTO [Oncologia_Desenv].[dbo].[baixa]" +
                                    "([cod_ficha]" +
                                    ",[cod_status]" +
                                    ",[cod_profissional]" +
@@ -48,7 +48,7 @@ public class CheckoutDAO
                                    ",@data_baixa" +
                                    ",@obs" +
                                    ",@usuario_baixa);" +
-                                   "UPDATE [hspmPs].[dbo].[ficha] SET status_ficha=@cod_status WHERE cod_ficha=@cod_ficha";
+                                   "UPDATE [Oncologia_Desenv].[dbo].[ficha] SET status_ficha=@cod_status WHERE cod_ficha=@cod_ficha";
 
                 cmm.Parameters.Add("@cod_ficha", SqlDbType.Int).Value = cod_ficha;
                 cmm.Parameters.Add("@cod_status", SqlDbType.Int).Value = cod_status;

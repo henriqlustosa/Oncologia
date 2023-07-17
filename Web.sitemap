@@ -8,10 +8,14 @@
       <siteMapNode url="~/Atendimento/EtiquetasAvulso.aspx" title="Etiquetas Avulso"  description="Impressão de Etiquetas Avulso" />
     </siteMapNode>
 
-    <siteMapNode url="" title="Administrativo" roles="administrativo" description="">
+    <siteMapNode url="" title="Administrativo" roles="administrador, administrativo" description="">
       <siteMapNode url="~/Administrativo/checkoutbe.aspx" title="Baixa de Ficha"  description="" />
       <siteMapNode url="~/Administrativo/FichaRetroativa.aspx" title="Fichas Retroativa"  description="Cadastro de Fichas com Data Retroativa" />
     </siteMapNode>
+	  <siteMapNode url="" title="Prescrição" roles="administrador" description="">
+		  <siteMapNode url="~/Prescricao/Prescricao.aspx" title="Nova Prescrição"  description="" />
+		
+	  </siteMapNode>
 
     <siteMapNode url="" title="Obstetrícia" roles="administrador, obstetrícia" description="Páginas relácionadas Obstetrícia" >
       <siteMapNode url="~/Obstetricia/EstatisticaCO.aspx" title="Estatistica CO" description="" />

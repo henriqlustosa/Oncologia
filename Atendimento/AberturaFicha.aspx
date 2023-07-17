@@ -299,7 +299,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>
-                            Boletim de Emergência<small><i>- Informações do Paciente</i></small></h2>
+                            Atendimento<small><i>- Informações do Paciente</i></small></h2>
                         <div class="clearfix">
                         </div>
                     </div>

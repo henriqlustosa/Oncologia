@@ -45,14 +45,14 @@ public partial class Report_ReportConBaixasProfissionalMes : System.Web.UI.Page
     {
         rprt.Load(Server.MapPath("~/Controle/ReportConBaixasProfissional.rpt"));
 
-        SqlConnection con = new SqlConnection(@"Data Source=10.48.16.28;database=hspmPs; Persist Security Info=True;user id=hspmApp;password=SoundG@rden=1");
+        SqlConnection con = new SqlConnection(@"Data Source=10.48.16.28;database=Oncologia_Desenv; Persist Security Info=True;user id=hspmApp;password=SoundG@rden=1");
 
         string sqlString = "SELECT [nome_profissional] " +
                           ",[BE_MONTH] " +
                           ",[BE_YEAR] " +
                           ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                           ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                      " FROM [hspmPs].[dbo].[vw_baixa_por_profissional_mes_consolidado]" +
+                      " FROM [Oncologia_Desenv].[dbo].[vw_baixa_por_profissional_mes_consolidado]" +
                       " WHERE BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         SqlCommand cmd = new SqlCommand(sqlString, con);

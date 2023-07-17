@@ -34,7 +34,7 @@ public class ImpressoraDAO
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT * " +
-                              " FROM [hspmPs].[dbo].[Impressoras]";
+                              " FROM [Oncologia_Desenv].[dbo].[Impressoras]";
             try
             {
                 cnn.Open();
@@ -73,7 +73,7 @@ public class ImpressoraDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "INSERT INTO [hspmPs].[dbo].[Impressoras]" +
+                cmm.CommandText = "INSERT INTO [Oncologia_Desenv].[dbo].[Impressoras]" +
                                    "([tipo]" +
                                    ",[nome_impressora]" +
                                    ",[descricao_impressora]" +

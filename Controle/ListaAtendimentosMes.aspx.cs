@@ -45,7 +45,7 @@ public partial class Controle_ListaAtendimentosMes : System.Web.UI.Page
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = cnn;
-                    command.CommandText = "SELECT * FROM [hspmPs].[dbo].[vw_listagem_atendimento] " +
+                    command.CommandText = "SELECT * FROM [Oncologia_Desenv].[dbo].[vw_listagem_atendimento] " +
                         "WHERE MONTH(dt_hr_be) = " + mes + " AND YEAR(dt_hr_be) = " + ano;
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter())

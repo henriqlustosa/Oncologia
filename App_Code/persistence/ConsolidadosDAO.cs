@@ -25,7 +25,7 @@ public class ConsolidadosDAO
                           ",[BE_YEAR] " +
                           ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                           ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                      " FROM [hspmPs].[dbo].[vw_con_be_tipo_pac_mes]" +
+                      " FROM [Oncologia_Desenv].[dbo].[vw_con_be_tipo_pac_mes]" +
                       " WHERE BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qySetor = "SELECT [setor] " +
@@ -33,7 +33,7 @@ public class ConsolidadosDAO
                         ",[BE_YEAR] " +
                         ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                         ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                    " FROM [hspmPs].[dbo].[vw_con_be_setor_mes]" +
+                    " FROM [Oncologia_Desenv].[dbo].[vw_con_be_setor_mes]" +
                     " WHERE BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qyProcedencia = "SELECT [tipo_paciente] " +
@@ -41,7 +41,7 @@ public class ConsolidadosDAO
                         ",[BE_YEAR] " +
                         ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                         ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                    " FROM [hspmPs].[dbo].[vw_con_be_procedencia]" +
+                    " FROM [Oncologia_Desenv].[dbo].[vw_con_be_procedencia]" +
                     " WHERE [procedencia] = 'SAMU' AND BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qyPM = "SELECT [tipo_paciente] " +
@@ -49,7 +49,7 @@ public class ConsolidadosDAO
                         ",[BE_YEAR] " +
                         ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                         ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                    " FROM [hspmPs].[dbo].[vw_con_be_procedencia]" +
+                    " FROM [Oncologia_Desenv].[dbo].[vw_con_be_procedencia]" +
                     " WHERE [procedencia] = 'POLÍCIA MILITAR' AND BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qyAMA = "SELECT [tipo_paciente] " +
@@ -57,7 +57,7 @@ public class ConsolidadosDAO
                         ",[BE_YEAR] " +
                         ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                         ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                    " FROM [hspmPs].[dbo].[vw_con_be_procedencia]" +
+                    " FROM [Oncologia_Desenv].[dbo].[vw_con_be_procedencia]" +
                     " WHERE [procedencia] = 'AMA - Sé' AND BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qyBombeiro = "SELECT [tipo_paciente] " +
@@ -65,7 +65,7 @@ public class ConsolidadosDAO
                         ",[BE_YEAR] " +
                         ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                         ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                    " FROM [hspmPs].[dbo].[vw_con_be_procedencia]" +
+                    " FROM [Oncologia_Desenv].[dbo].[vw_con_be_procedencia]" +
                     " WHERE [procedencia] = 'BOMBEIRO' AND BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qyMetro = "SELECT [tipo_paciente] " +
@@ -73,7 +73,7 @@ public class ConsolidadosDAO
                                ",[BE_YEAR] " +
                                ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                                ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                           " FROM [hspmPs].[dbo].[vw_con_be_procedencia]" +
+                           " FROM [Oncologia_Desenv].[dbo].[vw_con_be_procedencia]" +
                            " WHERE [procedencia] = 'METRÔ' AND BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qyGCM = "SELECT [tipo_paciente] " +
@@ -81,7 +81,7 @@ public class ConsolidadosDAO
                         ",[BE_YEAR] " +
                         ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                         ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                    " FROM [hspmPs].[dbo].[vw_con_be_procedencia]" +
+                    " FROM [Oncologia_Desenv].[dbo].[vw_con_be_procedencia]" +
                     " WHERE [procedencia] = 'GCM' AND BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
         string qyAP = "SELECT [tipo_paciente] " +
@@ -89,7 +89,7 @@ public class ConsolidadosDAO
                        ",[BE_YEAR] " +
                        ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                        ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                   " FROM [hspmPs].[dbo].[vw_con_be_procedencia]" +
+                   " FROM [Oncologia_Desenv].[dbo].[vw_con_be_procedencia]" +
                    " WHERE [procedencia] = 'AMBULÂNCIA PARTICULAR' AND BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
 
@@ -585,7 +585,7 @@ public class ConsolidadosDAO
       ",[BE_YEAR]" +
       ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[20],[21],[22],[23],[24] ,[25],[26] ,[27],[28],[29],[30] ,[31]" +
       ",[TOTAL] " +
-  " FROM [hspmPs].[dbo].[vw_setor_grupo_pac] " +
+  " FROM [Oncologia_Desenv].[dbo].[vw_setor_grupo_pac] " +
   " where setor = '" + _setor + "' and [BE_MONTH] = " + mes + " and [BE_YEAR] = " + ano;
 
         int t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0, t7 = 0, t8 = 0, t9 = 0,
@@ -1035,7 +1035,7 @@ public class ConsolidadosDAO
                           ",[BE_YEAR] " +
                           ",[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14] ,[15],[16],[17] ,[18],[19],[20]" +
                           ",[21],[22],[23],[24],[25],[26],[27],[28],[29],[30],[31],[TOTAL] " +
-                      " FROM [hspmPs].[dbo].[vw_baixa_por_profissional_mes_consolidado]" +
+                      " FROM [Oncologia_Desenv].[dbo].[vw_baixa_por_profissional_mes_consolidado]" +
                       " WHERE BE_MONTH =" + mes + " AND BE_YEAR =" + ano;
 
 

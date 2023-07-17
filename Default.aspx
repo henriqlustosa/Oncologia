@@ -8,7 +8,7 @@
     <meta charset="utf-8" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pronto Socorro - HSPM</title>
+    <title>Prescrição - HSPM</title>
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome -->

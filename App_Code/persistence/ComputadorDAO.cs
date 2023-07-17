@@ -30,7 +30,7 @@ public class ComputadorDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT * FROM [hspmPs].[dbo].[vw_impressora_computador] WHERE nome_computador = '" + _hostname +"'";
+            cmm.CommandText = "SELECT * FROM [Oncologia_Desenv].[dbo].[vw_impressora_computador] WHERE nome_computador = '" + _hostname +"'";
             try
             {
                 cnn.Open();
@@ -68,7 +68,7 @@ public class ComputadorDAO
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT * " +
-                              " FROM [hspmPs].[dbo].[vw_impressora_computador]";
+                              " FROM [Oncologia_Desenv].[dbo].[vw_impressora_computador]";
             try
             {
                 cnn.Open();

@@ -64,7 +64,7 @@ public class FichaDAO
                                   ",[usuario] " +
                                   ",[info_resgate] " +
                                   ",[rf] " +
-                              "FROM [hspmPs].[dbo].[ficha] " +
+                              "FROM [Oncologia_Desenv].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _cod_ficha;
             try
             {
@@ -173,7 +173,7 @@ public class FichaDAO
         {
             
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "INSERT INTO [hspmPs].[dbo].[ficha] " +
+            cmm.CommandText = "INSERT INTO [Oncologia_Desenv].[dbo].[ficha] " +
                                                "(dt_hr_be " +
                                                ", setor " +
                                                ", nome_paciente " +
@@ -348,7 +348,7 @@ public class FichaDAO
                                   ",[usuario] " +
                                   ",[info_resgate]" +
                                   ",[rf] " +
-                              "FROM [hspmPs].[dbo].[ficha] " +
+                              "FROM [Oncologia_Desenv].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _nr_be;
             try
             {
@@ -448,7 +448,7 @@ public class FichaDAO
                                   ",[status_ficha]" +
                                   ",[info_resgate]" +
                                   ",[rf] " +
-                              "FROM [hspmPs].[dbo].[ficha] " +
+                              "FROM [Oncologia_Desenv].[dbo].[ficha] " +
                               "WHERE cod_ficha = " + _nr_be;
             try
             {
@@ -549,7 +549,7 @@ public class FichaDAO
                                   ",[usuario] " +
                                   ",[info_resgate] " +
                                   ",[rf] " +
-                              "FROM [hspmPs].[dbo].[ficha] " +
+                              "FROM [Oncologia_Desenv].[dbo].[ficha] " +
                               "WHERE nome_paciente LIKE '%" + _nome + "%'";
             try
             {
@@ -628,7 +628,7 @@ public class FichaDAO
             cmm.Transaction = mt;
             try
             {
-                cmm.CommandText = "UPDATE [hspmPs].[dbo].[ficha]" +
+                cmm.CommandText = "UPDATE [Oncologia_Desenv].[dbo].[ficha]" +
                                             "SET " +
                                                " nome_paciente = @nome_paciente " +
                                                ", dt_nascimento = @dt_nascimento " +

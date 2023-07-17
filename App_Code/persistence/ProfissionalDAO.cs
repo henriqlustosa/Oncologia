@@ -36,7 +36,7 @@ public class ProfissionalDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "INSERT INTO [hspmPs].[dbo].[Profissional]" +
+                cmm.CommandText = "INSERT INTO [Oncologia_Desenv].[dbo].[Profissional]" +
                                    "([nome_profissional]" +
                                    ",[conselho]" +
                                    ",[nr_conselho]" +
@@ -81,7 +81,7 @@ public class ProfissionalDAO
                               ",[conselho]" +
                               ",[nr_conselho]" +
                               ",[status_profissional] " +
-                              " FROM [hspmPs].[dbo].[Profissional]";
+                              " FROM [Oncologia_Desenv].[dbo].[Profissional]";
             try
             {
                 cnn.Open();

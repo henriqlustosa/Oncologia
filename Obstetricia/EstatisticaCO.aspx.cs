@@ -59,7 +59,7 @@ public partial class Obstetricia_EstatisticaCO : System.Web.UI.Page
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT cod_ficha, dt_hr_be, nome_paciente, tipo_paciente " +
-                               " FROM hspmPs.dbo.ficha " +
+                               " FROM Oncologia_Desenv.dbo.ficha " +
                                " WHERE setor = 'Obstetrícia' AND MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano + " " +
                                " AND setor='Obstetrícia' AND status_ficha = 0 " +
                                " ORDER BY dt_hr_be DESC";
@@ -103,9 +103,9 @@ public partial class Obstetricia_EstatisticaCO : System.Web.UI.Page
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT COUNT(s.descricao_status) AS qtd_status, s.descricao_status, " +
-                               " cast((count(f.status_ficha)*100.0)/(select COUNT(*) FROM hspmPs.dbo.ficha f INNER JOIN hspmPs.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
+                               " cast((count(f.status_ficha)*100.0)/(select COUNT(*) FROM Oncologia_Desenv.dbo.ficha f INNER JOIN Oncologia_Desenv.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
                                " WHERE MONTH(f.dt_hr_be) =" + mes + " and YEAR(f.dt_hr_be) = " + ano + ")as decimal(5,2)) as porcentagem " +
-                               " FROM hspmPs.dbo.ficha f INNER JOIN hspmPs.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
+                               " FROM Oncologia_Desenv.dbo.ficha f INNER JOIN Oncologia_Desenv.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
                                " WHERE setor = 'Obstetrícia' AND MONTH(f.dt_hr_be) = " + mes + " and YEAR(f.dt_hr_be) = " + ano + " " +
                                " GROUP BY s.descricao_status " +
                                " ORDER BY qtd_status DESC";

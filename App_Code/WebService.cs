@@ -44,7 +44,7 @@ public class WebService : System.Web.Services.WebService
                                        " ELSE procedencia " +
                                    " END AS Procedencia , " +
                                      " Count(*) as Quantidade" +
-                                      " FROM [hspmPs].[dbo].[ficha] " +
+                                      " FROM [Oncologia_Desenv].[dbo].[ficha] " +
                                       " WHERE      status_ficha != 8 AND status_ficha != 4 " +
                                       " AND MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano +
                                       " group by CASE " +
@@ -123,8 +123,8 @@ public class WebService : System.Web.Services.WebService
                                        " WHEN procedencia != 'Espontânea' THEN 'Resgate' " +
                                        " ELSE procedencia " +
                                    " END AS Procedencia , " +
-                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [hspmPs].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = " + mes + ") AND (YEAR(dt_hr_be) = " + ano + ") AND  status_ficha != 8 AND status_ficha != 4) AS decimal(5, 2)) AS porcentagem " +
-                                      " FROM [hspmPs].[dbo].[ficha] " +
+                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [Oncologia_Desenv].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = " + mes + ") AND (YEAR(dt_hr_be) = " + ano + ") AND  status_ficha != 8 AND status_ficha != 4) AS decimal(5, 2)) AS porcentagem " +
+                                      " FROM [Oncologia_Desenv].[dbo].[ficha] " +
                                       " WHERE      status_ficha != 8 AND status_ficha != 4 " +
                                       " AND MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano +
                                       " group by CASE " +
@@ -203,7 +203,7 @@ public class WebService : System.Web.Services.WebService
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT count(f.status_ficha) as qtd_status, s.descricao_status " +
-                                  " FROM [hspmPs].[dbo].[ficha] f, [hspmPs].[dbo].[status_ficha] s " +
+                                  " FROM [Oncologia_Desenv].[dbo].[ficha] f, [Oncologia_Desenv].[dbo].[status_ficha] s " +
                                   " WHERE s.cod_status = f.status_ficha " +
                                   " AND MONTH(f.dt_hr_be) = " + mes + " and YEAR(f.dt_hr_be) = " + ano +
                                   " GROUP BY s.descricao_status";
@@ -299,9 +299,9 @@ public class WebService : System.Web.Services.WebService
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT COUNT(s.descricao_status) AS qtd_status, s.descricao_status, " +
-                               " cast((count(f.status_ficha)*100.0)/(select COUNT(*) FROM hspmPs.dbo.ficha f INNER JOIN hspmPs.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
+                               " cast((count(f.status_ficha)*100.0)/(select COUNT(*) FROM Oncologia_Desenv.dbo.ficha f INNER JOIN Oncologia_Desenv.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
                                " WHERE MONTH(f.dt_hr_be) =" + mes + " and YEAR(f.dt_hr_be) = " + ano + ")as decimal(5,2)) as porcentagem " +
-                               " FROM hspmPs.dbo.ficha f INNER JOIN hspmPs.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
+                               " FROM Oncologia_Desenv.dbo.ficha f INNER JOIN Oncologia_Desenv.dbo.status_ficha s ON f.status_ficha = s.cod_status " +
                                " WHERE MONTH(f.dt_hr_be) = " + mes + " and YEAR(f.dt_hr_be) = " + ano + " " +
                                " GROUP BY s.descricao_status " +
                                " ORDER BY qtd_status DESC";
@@ -347,7 +347,7 @@ public class WebService : System.Web.Services.WebService
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT DATEPART(DAY, dt_hr_be) AS [Day], COALESCE(COUNT(cod_ficha), 0) AS [Total Be] " +
-                             " FROM [hspmPs].[dbo].[ficha] " +
+                             " FROM [Oncologia_Desenv].[dbo].[ficha] " +
                              " WHERE MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano +
                              " AND status_ficha !=8 AND status_ficha !=4 " +
                              " GROUP BY DATEPART(DAY, dt_hr_be) " +
@@ -429,7 +429,7 @@ public class WebService : System.Web.Services.WebService
                                   ",[21],[22],[23],[24],[25],[26],[27],[28],[29]" +
                                   ",[30],[31]" +
                                   ",[TOTAL]" +
-                              " FROM [hspmPs].[dbo].[vw_con_be_total_procedencia]" +
+                              " FROM [Oncologia_Desenv].[dbo].[vw_con_be_total_procedencia]" +
                               " where BE_MONTH = "+ mes +" AND BE_YEAR =" + ano +
                               " and procedencia != 'ESPONTÂNEA'";
             try
@@ -573,7 +573,7 @@ public class WebService : System.Web.Services.WebService
                                   ",[21],[22],[23],[24],[25],[26],[27],[28],[29]" +
                                   ",[30],[31]" +
                                   ",[TOTAL]" +
-                              " FROM [hspmPs].[dbo].[vw_con_be_total_procedencia]" +
+                              " FROM [Oncologia_Desenv].[dbo].[vw_con_be_total_procedencia]" +
                               " where BE_MONTH = "+ mes +" AND BE_YEAR = "+ ano +
                               " and procedencia = 'ESPONTÂNEA'";
             try
@@ -647,7 +647,7 @@ public class WebService : System.Web.Services.WebService
                                   ",[21],[22],[23],[24],[25],[26],[27],[28],[29]" +
                                   ",[30],[31]" +
                                   ",[TOTAL]" +
-                              " FROM [hspmPs].[dbo].[vw_con_be_total_mes]" +
+                              " FROM [Oncologia_Desenv].[dbo].[vw_con_be_total_mes]" +
                               " where BE_MONTH = "+ mes +" AND BE_YEAR =  " + ano ;
             try
             {
@@ -724,8 +724,8 @@ public class WebService : System.Web.Services.WebService
 	                                   " ELSE procedencia "+
                                    " END AS Procedencia , "+
                                    " COUNT(*) as qtd, "+
-                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [hspmPs].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = "+ mes +") AND (YEAR(dt_hr_be) = "+ ano +") AND  status_ficha != 8 AND status_ficha != 4 ) AS decimal(5, 2)) AS porcentagem "+
-                                      " FROM [hspmPs].[dbo].[ficha] "+
+                                      " CAST(COUNT(procedencia) * 100.0 /(SELECT  COUNT(*) AS Expr1 FROM [Oncologia_Desenv].[dbo].[ficha]  WHERE (MONTH(dt_hr_be) = "+ mes +") AND (YEAR(dt_hr_be) = "+ ano +") AND  status_ficha != 8 AND status_ficha != 4 ) AS decimal(5, 2)) AS porcentagem "+
+                                      " FROM [Oncologia_Desenv].[dbo].[ficha] "+
                                       " WHERE      status_ficha != 8 AND status_ficha != 4 " +
                                       " AND MONTH(dt_hr_be) = " + mes + " and YEAR(dt_hr_be) = " + ano +
                                       " group by CASE " +

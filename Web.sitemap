@@ -13,7 +13,13 @@
       <siteMapNode url="~/Administrativo/FichaRetroativa.aspx" title="Fichas Retroativa"  description="Cadastro de Fichas com Data Retroativa" />
     </siteMapNode>
 	  <siteMapNode url="" title="Prescrição" roles="administrador" description="">
+		  <siteMapNode url="~/Prescricao/MeuPainel.aspx" title="Meus Painel"  description="" />
 		  <siteMapNode url="~/Prescricao/Prescricao.aspx" title="Nova Prescrição"  description="" />
+		  <siteMapNode url="~/Prescricao/ModelosFavoritos.aspx" title="Modelos Favoritos"  description="" />
+		  <siteMapNode url="~/Prescricao/HistoricoDeDocumentos.aspx" title="Histórico de Documentos"  description="" />
+		  <siteMapNode url="~/Prescricao/MeusPacientes.aspx" title="Meus Pacientes"  description="" />
+		  
+		
 		
 	  </siteMapNode>
 

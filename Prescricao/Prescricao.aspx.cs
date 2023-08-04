@@ -12,39 +12,20 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        select1.DataSource = CID_10_DAO.listaCID_10();
+        select1.DataTextField = "DESCRABREV";
+        select1.DataValueField = "SUBCAT";
+        select1.DataBind();
 
     }
     [WebMethod]
 
     public static List<Paciente> GetNomeDePacientes(string prefixo)
-    {
+   {
+        
         List<Paciente> pacientes = new List<Paciente>();
-        using (SqlConnection conn = new SqlConnection())
-        {
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["psConnectionString"].ConnectionString;
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.CommandText = string.Format("SELECT  TOP 10 nome, prontuario FROM [Oncologia_Desenv].[dbo].[Paciente] where [nome] like '{0}%' group by nome, prontuario", prefixo);
+        pacientes = PacienteDAO.GETNOME( prefixo);
 
-                cmd.Connection = conn;
-                conn.Open();
-                Paciente c = null;
-
-                using (SqlDataReader sdr = cmd.ExecuteReader())
-                {
-                    while (sdr.Read())
-                    {
-                        c = new Paciente();
-
-
-                        c = PacienteDAO.GET(Convert.ToString(sdr["prontuario"]));
-
-                        pacientes.Add(c);
-                    }
-                }
-                conn.Close();
-            }
-        }
         return pacientes;
     }
     protected void btnAdd_Click(object sender, EventArgs e)
@@ -56,8 +37,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     {
         
         ScriptManager.RegisterStartupScript(this, this.GetType(), "#modalAdicionarPaciente", "$('#modalDadosDoPaciente').modal('show');", true);
-        
-       
 
+      
     }
 }

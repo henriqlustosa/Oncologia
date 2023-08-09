@@ -24,7 +24,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
    {
         
         List<Paciente> pacientes = new List<Paciente>();
-        pacientes = PacienteDAO.GETNOME( prefixo);
+        pacientes = PacienteDAO.GETNOME( prefixo.ToUpper());
 
         return pacientes;
     }

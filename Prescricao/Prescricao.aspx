@@ -98,6 +98,33 @@
                     <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
+            <div class="row">
+
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Nascimento</label>
+                    <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc"></asp:TextBox>
+                </div>
+                <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Idade</label>
+                    <asp:TextBox ID="txbIdade" runat="server" class="form-control age"></asp:TextBox>
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Sexo</label>
+                    <asp:DropDownList ID="ddlSexo" runat="server" AutoPostBack="true" class="form-control">
+                        <asp:ListItem>Masculino</asp:ListItem>
+                        <asp:ListItem>Feminino</asp:ListItem>
+                        <asp:ListItem>Não Informado</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Nome do Pai/Mãe</label>
+                    <asp:TextBox ID="txbPais" runat="server" class="form-control"></asp:TextBox>
+                </div>
+            </div>
             <div class="nav justify-content-md-center">
                 <input id="btnCalculo" type="button" value="Cálculo da Superfície Corpórea" onclick="mostraCalculo()"
                     class="btn btn-outline-info btn-block" />
@@ -114,7 +141,7 @@
 
 
 
-            <div id="divCalculoCorpo" >
+            <div id="divCalculoCorpo" style="display: none;">
                 <%--<h4 class="text-center">
             Alta Paciente Pagina Unica</h4>--%>
 
@@ -149,7 +176,7 @@
                                 &nbsp;<br />
                                 <table cellpadding="3" cellspacing="0" summary="EBMcalc Table">
                                     <tr>
-                                        <td align="right" width="42%"><span class="medCalcFontOneBold">Height</span> </td>
+                                        <td align="right" width="42%"><span class="medCalcFontOneBold">Altura</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
                                             <input type="text" name="Height_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Height" /></td>
                                         <td align="left" valign="top">
@@ -166,7 +193,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td align="right" width="42%"><span class="medCalcFontOneBold">Weight</span> </td>
+                                        <td align="right" width="42%"><span class="medCalcFontOneBold">Peso</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
                                             <input type="text" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" /></td>
                                         <td align="left" valign="top">
@@ -244,9 +271,9 @@
                     &nbsp;<br />
 
                     <div id="calc_notes">
-                        <span class="medCalcFontOneBold">Notes</span>
+                        <span class="medCalcFontOneBold">Nota</span>
                         <ul class="medCalcFontOne">
-                            <li><font color="#aa0000">The default unit of measure for weight is kilograms.  Please verify that the correct unit of measure has been selected.</font></li>
+                            <li><font color="#aa0000">O valor padrão para a unidade de medida para peso é kilograma.  Por favor verifique se a correta unidade de medida foi selecionada.</font></li>
 
 
                         </ul>
@@ -254,7 +281,7 @@
 
                     <br />
                     &nbsp;<br />
-                    <span class="medCalcFontRef"><b>Equations used</b></span>
+                    <span class="medCalcFontRef"><b>Equação utilizada</b></span>
 
                     <br />
                     &nbsp;<br />
@@ -277,7 +304,7 @@
                     &nbsp;<br />
 
                     <div id="calc_refs">
-                        <span class="medCalcFontRef"><b>References</b></span>
+                        <span class="medCalcFontRef"><b>Referência</b></span>
                         <ol>
                             <li><span class="medCalcFontRef">Dubois D, Dubois EF. A formula to estimate the approximate surface area if height and weight be known. <i>Arch Intern Med</i>. 1916; 17:863-871.</span></li>
 
@@ -292,7 +319,7 @@
                 <input id="btnCID" type="button" value="CID" onclick="mostraCID()" class="btn btn-outline-info btn-block" />
             </div>
             <div class="x_content">
-                <div id="divCID">
+                <div id="divCID" >
                     <div class="x_panel">
                         <div class="col-5">
                             CID 10:
@@ -307,25 +334,25 @@
                 </div>
                 <br />
             </div>
-            <div class="nav justify-content-md-center">
-                <input id="btnProtocolo" type="button" value="Protocolo" onclick="mostraProtocolo()" class="btn btn-outline-info btn-block" />
-            </div>
-            <div class="x_content">
-                <div id="divProtocolo">
-                    <div class="x_panel">
-                        <div class="col-5">
-                            Protocolo:
-                        </div>
-                        <div>
-                            <select data-placeholder="Selecione uma opção" id="select2" multiple style="width: 750px"
-                                runat="server" clientidmode="Static">
-                            </select>
-                        </div>
+        <div class="nav justify-content-md-center">
+            <input id="btnProtocolo" type="button" value="Protocolo" onclick="mostraProtocolo()" class="btn btn-outline-info btn-block" />
+        </div>
+        <div class="x_content">
+            <div id="divProtocolo">
+                <div class="x_panel">
+                    <div class="col-5">
+                        Protocolo:
                     </div>
-                    <br />
+                    <div>
+                        <select data-placeholder="Selecione uma opção" id="select2" multiple style="width: 750px"
+                            runat="server" clientidmode="Static">
+                        </select>
+                    </div>
                 </div>
                 <br />
             </div>
+            <br />
+        </div>
         </div>
     </div>
     <!-- Large modal -->
@@ -333,8 +360,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">
-                        Cálculo</h4>
+                    <h4 class="modal-title" id="myModalLabel">Cálculo</h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -359,15 +385,14 @@
             </div>
         </div>
     </div>
-    
+
     <!-- fim modal large -->
     <!-- Large modal -->
     <div class="modal fade" id="modalDadosDoPaciente" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabe">
-                        Novo Paciente
+                    <h4 class="modal-title" id="myModalLabe">Novo Paciente
                     </h4>
                     <button type="button" class="close" data-dismiss="modal">
                         <span aria-hidden="true">×</span>
@@ -415,6 +440,13 @@
     <!-- fim modal large -->
 
     <script type="text/javascript">
+
+        window.addEventListener('keydown', function (e) {
+            var code = e.which || e.keyCode;
+            if (code == 116 || code == 13) e.preventDefault();
+            else return true;
+        });
+
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
                 if (!!arguments[i] == false || arguments[i] < 0) {
@@ -573,9 +605,9 @@
         var rbchk = false;
 
         function BodySurfaceArea_fx() {
-           
+
             with (document.forms[0]) {
-                
+
 
                 doCalc = true;
                 param_value = parseFloat(Height_param.value);
@@ -681,52 +713,59 @@
 
                 source: function (request, response) {
                     var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
-                        $.ajax({
-                            url: "Prescricao.aspx/GetNomeDePacientes",
-                            data: JSON.stringify(param),
-                            dataType: "json",
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            dataFilter: function (data) { return data; },
-                            success: function (data) {
-                                console.log(JSON.stringify(data.d));
+                    $.ajax({
+                        url: "Prescricao.aspx/GetNomeDePacientes",
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            console.log(JSON.stringify(data.d));
 
-                                response($.map(data.d, function (item) {
+                            response($.map(data.d, function (item) {
 
-                                    return {
+                                return {
 
-                                        label: item.nm_nome,
-                                        value: item.nm_nome,
-
-
-                                        prontuario: item.cd_prontuario,
-
-                                    }
-                                }))
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                var err = eval("(" + XMLHttpRequest.responseText + ")");
-                                alert(err.Message)
-                            }
-                        });
-                    },
+                                    label: item.nm_nome,
+                                    value: item.nm_nome,
 
 
-                    select: function (e, i) {
+                                    prontuario: item.cd_prontuario,
+                                    dt_nascimento: item.dt_data_nascimento,
+                                    idade: item.nr_idade,
+                                    sexo: item.in_sexo,
+                                    nome_pai_mae: item.nm_mae,
+
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var err = eval("(" + XMLHttpRequest.responseText + ")");
+                            alert(err.Message)
+                        }
+                    });
+                },
+
+
+                select: function (e, i) {
 
 
 
 
-                        $("[id$=txbProntuario").val(i.item.prontuario);
+                    $("[id$=txbProntuario").val(i.item.prontuario);
 
-                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                    $("[id$=txbIdade").val(i.item.idade);
+                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                    $("[id$=txbPais").val(i.item.nome_pai_mae);
+                },
+                minLength: 1 //This is the Char length of inputTextBox    
 
-                    },
-                    minLength: 1 //This is the Char length of inputTextBox    
-
-                });
+            });
         });
 
     </script>
-  <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
 </asp:Content>

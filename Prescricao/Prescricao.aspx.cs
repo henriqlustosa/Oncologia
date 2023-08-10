@@ -28,11 +28,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         return pacientes;
     }
-    protected void btnAdd_Click(object sender, EventArgs e)
-    {
-        string script = "$('#modalAdicionarPaciente').modal('show');";
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalScript", script, true);
-    }
+   
     protected void btnPesquisar_Click(object sender, EventArgs e)
     {
         

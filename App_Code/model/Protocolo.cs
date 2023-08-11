@@ -16,4 +16,6 @@ public class Protocolo
     }
     public int cod_protocolo { get; set; }
     public string desc_protocolo { get; set; }
+
+    public string status_protocolo { get; set; }
 }

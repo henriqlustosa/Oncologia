@@ -1,24 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="~/Default.aspx" title="Principal"  description="Página principal do web site">
-    <siteMapNode url="" title="Atendimento" roles="atendimento" description="">
-      <siteMapNode url="~/Atendimento/AberturaFicha.aspx" title="Abertura de Ficha"  description="" />
-      <siteMapNode url="~/Atendimento/Historico.aspx" title="2ª Via"  description="Pesquisa de BE e IMpressão de 2ª via" />
-      <siteMapNode url="~/Atendimento/AtualizarFicha.aspx" title="Atualizar Ficha"  description="Atualização da Ficha de Atendimento" />
-      <siteMapNode url="~/Atendimento/EtiquetasAvulso.aspx" title="Etiquetas Avulso"  description="Impressão de Etiquetas Avulso" />
-    </siteMapNode>
+   
 
    
 
 
-	  <siteMapNode url="" title="Administrativo" roles="administrador" description="">
-		  <siteMapNode url="~/Administrativo/checkoutbe.aspx" title="Baixa de Ficha"  description="" />
-		  <siteMapNode url="~/Administrativo/FichaRetroativa.aspx" title="Fichas Retroativa"  description="" />
-		  
-
-
-
-	  </siteMapNode>
+	
 	  <siteMapNode url="" title="Prescrição" roles="administrador" description="">
 		  <siteMapNode url="~/Prescricao/MeuPainel.aspx" title="Meus Painel"  description="" />
 		  <siteMapNode url="~/Prescricao/Prescricao.aspx" title="Nova Prescrição"  description="" />
@@ -32,9 +20,7 @@
 		
 	  </siteMapNode>
 
-    <siteMapNode url="" title="Obstetrícia" roles="administrador, obstetrícia" description="Páginas relácionadas Obstetrícia" >
-      <siteMapNode url="~/Obstetricia/EstatisticaCO.aspx" title="Estatistica CO" description="" />
-    </siteMapNode>
+
 
     <siteMapNode url="" title="Administração" roles="administrador" description="Administração do Site">
       <siteMapNode url="~/Admin/UsuariosOnLine.aspx" title="Lista de Usuários" description="Lista de usuários do sistema" />

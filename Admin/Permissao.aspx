@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="Permissao.aspx.cs" Inherits="Restrito_Permissao" Title="Pronto Socorro - HSPM" %>
+    CodeFile="Permissao.aspx.cs" Inherits="Restrito_Permissao" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <!-- iCheck -->

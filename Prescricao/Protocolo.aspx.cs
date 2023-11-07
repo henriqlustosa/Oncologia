@@ -21,6 +21,26 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
             select1.DataTextField = "droga";
             select1.DataValueField = "cod_medicamento";
             select1.DataBind();
+
+            ddlLista_Medicamento.DataSource = Lista_Medicamento_ProtocoloDAO.listaMedicamentos();
+            ddlLista_Medicamento.DataTextField = "medicacoes";
+            ddlLista_Medicamento.DataValueField = "cod_medicamento_protocolo";
+            ddlLista_Medicamento.DataBind();
+
+            ddlViaDeAdministracao.DataSource = ViaDeAdministracaoDAO.listaViaDeAdministracao();
+            ddlViaDeAdministracao.DataTextField = "descricao";
+            ddlViaDeAdministracao.DataValueField = "cod_via_de_administracao";
+            ddlViaDeAdministracao.DataBind();
+
+            ddlPreQuimio.DataSource = PreQuimioDAO.listaPreQuimio();
+            ddlPreQuimio.DataTextField = "codigo";
+            ddlPreQuimio.DataValueField = "cod_pre_quimio";
+            ddlPreQuimio.DataBind();
+
+            ddlPreQuimio.DataSource = PreQuimioDAO.listaPreQuimio();
+            ddlPreQuimio.DataTextField = "codigo";
+            ddlPreQuimio.DataValueField = "cod_pre_quimio";
+            ddlPreQuimio.DataBind();
         }
     }
 
@@ -28,7 +48,7 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
     {
        
        Protocolo protocolo = new Protocolo();
-        List<Lista_Medicamento> medicamentos = new List<Lista_Medicamento>();
+        List<Medicamento_Amostra> medicamentos = new List<Medicamento_Amostra>();
 
 
 
@@ -44,7 +64,7 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
         {
             if (select1.Items[i].Selected)
             {
-                Lista_Medicamento medicamento = new Lista_Medicamento();
+                Medicamento_Amostra medicamento = new Medicamento_Amostra();
                 medicamento.droga = select1.Items[i].Text;
                 medicamento.cod_medicamento = int.Parse(select1.Items[i].Value);
                 medicamentos.Add(medicamento);
@@ -73,11 +93,11 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
         select1.DataBind();
         if (!String.IsNullOrEmpty(ddlProtocolo.SelectedValue))
         {
-            List <Lista_Medicamento> medicamentos_escolhidos = Listagem_MedicamentoDAO.CarregarDropDownListMedicamento(int.Parse(ddlProtocolo.SelectedValue));
+            List <Medicamento_Amostra> medicamentos_escolhidos = Listagem_MedicamentoDAO.CarregarDropDownListMedicamento(int.Parse(ddlProtocolo.SelectedValue));
            
     
 
-            foreach (Lista_Medicamento medicamento in medicamentos_escolhidos)
+            foreach (Medicamento_Amostra medicamento in medicamentos_escolhidos)
             {
 
                 select1.Items[medicamento.cod_medicamento - 1].Selected = true;

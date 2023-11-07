@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AlterarCadastro.aspx.cs" Inherits="publico_AlterarCadastro" Title="Pronto Socorro - HSPM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AlterarCadastro.aspx.cs" Inherits="publico_AlterarCadastro" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

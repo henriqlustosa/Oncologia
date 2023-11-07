@@ -1,11 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="DeletarUsuario.aspx.cs" Inherits="publico_DeletarUsuario" Title="Pronto Socorro - HSPM" %>
+    CodeFile="DeletarUsuario.aspx.cs" Inherits="publico_DeletarUsuario" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+
     <h3>
         Informações do Usuário</h3>
    

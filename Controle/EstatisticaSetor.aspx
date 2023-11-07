@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="EstatisticaSetor.aspx.cs" Inherits="Controle_EstatisticaSetor" Title="Pronto Socorro - HSPM" %>
+    CodeFile="EstatisticaSetor.aspx.cs" Inherits="Controle_EstatisticaSetor" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>

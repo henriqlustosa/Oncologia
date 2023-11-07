@@ -1,11 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="UsuariosOnLine.aspx.cs" Inherits="publico_UsuariosOnLine" Title="Pronto Socorro - HSPM" %>
+    CodeFile="UsuariosOnLine.aspx.cs" Inherits="publico_UsuariosOnLine" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+   
     <h3>
         Informações dos Usuários</h3>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

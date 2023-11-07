@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" 
     EnableEventValidation="false" CodeFile="FichaRetroativa.aspx.cs" Inherits="Administrativo_FichaRetroativa" 
-    Title="Pronto Socorro - HSPM" %>
+    Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="CadastroUsuario.aspx.cs" Inherits="Restrito_CadastroUsuario" Title="Pronto Socorro - HSPM" %>
+    CodeFile="CadastroUsuario.aspx.cs" Inherits="Restrito_CadastroUsuario" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -14,12 +14,12 @@
                         <table border="0">
                             <tr>
                                 <td align="center" colspan="2">
-                                    Complete
+                                    Completado
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    Your account has been successfully created.
+                                    Sua conta foi criada com sucesso.
                                 </td>
                             </tr>
                             <tr>

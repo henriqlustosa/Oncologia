@@ -6,7 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <meta http-equiv="refresh" content="1000" />
-    <link href="../vendors/jquery/dist/jquery-ui.css" rel="stylesheet" />
+
+   
+    <link href="../js_datepicker/jquery-ui.css" rel="stylesheet" />
     <style type="text/css">
         fieldset.scheduler-border {
             border: 1px groove #ddd !important;
@@ -67,10 +69,15 @@
         }
     </style>
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-        <Scripts>
-            <asp:ScriptReference Path="../vendors/jquery/dist/jquery.js" />
-            <asp:ScriptReference Path="../vendors/jquery/dist/jquery-ui.js" />
-        </Scripts>
+        <scripts>
+            
+          
+          
+            <asp:ScriptReference Path="../js_datepicker/jquery-ui.js" />
+            
+        
+
+        </scripts>
     </asp:ScriptManagerProxy>
 
 
@@ -182,13 +189,7 @@
                                         <td align="left" valign="top">
                                             <select name="Height_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Height">
                                                 <option value="1|0|cm" selected="selected">cm</option>
-                                                <option value="30.48|0|ft">ft</option>
-                                                <option value="2.54|0|in">in</option>
-                                                <option value="0.0001|0|micm">micm</option>
-                                                <option value="0.1|0|mm">mm</option>
-                                                <option value="100|0|m">m</option>
-                                                <option value="1e-07|0|nm">nm</option>
-                                                <option value="91.44|0|yd">yd</option>
+                                               
                                             </select></td>
                                     </tr>
 
@@ -198,10 +199,9 @@
                                             <input type="text" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" /></td>
                                         <td align="left" valign="top">
                                             <select name="Weight_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Weight">
-                                                <option value="0.001|0|gm">gm</option>
+                                                
                                                 <option value="1|0|kg" selected="selected">kg</option>
-                                                <option value="0.45359237|0|lb">lb</option>
-                                                <option value="1e-06|0|mg">mg</option>
+                                              
                                             </select></td>
                                     </tr>
 
@@ -230,11 +230,9 @@
                                             <input type="text" name="BSA_param" size="6" aria-readonly="true" aria-label="This output box will display the calculated value BSA" /></td>
                                         <td valign="top" align="left"><span class="medCalcFontResultParam">
                                             <select name="BSA_unit" onchange="BodySurfaceArea_fx();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the result value BSA">
-                                                <option value="0.0001|0|cm^2">cm^2</option>
-                                                <option value="0.0001|0|sqcm">sqcm</option>
+                                          
                                                 <option value="1|0|sqm" selected="selected">sqm</option>
-                                                <option value="0.0001|0|sqrcm">sqrcm</option>
-                                                <option value="1|0|sqrm">sqrm</option>
+                                          
                                             </select>
                                         </span></td>
                                     </tr>
@@ -319,7 +317,7 @@
                 <input id="btnCID" type="button" value="CID" onclick="mostraCID()" class="btn btn-outline-info btn-block" />
             </div>
             <div class="x_content">
-                <div id="divCID" >
+                <div id="divCID">
                     <div class="x_panel">
                         <div class="col-5">
                             CID 10:
@@ -334,116 +332,112 @@
                 </div>
                 <br />
             </div>
-        <div class="nav justify-content-md-center">
-            <input id="btnProtocolo" type="button" value="Protocolo" onclick="mostraProtocolo()" class="btn btn-outline-info btn-block" />
-        </div>
-        <div class="x_content">
-            <div id="divProtocolo">
-                <div class="x_panel">
-                    <div class="col-5">
-                        Protocolo:
-                    </div>
-                    <div>
-                        <select data-placeholder="Selecione uma opção" id="select2" multiple style="width: 750px"
-                            runat="server" clientidmode="Static">
-                        </select>
-                    </div>
-                </div>
-                <br />
+            <div class="nav justify-content-md-center">
+                <input id="btnGeral" type="button" value="Geral" onclick="mostraGeral()" class="btn btn-outline-info btn-block" />
             </div>
-            <br />
-        </div>
-        </div>
-    </div>
-    <!-- Large modal -->
-    <div class="modal fade" id="modalAdicionarPaciente" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabel">Cálculo</h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="modal-body">
-                            <label class="col-sm-5 col-form-label">
-                                Cálculo da Superfície Córporea:</label>
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <asp:TextBox ID="txbValorCalculado" runat="server" Enabled="false" class="form-control"></asp:TextBox>
-                                </div>
+            <div class="x_content">
+                <div id="divGeral" style="display: none;">
+                    <div class="x_panel">
+
+
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12 col-xs-12 form-group">
+                                <label>
+                                    Lista de Protocolo:
+                                </label>
+
+
+
+                                <asp:DropDownList ID="ddlProtocolo" runat="server" class="form-control">
+                                </asp:DropDownList>
                             </div>
-                            <div id="mensagem" class="form-group row">
-                                <div class="example">
-                                </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-2 form-group">
+                                <label>
+                                    Ciclos Prováveis:
+                                </label>
+                                <asp:TextBox ID="txbCiclos" runat="server" class="form-control numeric"></asp:TextBox>
+                            </div>
+                            <div class="col-md-2  form-group">
+                                <label>
+                                    Com Intervalo de:(DIAS)
+                                </label>
+                                <asp:TextBox ID="txbIntervalos" runat="server" class="form-control"></asp:TextBox>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- fim modal large -->
-    <!-- Large modal -->
-    <div class="modal fade" id="modalDadosDoPaciente" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="myModalLabe">Novo Paciente
-                    </h4>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
                         <div class="row">
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
-                                    RH</label>
-                                <asp:TextBox ID="TextBox2" runat="server" class="form-control numeric"></asp:TextBox>
+                                    Data de Início:
+                                </label>
+                                <asp:TextBox ID="txbDtInicio" class="form-control" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
-                                    RF</label>
-                                <asp:TextBox ID="txbRF" runat="server" class="form-control numeric"></asp:TextBox>
+                                    Data de Término:
+                                </label>
+                                <asp:TextBox ID="txbDtTermino" class="form-control" runat="server"></asp:TextBox>
                             </div>
-                            <!--div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                            <label>
-                                Outro Documento</label>
-                            <asp:TextBox ID="txbDocumento" MaxLength="100" runat="server" class="form-control"></asp:TextBox>
                         </div>
-                        <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                            <label>
-                                Cartão SUS</label>
-                            <asp:TextBox ID="txbCNS" MaxLength="50" runat="server" class="form-control"></asp:TextBox>
-                        </div-->
+                        <div class="row">
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
-                                    Tipo Paciente</label>
-                                <asp:RadioButtonList ID="rbTipoPaciente" RepeatDirection="Horizontal" runat="server"
-                                    AutoPostBack="true">
-                                    <asp:ListItem Value="Munícipe">Munícipe</asp:ListItem>
-                                    <asp:ListItem Value="Servidor">Servidor</asp:ListItem>
-                                    <asp:ListItem Value="Dependente">Dependente</asp:ListItem>
-                                </asp:RadioButtonList>
+                                    Finalidade:
+                                </label>
+                                <asp:DropDownList ID="ddlFinalidade" runat="server" class="form-control"></asp:DropDownList>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12 col-xs-12 form-group">
+                                <label>
+                                    Observação:
+                                </label>
+                                <asp:TextBox ID="txbObservacao" runat="server" class="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+            <div class="nav justify-content-md-center">
+                <input id="btnViaDeAcesso" type="button" value="Vias de Acesso" onclick="mostraViasDeAcesso()" class="btn btn-outline-info btn-block" />
+            </div>
+            <div class="x_content">
+                <div id="divViasDeAcesso" style="display: none;">
+                    <div class="x_panel">
+                        <div class="col-5">
+                            Vias de Acesso:
+                        </div>
+                        <div>
+
+                            <asp:CheckBoxList ID="cblViasDeAcesso" RepeatDirection="Horizontal" runat="server" Font-Size="Large" Width="1000"></asp:CheckBoxList>
+                        </div>
+
+
+
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
-    <!-- fim modal large -->
+    <!-- Large modal -->
+
 
     <script type="text/javascript">
 
         window.addEventListener('keydown', function (e) {
-            var code = e.which || e.keyCode;
-            if (code == 116 || code == 13) e.preventDefault();
+            
+            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
             else return true;
         });
 
@@ -690,9 +684,20 @@
                 div.style.display = 'none';
             }
         }
-        function mostraProtocolo() {
+        function mostraGeral() {
 
-            var div = document.getElementById('divProtocolo');
+            var div = document.getElementById('divGeral');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function mostraViasDeAcesso() {
+
+            var div = document.getElementById('divViasDeAcesso');
 
             if (div.style.display == 'none') {
                 div.style.display = 'block';
@@ -706,7 +711,40 @@
 
             $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
+            $("#<%=txbDtInicio.ClientID%>").datepicker({
+                dateFormat: 'dd/mm/yy',
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                nextText: 'Proximo',
+                prevText: 'Anterior'
+            });
 
+
+            $("#<%=txbDtInicio.ClientID%>").datepicker();
+
+            $("#<%=txbDtTermino.ClientID%>").datepicker({
+                dateFormat: 'dd/mm/yy',
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                nextText: 'Proximo',
+                prevText: 'Anterior'
+            });
+
+
+            $("#<%=txbDtTermino.ClientID%>").datepicker();
+
+
+            $("#<%=txbDtTermino.ClientID%>").mask("99/99/9999");
+
+            $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
+            $("#<%=txbCiclos.ClientID%>").mask("999");
+            $("#<%=txbIntervalos.ClientID%>").mask("999");
 
 
             $("#<%= txbNomePaciente.ClientID %>").autocomplete({
@@ -768,4 +806,6 @@
 
     </script>
     <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mask.js" type="text/javascript"></script>
+ 
 </asp:Content>

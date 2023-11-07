@@ -17,9 +17,9 @@ public class Listagem_MedicamentoDAO
         //
     }
 
-    public static List<Lista_Medicamento> CarregarDropDownListMedicamento(int cod_protocolo)
+    public static List<Medicamento_Amostra> CarregarDropDownListMedicamento(int cod_protocolo)
     {
-        var listaMedicamentos = new List<Lista_Medicamento>();
+        var listaMedicamentos = new List<Medicamento_Amostra>();
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
@@ -33,7 +33,7 @@ public class Listagem_MedicamentoDAO
 
                 while (dr1.Read())
                 {
-                    Lista_Medicamento itemLista = new Lista_Medicamento();
+                    Medicamento_Amostra itemLista = new Medicamento_Amostra();
                     itemLista.droga = dr1.IsDBNull(0) ? "" : dr1.GetString(0);
                     itemLista.via = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
                     itemLista.nome_comercial = dr1.IsDBNull(2) ? "" : dr1.GetString(2);
@@ -57,13 +57,13 @@ public class Listagem_MedicamentoDAO
 
     }
 
-    public static List<Lista_Medicamento> listaMedicamentos()
+    public static List<Medicamento_Amostra> listaMedicamentos()
     {
-        var listaMedicamentos = new List<Lista_Medicamento>();
+        var listaMedicamentos = new List<Medicamento_Amostra>();
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [Droga],[Via],[Nome Comercial],[Concentração],[Volume de Diluição para Infusão],[Estabilidade],[Tempo de Infusão],[EQUIPOS],[cod_medicamento] FROM [Oncologia_Desenv].[dbo].[Medicamentos]";
+            cmm.CommandText = "SELECT [Droga],[Via],[Nome Comercial],[Concentração],[Volume de Diluição para Infusão],[Estabilidade],[Tempo de Infusão],[EQUIPOS],[cod_medicamento] FROM [Oncologia_Desenv].[dbo].[Medicamentos_Amostra]";
 
             try
             {
@@ -73,7 +73,7 @@ public class Listagem_MedicamentoDAO
 
                 while (dr1.Read())
                 {
-                    Lista_Medicamento itemLista  = new Lista_Medicamento();
+                    Medicamento_Amostra itemLista  = new Medicamento_Amostra();
                     itemLista.droga = dr1.IsDBNull(0) ? "" : dr1.GetString(0);
                     itemLista.via = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
                     itemLista.nome_comercial = dr1.IsDBNull(2) ? "" : dr1.GetString(2);

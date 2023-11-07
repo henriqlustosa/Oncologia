@@ -17,11 +17,11 @@ public class ProtocoloDAO
         //
     }
 
-    public static void GravaMedicamentosPorProtocolo(List<Lista_Medicamento> medicamentos, int cod_protocolo)
+    public static void GravaMedicamentosPorProtocolo(List<Medicamento_Amostra> medicamentos, int cod_protocolo)
     {
 
         string status = "A";
-        string v = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+        string v = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         string _dtcadastro_bd = v;
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
         {
@@ -34,7 +34,7 @@ public class ProtocoloDAO
             try
             {
 
-                foreach (Lista_Medicamento medicamento in medicamentos)
+                foreach (Medicamento_Amostra medicamento in medicamentos)
                 {
                     cmm.CommandText = "Insert into [Oncologia_Desenv].[dbo].[Protocolo_Medicamento] ([cod_protocolo],[cod_medicamento],[data_cadastro],[status])"
                     + " values ("
@@ -97,7 +97,10 @@ public class ProtocoloDAO
                     mt.Rollback();
                 }
                 catch (Exception ex1)
-                { }
+                {
+                    string error1 = ex1.Message;
+
+                }
             }
         }
 

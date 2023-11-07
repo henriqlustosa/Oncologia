@@ -51,7 +51,7 @@ public class PacienteDAO
     {
 
         List<Paciente> model = new List<Paciente>();
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://intranethspm:5003/hspmsgh-api/assessor/paciente?nome=" + nome);
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://intranethspm:5016/hspmsgh-api/assessor/paciente?_limit=20&nome=" + nome.ToUpper());
         try
         {
             WebResponse response = request.GetResponse();

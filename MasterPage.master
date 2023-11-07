@@ -1,174 +1,179 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    
-    <title>Pronto Socorro - HSPM</title>
+
+    <title>Oncologia - HSPM</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    
+
     <!-- Bootstrap  
     <link href="vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
     -->
-    
+
     <link href="build/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    
+
     <!-- Font Awesome -->
     <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- NProgress -->
     <link href="vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css" />
-    
+
     <!-- Custom Theme Style -->
     <link href="build/css/custom.css" rel="stylesheet" />
     <link href="vendors/paginationjs/pagination.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="nav-sm">
-    
+
     <form id="form1" runat="server">
-          <asp:ScriptManager ID="ScriptManager1" runat="server">
-      <Scripts>
-          
-        <asp:ScriptReference Path="vendors/jquery/dist/jquery.js" />
-          <asp:ScriptReference Path="build/js/jquery.dataTables.js" /> 
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="vendors/jquery/dist/jquery.js" />
 
-      </Scripts>
-    </asp:ScriptManager>
+                <asp:ScriptReference Path="build/js/jquery.dataTables.js" />
 
-    <div class="container body">
-        <div class="main_container">
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;padding-left: 5px;">
-                        <a href="<%= ResolveUrl("~/Home.aspx") %>" class="site_title"><i class="fa fa-hospital-o"></i><span style="padding: 10px">HSPM PS</span></a>
-                    </div>
-                    <div class="clearfix">
-                    </div>
-                    <!-- menu profile quick info -->
-                    <div class="profile clearfix">
-                        <div class="profile_pic">
-                            
-                          </div>
-                        <div class="profile_info">
-                            <span>Bem Vindo, </span>
-                            <h2><asp:LoginName ID="LoginName1" runat="server" /></h2>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0; padding-left: 5px;">
+                            <a href="<%= ResolveUrl("~/Home.aspx") %>" class="site_title"><i class="fa fa-hospital-o"></i><span style="padding: 10px">HSPM ONCO</span></a>
                         </div>
                         <div class="clearfix">
                         </div>
-                    </div>
-                    <!-- /menu profile quick info -->
-                    <br />
-                    <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                        <div class="menu_section">
-                           
-                            <div id="navigation">
-                                <ul class="nav side-menu">
-                                    <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource1">
-                                        <ItemTemplate>
-                                            <li>
-                                                <asp:HyperLink ID="HyperLink1" Style="padding-left: 5px;" runat="server" NavigateUrl='<%# Eval("Url") %>'><i class="fa fa-hospital-o"></i> <%# Eval("Title") %> <span class="fa fa-chevron-down"></asp:HyperLink>
-                                                <asp:Repeater ID="Repeater1" runat="server" DataSource='<%# ((SiteMapNode) Container.DataItem).ChildNodes %>'>
-                                                    <HeaderTemplate>
-                                                        <ul class="nav child_menu">
-                                                    </HeaderTemplate>
-                                                    <ItemTemplate>
-                                                        <li>
-                                                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("Url") %>'>
-								                            <%# Eval("Title") %>
-                                                            </asp:HyperLink>
-                                                        </li>
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        </ul></FooterTemplate>
-                                                </asp:Repeater>
-                                            </li>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </ul>
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
                             </div>
-                            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false"
-                                EnableViewState="true" />
+                            <div class="profile_info">
+                                <span>Bem Vindo, </span>
+                                <h2>
+                                    <asp:LoginName ID="LoginName1" runat="server" />
+                                </h2>
+                            </div>
+                            <div class="clearfix">
+                            </div>
                         </div>
-                    </div>
-                    <!-- /sidebar menu -->
-                </div>
-            </div>
-            <!-- top navigation -->
-            <div class="top_nav">
-                <div class="nav_menu">
-                    <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
+                        <!-- /menu profile quick info -->
+                        <br />
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                   
-                   <img alt="Avatar" runat="server" id="img1" src="~/imagens/user.png" /><asp:LoginName ID="LoginName2" runat="server" />
-                   
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                   <li><asp:HyperLink id="hyperlink1" NavigateUrl="~/Profile/AlterarSenha.aspx" Text="Alterar Senha" runat="server"/></li>
-                    <li><asp:HyperLink id="hyperlink3" NavigateUrl="login.aspx" Text="Sair" runat="server"/></li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-                </div>
-            </div>
-            <!-- /top navigation -->
-            <!-- page content -->
-            <div class="right_col" role="main">
-                <div class="">
-                    <div class="page-title">
-                        <div class="title_left">
-                            <asp:SiteMapPath ID="SiteMapPath1" runat="server">
-                            </asp:SiteMapPath>
-                        </div>
-                    </div>
-                    <div class="clearfix">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel">
-                                <div class="clearfix">
+                                <div id="navigation">
+                                    <ul class="nav side-menu">
+                                        <asp:Repeater runat="server" ID="menu" DataSourceID="SiteMapDataSource1">
+                                            <ItemTemplate>
+                                                <li>
+                                                    <asp:HyperLink ID="HyperLink1" Style="padding-left: 5px;" runat="server" NavigateUrl='<%# Eval("Url") %>'><i class="fa fa-hospital-o"></i> <%# Eval("Title") %> <span class="fa fa-chevron-down"></asp:HyperLink>
+                                                    <asp:Repeater ID="Repeater1" runat="server" DataSource='<%# ((SiteMapNode) Container.DataItem).ChildNodes %>'>
+                                                        <HeaderTemplate>
+                                                            <ul class="nav child_menu">
+                                                        </HeaderTemplate>
+                                                        <ItemTemplate>
+                                                            <li>
+                                                                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("Url") %>'>
+								                            <%# Eval("Title") %>
+                                                                </asp:HyperLink>
+                                                            </li>
+                                                        </ItemTemplate>
+                                                        <FooterTemplate>
+                                                            </ul>
+                                                        </FooterTemplate>
+                                                    </asp:Repeater>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </ul>
                                 </div>
-                                <div class="x_content">
-                                    <div>
-                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-                                        </asp:ContentPlaceHolder>
+                                <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false"
+                                    EnableViewState="true" />
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+                    </div>
+                </div>
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
+                                        <img alt="Avatar" runat="server" id="img1" src="~/imagens/user.png" /><asp:LoginName ID="LoginName2" runat="server" />
+
+                                        <span class=" fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <li>
+                                            <asp:HyperLink ID="hyperlink1" NavigateUrl="~/Profile/AlterarSenha.aspx" Text="Alterar Senha" runat="server" /></li>
+                                        <li>
+                                            <asp:HyperLink ID="hyperlink3" NavigateUrl="login.aspx" Text="Sair" runat="server" /></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="page-title">
+                            <div class="title_left">
+                                <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                                </asp:SiteMapPath>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="clearfix">
+                                    </div>
+                                    <div class="x_content">
+                                        <div>
+                                            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                                            </asp:ContentPlaceHolder>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- /page content -->
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        <a>HSPM - Hospital do Servidor Público Municipal</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
             </div>
-            <!-- /page content -->
-            <!-- footer content -->
-            <footer>
-          <div class="pull-right">
-            <a>HSPM - Hospital do Servidor Público Municipal</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-            <!-- /footer content -->
         </div>
-    </div>
     </form>
     <!-- Ficava no rodapé da página -->
     <!-- jQuery  
          -->
-  
-  
-   
+
+
+
 
     <!-- Bootstrap  -->
 
     <script src='<%= ResolveUrl("~/vendors/bootstrap/dist/js/bootstrap431.js") %>' type="text/javascript"></script>
-       
+
     <!-- FastClick -->
 
     <script src='<%= ResolveUrl("~/vendors/fastclick/lib/fastclick.js") %>' type="text/javascript"></script>
@@ -177,19 +182,19 @@
 
     <script src='<%= ResolveUrl("~/vendors/nprogress/nprogress.js") %>' type="text/javascript"></script>
 
-    
+
     <script src='<%= ResolveUrl("~/vendors/paginationjs/pagination.js") %>' type="text/javascript"></script>
     <!-- iCheck -->
     <script src='<%= ResolveUrl("~/vendors/iCheck/icheck.min.js") %>' type="text/javascript"></script>
-  
-   <!-- Parsley -->
-   <script src='<%= ResolveUrl("~/vendors/parsleyjs/dist/parsley2.js") %>' type="text/javascript"></script>
-   
-   
+
+    <!-- Parsley -->
+    <script src='<%= ResolveUrl("~/vendors/parsleyjs/dist/parsley2.js") %>' type="text/javascript"></script>
+
+
     <script src='<%= ResolveUrl("~/build/js/custom.js") %>' type="text/javascript"></script>
-    
+
     <!-- jquery.inputmask -->
     <script src='<%= ResolveUrl("~/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js") %>' type="text/javascript"></script>
-  
+
 </body>
 </html>

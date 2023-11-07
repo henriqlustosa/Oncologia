@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ListaAtendimentosMes.aspx.cs" Inherits="Controle_ListaAtendimentosMes" Title="Pronto Socorro - HSPM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ListaAtendimentosMes.aspx.cs" Inherits="Controle_ListaAtendimentosMes" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>

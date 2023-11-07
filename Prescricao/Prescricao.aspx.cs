@@ -12,11 +12,28 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        select1.DataSource = CID_10_DAO.listaCID_10();
-        select1.DataTextField = "DESCRABREV";
-        select1.DataValueField = "SUBCAT";
-        select1.DataBind();
+        if (!IsPostBack)
+        {
+            ddlProtocolo.DataSource = ProtocoloDAO.listaProtocolo();
+            ddlProtocolo.DataTextField = "desc_protocolo";
+            ddlProtocolo.DataValueField = "cod_protocolo";
+            ddlProtocolo.DataBind();
 
+            ddlFinalidade.DataSource = FinalidadeDoTratamentoDAO.ListaFinalidade();
+            ddlFinalidade.DataTextField = "desc_finalidade";
+            ddlFinalidade.DataValueField = "cod_finalidade";
+            ddlFinalidade.DataBind();
+
+            select1.DataSource = CID_10_DAO.listaCID_10();
+            select1.DataTextField = "DESCRABREV";
+            select1.DataValueField = "SUBCAT";
+            select1.DataBind();
+
+            cblViasDeAcesso.DataSource = ViasDeAcessoDAO.ListaViasDeAcesso();
+            cblViasDeAcesso.DataTextField = "descr_vias_de_acesso"; 
+            cblViasDeAcesso.DataValueField = "cod_vias_de_acesso";
+            cblViasDeAcesso.DataBind();
+        }
     }
     [WebMethod]
 

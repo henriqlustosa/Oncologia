@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Lista_Medicamento
+/// Summary description for Medicamento_Amostra
 /// </summary>
-public class Lista_Medicamento
+public class Medicamento_Amostra
 {
-    public Lista_Medicamento()
+    public Medicamento_Amostra()
     {
         //
         // TODO: Add constructor logic here

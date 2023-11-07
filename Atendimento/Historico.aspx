@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="Historico.aspx.cs" Inherits="Historico_Historico" Title="Pronto Socorro - HSPM" %>
+    CodeFile="Historico.aspx.cs" Inherits="Historico_Historico" Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />

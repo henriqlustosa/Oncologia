@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     CodeFile="GraficoProcedencia.aspx.cs" Inherits="Graficos_GraficoProcedencia"
-    Title="Pronto Socorro - HSPM" %>
+    Title="Oncologia - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 

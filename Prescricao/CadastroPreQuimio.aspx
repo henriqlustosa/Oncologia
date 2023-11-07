@@ -1,6 +1,6 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    CodeFile="CadastroProfissional.aspx.cs" Inherits="Admin_CadastroProfissional"
-    Title="Oncologia - HSPM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CadastroPreQuimio.aspx.cs" Inherits="Prescricao_CadastroPreQuimio"  Title="Oncologia - HSPM" %>
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
@@ -22,16 +22,16 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    Cadastro de Profissional</h2>
+                    Cadastro de PreQuimio</h2>
                 <div class="clearfix">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label>
-                        Nome do Profissional:
+                        Nome da PreQuimio:
                     </label>
-                    <asp:TextBox ID="txbNomeProfissional" class="form-control numeric" runat="server"
+                    <asp:TextBox ID="txbNomePreQuimio" class="form-control numeric" runat="server"
                         AutoPostBack="true" />
                 </div>
             </div>
@@ -39,12 +39,10 @@
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                     <label>
                         Conselho</label>
-                    <asp:DropDownList ID="ddlConselho" runat="server" class="form-control" DataSourceID="SqlDataSource1"
+                    <asp:DropDownList ID="ddlConselho" runat="server" class="form-control" 
                         DataTextField="sigla_conselho" DataValueField="cod_conselho">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:psConnectionString %>"
-                        SelectCommand="SELECT [cod_conselho], [sigla_conselho], [descricao_conselho] FROM [conselho]">
-                    </asp:SqlDataSource>
+                  
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -62,7 +60,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    Lista de Profissional</h2>
+                    Lista de PreQuimio</h2>
                 <div class="clearfix">
                 </div>
             </div>

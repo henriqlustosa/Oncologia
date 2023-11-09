@@ -9,6 +9,10 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        List<PreQuimio> prequimios = new List<PreQuimio>();
+        prequimios = PreQuimioDAO.listaPreQuimio();
+
+       
 
     }
    

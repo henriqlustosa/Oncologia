@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 
 /// <summary>
@@ -10,6 +14,8 @@ using System.Web;
 /// </summary>
 public class PreQuimioDAO
 {
+    private static object nome;
+
     public PreQuimioDAO()
     {
         //
@@ -18,36 +24,35 @@ public class PreQuimioDAO
     }
     public static List<PreQuimio> listaPreQuimio()
     {
-        var lista = new List<PreQuimio>();
+        List<PreQuimio> model = new List<PreQuimio>();
+        WebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmonco.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio");
+        request.Method = "Get";
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        request.Headers.Add("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImhlbnJpcXVlIiwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJJZCI6IjEiLCJuYmYiOjE2OTk1NDE1NTAsImV4cCI6MTY5OTU0ODc1MCwiaWF0IjoxNjk5NTQxNTUwfQ.qY3wFcNKKigbbosFwm4K7c41662mzyHvQJ-5Aml8_mo");
+
+
+        try
         {
-            SqlCommand cmm = cnn.CreateCommand();
-
-            cmm.CommandText = "SELECT [cod_pre_quimio],[descricao],[status],[codigo] FROM [Oncologia_Desenv].[dbo].[Pre_Quimio]";
-            try
+            WebResponse response = request.GetResponse();
+            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
-                cnn.Open();
-                SqlDataReader dr1 = cmm.ExecuteReader();
-
-
-                while (dr1.Read())
-                {
-                    PreQuimio preQuimio = new PreQuimio();
-                    preQuimio.cod_pre_quimio = dr1.GetInt32(0);
-                    preQuimio.descricao = dr1.GetString(1);
-                    preQuimio.status = dr1.GetString(2);
-                    preQuimio.codigo = dr1.GetString(3);
-
-                    lista.Add(preQuimio);
-                }
-            }
-            catch (Exception ex)
-            {
-                string error = ex.Message;
+                string responseContent = reader.ReadToEnd();
+                model = JsonConvert.DeserializeObject<List<PreQuimio>>(responseContent);
+                return model;
             }
         }
-        return lista;
+        catch (WebException ex)
+        {
+            WebResponse errorResponse = ex.Response;
+            using (Stream responseStream = errorResponse.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8"));
+                String errorText = reader.ReadToEnd();
+                // Log errorText
+            }
+            throw;
+        }
+        return model;
 
     }
 }

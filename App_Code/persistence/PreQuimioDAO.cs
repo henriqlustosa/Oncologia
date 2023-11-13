@@ -24,21 +24,24 @@ public class PreQuimioDAO
     }
     public static List<PreQuimio> listaPreQuimio()
     {
+
+
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
         List<PreQuimio> model = new List<PreQuimio>();
-        WebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmonco.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio");
-        request.Method = "Get";
-
-        request.Headers.Add("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImhlbnJpcXVlIiwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJJZCI6IjEiLCJuYmYiOjE2OTk1NDE1NTAsImV4cCI6MTY5OTU0ODc1MCwiaWF0IjoxNjk5NTQxNTUwfQ.qY3wFcNKKigbbosFwm4K7c41662mzyHvQJ-5Aml8_mo");
-
-
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmonco.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio" );
+        request.Method = "GET";
+        request.PreAuthenticate = true;
+        request.ContentType = "application/json";
+        request.Headers.Add("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImhlbnJpcXVlIiwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJJZCI6IjEiLCJuYmYiOjE2OTk4ODM2NDcsImV4cCI6MTY5OTg5MDg0NywiaWF0IjoxNjk5ODgzNjQ3fQ.JOMIbRy_ps2brWUNZZD3a3BgfGlcXM7_mfLCC3gJofs");
         try
         {
             WebResponse response = request.GetResponse();
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+            using (Stream responseStream = response.GetResponseStream())
             {
-                string responseContent = reader.ReadToEnd();
-                model = JsonConvert.DeserializeObject<List<PreQuimio>>(responseContent);
-                return model;
+                StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                model = JsonConvert.DeserializeObject<List<PreQuimio>>(reader.ReadToEnd());
+
             }
         }
         catch (WebException ex)

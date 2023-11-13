@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Web.UI.MobileControls;
 using Newtonsoft.Json;
 /// <summary>
 /// Summary description for PacienteDAO

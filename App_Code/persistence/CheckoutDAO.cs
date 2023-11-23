@@ -25,7 +25,7 @@ public class CheckoutDAO
     public static string GravaBaixa(int cod_ficha, int cod_status, int cod_profissional, DateTime data_baixa, string obs, string usuario_baixa)
     {
         string mensagem = "";
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             try
             {

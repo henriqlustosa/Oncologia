@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for MedicacaoPreQuimioDetalhe
+/// Summary description for RelatorioPreQuimioDAO
 /// </summary>
-public class MedicacaoPreQuimioDetalhe
+public class RelatorioPreQuimio
 {
-    public MedicacaoPreQuimioDetalhe()
+    public RelatorioPreQuimio()
     {
         //
         // TODO: Add constructor logic here
@@ -16,10 +16,10 @@ public class MedicacaoPreQuimioDetalhe
     }
 
     public int Id { get; set; }
-    public int cod_PreQuimio { get; set; }
-    public int cod_Medicacao { get; set; }
-    public int cod_Quimio { get; set; }
-    public int cod_ViaDeAdministracao { get; set; }
+    public string desc_pre_quimio { get; set; }
+    public string desc_medicacao_pre_quimio { get; set; }
+    public string desc_quimio { get; set; }
+    public string desc_via_de_administracao { get; set; }
     public string nome_Usuario { get; set; }
     public int quantidade { get; set; }
     public string unidadeQuantidade { get; set; }

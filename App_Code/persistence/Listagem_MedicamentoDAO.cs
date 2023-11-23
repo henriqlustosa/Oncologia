@@ -20,7 +20,7 @@ public class Listagem_MedicamentoDAO
     public static List<Medicamento_Amostra> CarregarDropDownListMedicamento(int cod_protocolo)
     {
         var listaMedicamentos = new List<Medicamento_Amostra>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [Droga],[Via],[Nome Comercial],[Concentração],[Volume de Diluição para Infusão],[Estabilidade],[Tempo de Infusão],[EQUIPOS],med.[cod_medicamento] FROM [Oncologia_Desenv].[dbo].[Medicamentos] as med join [Oncologia_Desenv].[dbo].[Protocolo_Medicamento] as prot_med  on med.cod_medicamento = prot_med.cod_medicamento where status ='A' and prot_med.cod_protocolo =" + cod_protocolo;
@@ -60,7 +60,7 @@ public class Listagem_MedicamentoDAO
     public static List<Medicamento_Amostra> listaMedicamentos()
     {
         var listaMedicamentos = new List<Medicamento_Amostra>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [Droga],[Via],[Nome Comercial],[Concentração],[Volume de Diluição para Infusão],[Estabilidade],[Tempo de Infusão],[EQUIPOS],[cod_medicamento] FROM [Oncologia_Desenv].[dbo].[Medicamentos_Amostra]";

@@ -36,7 +36,7 @@ public partial class publico_AlterarCadastro : System.Web.UI.Page
     {
         string msg = "";
 
-         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = new SqlCommand();
             cmm.Connection = cnn;

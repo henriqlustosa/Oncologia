@@ -37,7 +37,7 @@ public partial class Controle_ListaAtendimentosMes : System.Web.UI.Page
     public DataTable CarregaDadosTotais(int mes, int ano)
     {
         DataTable dt = new DataTable();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             try
             {

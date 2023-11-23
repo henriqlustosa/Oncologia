@@ -1,30 +1,24 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Web;
 
 /// <summary>
-/// Summary description for PreQuimioDAO
+/// Summary description for MedicacaoPreQuimioDAO
 /// </summary>
-public class PreQuimioDAO
+public class MedicacaoPreQuimioDAO
 {
-    private static object nome;
-
-    public PreQuimioDAO()
+    public MedicacaoPreQuimioDAO()
     {
         //
         // TODO: Add constructor logic here
         //
     }
-    public static List<PreQuimio> listaPreQuimio()
+    public static List<MedicacaoPreQuimio> listaMedicacaoPreQuimio()
     {
-        List<PreQuimio> preQuimios = new List<PreQuimio>();
+        List<MedicacaoPreQuimio> medicacaoPreQuimio = new List<MedicacaoPreQuimio>();
 
         /*  ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
@@ -57,11 +51,11 @@ public class PreQuimioDAO
           }
            */
 
-       
+
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[PreQuimio]";
+            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[MedicacaoPreQuimio]";
 
             try
             {
@@ -71,12 +65,12 @@ public class PreQuimioDAO
 
                 while (dr1.Read())
                 {
-                    PreQuimio itemLista = new PreQuimio();
-                    itemLista.cod_pre_quimio = dr1.GetInt32(0);
+                    MedicacaoPreQuimio itemLista = new MedicacaoPreQuimio();
+                    itemLista.cod_medicacao_prequimio = dr1.GetInt32(0);
                     itemLista.descricao = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
 
 
-                    preQuimios.Add(itemLista);
+                    medicacaoPreQuimio.Add(itemLista);
                 }
             }
             catch (Exception ex)
@@ -85,12 +79,10 @@ public class PreQuimioDAO
             }
 
         }
-        return preQuimios;
+        return medicacaoPreQuimio;
 
 
 
-        
+
     }
-
-    
 }

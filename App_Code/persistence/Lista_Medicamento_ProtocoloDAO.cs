@@ -20,7 +20,7 @@ public class Lista_Medicamento_ProtocoloDAO
     public static List<Medicamento_Protocolo> listaMedicamentos()
     {
         var listaMedicamentos = new List<Medicamento_Protocolo>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_medicamento_protocolo],[medicacoes],[status] FROM [Oncologia_Desenv].[dbo].[Medicamento_Protocolo]";
@@ -52,7 +52,7 @@ public class Lista_Medicamento_ProtocoloDAO
     public static List<Medicamento_Protocolo> listaMedicamentosPorId(int id)
     {
         var listaMedicamentos = new List<Medicamento_Protocolo>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_protocolo],[cod_medicamento],[data_cadastro],[status],[dose],[unidade_dose],[cod_via_de_administracao],[diluicao],[tempo_de_infusao],[unidade_tempo_infusao],[cod_pre_quimio] FROM [Oncologia_Desenv].[dbo].[Link_Protocolo_Medicamento] where [cod_medicamento]= 5";

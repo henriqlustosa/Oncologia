@@ -21,7 +21,7 @@ public class FinalidadeDoTratamentoDAO
     {
         var lista = new List<FinalidadeDoTratamento>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 

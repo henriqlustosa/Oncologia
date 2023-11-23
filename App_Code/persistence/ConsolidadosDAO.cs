@@ -139,7 +139,7 @@ public class ConsolidadosDAO
 
 
         var lista = new List<ConsolidadoMesTipo>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
             SqlCommand cmm = cnn.CreateCommand();
@@ -631,7 +631,7 @@ public class ConsolidadosDAO
 
 
         var lista = new List<ConsolidadoMesTipo>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
             SqlCommand cmm = cnn.CreateCommand();
@@ -1083,7 +1083,7 @@ public class ConsolidadosDAO
 
         var lista = new List<ConsolidadoMesTipo>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = qyProfissional;

@@ -30,7 +30,7 @@ public class FichaDAO
     public List<Ficha> GetFicha(int _cod_ficha)
     {
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_ficha] " +
@@ -169,7 +169,7 @@ public class FichaDAO
         f.info_resgate = _info_resgate;
         f.rf = _rf;
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             
             SqlCommand cmm = cnn.CreateCommand();
@@ -314,7 +314,7 @@ public class FichaDAO
         var lista = new List<Ficha>();
 
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_ficha] " +
@@ -413,7 +413,7 @@ public class FichaDAO
     {
         Ficha ficha = new Ficha();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_ficha] " +
@@ -514,7 +514,7 @@ public class FichaDAO
     public static List<Ficha> GetListaFicha(string _nome)
     {
         List<Ficha> listagem = new List<Ficha>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
             SqlCommand cmm = cnn.CreateCommand();
@@ -618,7 +618,7 @@ public class FichaDAO
 
         string mensagem = "";
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = new SqlCommand();
 

@@ -33,14 +33,11 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
             ddlViaDeAdministracao.DataBind();
 
             ddlPreQuimio.DataSource = PreQuimioDAO.listaPreQuimio();
-            ddlPreQuimio.DataTextField = "codigo";
+            ddlPreQuimio.DataTextField = "descricao";
             ddlPreQuimio.DataValueField = "cod_pre_quimio";
             ddlPreQuimio.DataBind();
 
-            ddlPreQuimio.DataSource = PreQuimioDAO.listaPreQuimio();
-            ddlPreQuimio.DataTextField = "codigo";
-            ddlPreQuimio.DataValueField = "cod_pre_quimio";
-            ddlPreQuimio.DataBind();
+           
         }
     }
 

@@ -29,7 +29,7 @@ public class ImpressoraDAO
     {
         var lista = new List<Impressora>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -64,7 +64,7 @@ public class ImpressoraDAO
     public static string GravaImpressora(string nome_impressora, string tipo, string descricao_impressora, string ip_impressora)
     {
         string mensagem = "";
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             try
             {

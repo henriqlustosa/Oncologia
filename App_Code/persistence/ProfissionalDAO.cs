@@ -27,7 +27,7 @@ public class ProfissionalDAO
     public static string GravaProfissional(string _nome, int _conselho, int _numero, int _status)
     {
         string mensagem = "";
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             try
             {
@@ -72,7 +72,7 @@ public class ProfissionalDAO
     {
         var lista = new List<Profissional>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 

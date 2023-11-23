@@ -27,7 +27,7 @@ public class ConselhoDAO
     public static Conselho getConselho(int _cod_conselho)
     {
         Conselho conselho = new Conselho();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_conselho], [sigla_conselho], [descricao_conselho] FROM [Oncologia_Desenv].[dbo].[conselho]";

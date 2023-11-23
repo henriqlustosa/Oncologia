@@ -34,7 +34,7 @@ public class WebService : System.Web.Services.WebService
         var quantidade1 = new List<int>();
         var descricao1 = new List<string>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -114,7 +114,7 @@ public class WebService : System.Web.Services.WebService
         var quantidade1 = new List<decimal>();
         var descricao1 = new List<string>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -198,7 +198,7 @@ public class WebService : System.Web.Services.WebService
         var quantidade1 = new List<int>();
         var descricao1 = new List<string>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -294,7 +294,7 @@ public class WebService : System.Web.Services.WebService
         int ano = Convert.ToInt32(mesAno.Substring(3, 4));
         var dados = new List<BeStatus>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -342,7 +342,7 @@ public class WebService : System.Web.Services.WebService
         var horas = new List<string>();
         var total = new List<int>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -419,7 +419,7 @@ public class WebService : System.Web.Services.WebService
                         t26 = 0, t27 = 0, t28 = 0, t29 = 0, t30 = 0, t31 = 0, ttotal = 0;
 
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -563,7 +563,7 @@ public class WebService : System.Web.Services.WebService
         int ano = Convert.ToInt32(mesAno.Substring(3, 4));
         var dados = new List<ResgateMes>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -638,7 +638,7 @@ public class WebService : System.Web.Services.WebService
         int ano = Convert.ToInt32(mesAno.Substring(3, 4));
         var dados = new List<ResgateMes>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 
@@ -714,7 +714,7 @@ public class WebService : System.Web.Services.WebService
         int ano = Convert.ToInt32(mesAno.Substring(3, 4));
         var dados = new List<BeStatus>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 

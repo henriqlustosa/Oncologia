@@ -15,7 +15,7 @@ public class MedicacaoPreQuimio
         //
     }
 
-    public int Id { get; set; }
+    public int cod_medicacao_prequimio { get; set; }
     public string descricao { get; set; }
 
     public string status { get; set; }

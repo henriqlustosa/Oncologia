@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CadastroPreQuimio.aspx.cs" Inherits="Prescricao_CadastroPreQuimio"  Title="Oncologia - HSPM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CadastroPreQuimio.aspx.cs" Inherits="Prescricao_CadastroPreQuimio" Title="Oncologia - HSPM" %>
 
 
 
@@ -8,49 +8,97 @@
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#<%=txbNumeroconselho.ClientID%>').keyup(function() {
-                $(this).val(this.value.replace(/\D/g, ''));
-            });
-        });
-    </script>
+
+</script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-    
+
     <div class="container">
         <div class="x_panel">
             <div class="x_title">
-                <h2>
-                    Cadastro de PreQuimio</h2>
+                <h2>Cadastro de PreQuimio</h2>
                 <div class="clearfix">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label>
-                        Nome da PreQuimio:
+                        Tipo PreQuimio:
                     </label>
-                    <asp:TextBox ID="txbNomePreQuimio" class="form-control numeric" runat="server"
-                        AutoPostBack="true" />
+                    <asp:DropDownList ID="ddlPreQuimio" runat="server" class="form-control"
+                        DataTextField="descricao" DataValueField="Id">
+                    </asp:DropDownList>
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                     <label>
-                        Conselho</label>
-                    <asp:DropDownList ID="ddlConselho" runat="server" class="form-control" 
-                        DataTextField="sigla_conselho" DataValueField="cod_conselho">
+                        Medicacao</label>
+                    <asp:DropDownList ID="ddlMedicacao" runat="server" class="form-control"
+                        DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-                  
+
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
-                        Número do Conselho
+                        Quantidade
                     </label>
-                    <asp:TextBox ID="txbNumeroconselho" class="form-control numeric" runat="server" AutoPostBack="true" />
+                    <asp:TextBox ID="txbQuantidade" class="form-control numeric" runat="server" AutoPostBack="true" />
+                    <asp:DropDownList ID="ddlUnidadeQuantidade" runat="server" class="form-control">
+                        <asp:ListItem Value="0">mg</asp:ListItem>
+                        <asp:ListItem Value="1">g</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
+
+
+
+
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        ViaDeAdministracao</label>
+                    <asp:DropDownList ID="ddlViaDeAdministracao" runat="server" class="form-control"
+                        DataTextField="descricao" DataValueField="Id">
+                    </asp:DropDownList>
+
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Diluicao
+                    </label>
+                    <asp:TextBox ID="txbDiluicao" class="form-control numeric" runat="server" AutoPostBack="true" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Quimio</label>
+                    <asp:DropDownList ID="ddlQuimio" runat="server" class="form-control"
+                        DataTextField="descricao" DataValueField="Id">
+                    </asp:DropDownList>
+
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Tempo de Infusão
+                    </label>
+                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server" AutoPostBack="true" />
+                    <asp:DropDownList ID="ddlUnidadeTempoDeInfusao" runat="server" class="form-control">
+                        <asp:ListItem Value="0">min</asp:ListItem>
+                        <asp:ListItem Value="1">hr</asp:ListItem>
+                    </asp:DropDownList>
+
+
+                </div>
+            </div>
+
+
+
             <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
@@ -59,27 +107,49 @@
         </div>
         <div class="x_panel">
             <div class="x_title">
-                <h2>
-                    Lista de PreQuimio</h2>
+                <h2>Lista de PreQuimio</h2>
                 <div class="clearfix">
                 </div>
             </div>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_profissional"
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
                 CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                 Width="100%" OnPreRender="GridView1_PreRender">
-                
+
                 <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
                 <Columns>
-                    <asp:BoundField DataField="cod_profissional" HeaderText="COD PROFISSIONAL" SortExpression="cod_profissional"
+                    <asp:BoundField DataField="desc_pre_quimio" HeaderText="PREQUIMIO" SortExpression="desc_pre_quimio"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                    <asp:BoundField DataField="nome_profissional" HeaderText="Nome Profissional" SortExpression="nome_profissional"
+
+                    <asp:BoundField DataField="desc_medicacao_pre_quimio" HeaderText="MEDICACAO PREQUIMIO" SortExpression="desc_medicacao_pre_quimio"
                         ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
-                    <asp:BoundField DataField="sigla_conselho" HeaderText="CONSELHO" SortExpression="sigla_conselho"
-                        HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
-                    <asp:BoundField DataField="nr_conselho" HeaderText="NR CONSELHO" SortExpression="nr_conselho"
+
+                    <asp:BoundField DataField="desc_quimio" HeaderText="QUIMIO" SortExpression="desc_quimio"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                    <asp:BoundField DataField="status_profissional" HeaderText="status" SortExpression="status_profissional"
+
+                    <asp:BoundField DataField="desc_via_de_administracao" HeaderText="VIA DE ADMINISTRACAO" SortExpression="desc_via_de_administracao"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="nome_Usuario" HeaderText="USUARIO" SortExpression="nome_Usuario"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="quantidade" HeaderText="QUANTIDADE" SortExpression="quantidade"
+                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
+
+                    <asp:BoundField DataField="unidadeQuantidade" HeaderText="UNIDADE_QUANTIDADE" SortExpression="unidadeQuantidade"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="diluicao" HeaderText="DILUICAO" SortExpression="diluicao"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="tempoDeInfusao" HeaderText="TEMPO DE INFUSAO" SortExpression="tempoDeInfusao"
+                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
+
+                    <asp:BoundField DataField="unidadeTempoDeInfusao" HeaderText="UNIDADE TEMPO DE INFUSAO" SortExpression="unidadeTempoDeInfusao"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="dataCadastro" HeaderText="DATA" SortExpression="dataCadastro"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
                 </Columns>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -95,7 +165,7 @@
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.noConflict();
 
             $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({

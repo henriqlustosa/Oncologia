@@ -23,7 +23,7 @@ public class ProtocoloDAO
         string status = "A";
         string v = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         string _dtcadastro_bd = v;
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
             SqlCommand cmm = new SqlCommand();
@@ -66,7 +66,7 @@ public class ProtocoloDAO
 
     public static void InativaMedicamentosPorProtocolo(int cod_protocolo)
     {
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = new SqlCommand();
             cmm.Connection = cnn;
@@ -109,7 +109,7 @@ public class ProtocoloDAO
     public static List<Protocolo> listaProtocolo()
     {
         var listaProtocolo = new List<Protocolo>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_protocolo],[desc_protocolo],[status_protocolo] FROM [Oncologia_Desenv].[dbo].[Protocolo]";

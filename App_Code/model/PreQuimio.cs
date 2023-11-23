@@ -15,7 +15,7 @@ public class PreQuimio
         //
     }
 
-    public int cod_PreQuimio { get; set; }
+    public int cod_pre_quimio { get; set; }
     public string descricao { get; set; }
     public string status { get; set; }
 }

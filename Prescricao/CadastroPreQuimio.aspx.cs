@@ -9,23 +9,57 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<PreQuimio> prequimios = new List<PreQuimio>();
-        prequimios = PreQuimioDAO.listaPreQuimio();
+        //List<PreQuimio> prequimios = new List<PreQuimio>();
+        //prequimios = PreQuimioDAO.listaPreQuimio();
 
-       
+        if (!IsPostBack)
+        {
+            
+            ddlPreQuimio.DataSource = PreQuimioDAO.listaPreQuimio();
+            ddlPreQuimio.DataTextField = "descricao";
+            ddlPreQuimio.DataValueField = "cod_pre_quimio";
+            ddlPreQuimio.DataBind();
+
+            ddlMedicacao.DataSource = MedicacaoPreQuimioDAO.listaMedicacaoPreQuimio();
+            ddlMedicacao.DataTextField = "descricao";
+            ddlMedicacao.DataValueField = "cod_medicacao_prequimio";
+            ddlMedicacao.DataBind();
+
+            ddlViaDeAdministracao.DataSource = ViaDeAdministracaoDAO.listaViaDeAdministracao();
+            ddlViaDeAdministracao.DataTextField = "descricao";
+            ddlViaDeAdministracao.DataValueField = "cod_via_de_administracao";
+            ddlViaDeAdministracao.DataBind();
+
+            ddlQuimio.DataSource = QuimioDAO.listaQuimio();
+            ddlQuimio.DataTextField = "descricao";
+            ddlQuimio.DataValueField = "cod_quimio";
+            ddlQuimio.DataBind();
+        }
+
+
 
     }
    
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
-        Profissional prof = new Profissional();
-       // prof.nome_profissional = txbNomeProfissional.Text;
-        prof.conselho = Convert.ToInt32(ddlConselho.SelectedValue);
-        prof.nr_conselho = Convert.ToInt32(txbNumeroconselho.Text);
-        prof.status_profissional = 1;//1 = ativo, 0 inativo
+        int result = 0;
+        MedicacaoPreQuimioDetalhe preQuimioDetalhe = new MedicacaoPreQuimioDetalhe();
+        preQuimioDetalhe.cod_Medicacao = Convert.ToInt32(ddlMedicacao.SelectedValue);
+        preQuimioDetalhe.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
+        preQuimioDetalhe.cod_Quimio = Convert.ToInt32(ddlQuimio.SelectedValue);
+        preQuimioDetalhe.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
+        preQuimioDetalhe.nome_Usuario = User.Identity.Name.ToUpper(); ;
+        preQuimioDetalhe.quantidade = Convert.ToInt32(txbQuantidade.Text);
+        preQuimioDetalhe.unidadeQuantidade = ddlUnidadeQuantidade.SelectedItem.ToString();
+        preQuimioDetalhe.diluicao = txbDiluicao.Text;
+        preQuimioDetalhe.tempoDeInfusao = Convert.ToInt32(txbTempoDeInfusao.Text);
+        preQuimioDetalhe.unidadeTempoDeInfusao = ddlUnidadeTempoDeInfusao.SelectedItem.ToString();
+        preQuimioDetalhe.dataCadastro = DateTime.Now;
+        preQuimioDetalhe.status = 'A';
+     
 
-        string mensagem = ProfissionalDAO.GravaProfissional(prof.nome_profissional, prof.conselho, prof.nr_conselho, prof.status_profissional);
+        string mensagem = MedicacaoPreQuimioDetalhelDAO.GravarPreQuimio(preQuimioDetalhe);
 
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
 
@@ -49,7 +83,7 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
 
         // You only need the following 2 lines of code if you are not 
         // using an ObjectDataSource of SqlDataSource
-       // GridView1.DataSource = PreQuimioDAO.ListaProfissionais();
+        GridView1.DataSource = RelatorioPreQuimioDAO.listaTodosPreQuimio();
         GridView1.DataBind();
 
         if (GridView1.Rows.Count > 0)

@@ -4,18 +4,17 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Medicacao
+/// Summary description for Quimio
 /// </summary>
-public class Medicacao
+public class Quimio
 {
-    public Medicacao()
+    public Quimio()
     {
         //
         // TODO: Add constructor logic here
         //
     }
-    public int cod_Medicacao { get; set; }
+    public int cod_Quimio { get; set; }
     public string descricao { get; set; }
-
     public string status { get; set; }
 }

@@ -42,7 +42,7 @@
                     <asp:DropDownList ID="ddlConselho" runat="server" class="form-control" DataSourceID="SqlDataSource1"
                         DataTextField="sigla_conselho" DataValueField="cod_conselho">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:psConnectionString %>"
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:oncoConnectionString %>"
                         SelectCommand="SELECT [cod_conselho], [sigla_conselho], [descricao_conselho] FROM [conselho]">
                     </asp:SqlDataSource>
                 </div>

@@ -1,30 +1,24 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
 using System.Web;
 
 /// <summary>
-/// Summary description for PreQuimioDAO
+/// Summary description for QuimioDAO
 /// </summary>
-public class PreQuimioDAO
+public class QuimioDAO
 {
-    private static object nome;
-
-    public PreQuimioDAO()
+    public QuimioDAO()
     {
         //
         // TODO: Add constructor logic here
         //
     }
-    public static List<PreQuimio> listaPreQuimio()
+    public static List<Quimio> listaQuimio()
     {
-        List<PreQuimio> preQuimios = new List<PreQuimio>();
+        List<Quimio> quimios = new List<Quimio>();
 
         /*  ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
@@ -57,11 +51,11 @@ public class PreQuimioDAO
           }
            */
 
-       
+
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[PreQuimio]";
+            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[Quimio]";
 
             try
             {
@@ -71,12 +65,12 @@ public class PreQuimioDAO
 
                 while (dr1.Read())
                 {
-                    PreQuimio itemLista = new PreQuimio();
-                    itemLista.cod_pre_quimio = dr1.GetInt32(0);
+                    Quimio itemLista = new Quimio();
+                    itemLista.cod_Quimio = dr1.GetInt32(0);
                     itemLista.descricao = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
 
 
-                    preQuimios.Add(itemLista);
+                    quimios.Add(itemLista);
                 }
             }
             catch (Exception ex)
@@ -85,12 +79,10 @@ public class PreQuimioDAO
             }
 
         }
-        return preQuimios;
+        return quimios;
 
 
 
-        
+
     }
-
-    
 }

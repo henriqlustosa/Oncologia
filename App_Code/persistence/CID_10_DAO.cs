@@ -22,7 +22,7 @@ public class CID_10_DAO
     public static List<CID_10> listaCID_10()
     {
         var listaCID_10 = new List<CID_10>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT  [SUBCAT],[CLASSIF],[RESTRSEXO],[CAUSAOBITO],[DESCRICAO],[DESCRABREV],[REFER],[EXCLUIDOS] FROM[Oncologia_Desenv].[dbo].[CID_10_SUBCATEGORIAS]";

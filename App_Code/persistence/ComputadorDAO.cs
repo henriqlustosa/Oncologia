@@ -27,7 +27,7 @@ public class ComputadorDAO
     public static Computador getInfoComputador(string _hostname)
     {
         Computador pc = new Computador();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT * FROM [Oncologia_Desenv].[dbo].[vw_impressora_computador] WHERE nome_computador = '" + _hostname +"'";
@@ -63,7 +63,7 @@ public class ComputadorDAO
     {
         var lista = new List<Computador>();
 
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
 

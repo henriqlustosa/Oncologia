@@ -20,10 +20,10 @@ public class ViaDeAdministracaoDAO
     public static List<ViaDeAdministracao> listaViaDeAdministracao()
     {
         var listaMedicamentos = new List<ViaDeAdministracao>();
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["psConnectionString"].ToString()))
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [cod_via_de_administracao],[descricao],[status] FROM [Oncologia_Desenv].[dbo].[Vias_De_Administracao]";
+            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[ViaDeAdministracao]";
 
             try
             {

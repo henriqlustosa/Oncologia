@@ -14,7 +14,7 @@ public class DescricaoProtocolo
         // TODO: Add constructor logic here
         //
     }
-    public int Id { get; set; }
+    public int cod_protocolo { get; set; }
     public string descricao { get; set; }
 
     public string status { get; set; }

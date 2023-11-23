@@ -14,8 +14,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            ddlProtocolo.DataSource = ProtocoloDAO.listaProtocolo();
-            ddlProtocolo.DataTextField = "desc_protocolo";
+            ddlProtocolo.DataSource = DescricaoProtocoloDAO.listaProtocolo();
+            ddlProtocolo.DataTextField = "descricao";
             ddlProtocolo.DataValueField = "cod_protocolo";
             ddlProtocolo.DataBind();
 

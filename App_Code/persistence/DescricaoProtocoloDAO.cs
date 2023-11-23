@@ -8,9 +8,9 @@ using System.Web;
 /// <summary>
 /// Summary description for ProtocoloDAO
 /// </summary>
-public class ProtocoloDAO
+public class DescricaoProtocoloDAO
 {
-    public ProtocoloDAO()
+    public DescricaoProtocoloDAO()
     {
         //
         // TODO: Add constructor logic here
@@ -106,13 +106,13 @@ public class ProtocoloDAO
 
     }
 
-    public static List<Protocolo> listaProtocolo()
+    public static List<DescricaoProtocolo> listaProtocolo()
     {
-        var listaProtocolo = new List<Protocolo>();
+        var listaProtocolo = new List<DescricaoProtocolo>();
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [cod_protocolo],[desc_protocolo],[status_protocolo] FROM [Oncologia_Desenv].[dbo].[Protocolo]";
+            cmm.CommandText = "SELECT [Id],[descricao] FROM [hspmonco].[dbo].[DescricaoProtocolo]";
 
             try
             {
@@ -122,10 +122,10 @@ public class ProtocoloDAO
 
                 while (dr1.Read())
                 {
-                    Protocolo protocolo = new Protocolo();
+                    DescricaoProtocolo protocolo = new DescricaoProtocolo();
                     protocolo.cod_protocolo = dr1.GetInt32(0);
-                    protocolo.desc_protocolo = dr1.GetString(1);
-                    protocolo.status_protocolo = dr1.GetString(2);
+                    protocolo.descricao = dr1.GetString(1);
+                 
                     listaProtocolo.Add(protocolo);
                 }
             }

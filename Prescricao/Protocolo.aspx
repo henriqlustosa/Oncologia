@@ -37,13 +37,13 @@
         </div>
     </div>
 
-    <div class="x_content">
+    <%--  <div class="x_content">
         <div id="divMedicamento">
             <div class="x_panel">
                 <div class="col-5">
                     Lista de Medicamentos:
                 </div>
-                <div>
+              <div>
                     <select data-placeholder="Selecione uma opção" id="select1" multiple style="width: 750px"
                         runat="server" clientidmode="Static">
                     </select>
@@ -52,7 +52,7 @@
             <br />
         </div>
         <br />
-    </div>
+    </div>--%>
       <div class="x_content">
         <div id="divMedicamento_Protocolo">
             <div class="x_panel">
@@ -146,11 +146,11 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function () {
+        <%--$(document).ready(function () {
 
             $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
-        });
+        });--%>
 
     </script>
 </asp:Content>

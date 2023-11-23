@@ -8,9 +8,9 @@ using System.Web;
 /// <summary>
 /// Summary description for Listagem_MedicoDAO
 /// </summary>
-public class Listagem_MedicamentoDAO
+public class MedicacaoDAO
 {
-    public Listagem_MedicamentoDAO()
+    public MedicacaoDAO()
     {
         //
         // TODO: Add constructor logic here
@@ -57,13 +57,13 @@ public class Listagem_MedicamentoDAO
 
     }
 
-    public static List<Medicamento_Amostra> listaMedicamentos()
+    public static List<Medicacao> listaMedicamentos()
     {
-        var listaMedicamentos = new List<Medicamento_Amostra>();
+        var listaMedicamentos = new List<Medicacao>();
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [Droga],[Via],[Nome Comercial],[Concentração],[Volume de Diluição para Infusão],[Estabilidade],[Tempo de Infusão],[EQUIPOS],[cod_medicamento] FROM [Oncologia_Desenv].[dbo].[Medicamentos_Amostra]";
+            cmm.CommandText = "SELECT  [Id],[descricao]  FROM [hspmonco].[dbo].[Medicacao]";
 
             try
             {
@@ -73,16 +73,10 @@ public class Listagem_MedicamentoDAO
 
                 while (dr1.Read())
                 {
-                    Medicamento_Amostra itemLista  = new Medicamento_Amostra();
-                    itemLista.droga = dr1.IsDBNull(0) ? "" : dr1.GetString(0);
-                    itemLista.via = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
-                    itemLista.nome_comercial = dr1.IsDBNull(2) ? "" : dr1.GetString(2);
-                    itemLista.concentracao = dr1.IsDBNull(3) ? "" : dr1.GetString(3);
-                    itemLista.volume_de_diluicao_para_infusao = dr1.IsDBNull(4) ? "" : dr1.GetString(4);
-                    itemLista.estabilidade = dr1.IsDBNull(5) ? "" : dr1.GetString(5);
-                    itemLista.tempo_de_infusao = dr1.IsDBNull(6) ? "" : dr1.GetString(6);
-                    itemLista.equipos = dr1.IsDBNull(7) ? "" : dr1.GetString(7);
-                    itemLista.cod_medicamento =  dr1.GetInt32(8);
+                    Medicacao itemLista  = new Medicacao();
+                   
+                    itemLista.cod_Medicacao =  dr1.GetInt32(0);
+                    itemLista.descricao = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
 
                     listaMedicamentos.Add(itemLista);
                 }

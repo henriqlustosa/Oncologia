@@ -12,19 +12,16 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
         if (!IsPostBack)
         {
 
-            ddlProtocolo.DataSource = ProtocoloDAO.listaProtocolo();
-            ddlProtocolo.DataTextField = "desc_protocolo";
+            ddlProtocolo.DataSource = DescricaoProtocoloDAO.listaProtocolo();
+            ddlProtocolo.DataTextField = "descricao";
             ddlProtocolo.DataValueField = "cod_protocolo";
             ddlProtocolo.DataBind();
 
-            select1.DataSource = Listagem_MedicamentoDAO.listaMedicamentos();
-            select1.DataTextField = "droga";
-            select1.DataValueField = "cod_medicamento";
-            select1.DataBind();
+           
 
-            ddlLista_Medicamento.DataSource = Lista_Medicamento_ProtocoloDAO.listaMedicamentos();
-            ddlLista_Medicamento.DataTextField = "medicacoes";
-            ddlLista_Medicamento.DataValueField = "cod_medicamento_protocolo";
+            ddlLista_Medicamento.DataSource = MedicacaoDAO.listaMedicamentos();
+            ddlLista_Medicamento.DataTextField = "descricao";
+            ddlLista_Medicamento.DataValueField = "cod_medicacao";
             ddlLista_Medicamento.DataBind();
 
             ddlViaDeAdministracao.DataSource = ViaDeAdministracaoDAO.listaViaDeAdministracao();
@@ -45,7 +42,7 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
     {
        
        Protocolo protocolo = new Protocolo();
-        List<Medicamento_Amostra> medicamentos = new List<Medicamento_Amostra>();
+        //List<Medicamento_Amostra> medicamentos = new List<Medicamento_Amostra>();
 
 
 
@@ -57,18 +54,18 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
         protocolo.cod_protocolo = int.Parse(ddlProtocolo.SelectedValue);
             
       
-        for (int i = 0; i < select1.Items.Count; i++)
-        {
-            if (select1.Items[i].Selected)
-            {
-                Medicamento_Amostra medicamento = new Medicamento_Amostra();
-                medicamento.droga = select1.Items[i].Text;
-                medicamento.cod_medicamento = int.Parse(select1.Items[i].Value);
-                medicamentos.Add(medicamento);
-            }
-        }
-        ProtocoloDAO.InativaMedicamentosPorProtocolo(protocolo.cod_protocolo);
-        ProtocoloDAO.GravaMedicamentosPorProtocolo(medicamentos, protocolo.cod_protocolo);
+        //for (int i = 0; i < select1.Items.Count; i++)
+        //{
+        //    if (select1.Items[i].Selected)
+        //    {
+        //        Medicamento_Amostra medicamento = new Medicamento_Amostra();
+        //        medicamento.droga = select1.Items[i].Text;
+        //        medicamento.cod_medicamento = int.Parse(select1.Items[i].Value);
+        //        medicamentos.Add(medicamento);
+        //    }
+        //}
+        DescricaoProtocoloDAO.InativaMedicamentosPorProtocolo(protocolo.cod_protocolo);
+        //DescricaoProtocoloDAO.GravaMedicamentosPorProtocolo(medicamentos, protocolo.cod_protocolo);
         
         //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
 
@@ -84,24 +81,24 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
 
     protected void ddlProtocolo_SelectedIndexChanged(object sender, EventArgs e)
     {
-        select1.DataSource = Listagem_MedicamentoDAO.listaMedicamentos();
-        select1.DataTextField = "droga";
-        select1.DataValueField = "cod_medicamento";
-        select1.DataBind();
-        if (!String.IsNullOrEmpty(ddlProtocolo.SelectedValue))
-        {
-            List <Medicamento_Amostra> medicamentos_escolhidos = Listagem_MedicamentoDAO.CarregarDropDownListMedicamento(int.Parse(ddlProtocolo.SelectedValue));
-           
-    
-
-            foreach (Medicamento_Amostra medicamento in medicamentos_escolhidos)
-            {
-
-                select1.Items[medicamento.cod_medicamento - 1].Selected = true;
-
-            }
+        //select1.DataSource = MedicacaoDAO.listaMedicamentos();
+        //select1.DataTextField = "droga";
+        //select1.DataValueField = "cod_medicamento";
+        //select1.DataBind();
+        //if (!String.IsNullOrEmpty(ddlProtocolo.SelectedValue))
+        //{
+        //    List<Medicamento_Amostra> medicamentos_escolhidos = MedicacaoDAO.CarregarDropDownListMedicamento(int.Parse(ddlProtocolo.SelectedValue));
 
 
-        }
+
+        //    foreach (Medicamento_Amostra medicamento in medicamentos_escolhidos)
+        //    {
+
+        //        select1.Items[medicamento.cod_medicamento - 1].Selected = true;
+
+        //    }
+
+
+        //}
     }
 }

@@ -18,7 +18,7 @@ public class PacienteDAO
 
     public static Paciente GET(string prontuario)
     {
-       Paciente model = new Paciente();
+        Paciente model = new Paciente();
 
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://intranethspm:5003/hspmsgh-api/pacientes/paciente/" + prontuario);
         try

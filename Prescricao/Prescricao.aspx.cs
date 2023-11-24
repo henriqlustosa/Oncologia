@@ -45,12 +45,47 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         return pacientes;
     }
-   
+
+    [WebMethod]
+
+    public static Paciente GetNomeDePacientesPoRh(string prefixo)
+    {
+
+        Paciente pacientes = new Paciente();
+        pacientes = PacienteDAO.GET(prefixo);
+
+        return pacientes;
+    }
+
     protected void btnPesquisar_Click(object sender, EventArgs e)
     {
         
         ScriptManager.RegisterStartupScript(this, this.GetType(), "#modalAdicionarPaciente", "$('#modalDadosDoPaciente').modal('show');", true);
 
       
+    }
+
+    protected void btnGravar_Click(object sender, EventArgs e)
+    {
+
+        Paciente paciente = new Paciente();
+       
+
+
+        //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
+
+        //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+
+        ClearInputs(Page.Controls);// limpa os textbox
+    }
+
+    void ClearInputs(ControlCollection ctrls)
+    {
+        foreach (Control ctrl in ctrls)
+        {
+            if (ctrl is TextBox)
+                ((TextBox)ctrl).Text = string.Empty;
+            ClearInputs(ctrl.Controls);
+        }
     }
 }

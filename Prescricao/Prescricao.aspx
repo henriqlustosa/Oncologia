@@ -428,7 +428,11 @@
                 </div>
             </div>
         </div>
-
+  <div class="row">
+      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+          <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+      </div>
+  </div>
     </div>
     <!-- Large modal -->
 
@@ -748,6 +752,7 @@
 
 
             $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+                
 
                 source: function (request, response) {
                     var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
@@ -770,6 +775,65 @@
 
 
                                     prontuario: item.cd_prontuario,
+                                    dt_nascimento: item.dt_data_nascimento,
+                                    idade: item.nr_idade,
+                                    sexo: item.in_sexo,
+                                    nome_pai_mae: item.nm_mae,
+
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var err = eval("(" + XMLHttpRequest.responseText + ")");
+                            alert(err.Message)
+                        }
+                    });
+                },
+
+
+                select: function (e, i) {
+
+
+
+
+                    $("[id$=txbProntuario").val(i.item.prontuario);
+
+                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                    $("[id$=txbIdade").val(i.item.idade);
+                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                    $("[id$=txbPais").val(i.item.nome_pai_mae);
+                },
+               
+                minLength: 1 //This is the Char length of inputTextBox  
+                   
+
+            });
+       
+
+        $("#<%= txbProntuario.ClientID %>").autocomplete({
+
+                source: function (request, response) {
+                    var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
+                    $.ajax({
+                        url: "Prescricao.aspx/GetNomeDePacientesPoRh",
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            console.log(JSON.stringify(data));
+
+                            response($.map(data, function (item) {
+
+                                return {
+
+                                    label: item.cd_prontuario,
+                                    value: item.cd_prontuario,
+
+
+                                    nome_paciente: item.nm_nome,
                                     dt_nascimento: item.dt_data_nascimento,
                                     idade: item.nr_idade,
                                     sexo: item.in_sexo,

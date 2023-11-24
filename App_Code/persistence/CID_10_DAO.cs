@@ -25,7 +25,7 @@ public class CID_10_DAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [SUBCAT],[CLASSIF],[RESTRSEXO],[CAUSAOBITO],[DESCRICAO],[DESCRABREV],[REFER],[EXCLUIDOS] FROM[Oncologia_Desenv].[dbo].[CID_10_SUBCATEGORIAS]";
+            cmm.CommandText = "SELECT  [SUBCAT],[CLASSIF],[RESTRSEXO],[CAUSAOBITO],[DESCRICAO],[DESCRABREV],[REFER],[EXCLUIDOS] FROM[hspmonco].[dbo].[CID_10_SUBCATEGORIAS]";
 
             try
             {

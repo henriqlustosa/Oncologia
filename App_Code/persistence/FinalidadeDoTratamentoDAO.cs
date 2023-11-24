@@ -26,7 +26,7 @@ public class FinalidadeDoTratamentoDAO
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT * " +
-                              "  FROM [Oncologia_Desenv].[dbo].[Finalidade_Do_Tratamento]";
+                              "  FROM [hspmonco].[dbo].[Finalidade]";
             try
             {
                 cnn.Open();

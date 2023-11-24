@@ -19,10 +19,10 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
 
            
 
-            ddlLista_Medicamento.DataSource = MedicacaoDAO.listaMedicamentos();
-            ddlLista_Medicamento.DataTextField = "descricao";
-            ddlLista_Medicamento.DataValueField = "cod_medicacao";
-            ddlLista_Medicamento.DataBind();
+            ddlMedicacao.DataSource = MedicacaoDAO.listaMedicamentos();
+            ddlMedicacao.DataTextField = "descricao";
+            ddlMedicacao.DataValueField = "cod_medicacao";
+            ddlMedicacao.DataBind();
 
             ddlViaDeAdministracao.DataSource = ViaDeAdministracaoDAO.listaViaDeAdministracao();
             ddlViaDeAdministracao.DataTextField = "descricao";
@@ -40,43 +40,62 @@ public partial class Prescricao_Protocolo : System.Web.UI.Page
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
-       
-       Protocolo protocolo = new Protocolo();
-        //List<Medicamento_Amostra> medicamentos = new List<Medicamento_Amostra>();
-
-
-
-
-
-
-
-        protocolo.desc_protocolo = ddlProtocolo.SelectedItem.Text;
-        protocolo.cod_protocolo = int.Parse(ddlProtocolo.SelectedValue);
-            
-      
-        //for (int i = 0; i < select1.Items.Count; i++)
-        //{
-        //    if (select1.Items[i].Selected)
-        //    {
-        //        Medicamento_Amostra medicamento = new Medicamento_Amostra();
-        //        medicamento.droga = select1.Items[i].Text;
-        //        medicamento.cod_medicamento = int.Parse(select1.Items[i].Value);
-        //        medicamentos.Add(medicamento);
-        //    }
-        //}
-        DescricaoProtocoloDAO.InativaMedicamentosPorProtocolo(protocolo.cod_protocolo);
-        //DescricaoProtocoloDAO.GravaMedicamentosPorProtocolo(medicamentos, protocolo.cod_protocolo);
         
-        //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+        Protocolos  protocolo = new Protocolos();
+        protocolo.cod_DescricaoProtocolo = Convert.ToInt32(ddlProtocolo.SelectedValue);
+        protocolo.cod_Medicacao = Convert.ToInt32(ddlMedicacao.SelectedValue);
+        protocolo.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
+        protocolo.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
+        protocolo.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
+        protocolo.nome_Usuario = User.Identity.Name.ToUpper(); ;
+        protocolo.dose = Convert.ToInt32(txbDose.Text);
+        protocolo.unidadeDose = ddlUnidadeDose.SelectedItem.ToString();
+        protocolo.diluicao = txbDiluicao.Text;
+        protocolo.tempoDeInfusao =txbTempoDeInfusao.Text;
+        protocolo.unidadeTempoDeInfusao = ddlUnidadeTempoDeInfusao.SelectedItem.ToString();
+        protocolo.dataCadastro = DateTime.Now;
+        protocolo.status = 'A';
 
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        sb.Append("$(document).ready(function(){");
-        sb.Append("$('#myModal').modal();");
-        sb.Append("});");
-        ScriptManager.RegisterStartupScript(Page, this.Page.GetType(), "clientscript", sb.ToString(), true);
 
-        //Response.Redirect("~/encaminhamento/cadencaminhamento.aspx");
+        string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 
+        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+
+        ClearInputs(Page.Controls);// limpa os textbox
+    }
+
+    void ClearInputs(ControlCollection ctrls)
+    {
+        foreach (Control ctrl in ctrls)
+        {
+            if (ctrl is TextBox)
+                ((TextBox)ctrl).Text = string.Empty;
+            ClearInputs(ctrl.Controls);
+        }
+    }
+    protected void GridView1_PreRender(object sender, EventArgs e)
+    {
+
+        // colocar no grid OnPreRender="GridView1_PreRender"
+
+        // You only need the following 2 lines of code if you are not 
+        // using an ObjectDataSource of SqlDataSource
+        GridView1.DataSource = RelatorioProtocoloDAO.listaTodosProtocolos();
+        GridView1.DataBind();
+
+        if (GridView1.Rows.Count > 0)
+        {
+            //This replaces <td> with <th> and adds the scope attribute
+            GridView1.UseAccessibleHeader = true;
+
+            //This will add the <thead> and <tbody> elements
+            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+            //This adds the <tfoot> element. 
+            //Remove if you don't have a footer row
+            GridView1.FooterRow.TableSection = TableRowSection.TableFooter;
+
+        }
     }
 
     protected void ddlProtocolo_SelectedIndexChanged(object sender, EventArgs e)

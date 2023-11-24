@@ -20,7 +20,7 @@
                 <h2>Cadastro de PreQuimio</h2>
                 <div class="clearfix">
                 </div>
-            </div>
+            </div>  
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label>

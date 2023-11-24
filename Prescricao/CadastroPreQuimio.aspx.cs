@@ -43,7 +43,7 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
-        int result = 0;
+        
         MedicacaoPreQuimioDetalhe preQuimioDetalhe = new MedicacaoPreQuimioDetalhe();
         preQuimioDetalhe.cod_Medicacao = Convert.ToInt32(ddlMedicacao.SelectedValue);
         preQuimioDetalhe.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);

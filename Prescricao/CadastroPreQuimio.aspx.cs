@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,27 +19,68 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
             ddlPreQuimio.DataTextField = "descricao";
             ddlPreQuimio.DataValueField = "cod_pre_quimio";
             ddlPreQuimio.DataBind();
+            ddlPreQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlPreQuimio.SelectedIndex = 0;
+           
 
             ddlMedicacao.DataSource = MedicacaoPreQuimioDAO.listaMedicacaoPreQuimio();
             ddlMedicacao.DataTextField = "descricao";
             ddlMedicacao.DataValueField = "cod_medicacao_prequimio";
             ddlMedicacao.DataBind();
+            ddlMedicacao.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlMedicacao.SelectedIndex = 0;
+         
 
             ddlViaDeAdministracao.DataSource = ViaDeAdministracaoDAO.listaViaDeAdministracao();
             ddlViaDeAdministracao.DataTextField = "descricao";
             ddlViaDeAdministracao.DataValueField = "cod_via_de_administracao";
             ddlViaDeAdministracao.DataBind();
+            ddlViaDeAdministracao.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlViaDeAdministracao.SelectedIndex = 0;
+           
 
             ddlQuimio.DataSource = QuimioDAO.listaQuimio();
             ddlQuimio.DataTextField = "descricao";
             ddlQuimio.DataValueField = "cod_quimio";
             ddlQuimio.DataBind();
+            ddlQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlQuimio.SelectedIndex = 0;
+            ;
         }
 
 
 
     }
-   
+    protected void grdMain_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        int index;
+
+        if (e.CommandName.Equals("editRecord"))
+        {
+            index = Convert.ToInt32(e.CommandArgument);
+
+            int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+            GridViewRow row = GridView1.Rows[index];
+            //string _status = row.Cells[7].Text;
+
+            Response.Redirect("~/encaminhamento/retornomarcado.aspx?idpedido=" + _id_pedido + "");
+        }
+        if (e.CommandName.Equals("deleteRecord"))
+        {
+            index = Convert.ToInt32(e.CommandArgument);
+
+            int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+            GridViewRow row = GridView1.Rows[index];
+
+            PreQuimioDAO.deletarPreQuimio(_id_pedido);
+            Response.Redirect("~/encaminhamento/pedidospendentes.aspx");
+
+            //string _status = row.Cells[7].Text;
+
+
+        }
+        
+    }
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {

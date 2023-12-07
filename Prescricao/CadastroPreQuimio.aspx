@@ -20,7 +20,7 @@
                 <h2>Cadastro de PreQuimio</h2>
                 <div class="clearfix">
                 </div>
-            </div>  
+            </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -29,6 +29,8 @@
                     <asp:DropDownList ID="ddlPreQuimio" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+                        InitialValue="" runat="server" ForeColor="Red" />
                 </div>
             </div>
 
@@ -40,13 +42,22 @@
                     <asp:DropDownList ID="ddlMedicacao" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlMedicacao"
+                        InitialValue="" runat="server" ForeColor="Red" />
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Quantidade
                     </label>
+
+
+
                     <asp:TextBox ID="txbQuantidade" class="form-control numeric" runat="server" AutoPostBack="true" />
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Unidade
+                    </label>
                     <asp:DropDownList ID="ddlUnidadeQuantidade" runat="server" class="form-control">
                         <asp:ListItem Value="0">mg</asp:ListItem>
                         <asp:ListItem Value="1">g</asp:ListItem>
@@ -64,7 +75,8 @@
                     <asp:DropDownList ID="ddlViaDeAdministracao" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlViaDeAdministracao"
+                        InitialValue="" runat="server" ForeColor="Red" />
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -81,13 +93,22 @@
                     <asp:DropDownList ID="ddlQuimio" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
+                                      <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlQuimio"
+  InitialValue="" runat="server" ForeColor="Red" />
 
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Tempo de Infusão
                     </label>
+                  
+               
                     <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server" AutoPostBack="true" />
+                     </div>
+                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                             <label>
+       Unidade
+   </label>
                     <asp:DropDownList ID="ddlUnidadeTempoDeInfusao" runat="server" class="form-control">
                         <asp:ListItem Value="0">min</asp:ListItem>
                         <asp:ListItem Value="1">hr</asp:ListItem>
@@ -95,11 +116,11 @@
 
 
                 </div>
-            </div>
+        </div>
 
 
 
-            <div class="row">
+        <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
                 </div>
@@ -149,6 +170,32 @@
 
                     <asp:BoundField DataField="dataCadastro" HeaderText="DATA" SortExpression="dataCadastro"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+                        
+                          
+                        <ItemTemplate>
+                            <div class="form-inline">
+                                <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                    CssClass="btn btn-info" runat="server">
+                                    <i class="fa fa-pencil-square-o" title="Informação"></i> 
+                                </asp:LinkButton>
+                            </div>
+                             </ItemTemplate>
+                         
+                    </asp:TemplateField>
+                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+                        
+                          <ItemTemplate>
+                     
+                            <div class="form-inline">
+                                <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();">
+                                    <i class="fa fa-trash" title="Excluir"></i> 
+                                </asp:LinkButton>
+                            </div>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                 </Columns>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

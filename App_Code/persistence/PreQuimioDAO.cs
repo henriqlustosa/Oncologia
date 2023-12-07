@@ -22,6 +22,12 @@ public class PreQuimioDAO
         // TODO: Add constructor logic here
         //
     }
+
+    public static void deletarPreQuimio(int id_pedido)
+    {
+        throw new NotImplementedException();
+    }
+
     public static List<PreQuimio> listaPreQuimio()
     {
         List<PreQuimio> preQuimios = new List<PreQuimio>();

@@ -56,7 +56,7 @@ public class RelatorioPreQuimioDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [Id],[desc_pre_quimio],[desc_medicacao_pre_quimio],[desc_quimio],[desc_via_de_administracao],[nome_Usuario],[quantidade],[unidadeQuantidade],[diluicao],[tempoDeInfusao],[unidadeTempoDeInfusao],[dataCadastro],[status] FROM [hspmonco].[dbo].[Vw_RelatorioPreQuimio]";
+            cmm.CommandText = "SELECT [Id],[desc_pre_quimio],[desc_medicacao_pre_quimio],[desc_quimio],[desc_via_de_administracao],[nome_Usuario],[quantidade],[unidadeQuantidade],[diluicao],[tempoDeInfusao],[unidadeTempoDeInfusao],[dataCadastro],[status] FROM [hspmonco].[dbo].[Vw_RelatorioPreQuimio] where status ='A'";
 
             try
             {

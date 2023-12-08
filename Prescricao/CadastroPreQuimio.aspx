@@ -132,7 +132,7 @@
                 <div class="clearfix">
                 </div>
             </div>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="grdMain_RowCommand"
                 CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                 Width="100%" OnPreRender="GridView1_PreRender">
 
@@ -177,7 +177,7 @@
                         <ItemTemplate>
                             <div class="form-inline">
                                 <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                    CssClass="btn btn-info" runat="server">
+                                    CssClass="btn btn-info" runat="server" CausesValidation="false">
                                     <i class="fa fa-pencil-square-o" title="Informação"></i> 
                                 </asp:LinkButton>
                             </div>
@@ -190,7 +190,7 @@
                      
                             <div class="form-inline">
                                 <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();">
+                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
                                     <i class="fa fa-trash" title="Excluir"></i> 
                                 </asp:LinkButton>
                             </div>
@@ -227,6 +227,12 @@
             });
 
         });
+        function confirmation() {
+            return confirm("Você realmente quer deletar registro?");
+        }
+        function file() {
+            return confirm("Você realmente quer arquivar registro?");
+        }
     </script>
 
 </asp:Content>

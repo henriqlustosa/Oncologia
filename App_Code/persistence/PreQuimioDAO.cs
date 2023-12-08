@@ -23,9 +23,54 @@ public class PreQuimioDAO
         //
     }
 
-    public static void deletarPreQuimio(int id_pedido)
+    public static void deletarPreQuimio(int _id)
     {
-        throw new NotImplementedException();
+        string msg = "";
+        string usuario = System.Web.HttpContext.Current.User.Identity.Name.ToUpper();
+        string _status = "D";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            SqlCommand cmm = new SqlCommand();
+            cmm.Connection = cnn;
+            cnn.Open();
+            SqlTransaction mt = cnn.BeginTransaction();
+            cmm.Transaction = mt;
+
+            try
+            {
+
+
+
+
+
+                // Atualiza tabela de pedido de MedicacaoPreQuimioDetalhe
+                cmm.CommandText = "UPDATE [dbo].[MedicacaoPreQuimioDetalhe]" +
+                        " SET status = @status " +
+                        " WHERE  Id = @Id";
+                cmm.Parameters.Add(new SqlParameter("@Id", _id));
+                cmm.Parameters.Add(new SqlParameter("@status", _status));
+                cmm.ExecuteNonQuery();
+
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+
+                //LogDAO.gravaLog("DELETE: CÓDIGO PEDIDO " + _id, "CAMPO STATUS", usuario);
+                msg = "Cadastro realizado com sucesso!";
+
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                msg = error;
+                try
+                {
+                    mt.Rollback();
+                }
+                catch (Exception ex1)
+                { }
+            }
+        }
     }
 
     public static List<PreQuimio> listaPreQuimio()

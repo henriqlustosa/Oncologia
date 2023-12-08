@@ -14,78 +14,70 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            
+            int _id = Convert.ToInt32(Request.QueryString["idPreQuimio"]);
+            MedicacaoPreQuimioDetalhe preQuimio = MedicacaoPreQuimioDetalhelDAO.BuscarPreQuimioPorId(_id);
+            txbId.Text = _id.ToString();
             ddlPreQuimio.DataSource = PreQuimioDAO.listaPreQuimio();
             ddlPreQuimio.DataTextField = "descricao";
             ddlPreQuimio.DataValueField = "cod_pre_quimio";
             ddlPreQuimio.DataBind();
-            ddlPreQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
-            ddlPreQuimio.SelectedIndex = 0;
+            //ddlPreQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlPreQuimio.SelectedValue = preQuimio.cod_PreQuimio.ToString();
            
 
             ddlMedicacao.DataSource = MedicacaoPreQuimioDAO.listaMedicacaoPreQuimio();
             ddlMedicacao.DataTextField = "descricao";
             ddlMedicacao.DataValueField = "cod_medicacao_prequimio";
             ddlMedicacao.DataBind();
-            ddlMedicacao.Items.Insert(0, new ListItem(string.Empty, string.Empty));
-            ddlMedicacao.SelectedIndex = 0;
+            //ddlMedicacao.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlMedicacao.SelectedValue = preQuimio.cod_Medicacao.ToString();
          
 
             ddlViaDeAdministracao.DataSource = ViaDeAdministracaoDAO.listaViaDeAdministracao();
             ddlViaDeAdministracao.DataTextField = "descricao";
             ddlViaDeAdministracao.DataValueField = "cod_via_de_administracao";
             ddlViaDeAdministracao.DataBind();
-            ddlViaDeAdministracao.Items.Insert(0, new ListItem(string.Empty, string.Empty));
-            ddlViaDeAdministracao.SelectedIndex = 0;
+            //ddlViaDeAdministracao.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlViaDeAdministracao.SelectedValue = preQuimio.cod_ViaDeAdministracao.ToString();
            
 
             ddlQuimio.DataSource = QuimioDAO.listaQuimio();
             ddlQuimio.DataTextField = "descricao";
             ddlQuimio.DataValueField = "cod_quimio";
             ddlQuimio.DataBind();
-            ddlQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
-            ddlQuimio.SelectedIndex = 0;
-            ;
+            //ddlQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
+            ddlQuimio.SelectedValue = preQuimio.cod_Quimio.ToString();
+            txbQuantidade.Text = preQuimio.quantidade.ToString();
+            txbDiluicao.Text = preQuimio.diluicao.ToString();
+            txbTempoDeInfusao.Text = preQuimio.tempoDeInfusao.ToString();
+          
+            if (preQuimio.unidadeQuantidade == "mg") {
+                ddlUnidadeQuantidade.SelectedIndex = 0;
+            } else
+            {
+                ddlUnidadeQuantidade.SelectedIndex = 1;
+            }
+            if (preQuimio.unidadeTempoDeInfusao == "min")
+            {
+                ddlUnidadeQuantidade.SelectedIndex = 0;
+            }
+            else
+            {
+                ddlUnidadeQuantidade.SelectedIndex = 1;
+            }
         }
 
 
 
     }
-    protected void grdMain_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        int index;
-
-        if (e.CommandName.Equals("editRecord"))
-        {
-            index = Convert.ToInt32(e.CommandArgument);
-
-            int idPreQuimio = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
-            GridViewRow row = GridView1.Rows[index];
-            //string _status = row.Cells[7].Text;
-
-            Response.Redirect("~/Prescricao/EditarCadastroPreQuimio.aspx?idPreQuimio=" + idPreQuimio + "");
-        }
-        if (e.CommandName.Equals("deleteRecord"))
-        {
-            index = Convert.ToInt32(e.CommandArgument);
-
-            int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
-            GridViewRow row = GridView1.Rows[index];
-
-            PreQuimioDAO.deletarPreQuimio(_id_pedido);
-            Response.Redirect("~/Prescricao/CadastroPreQuimio.aspx");
-
-            //string _status = row.Cells[7].Text;
-
-
-        }
-        
-    }
+   
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         
         MedicacaoPreQuimioDetalhe preQuimioDetalhe = new MedicacaoPreQuimioDetalhe();
+
+        preQuimioDetalhe.Id = Convert.ToInt32(txbId.Text);
         preQuimioDetalhe.cod_Medicacao = Convert.ToInt32(ddlMedicacao.SelectedValue);
         preQuimioDetalhe.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
         preQuimioDetalhe.cod_Quimio = Convert.ToInt32(ddlQuimio.SelectedValue);
@@ -100,11 +92,13 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
         preQuimioDetalhe.status = "A";
      
 
-        string mensagem = MedicacaoPreQuimioDetalhelDAO.GravarPreQuimio(preQuimioDetalhe);
+        string mensagem = MedicacaoPreQuimioDetalhelDAO.AtualizarPreQuimio(preQuimioDetalhe);
 
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
 
         ClearInputs(Page.Controls);// limpa os textbox
+
+        Response.Redirect("~/Prescricao/CadastroPreQuimio.aspx");
     }
 
     void ClearInputs(ControlCollection ctrls)
@@ -117,28 +111,5 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
         }
     }
 
-    protected void GridView1_PreRender(object sender, EventArgs e)
-    {
-
-        // colocar no grid OnPreRender="GridView1_PreRender"
-
-        // You only need the following 2 lines of code if you are not 
-        // using an ObjectDataSource of SqlDataSource
-        GridView1.DataSource = RelatorioPreQuimioDAO.listaTodosPreQuimio();
-        GridView1.DataBind();
-
-        if (GridView1.Rows.Count > 0)
-        {
-            //This replaces <td> with <th> and adds the scope attribute
-            GridView1.UseAccessibleHeader = true;
-
-            //This will add the <thead> and <tbody> elements
-            GridView1.HeaderRow.TableSection = TableRowSection.TableHeader;
-
-            //This adds the <tfoot> element. 
-            //Remove if you don't have a footer row
-            GridView1.FooterRow.TableSection = TableRowSection.TableFooter;
-
-        }
-    }
+   
 }

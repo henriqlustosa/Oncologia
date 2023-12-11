@@ -22,7 +22,7 @@ public class Protocolos
     public string nome_Usuario { get; set; }
     public DateTime dataCadastro { get; set; }
 
-    public char status { get; set; }
+    public string status { get; set; }
 
 
     public int dose { get; set; }

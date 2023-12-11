@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EditarCadastroPreQuimio.aspx.cs" Inherits="Prescricao_CadastroPreQuimio" Title="Oncologia - HSPM" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EditarCadastroPreQuimio.aspx.cs" Inherits="Prescricao_EditarCadastroPreQuimio" Title="Oncologia - HSPM" %>
 
 
 

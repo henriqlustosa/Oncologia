@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
+public partial class Prescricao_EditarCadastroPreQuimio : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -59,11 +59,11 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
             }
             if (preQuimio.unidadeTempoDeInfusao == "min")
             {
-                ddlUnidadeQuantidade.SelectedIndex = 0;
+                ddlUnidadeTempoDeInfusao.SelectedIndex = 0;
             }
             else
             {
-                ddlUnidadeQuantidade.SelectedIndex = 1;
+                ddlUnidadeTempoDeInfusao.SelectedIndex = 1;
             }
         }
 

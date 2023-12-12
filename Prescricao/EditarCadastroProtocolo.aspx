@@ -116,6 +116,7 @@
     <div class="row">
         <div class="col-md-2 col-sm-12 col-xs-12 form-group">
             <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" OnClick="btnCancelar_Click" />
         </div>
     </div>
 
@@ -158,11 +159,19 @@
 
     <script type="text/javascript">
 
-        <%--$(document).ready(function () {
+        $('#<%= txbDose.ClientID %>').keypress(function (e) {
+            var a = [];
+            var k = e.which;
 
-            $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
+            for (i = 48; i < 58; i++)
+                a.push(i);
 
-        });--%>
+            // allow a max of 1 decimal point to be entered
+
+            if (!(a.indexOf(k) >= 0)) e.preventDefault();
+
+
+        });
 
     </script>
 </asp:Content>

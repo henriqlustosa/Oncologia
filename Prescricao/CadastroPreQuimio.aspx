@@ -52,7 +52,7 @@
 
 
 
-                    <asp:TextBox ID="txbQuantidade" class="form-control numeric" runat="server" AutoPostBack="true" />
+                    <asp:TextBox ID="txbQuantidade" class="form-control numeric" runat="server"  />
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -82,7 +82,7 @@
                     <label>
                         Diluicao
                     </label>
-                    <asp:TextBox ID="txbDiluicao" class="form-control numeric" runat="server" AutoPostBack="true" />
+                    <asp:TextBox ID="txbDiluicao" class="form-control numeric" runat="server"  />
                 </div>
             </div>
 
@@ -103,7 +103,7 @@
                     </label>
                   
                
-                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server" AutoPostBack="true" />
+                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server"  />
                      </div>
                       <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                              <label>
@@ -233,6 +233,32 @@
         function file() {
             return confirm("Você realmente quer arquivar registro?");
         }
+        $('#<%= txbQuantidade.ClientID %>').keypress(function (e) {
+            var a = [];
+            var k = e.which;
+
+            for (i = 48; i < 58; i++)
+                a.push(i);
+
+            // allow a max of 1 decimal point to be entered
+
+            if (!(a.indexOf(k) >= 0)) e.preventDefault();
+
+
+        });
+        $('#<%= txbTempoDeInfusao.ClientID %>').keypress(function (e) {
+            var a = [];
+            var k = e.which;
+
+            for (i = 48; i < 58; i++)
+                a.push(i);
+
+            // allow a max of 1 decimal point to be entered
+
+            if (!(a.indexOf(k) >= 0)) e.preventDefault();
+
+
+        });
     </script>
 
 </asp:Content>

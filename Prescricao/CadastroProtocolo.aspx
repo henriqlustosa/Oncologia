@@ -3,6 +3,7 @@
     Title="Protocolo - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 
@@ -27,6 +28,8 @@
                     <asp:DropDownList ID="ddlProtocolo" runat="server" class="form-control"
                         DataTextField="ddlProtocolo" DataValueField="Id">
                     </asp:DropDownList>
+                      <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+      InitialValue="" runat="server" ForeColor="Red" />
                 </div>
             </div>
 
@@ -38,13 +41,15 @@
                     <asp:DropDownList ID="ddlMedicacao" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-
+                      <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+      InitialValue="" runat="server" ForeColor="Red" />
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Dose
                     </label>
-                    <asp:TextBox ID="txbDose" class="form-control numeric" runat="server" />
+                    <asp:TextBox ID="txbDose" class="form-control numeric" runat="server"  />
+                    
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -54,6 +59,7 @@
                         <asp:ListItem Value="0">mg</asp:ListItem>
                         <asp:ListItem Value="1">mg/m² </asp:ListItem>
                     </asp:DropDownList>
+              
                 </div>
             </div>
 
@@ -64,6 +70,8 @@
                     <asp:DropDownList ID="ddlViaDeAdministracao" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
+                      <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+      InitialValue="" runat="server" ForeColor="Red" />
 
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
@@ -81,13 +89,16 @@
                     <asp:DropDownList ID="ddlPreQuimio" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
+                      <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+      InitialValue="" runat="server" ForeColor="Red" />
 
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Tempo de Infusão
                     </label>
-                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server" />
+                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server"  />
+     
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -108,7 +119,7 @@
             </div>
         </div>
     </div>
-    </div>
+ 
         <div class="x_panel">
             <div class="x_title">
                 <h2>Lista de PreQuimio</h2>
@@ -218,6 +229,20 @@
         function file() {
             return confirm("Você realmente quer arquivar registro?");
         }
+     
+        $('#<%= txbDose.ClientID %>').keypress(function (e) {
+            var a = [];
+            var k = e.which;
+
+            for (i = 48; i < 58; i++)
+                a.push(i);
+
+            // allow a max of 1 decimal point to be entered
+
+            if (!(a.indexOf(k) >= 0)) e.preventDefault();
+
+
+        });
     </script>
 
 

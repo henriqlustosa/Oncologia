@@ -100,6 +100,17 @@ public partial class Prescricao_EditarCadastroPreQuimio : System.Web.UI.Page
 
         Response.Redirect("~/Prescricao/CadastroPreQuimio.aspx");
     }
+    protected void btnCancelar_Click(object sender, EventArgs e)
+    {
+
+        
+
+
+
+        ClearInputs(Page.Controls);// limpa os textbox
+
+        Response.Redirect("~/Prescricao/CadastroPreQuimio.aspx");
+    }
 
     void ClearInputs(ControlCollection ctrls)
     {

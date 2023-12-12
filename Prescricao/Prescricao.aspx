@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <meta http-equiv="refresh" content="1000" />
 
-   
+
     <link href="../js_datepicker/jquery-ui.css" rel="stylesheet" />
     <style type="text/css">
         fieldset.scheduler-border {
@@ -69,15 +69,15 @@
         }
     </style>
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-        <scripts>
-            
-          
-          
-            <asp:ScriptReference Path="../js_datepicker/jquery-ui.js" />
-            
-        
+        <Scripts>
 
-        </scripts>
+
+
+            <asp:ScriptReference Path="../js_datepicker/jquery-ui.js" />
+
+
+
+        </Scripts>
     </asp:ScriptManagerProxy>
 
 
@@ -109,6 +109,24 @@
 
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
+                        DDD
+                    </label>
+                    <asp:TextBox ID="txbDdd" runat="server" class="form-control"></asp:TextBox>
+                </div>
+
+                <div class="col-md-5 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Telefone
+                    </label>
+                    <asp:TextBox ID="txbTelefone" runat="server" class="form-control"></asp:TextBox>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
                         Nascimento</label>
                     <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc"></asp:TextBox>
                 </div>
@@ -132,6 +150,7 @@
                     <asp:TextBox ID="txbPais" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
+            <br />
             <div class="nav justify-content-md-center">
                 <input id="btnCalculo" type="button" value="Cálculo da Superfície Corpórea" onclick="mostraCalculo()"
                     class="btn btn-outline-info btn-block" />
@@ -177,7 +196,7 @@
 
                         <div id="calc_input">
                             <center>
-                                <span class="medCalcFontIO">Input
+                                <span class="medCalcFontIO">Entrada
                                 </span>
                                 <br />
                                 &nbsp;<br />
@@ -189,7 +208,7 @@
                                         <td align="left" valign="top">
                                             <select name="Height_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Height">
                                                 <option value="1|0|cm" selected="selected">cm</option>
-                                               
+
                                             </select></td>
                                     </tr>
 
@@ -199,9 +218,9 @@
                                             <input type="text" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" /></td>
                                         <td align="left" valign="top">
                                             <select name="Weight_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Weight">
-                                                
+
                                                 <option value="1|0|kg" selected="selected">kg</option>
-                                              
+
                                             </select></td>
                                     </tr>
 
@@ -215,7 +234,7 @@
                         &nbsp;<br />
                         <div id="calc_result">
                             <center>
-                                <span class="medCalcFontIO">Result</span>
+                                <span class="medCalcFontIO">Resultado</span>
 
                                 <br />
                                 &nbsp;<br />
@@ -230,9 +249,9 @@
                                             <input type="text" name="BSA_param" size="6" aria-readonly="true" aria-label="This output box will display the calculated value BSA" /></td>
                                         <td valign="top" align="left"><span class="medCalcFontResultParam">
                                             <select name="BSA_unit" onchange="BodySurfaceArea_fx();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the result value BSA">
-                                          
+
                                                 <option value="1|0|sqm" selected="selected">sqm</option>
-                                          
+
                                             </select>
                                         </span></td>
                                     </tr>
@@ -408,39 +427,39 @@
 
 
 
-            <div class="nav justify-content-md-center">
-                <input id="btnViaDeAcesso" type="button" value="Vias de Acesso" onclick="mostraViasDeAcesso()" class="btn btn-outline-info btn-block" />
-            </div>
-            <div class="x_content">
-                <div id="divViasDeAcesso" style="display: none;">
-                    <div class="x_panel">
-                        <div class="col-5">
-                            Vias de Acesso:
+                <div class="nav justify-content-md-center">
+                    <input id="btnViaDeAcesso" type="button" value="Vias de Acesso" onclick="mostraViasDeAcesso()" class="btn btn-outline-info btn-block" />
+                </div>
+                <div class="x_content">
+                    <div id="divViasDeAcesso" style="display: none;">
+                        <div class="x_panel">
+                            <div class="col-5">
+                                Vias de Acesso:
+                            </div>
+                            <div>
+
+                                <asp:CheckBoxList ID="cblViasDeAcesso" RepeatDirection="Horizontal" runat="server" Font-Size="Large" Width="1000"></asp:CheckBoxList>
+                            </div>
+
+
+
                         </div>
-                        <div>
-
-                            <asp:CheckBoxList ID="cblViasDeAcesso" RepeatDirection="Horizontal" runat="server" Font-Size="Large" Width="1000"></asp:CheckBoxList>
-                        </div>
-
-
-
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+                </div>
+            </div>
         </div>
-  <div class="row">
-      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-          <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
-      </div>
-  </div>
-    </div>
     <!-- Large modal -->
 
 
     <script type="text/javascript">
 
         window.addEventListener('keydown', function (e) {
-            
+
             if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
             else return true;
         });
@@ -715,161 +734,167 @@
 
             $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
-            $("#<%=txbDtInicio.ClientID%>").datepicker({
-                dateFormat: 'dd/mm/yy',
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                nextText: 'Proximo',
-                prevText: 'Anterior'
+                $("#<%=txbDtInicio.ClientID%>").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                });
+
+
+                $("#<%=txbDtInicio.ClientID%>").datepicker();
+
+                $("#<%=txbDtTermino.ClientID%>").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                });
+
+
+                $("#<%=txbDtTermino.ClientID%>").datepicker();
+
+
+                $("#<%=txbDtTermino.ClientID%>").mask("99/99/9999");
+
+                $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
+                $("#<%=txbCiclos.ClientID%>").mask("999");
+                $("#<%=txbIntervalos.ClientID%>").mask("999");
+
+
+                $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+
+
+                    source: function (request, response) {
+                        var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
+                        $.ajax({
+                            url: "Prescricao.aspx/GetNomeDePacientes",
+                            data: JSON.stringify(param),
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataFilter: function (data) { return data; },
+                            success: function (data) {
+                                console.log(JSON.stringify(data.d));
+
+                                response($.map(data.d, function (item) {
+
+                                    return {
+
+                                        label: item.nm_nome,
+                                        value: item.nm_nome,
+
+
+                                        prontuario: item.cd_prontuario,
+                                        nr_ddd_fone: item.nr_ddd_fone,
+                                        nr_fone: item.nr_fone,
+                                        dt_nascimento: item.dt_data_nascimento,
+                                        idade: item.nr_idade,
+                                        sexo: item.in_sexo,
+                                        nome_pai_mae: item.nm_mae,
+
+                                    }
+                                }))
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                var err = eval("(" + XMLHttpRequest.responseText + ")");
+                                alert(err.Message)
+                            }
+                        });
+                    },
+
+
+                    select: function (e, i) {
+
+
+
+
+                        $("[id$=txbProntuario").val(i.item.prontuario);
+                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                        $("[id$=txbTelefone").val(i.item.nr_fone);
+
+                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                        $("[id$=txbIdade").val(i.item.idade);
+                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                        $("[id$=txbPais").val(i.item.nome_pai_mae);
+                    },
+
+                    minLength: 1 //This is the Char length of inputTextBox  
+
+
+                });
+
+
+                $("#<%= txbProntuario.ClientID %>").autocomplete({
+
+                    source: function (request, response) {
+                        var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
+                        $.ajax({
+                            url: "Prescricao.aspx/GetNomeDePacientesPoRh",
+                            data: JSON.stringify(param),
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataFilter: function (data) { return data; },
+                            success: function (data) {
+                                console.log(JSON.stringify(data));
+
+                                response($.map(data, function (item) {
+
+                                    return {
+
+                                        label: item.cd_prontuario,
+                                        value: item.cd_prontuario,
+
+
+                                        nome_paciente: item.nm_nome,
+                                        nr_ddd_fone: item.nr_ddd_fone,
+                                        nr_fone: item.nr_fone,
+                                        dt_nascimento: item.dt_data_nascimento,
+                                        idade: item.nr_idade,
+                                        sexo: item.in_sexo,
+                                        nome_pai_mae: item.nm_mae,
+
+                                    }
+                                }))
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                var err = eval("(" + XMLHttpRequest.responseText + ")");
+                                alert(err.Message)
+                            }
+                        });
+                    },
+
+
+                    select: function (e, i) {
+
+
+
+
+                        $("[id$=txbProntuario").val(i.item.prontuario);
+                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                        $("[id$=txbTelefone").val(i.item.nr_fone);
+                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                        $("[id$=txbIdade").val(i.item.idade);
+                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                        $("[id$=txbPais").val(i.item.nome_pai_mae);
+                    },
+                    minLength: 1 //This is the Char length of inputTextBox    
+
+                });
             });
-
-
-            $("#<%=txbDtInicio.ClientID%>").datepicker();
-
-            $("#<%=txbDtTermino.ClientID%>").datepicker({
-                dateFormat: 'dd/mm/yy',
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                nextText: 'Proximo',
-                prevText: 'Anterior'
-            });
-
-
-            $("#<%=txbDtTermino.ClientID%>").datepicker();
-
-
-            $("#<%=txbDtTermino.ClientID%>").mask("99/99/9999");
-
-            $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
-            $("#<%=txbCiclos.ClientID%>").mask("999");
-            $("#<%=txbIntervalos.ClientID%>").mask("999");
-
-
-            $("#<%= txbNomePaciente.ClientID %>").autocomplete({
-                
-
-                source: function (request, response) {
-                    var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
-                    $.ajax({
-                        url: "Prescricao.aspx/GetNomeDePacientes",
-                        data: JSON.stringify(param),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
-                            console.log(JSON.stringify(data.d));
-
-                            response($.map(data.d, function (item) {
-
-                                return {
-
-                                    label: item.nm_nome,
-                                    value: item.nm_nome,
-
-
-                                    prontuario: item.cd_prontuario,
-                                    dt_nascimento: item.dt_data_nascimento,
-                                    idade: item.nr_idade,
-                                    sexo: item.in_sexo,
-                                    nome_pai_mae: item.nm_mae,
-
-                                }
-                            }))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var err = eval("(" + XMLHttpRequest.responseText + ")");
-                            alert(err.Message)
-                        }
-                    });
-                },
-
-
-                select: function (e, i) {
-
-
-
-
-                    $("[id$=txbProntuario").val(i.item.prontuario);
-
-                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                    $("[id$=txbIdade").val(i.item.idade);
-                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                    $("[id$=txbPais").val(i.item.nome_pai_mae);
-                },
-               
-                minLength: 1 //This is the Char length of inputTextBox  
-                   
-
-            });
-       
-
-        $("#<%= txbProntuario.ClientID %>").autocomplete({
-
-                source: function (request, response) {
-                    var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
-                    $.ajax({
-                        url: "Prescricao.aspx/GetNomeDePacientesPoRh",
-                        data: JSON.stringify(param),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
-                            console.log(JSON.stringify(data));
-
-                            response($.map(data, function (item) {
-
-                                return {
-
-                                    label: item.cd_prontuario,
-                                    value: item.cd_prontuario,
-
-
-                                    nome_paciente: item.nm_nome,
-                                    dt_nascimento: item.dt_data_nascimento,
-                                    idade: item.nr_idade,
-                                    sexo: item.in_sexo,
-                                    nome_pai_mae: item.nm_mae,
-
-                                }
-                            }))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var err = eval("(" + XMLHttpRequest.responseText + ")");
-                            alert(err.Message)
-                        }
-                    });
-                },
-
-
-                select: function (e, i) {
-
-
-
-
-                    $("[id$=txbProntuario").val(i.item.prontuario);
-
-                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                    $("[id$=txbIdade").val(i.item.idade);
-                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                    $("[id$=txbPais").val(i.item.nome_pai_mae);
-                },
-                minLength: 1 //This is the Char length of inputTextBox    
-
-            });
-        });
 
     </script>
     <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
     <script src="../js/jquery.mask.js" type="text/javascript"></script>
- 
 </asp:Content>

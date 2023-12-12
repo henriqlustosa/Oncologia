@@ -21,15 +21,15 @@
                 <div class="clearfix">
                 </div>
             </div>
-             <div class="row">
-     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-         <label>
-             Id PreQuimio:
-         </label>
-          <asp:TextBox ID="txbId" class="form-control numeric" runat="server" Enabled="false" />
-         
-     </div>
- </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Id PreQuimio:
+                    </label>
+                    <asp:TextBox ID="txbId" class="form-control numeric" runat="server" Enabled="false" />
+
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -91,7 +91,7 @@
                     <label>
                         Diluicao
                     </label>
-                    <asp:TextBox ID="txbDiluicao" class="form-control numeric" runat="server"  />
+                    <asp:TextBox ID="txbDiluicao" class="form-control numeric" runat="server" />
                 </div>
             </div>
 
@@ -102,22 +102,22 @@
                     <asp:DropDownList ID="ddlQuimio" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-                                      <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlQuimio"
-  InitialValue="" runat="server" ForeColor="Red" />
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlQuimio"
+                        InitialValue="" runat="server" ForeColor="Red" />
 
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Tempo de Infusão
                     </label>
-                  
-               
-                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server"  />
-                     </div>
-                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                             <label>
-       Unidade
-   </label>
+
+
+                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server" />
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Unidade
+                    </label>
                     <asp:DropDownList ID="ddlUnidadeTempoDeInfusao" runat="server" class="form-control">
                         <asp:ListItem Value="0">min</asp:ListItem>
                         <asp:ListItem Value="1">hr</asp:ListItem>
@@ -125,23 +125,53 @@
 
 
                 </div>
-        </div>
+            </div>
 
 
 
-        <div class="row">
+            <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+
+                    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" OnClick="btnCancelar_Click" />
                 </div>
             </div>
         </div>
-      
+
     </div>
 
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
 
-    
+    <script type="text/javascript">
+
+        $('#<%= txbQuantidade.ClientID %>').keypress(function (e) {
+            var a = [];
+            var k = e.which;
+
+            for (i = 48; i < 58; i++)
+                a.push(i);
+
+            // allow a max of 1 decimal point to be entered
+
+            if (!(a.indexOf(k) >= 0)) e.preventDefault();
+
+
+        });
+        $('#<%= txbTempoDeInfusao.ClientID %>').keypress(function (e) {
+            var a = [];
+            var k = e.which;
+
+            for (i = 48; i < 58; i++)
+                a.push(i);
+
+            // allow a max of 1 decimal point to be entered
+
+            if (!(a.indexOf(k) >= 0)) e.preventDefault();
+
+
+        });
+    </script>
 
 </asp:Content>

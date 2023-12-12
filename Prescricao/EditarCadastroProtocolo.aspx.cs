@@ -93,7 +93,17 @@ public partial class Prescricao_EditarCadastroProtocolo : System.Web.UI.Page
         ClearInputs(Page.Controls);// limpa os textbox
         Response.Redirect("~/Prescricao/CadastroProtocolo.aspx");
     }
+    protected void btnCancelar_Click(object sender, EventArgs e)
+    {
 
+
+
+
+
+        ClearInputs(Page.Controls);// limpa os textbox
+
+        Response.Redirect("~/Prescricao/CadastroProtocolo.aspx");
+    }
     void ClearInputs(ControlCollection ctrls)
     {
         foreach (Control ctrl in ctrls)

@@ -1,0 +1,117 @@
+﻿html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+}
+
+table{
+    margin:5px;
+}
+.img-background {
+    background-size: cover;
+    background-image: url("../img/hspm-pb.jpg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+form {
+    padding: 30px;
+    border: 2px solid #29336b;
+    width:400px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    height: auto;
+    margin:auto;
+}
+
+.title-login {
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    color: #3b7b92;
+    font-size: 1.5rem;
+}
+
+.form-signin {
+    max-width: 350px;
+    width: 100%;
+    padding: 15px;
+    margin: auto;
+}
+
+    .form-signin .checkbox {
+        padding-top: 10px;
+        font-weight: 400;
+    }
+
+.txb-lbl {
+    display: inline-flex;
+    justify-content: center;
+}
+
+.txb-login{
+    width:100px;
+}
+
+.checkbox-login {
+    padding-top: 10px 0;
+}
+
+.form-signin .form-floating:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.button-login {
+    padding: 10px 15px;
+    border:2px solid #3b7b92;
+    border-radius: 10px;
+    background-color: #29336b;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-size: larger;
+}
+
+    .button-login:hover {
+        border: 2px solid #29336b;
+        background-color: #3b7b92;
+        color: #ffffff;
+        transition: 2ms;
+    }
+
+.img-login {
+    width: 100%;
+}
+
+@media (max-width: 1440px) {
+    .title-login {
+        font-size: 1.2rem;
+    }
+
+    .form-signin {
+        max-width: 350px;
+        padding: 10px;
+    }
+
+    .button-login {
+        font-size: 1rem;
+    }
+}

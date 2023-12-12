@@ -1,78 +1,87 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8" content="IE=edge" />
-    <meta http-equiv="X-UA-Compatible" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Prescrição - HSPM</title>
-    <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet" type="text/css" />
-    <!-- Custom Theme Style -->
-    <link href="build/css/custom.css" rel="stylesheet" type="text/css" />
+<head runat="server">
+    <link href="css/login.css" rel="stylesheet" />
+    <link href="bootstrap5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="img/Logo_HSPM_.png" type="image/x-icon" />
+    <title>Login - Chamado Informática</title>
 </head>
-<body class="login" style="background-image: url('imagens/stethoscope1.jpg'); background-attachment: fixed">
-    <div>
-        <div class="login_wrapper">
-            <div class="form">
-                <section class="login_content">
-                 
-            <form id="form1" runat="server">
-             <asp:Image ID="Image1" runat="server" ImageUrl="imagens/HSPM_LOGO.jpg"></asp:Image>
-              
-              <p></p>
-              <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Home.aspx"  Width="100%">
-                  <LayoutTemplate>
-                  
-                    <div class="col-md-12 form-group">
-                        <asp:TextBox ID="UserName" runat="server" class="form-control has-feedback-left" placeholder="Usuário"></asp:TextBox>
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                                              <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
-                                                  ControlToValidate="UserName" ErrorMessage="User Name is required." 
-                                                  ToolTip="User Name is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                
-                      </div>
-                          
-              <div class="col-md-12 form-group">
-              <asp:TextBox ID="Password" runat="server" class="form-control has-feedback-left"   TextMode="Password" placeholder="Senha"></asp:TextBox>
-              <span class="fa fa-lock form-control-feedback left" aria-hidden="true"></span>                               
-                                              <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
-                                                  ControlToValidate="Password" ErrorMessage="Password is required." 
-                                                  ToolTip="Password is required." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
-                                    
-                
-              </div>
-              <div align="center" style="color:Red;"><asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
-                                        </div>
-              <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-               <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Entrar" 
-                                                  ValidationGroup="Login1" class="btn btn-success" />
-              
-              </div>
-                  </LayoutTemplate>
-               </asp:Login>
-              <div class="clearfix"></div>
+<body class="text-center img-background">
+    <form id="form1" runat="server">
+        <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/Home.aspx">
+            <LayoutTemplate>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                <h4 class="title-login">Sistema Oncologia</h4>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <br />
+                                <tr class="txb-lbl">
+                                    <div class="form-floating">
+                                        <td>
+                                            <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">Usuário:  &nbsp</asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="UserName" runat="server" CssClass="form-control txb-login">
+                                            </asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="O Nome do Usuário é obrigatório." ToolTip="O Nome do Usuário é obrigatório." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                                        </td>
+                                    </div>
+                                </tr>
+                                <tr class="txb-lbl">
+                                    <div class="form-floating">
+                                        <td>
+                                            <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Senha:  &nbsp &nbsp </asp:Label>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox ID="Password" runat="server" CssClass="form-control txb-login" TextMode="Password"></asp:TextBox>
+                                            <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" ErrorMessage="A senha é obrigatória." ToolTip="A senha é obrigatória." ValidationGroup="Login1">*</asp:RequiredFieldValidator>
+                                        </td>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="mb-3 checkbox-login">
+                                        <td>
+                                            <%--<asp:CheckBox ID="RememberMe" runat="server" Text=" &nbsp Lembrar na próxima vez." />--%>
+                                        </td>
+                                    </div>
+                                </tr>
 
-              <div class="separator">
-               
-                <div class="clearfix"></div>
-                <br />
+                                <tr>
+                                    <td align="center" colspan="2" style="color: Red;">
+                                        <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
+                                    </td>
+                                </tr>
 
-                <div>
-                  <p>©2020 HSPM - Hospital do Servidor Público Municipal</p>
-                </div>
-              </div>
-            </form>
-          </section>
-            </div>
-        </div>
-    </div>
+                                <tr>
+                                    <td>
+                                        <asp:Button ID="LoginButton" runat="server" class="w-100 btn-lg button-login " CommandName="Login" Text="Entrar" ValidationGroup="Login1" />
+                                    </td>
+                                </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <img class="img-login" src="img/Logo_HSPM_Pref-01.jpg" />
+                            </td>
+                        </tr>
+                    </tfoot>
+
+                    </td>
+                    </tr>
+                </table>
+                <script src="bootstrap5/dist/js/bootstrap.min.js"></script>
+            </LayoutTemplate>
+        </asp:Login>
+    </form>
 </body>
 </html>

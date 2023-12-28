@@ -86,7 +86,7 @@ public partial class Prescricao_CadastroProtocolo : System.Web.UI.Page
         protocolo.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
         protocolo.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
         protocolo.nome_Usuario = User.Identity.Name.ToUpper(); ;
-        protocolo.dose = Convert.ToInt32(txbDose.Text);
+        protocolo.dose = Convert.ToDecimal(txbDose.Text);
         protocolo.unidadeDose = ddlUnidadeDose.SelectedItem.ToString();
         protocolo.diluicao = txbDiluicao.Text;
         protocolo.tempoDeInfusao =txbTempoDeInfusao.Text;
@@ -98,6 +98,7 @@ public partial class Prescricao_CadastroProtocolo : System.Web.UI.Page
         string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+        Response.Redirect("~/Prescricao/CadastroProtocolo.aspx");
 
         ClearInputs(Page.Controls);// limpa os textbox
     }

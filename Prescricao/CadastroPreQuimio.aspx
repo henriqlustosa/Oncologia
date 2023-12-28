@@ -214,7 +214,7 @@
   
  <script type="text/javascript">
      
-     $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,5},9{0,2}", greedy: false });
+     $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
    
         $(document).ready(function () {
             $.noConflict();

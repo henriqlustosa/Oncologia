@@ -95,7 +95,7 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
         {
             txbQuantidade.Text = "0";
         }
-        preQuimioDetalhe.quantidade = Convert.ToInt32(txbQuantidade.Text);
+        preQuimioDetalhe.quantidade = Convert.ToDecimal(txbQuantidade.Text);
         preQuimioDetalhe.unidadeQuantidade = ddlUnidadeQuantidade.SelectedItem.ToString();
         preQuimioDetalhe.diluicao = txbDiluicao.Text;
     
@@ -113,6 +113,7 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
         string mensagem = MedicacaoPreQuimioDetalhelDAO.GravarPreQuimio(preQuimioDetalhe);
 
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+        Response.Redirect("~/Prescricao/CadastroPreQuimio.aspx");
 
         ClearInputs(Page.Controls);// limpa os textbox
     }

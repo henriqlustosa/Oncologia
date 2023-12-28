@@ -237,7 +237,7 @@ public class ProtocolosDAO
                 cmm.Parameters.Add("@cod_PreQuimio", SqlDbType.Int).Value = result.cod_PreQuimio;
                 cmm.Parameters.Add("@cod_ViaDeAdministracao", SqlDbType.Int).Value = result.cod_ViaDeAdministracao;
                 cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = result.nome_Usuario;
-                cmm.Parameters.Add("@dose", SqlDbType.Int).Value = result.dose;
+                cmm.Parameters.Add("@dose", SqlDbType.Decimal).Value = result.dose;
                 cmm.Parameters.Add("@unidadeDose", SqlDbType.VarChar).Value = result.unidadeDose;
                 cmm.Parameters.Add("@diluicao", SqlDbType.VarChar).Value = result.diluicao;
                 cmm.Parameters.Add("@tempoDeInfusao", SqlDbType.VarChar).Value = result.tempoDeInfusao;

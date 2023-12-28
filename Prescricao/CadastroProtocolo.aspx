@@ -3,7 +3,13 @@
     Title="Protocolo - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+        <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
 
+    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 
@@ -108,6 +114,7 @@
                     <asp:DropDownList ID="ddlUnidadeTempoDeInfusao" runat="server" class="form-control">
                         <asp:ListItem Value="0">min</asp:ListItem>
                         <asp:ListItem Value="1">hr</asp:ListItem>
+                        <asp:ListItem Value="2"> - </asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -246,7 +253,7 @@
 
 
         });
-     $('#<%= txbDose.ClientID %>').inputmask({ 'mask': "9{0,5},9{0,2}", greedy: false });
+     $('#<%= txbDose.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
  </script>
 
 

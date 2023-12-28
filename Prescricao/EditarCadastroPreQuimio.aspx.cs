@@ -47,9 +47,24 @@ public partial class Prescricao_EditarCadastroPreQuimio : System.Web.UI.Page
             ddlQuimio.DataBind();
             //ddlQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
             ddlQuimio.SelectedValue = preQuimio.cod_Quimio.ToString();
-            txbQuantidade.Text = preQuimio.quantidade.ToString();
-            txbDiluicao.Text = preQuimio.diluicao.ToString();
-            txbTempoDeInfusao.Text = preQuimio.tempoDeInfusao.ToString();
+
+
+            if (String.IsNullOrEmpty(preQuimio.quantidade.ToString()))
+                txbQuantidade.Text = "";
+            else
+                txbQuantidade.Text = preQuimio.quantidade.ToString();
+
+            if (String.IsNullOrEmpty(preQuimio.diluicao))
+                txbDiluicao.Text = "";
+            else
+                txbDiluicao.Text = preQuimio.diluicao.ToString();
+
+            if (String.IsNullOrEmpty(preQuimio.tempoDeInfusao.ToString()))
+                txbTempoDeInfusao.Text = "";
+            else
+                txbTempoDeInfusao.Text = preQuimio.tempoDeInfusao.ToString();
+
+
           
             if (preQuimio.unidadeQuantidade == "mg") {
                 ddlUnidadeQuantidade.SelectedIndex = 0;
@@ -83,7 +98,7 @@ public partial class Prescricao_EditarCadastroPreQuimio : System.Web.UI.Page
         preQuimioDetalhe.cod_Quimio = Convert.ToInt32(ddlQuimio.SelectedValue);
         preQuimioDetalhe.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
         preQuimioDetalhe.nome_Usuario = User.Identity.Name.ToUpper(); ;
-        preQuimioDetalhe.quantidade = Convert.ToInt32(txbQuantidade.Text);
+        preQuimioDetalhe.quantidade = Convert.ToDecimal(txbQuantidade.Text);
         preQuimioDetalhe.unidadeQuantidade = ddlUnidadeQuantidade.SelectedItem.ToString();
         preQuimioDetalhe.diluicao = txbDiluicao.Text;
         preQuimioDetalhe.tempoDeInfusao = Convert.ToInt32(txbTempoDeInfusao.Text);

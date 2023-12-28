@@ -21,7 +21,7 @@ public class RelatorioProtocolo
     public string desc_pre_quimio { get; set; }
     public string desc_via_de_administracao { get; set; }
     public string nome_Usuario { get; set; }
-    public int dose { get; set; }
+    public decimal dose { get; set; }
     public string unidadeDose { get; set; }
     public string diluicao { get; set; }
     public string tempoDeInfusao { get; set; }

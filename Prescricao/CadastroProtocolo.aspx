@@ -122,7 +122,7 @@
  
         <div class="x_panel">
             <div class="x_title">
-                <h2>Lista de PreQuimio</h2>
+                <h2>Lista de Protocolo</h2>
                 <div class="clearfix">
                 </div>
             </div>
@@ -206,8 +206,11 @@
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
-
-    <script type="text/javascript">
+ <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
+  
+ <script type="text/javascript">
+     
+  
         $(document).ready(function () {
             $.noConflict();
 
@@ -243,7 +246,8 @@
 
 
         });
-    </script>
+     $('#<%= txbDose.ClientID %>').inputmask({ 'mask': "9{0,5},9{0,2}", greedy: false });
+ </script>
 
 
 

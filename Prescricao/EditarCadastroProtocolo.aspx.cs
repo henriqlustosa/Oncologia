@@ -43,9 +43,25 @@ public partial class Prescricao_EditarCadastroProtocolo : System.Web.UI.Page
             ddlPreQuimio.SelectedValue = protocolo.cod_PreQuimio.ToString();
 
            
-            txbDose.Text = protocolo.dose.ToString();
-            txbDiluicao.Text = protocolo.diluicao.ToString();
-            txbTempoDeInfusao.Text = protocolo.tempoDeInfusao.ToString();
+           
+
+
+            if (String.IsNullOrEmpty(protocolo.dose.ToString()))
+                txbDose.Text = "";
+            else
+                txbDose.Text = protocolo.dose.ToString();
+
+            if (String.IsNullOrEmpty(protocolo.diluicao))
+                txbDiluicao.Text = "";
+            else
+                txbDiluicao.Text = protocolo.diluicao.ToString();
+
+            if (String.IsNullOrEmpty(protocolo.tempoDeInfusao ))
+                txbTempoDeInfusao.Text = "";
+            else
+                txbTempoDeInfusao.Text = protocolo.tempoDeInfusao.ToString();
+
+           
 
             if (protocolo.unidadeDose == "mg")
             {
@@ -77,7 +93,7 @@ public partial class Prescricao_EditarCadastroProtocolo : System.Web.UI.Page
         protocolo.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
         protocolo.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
         protocolo.nome_Usuario = User.Identity.Name.ToUpper(); ;
-        protocolo.dose = Convert.ToInt32(txbDose.Text);
+        protocolo.dose = Convert.ToDecimal(txbDose.Text);
         protocolo.unidadeDose = ddlUnidadeDose.SelectedItem.ToString();
         protocolo.diluicao = txbDiluicao.Text;
         protocolo.tempoDeInfusao =txbTempoDeInfusao.Text;

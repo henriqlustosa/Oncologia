@@ -10,9 +10,10 @@
         @font-face
         {
             font-family: 'BebasNeueRegular';
+         
              src: url('../build/relogio/BebasNeue-Regular.ttf');
            /* src: url('../build/relogio/BebasNeue-webfont.eot');
-            src: url('../build/relogio/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'), url('../build/relogio/BebasNeue-webfont.woff') format('woff'), url('../build/relogio/BebasNeue-webfont.ttf') format('truetype'), url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');*/
+            src: url('../build/relogio/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'), url('../build/relogio/BebasNeue-webfont.woff') format('woff'), url('../build/relogio/BebasNeue-webfont.ttf') format('truetype'), url('BebasNeue-webfont.svg#BebasNeueRegular') format('svg');*/*/
             font-weight: normal;
             font-style: normal;
         }

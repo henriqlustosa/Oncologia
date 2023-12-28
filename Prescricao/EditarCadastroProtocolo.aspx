@@ -124,10 +124,19 @@
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
+ <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
+  
+ <script type="text/javascript">
+     
+     <script type="text/javascript">
 
-    <script type="text/javascript">
+         $('#<%= txbDose.ClientID %>').inputmask({ 'mask': "9{0,5},9{0,2}", greedy: false });
+   
 
-</script>
+ 
+ </script>
+
+
 
 
 

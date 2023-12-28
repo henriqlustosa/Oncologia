@@ -21,7 +21,7 @@ public class MedicacaoPreQuimioDetalhe
     public int cod_Quimio { get; set; }
     public int cod_ViaDeAdministracao { get; set; }
     public string nome_Usuario { get; set; }
-    public int quantidade { get; set; }
+    public decimal quantidade { get; set; }
     public string unidadeQuantidade { get; set; }
     public string diluicao { get; set; }
     public int tempoDeInfusao { get; set; }

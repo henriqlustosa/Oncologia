@@ -25,7 +25,7 @@ public class Protocolos
     public string status { get; set; }
 
 
-    public int dose { get; set; }
+    public decimal dose { get; set; }
     public string unidadeDose { get; set; }
     public string diluicao { get; set; }
     public string tempoDeInfusao { get; set; }

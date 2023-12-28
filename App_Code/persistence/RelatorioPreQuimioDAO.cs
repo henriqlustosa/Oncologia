@@ -73,7 +73,7 @@ public class RelatorioPreQuimioDAO
                     itemLista.desc_quimio = dr1.IsDBNull(3) ? "" : dr1.GetString(3);
                     itemLista.desc_via_de_administracao = dr1.IsDBNull(4) ? "" : dr1.GetString(4);
                     itemLista.nome_Usuario = dr1.IsDBNull(5) ? "" : dr1.GetString(5);
-                    itemLista.quantidade = dr1.GetInt32(6);
+                    itemLista.quantidade = dr1.GetDecimal(6);
                     itemLista.unidadeQuantidade = dr1.IsDBNull(7) ? "" : dr1.GetString(7);
                     itemLista.diluicao = dr1.IsDBNull(8) ? "" : dr1.GetString(8);
                     itemLista.tempoDeInfusao = dr1.GetInt32(9);

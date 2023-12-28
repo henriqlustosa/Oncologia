@@ -127,7 +127,7 @@ public class MedicacaoPreQuimioDetalhelDAO
                     preQuimio.cod_ViaDeAdministracao = dr1.GetInt32(4);
 
                     preQuimio.nome_Usuario = dr1.GetString(5);
-                    preQuimio.quantidade = dr1.GetInt32(6);
+                    preQuimio.quantidade = dr1.GetDecimal(6);
                     preQuimio.unidadeQuantidade = dr1.GetString(7);
                     preQuimio.diluicao = dr1.GetString(8);
                     preQuimio.tempoDeInfusao = dr1.GetInt32(9);
@@ -186,7 +186,7 @@ public class MedicacaoPreQuimioDetalhelDAO
                 cmm.Parameters.Add("@cod_Quimio", SqlDbType.Int).Value = result.cod_Quimio;
                 cmm.Parameters.Add("@cod_ViaDeAdministracao", SqlDbType.Int).Value = result.cod_ViaDeAdministracao;
                 cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = result.nome_Usuario;
-                cmm.Parameters.Add("@quantidade", SqlDbType.Int).Value = result.quantidade;
+                cmm.Parameters.Add("@quantidade", SqlDbType.Decimal).Value = result.quantidade;
                 cmm.Parameters.Add("@unidadeQuantidade", SqlDbType.VarChar).Value = result.unidadeQuantidade;
                 cmm.Parameters.Add("@diluicao", SqlDbType.VarChar).Value = result.diluicao;
                 cmm.Parameters.Add("@tempoDeInfusao", SqlDbType.VarChar).Value = result.tempoDeInfusao;

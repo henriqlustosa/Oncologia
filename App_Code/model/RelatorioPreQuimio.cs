@@ -21,7 +21,7 @@ public class RelatorioPreQuimio
     public string desc_quimio { get; set; }
     public string desc_via_de_administracao { get; set; }
     public string nome_Usuario { get; set; }
-    public int quantidade { get; set; }
+    public decimal quantidade { get; set; }
     public string unidadeQuantidade { get; set; }
     public string diluicao { get; set; }
     public int tempoDeInfusao { get; set; }

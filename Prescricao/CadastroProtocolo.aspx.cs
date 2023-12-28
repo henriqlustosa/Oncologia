@@ -66,7 +66,7 @@ public partial class Prescricao_CadastroProtocolo : System.Web.UI.Page
             int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
             GridViewRow row = GridView1.Rows[index];
 
-            PreQuimioDAO.deletarPreQuimio(_id_pedido);
+            ProtocolosDAO.deletarProtocolo(_id_pedido);
             Response.Redirect("~/Prescricao/CadastroProtocolo.aspx");
 
             //string _status = row.Cells[7].Text;

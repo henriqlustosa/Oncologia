@@ -143,22 +143,13 @@
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
-
+    <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
+  
     <script type="text/javascript">
+        
+        $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,5},9{0,2}", greedy: false });
+       
 
-        $('#<%= txbQuantidade.ClientID %>').keypress(function (e) {
-            var a = [];
-            var k = e.which;
-
-            for (i = 48; i < 58; i++)
-                a.push(i);
-
-            // allow a max of 1 decimal point to be entered
-
-            if (!(a.indexOf(k) >= 0)) e.preventDefault();
-
-
-        });
         $('#<%= txbTempoDeInfusao.ClientID %>').keypress(function (e) {
             var a = [];
             var k = e.which;

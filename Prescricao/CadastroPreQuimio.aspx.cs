@@ -84,17 +84,27 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
-        
+
         MedicacaoPreQuimioDetalhe preQuimioDetalhe = new MedicacaoPreQuimioDetalhe();
         preQuimioDetalhe.cod_Medicacao = Convert.ToInt32(ddlMedicacao.SelectedValue);
         preQuimioDetalhe.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
         preQuimioDetalhe.cod_Quimio = Convert.ToInt32(ddlQuimio.SelectedValue);
         preQuimioDetalhe.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
-        preQuimioDetalhe.nome_Usuario = User.Identity.Name.ToUpper(); ;
+        preQuimioDetalhe.nome_Usuario = User.Identity.Name.ToUpper();
+        if (string.IsNullOrEmpty(txbQuantidade.Text))
+        {
+            txbQuantidade.Text = "0";
+        }
         preQuimioDetalhe.quantidade = Convert.ToInt32(txbQuantidade.Text);
         preQuimioDetalhe.unidadeQuantidade = ddlUnidadeQuantidade.SelectedItem.ToString();
         preQuimioDetalhe.diluicao = txbDiluicao.Text;
-        preQuimioDetalhe.tempoDeInfusao = Convert.ToInt32(txbTempoDeInfusao.Text);
+    
+
+        if (string.IsNullOrEmpty(txbTempoDeInfusao.Text))
+        {
+            txbTempoDeInfusao.Text = "0";
+        }
+        preQuimioDetalhe.tempoDeInfusao = Convert.ToInt32(txbTempoDeInfusao.Text) ;
         preQuimioDetalhe.unidadeTempoDeInfusao = ddlUnidadeTempoDeInfusao.SelectedItem.ToString();
         preQuimioDetalhe.dataCadastro = DateTime.Now;
         preQuimioDetalhe.status = "A";

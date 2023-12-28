@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Net.NetworkInformation;
+using CrystalDecisions.Enterprise;
+using System.Security.Cryptography;
 
 /// <summary>
 /// Summary description for ProtocolosDAO
@@ -126,7 +128,7 @@ public class ProtocolosDAO
                     protocolo.nome_Usuario = dr1.GetString(5);
                     protocolo.dataCadastro = dr1.GetDateTime(6);
                     protocolo.status = dr1.GetString(7);
-                    protocolo.dose = dr1.GetInt32(8);
+                    protocolo.dose = dr1.GetDecimal(8);
                     protocolo.unidadeDose = dr1.GetString(9);
                     protocolo.diluicao = dr1.GetString(10);
                     protocolo.tempoDeInfusao = dr1.GetString(11);
@@ -138,6 +140,56 @@ public class ProtocolosDAO
                 string error = ex.Message;
             }
             return protocolo;
+        }
+    }
+
+    public static void deletarProtocolo(int _id)
+    {
+        string msg = "";
+        string usuario = System.Web.HttpContext.Current.User.Identity.Name.ToUpper();
+        string _status = "D";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            SqlCommand cmm = new SqlCommand();
+            cmm.Connection = cnn;
+            cnn.Open();
+            SqlTransaction mt = cnn.BeginTransaction();
+            cmm.Transaction = mt;
+
+            try
+            {
+
+
+
+
+
+                // Atualiza tabela de pedido de MedicacaoPreQuimioDetalhe
+                cmm.CommandText = "UPDATE [dbo].[Protocolos]" +
+                        " SET status = @status " +
+                        " WHERE  Id = @Id";
+                cmm.Parameters.Add(new SqlParameter("@Id", _id));
+                cmm.Parameters.Add(new SqlParameter("@status", _status));
+                cmm.ExecuteNonQuery();
+
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+
+                //LogDAO.gravaLog("DELETE: CÓDIGO PEDIDO " + _id, "CAMPO STATUS", usuario);
+                msg = "Cadastro realizado com sucesso!";
+
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                msg = error;
+                try
+                {
+                    mt.Rollback();
+                }
+                catch (Exception ex1)
+                { }
+            }
         }
     }
 

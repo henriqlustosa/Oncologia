@@ -210,8 +210,12 @@
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
-
-    <script type="text/javascript">
+     <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
+  
+ <script type="text/javascript">
+     
+     $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,5},9{0,2}", greedy: false });
+   
         $(document).ready(function () {
             $.noConflict();
 
@@ -259,6 +263,6 @@
 
 
         });
-    </script>
+ </script>
 
 </asp:Content>

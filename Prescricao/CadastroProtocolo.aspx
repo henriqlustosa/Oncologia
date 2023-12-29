@@ -66,6 +66,9 @@
                         <asp:ListItem Value="1">mg/m² </asp:ListItem>
                         <asp:ListItem Value="2">mcg </asp:ListItem>
                         <asp:ListItem Value="3">mg/Kg </asp:ListItem>
+                           <asp:ListItem Value="4">AUC </asp:ListItem>
+                         <asp:ListItem Value="5">mg/m² 12/12h </asp:ListItem>
+                         <asp:ListItem Value="6">U </asp:ListItem>
                     </asp:DropDownList>
               
                 </div>

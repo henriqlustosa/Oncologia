@@ -62,6 +62,11 @@
                     <asp:DropDownList ID="ddlUnidadeDose" runat="server" class="form-control">
                         <asp:ListItem Value="0">mg</asp:ListItem>
                         <asp:ListItem Value="1">mg/m² </asp:ListItem>
+                        <asp:ListItem Value="2">mcg </asp:ListItem>
+                        <asp:ListItem Value="3">mg/Kg </asp:ListItem>
+                        <asp:ListItem Value="4">AUC </asp:ListItem>
+                        <asp:ListItem Value="5">mg/m² 12/12h </asp:ListItem>
+                         <asp:ListItem Value="6">U </asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -107,36 +112,35 @@
                     <asp:DropDownList ID="ddlUnidadeTempoDeInfusao" runat="server" class="form-control">
                         <asp:ListItem Value="0">min</asp:ListItem>
                         <asp:ListItem Value="1">hr</asp:ListItem>
+                        <asp:ListItem Value="2"> - </asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
 
         </div>
 
-    <div class="row">
-        <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-            <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
-            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" OnClick="btnCancelar_Click" />
+        <div class="row">
+            <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+                <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-warning" OnClick="btnCancelar_Click" />
+            </div>
         </div>
-    </div>
 
 
-    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+        <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
-    <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
- <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
-  
- 
-     
-     <script type="text/javascript">
-
-         $('#<%= txbDose.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
-   
-
- 
- </script>
+        <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
+        <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
 
 
+
+        <script type="text/javascript">
+
+            $('#<%= txbDose.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
+
+
+
+        </script>
 
 
 
@@ -161,27 +165,29 @@
 
 
 
-    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+
+
+        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
 
 
 
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        $('#<%= txbDose.ClientID %>').keypress(function (e) {
-            var a = [];
-            var k = e.which;
+            $('#<%= txbDose.ClientID %>').keypress(function (e) {
+                var a = [];
+                var k = e.which;
 
-            for (i = 48; i < 58; i++)
-                a.push(i);
+                for (i = 48; i < 58; i++)
+                    a.push(i);
 
-            // allow a max of 1 decimal point to be entered
+                // allow a max of 1 decimal point to be entered
 
-            if (!(a.indexOf(k) >= 0)) e.preventDefault();
+                if (!(a.indexOf(k) >= 0)) e.preventDefault();
 
 
-        });
+            });
 
-    </script>
+        </script>
 </asp:Content>
 

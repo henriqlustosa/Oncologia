@@ -112,7 +112,7 @@ public class PreQuimioDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[PreQuimio]";
+            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[PreQuimio] order by [descricao]";
 
             try
             {

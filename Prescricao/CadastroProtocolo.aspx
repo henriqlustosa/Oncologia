@@ -64,6 +64,8 @@
                     <asp:DropDownList ID="ddlUnidadeDose" runat="server" class="form-control">
                         <asp:ListItem Value="0">mg</asp:ListItem>
                         <asp:ListItem Value="1">mg/m² </asp:ListItem>
+                        <asp:ListItem Value="2">mcg </asp:ListItem>
+                        <asp:ListItem Value="3">mg/Kg </asp:ListItem>
                     </asp:DropDownList>
               
                 </div>

@@ -21,20 +21,20 @@ public partial class Prescricao_EditarCadastroProtocolo : System.Web.UI.Page
             ddlProtocolo.DataTextField = "descricao";
             ddlProtocolo.DataValueField = "cod_protocolo";
             ddlProtocolo.DataBind();
-            ddlPreQuimio.SelectedValue = protocolo.cod_DescricaoProtocolo.ToString();
+            ddlProtocolo.SelectedValue = protocolo.cod_DescricaoProtocolo.ToString();
 
 
             ddlMedicacao.DataSource = MedicacaoDAO.listaMedicamentos();
             ddlMedicacao.DataTextField = "descricao";
             ddlMedicacao.DataValueField = "cod_medicacao";
             ddlMedicacao.DataBind();
-            ddlPreQuimio.SelectedValue = protocolo.cod_Medicacao.ToString();
+            ddlMedicacao.SelectedValue = protocolo.cod_Medicacao.ToString();
 
             ddlViaDeAdministracao.DataSource = ViaDeAdministracaoDAO.listaViaDeAdministracao();
             ddlViaDeAdministracao.DataTextField = "descricao";
             ddlViaDeAdministracao.DataValueField = "cod_via_de_administracao";
             ddlViaDeAdministracao.DataBind();
-            ddlPreQuimio.SelectedValue = protocolo.cod_ViaDeAdministracao.ToString();
+            ddlViaDeAdministracao.SelectedValue = protocolo.cod_ViaDeAdministracao.ToString();
 
             ddlPreQuimio.DataSource = PreQuimioDAO.listaPreQuimio();
             ddlPreQuimio.DataTextField = "descricao";

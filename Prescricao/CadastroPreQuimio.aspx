@@ -6,10 +6,11 @@
     <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
 
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
-
+    <script src='<%= ResolveUrl("~/build/js/jspdf.min.js") %>' type="text/javascript"></script>
+    <script src='<%= ResolveUrl("~/build/js/jspdf.plugin.autotable.min.js") %>' type="text/javascript"></script>
     <script type="text/javascript">
 
-</script>
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -52,7 +53,7 @@
 
 
 
-                    <asp:TextBox ID="txbQuantidade" class="form-control numeric" runat="server"  />
+                    <asp:TextBox ID="txbQuantidade" class="form-control numeric" runat="server" />
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -82,7 +83,7 @@
                     <label>
                         Diluicao
                     </label>
-                    <asp:TextBox ID="txbDiluicao" class="form-control numeric" runat="server"  />
+                    <asp:TextBox ID="txbDiluicao" class="form-control numeric" runat="server" />
                 </div>
             </div>
 
@@ -93,22 +94,22 @@
                     <asp:DropDownList ID="ddlQuimio" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-                                      <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlQuimio"
-  InitialValue="" runat="server" ForeColor="Red" />
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlQuimio"
+                        InitialValue="" runat="server" ForeColor="Red" />
 
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Tempo de Infusão
                     </label>
-                  
-               
-                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server"  />
-                     </div>
-                      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                             <label>
-       Unidade
-   </label>
+
+
+                    <asp:TextBox ID="txbTempoDeInfusao" class="form-control numeric" runat="server" />
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                    <label>
+                        Unidade
+                    </label>
                     <asp:DropDownList ID="ddlUnidadeTempoDeInfusao" runat="server" class="form-control">
                         <asp:ListItem Value="0">min</asp:ListItem>
                         <asp:ListItem Value="1">hr</asp:ListItem>
@@ -116,11 +117,11 @@
 
 
                 </div>
-        </div>
+            </div>
 
 
 
-        <div class="row">
+            <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
                 </div>
@@ -171,9 +172,9 @@
                     <asp:BoundField DataField="dataCadastro" HeaderText="DATA" SortExpression="dataCadastro"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
-                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                        
-                          
+                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+
                         <ItemTemplate>
                             <div class="form-inline">
                                 <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
@@ -181,13 +182,13 @@
                                     <i class="fa fa-pencil-square-o" title="Informação"></i> 
                                 </asp:LinkButton>
                             </div>
-                             </ItemTemplate>
-                         
+                        </ItemTemplate>
+
                     </asp:TemplateField>
-                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                        
-                          <ItemTemplate>
-                     
+                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+                        <ItemTemplate>
+
                             <div class="form-inline">
                                 <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                     CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
@@ -205,14 +206,20 @@
                 <EditRowStyle BackColor="#999999" />
             </asp:GridView>
         </div>
+        <div>
+
+            <asp:ImageButton ID="ImageButton1" runat="server" Height="45px" Width="45px" OnClientClick="salvaPlanilha();" ImageUrl="../imagens/excel.png" CausesValidation="false" />
+            <asp:ImageButton ID="ImageButton2" runat="server" Height="45px" Width="45px" OnClientClick="generate();" ImageUrl="../imagens/pdf.png" CausesValidation="false" />
+
+        </div>
     </div>
 
     <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
-     <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
-  
- <script type="text/javascript">
+    <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
+
+    <script type="text/javascript">
      
      $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
    
@@ -263,6 +270,64 @@
 
 
         });
- </script>
+        function generate() {
+
+
+    var dataAtual = new Date();
+    const locale = 'pt-br';
+    var data = dataAtual.toLocaleDateString(locale);
+    var hora = dataAtual.toLocaleTimeString(locale);
+
+
+
+    var doc = new jsPDF('l', 'pt');
+    var htmlstring = '';
+    var tempVarToCheckPageHeight = 0;
+    var pageHeight = 0;
+    pageHeight = doc.internal.pageSize.height;
+    specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector  
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"  
+            return true
+        }
+    };
+    margins = {
+        top: 150,
+        bottom: 60,
+        left: 40,
+        right: 40,
+        width: 600
+    };
+    var y = 20;
+    doc.setLineWidth(2);
+    doc.text(200, y = y + 30, "Data da impressão: " + data + "  " + "Horário: " + hora);
+    doc.autoTable({
+        html: '#<%= GridView1.ClientID %>',
+     startY: 70,
+     theme: 'grid',
+     headStyles: { fillColor: [0, 0, 0] }
+ })
+    doc.save('Arquivo_' + ("0" + dataAtual.getDate()).slice(-2) + "_" + ("0" + (dataAtual.getMonth() + 1)).slice(-2) + "_" +  dataAtual.getFullYear() + "_" + dataAtual.getHours() + "_" + dataAtual.getMinutes() + '.pdf');
+}
+
+function salvaPlanilha() {
+    var htmlPlanilha = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name></x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>' + $('#<%= GridView1.ClientID %>').html() + '</table></body></html>';
+
+    var htmlBase64 = btoa(htmlPlanilha);
+    var link = "data:application/vnd.ms-excel;base64," + htmlBase64;
+
+
+    var hyperlink = document.createElement("a");
+    hyperlink.download = "Arquivo.xls";
+    hyperlink.href = link;
+    hyperlink.style.display = 'none';
+
+    document.body.appendChild(hyperlink);
+    hyperlink.click();
+    document.body.removeChild(hyperlink);
+}
+
+    </script>
 
 </asp:Content>

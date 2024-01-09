@@ -120,6 +120,7 @@ public partial class Prescricao_CadastroProtocolo : System.Web.UI.Page
         // You only need the following 2 lines of code if you are not 
         // using an ObjectDataSource of SqlDataSource
         GridView1.DataSource = RelatorioProtocoloDAO.listaTodosProtocolos();
+      
         GridView1.DataBind();
 
         if (GridView1.Rows.Count > 0)

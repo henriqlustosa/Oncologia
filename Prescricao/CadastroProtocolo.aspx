@@ -5,12 +5,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
 
-    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
+    <%-- <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>--%>
+    <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
     <script src='<%= ResolveUrl("~/build/js/jspdf.min.js") %>' type="text/javascript"></script>
     <script src='<%= ResolveUrl("~/build/js/jspdf.plugin.autotable.min.js") %>' type="text/javascript"></script>
-     
- <script type="text/javascript" src="../build/js/jspdf.plugin.autotable.min.js"></script>
-  
+
+
+
+    <script type="text/javascript" src="../build/js/jspdf.plugin.autotable.min.js"></script>
+
     <script type="text/javascript">
 
 </script>
@@ -125,7 +128,7 @@
                     <asp:DropDownList ID="ddlUnidadeTempoDeInfusao" runat="server" class="form-control">
                         <asp:ListItem Value="0">min</asp:ListItem>
                         <asp:ListItem Value="1">hr</asp:ListItem>
-                        <asp:ListItem Value="2"> - </asp:ListItem>
+                        <asp:ListItem Value="2">- </asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -137,118 +140,152 @@
             </div>
         </div>
     </div>
-<div class="container">
-    <div class="x_panel">
-        <div class="x_title">
-            <h2>Lista de Protocolo</h2>
-            <div class="clearfix">
+    <div class="container">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Lista de Protocolo</h2>
+                <div class="clearfix">
+                </div>
             </div>
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="grdMain_RowCommand"
+                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                Width="100%" OnPreRender="GridView1_PreRender">
+
+                <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                <columns>
+
+                    <asp:BoundField DataField="desc_descricao_protocolo" HeaderText="PREQUIMIO" SortExpression="desc_descricao_protocolo"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="desc_medicacao" HeaderText="MEDICACAO PREQUIMIO" SortExpression="desc_medicacao"
+                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
+
+                    <asp:BoundField DataField="desc_pre_quimio" HeaderText="QUIMIO" SortExpression="desc_pre_quimio"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="desc_via_de_administracao" HeaderText="VIA DE ADMINISTRACAO" SortExpression="desc_via_de_administracao"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+
+                    <asp:BoundField DataField="dose" HeaderText="DOSE" SortExpression="dose"
+                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
+
+                    <asp:BoundField DataField="unidadeDose" HeaderText="UNIDADE_DOSE" SortExpression="unidadeDose"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="diluicao" HeaderText="DILUICAO" SortExpression="diluicao"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:BoundField DataField="tempoDeInfusao" HeaderText="TEMPO DE INFUSAO" SortExpression="tempoDeInfusao"
+                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
+
+                    <asp:BoundField DataField="unidadeTempoDeInfusao" HeaderText="UNIDADE TEMPO DE INFUSAO" SortExpression="unidadeTempoDeInfusao"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="nome_Usuario" HeaderText="USUARIO" SortExpression="nome_Usuario"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                    <asp:BoundField DataField="dataCadastro" HeaderText="DATA" SortExpression="dataCadastro"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+
+
+
+
+
+                        <itemtemplate>
+                            <div class="form-inline">
+                                <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                    CssClass="btn btn-info" runat="server" CausesValidation="false">
+                                    <i class="fa fa-pencil-square-o" title="Informação"></i>
+                                </asp:LinkButton>
+                            </div>
+                        </itemtemplate>
+
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+                        <itemtemplate>
+
+                            <div class="form-inline">
+                                <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
+                                    <i class="fa fa-trash" title="Excluir"></i>
+                                </asp:LinkButton>
+                            </div>
+                        </itemtemplate>
+                    </asp:TemplateField>
+
+
+                </columns>
+                <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                <editrowstyle backcolor="#999999" />
+            </asp:GridView>
         </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" OnRowCommand="grdMain_RowCommand"
-            CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
-            Width="100%" OnPreRender="GridView1_PreRender">
+        <div>
 
-            <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
-            <Columns>
-                <asp:BoundField DataField="desc_descricao_protocolo" HeaderText="PREQUIMIO" SortExpression="desc_descricao_protocolo"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+            <asp:ImageButton ID="ImageButton1" runat="server" Height="45px" Width="45px" OnClientClick="salvaPlanilha();" ImageUrl="../imagens/excel.png" CausesValidation="false" />
+            <asp:ImageButton ID="ImageButton2" runat="server" Height="45px" Width="45px" OnClientClick="generate();" ImageUrl="../imagens/pdf.png" CausesValidation="false" />
 
-                <asp:BoundField DataField="desc_medicacao" HeaderText="MEDICACAO PREQUIMIO" SortExpression="desc_medicacao"
-                    ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
-
-                <asp:BoundField DataField="desc_pre_quimio" HeaderText="QUIMIO" SortExpression="desc_pre_quimio"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-
-                <asp:BoundField DataField="desc_via_de_administracao" HeaderText="VIA DE ADMINISTRACAO" SortExpression="desc_via_de_administracao"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-
-                <asp:BoundField DataField="nome_Usuario" HeaderText="USUARIO" SortExpression="nome_Usuario"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-
-                <asp:BoundField DataField="dose" HeaderText="DOSE" SortExpression="dose"
-                    ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
-
-                <asp:BoundField DataField="unidadeDose" HeaderText="UNIDADE_DOSE" SortExpression="unidadeDose"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-
-                <asp:BoundField DataField="diluicao" HeaderText="DILUICAO" SortExpression="diluicao"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-
-                <asp:BoundField DataField="tempoDeInfusao" HeaderText="TEMPO DE INFUSAO" SortExpression="tempoDeInfusao"
-                    ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
-
-                <asp:BoundField DataField="unidadeTempoDeInfusao" HeaderText="UNIDADE TEMPO DE INFUSAO" SortExpression="unidadeTempoDeInfusao"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-
-                <asp:BoundField DataField="dataCadastro" HeaderText="DATA" SortExpression="dataCadastro" 
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-
-
-
-
-                    <ItemTemplate>
-                        <div class="form-inline">
-                            <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                CssClass="btn btn-info" runat="server" CausesValidation="false">
-                <i class="fa fa-pencil-square-o" title="Informação"></i> 
-                            </asp:LinkButton>
-                        </div>
-                    </ItemTemplate>
-
-                </asp:TemplateField>
-                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-
-                    <ItemTemplate>
-
-                        <div class="form-inline">
-                            <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
-                <i class="fa fa-trash" title="Excluir"></i> 
-                            </asp:LinkButton>
-                        </div>
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-
-            </Columns>
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <EditRowStyle BackColor="#999999" />
-        </asp:GridView>
-    </div>
-    <div>
-
-        <asp:ImageButton ID="ImageButton1" runat="server" Height="45px" Width="45px" OnClientClick="salvaPlanilha();" ImageUrl="../imagens/excel.png" CausesValidation="false"/>
-        <asp:ImageButton ID="ImageButton2" runat="server" Height="45px" Width="45px" OnClientClick="generate();" ImageUrl="../imagens/pdf.png" CausesValidation="false" />
-
-    </div>
+        </div>
     </div>
 
-    <script src='<%= ResolveUrl("~/vendors/jquery/dist/jquery.js") %>' type="text/javascript"></script>
 
-    <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
+
+
     <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
-   <script src='<%= ResolveUrl("~/build/js/jspdf.plugin.autotable.min.js") %>' type="text/javascript"></script>
-   
+
+
+
+
+
+
+
+
+
+    <%--   <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>--%>
+    <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
+    <script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
+    <script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
+
 
     <script type="text/javascript">
 
 
         $(document).ready(function () {
-            $.noConflict();
+
+
+
 
             $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+
+
+
+
+
                 language: {
+
                     search: "<i class='fa fa-search' aria-hidden='true'></i>",
                     processing: "Processando...",
                     lengthMenu: "Mostrando _MENU_ registros por páginas",
                     info: "Mostrando página _PAGE_ de _PAGES_",
                     infoEmpty: "Nenhum registro encontrado",
                     infoFiltered: "(filtrado de _MAX_ registros no total)"
-                }
+
+
+                },
+
+
+                columnDefs: [
+
+                    { targets: [10], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm', 'pt-br') }
+
+                ]
+
             });
 
         });
@@ -258,7 +295,6 @@
         function file() {
             return confirm("Você realmente quer arquivar registro?");
         }
-
         $('#<%= txbDose.ClientID %>').keypress(function (e) {
             var a = [];
             var k = e.which;
@@ -269,6 +305,7 @@
             // allow a max of 1 decimal point to be entered
 
             if (!(a.indexOf(k) >= 0)) e.preventDefault();
+
 
 
         });
@@ -309,10 +346,10 @@
             doc.text(200, y = y + 30, "Data da impressão: " + data + "  " + "Horário: " + hora);
             doc.autoTable({
                 html: '#<%= GridView1.ClientID %>',
-             startY: 70,
-             theme: 'grid',
-             headStyles: { fillColor: [0, 0, 0] }
-         })
+                startY: 70,
+                theme: 'grid',
+                headStyles: { fillColor: [0, 0, 0] }
+            })
             doc.save('Arquivo_' + ("0" + dataAtual.getDate()).slice(-2) + "_" + ("0" + (dataAtual.getMonth() + 1)).slice(-2) + "_" + dataAtual.getFullYear() + "_" + dataAtual.getHours() + "_" + dataAtual.getMinutes() + '.pdf');
         }
 
@@ -332,6 +369,8 @@
             hyperlink.click();
             document.body.removeChild(hyperlink);
         }
+
+
     </script>
 
 

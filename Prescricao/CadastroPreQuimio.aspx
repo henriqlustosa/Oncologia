@@ -10,7 +10,7 @@
     <script src='<%= ResolveUrl("~/build/js/jspdf.plugin.autotable.min.js") %>' type="text/javascript"></script>
     <script type="text/javascript">
 
-    </script>
+</script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -151,8 +151,7 @@
                     <asp:BoundField DataField="desc_via_de_administracao" HeaderText="VIA DE ADMINISTRACAO" SortExpression="desc_via_de_administracao"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
-                    <asp:BoundField DataField="nome_Usuario" HeaderText="USUARIO" SortExpression="nome_Usuario"
-                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                   
 
                     <asp:BoundField DataField="quantidade" HeaderText="QUANTIDADE" SortExpression="quantidade"
                         ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
@@ -169,6 +168,9 @@
                     <asp:BoundField DataField="unidadeTempoDeInfusao" HeaderText="UNIDADE TEMPO DE INFUSAO" SortExpression="unidadeTempoDeInfusao"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
+               
+                    <asp:BoundField DataField="nome_Usuario" HeaderText="USUARIO" SortExpression="nome_Usuario"
+                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
                     <asp:BoundField DataField="dataCadastro" HeaderText="DATA" SortExpression="dataCadastro"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
@@ -220,9 +222,9 @@
     <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
 
     <script type="text/javascript">
-     
-     $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
-   
+
+        $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
+
         $(document).ready(function () {
             $.noConflict();
 
@@ -273,60 +275,60 @@
         function generate() {
 
 
-    var dataAtual = new Date();
-    const locale = 'pt-br';
-    var data = dataAtual.toLocaleDateString(locale);
-    var hora = dataAtual.toLocaleTimeString(locale);
+            var dataAtual = new Date();
+            const locale = 'pt-br';
+            var data = dataAtual.toLocaleDateString(locale);
+            var hora = dataAtual.toLocaleTimeString(locale);
 
 
 
-    var doc = new jsPDF('l', 'pt');
-    var htmlstring = '';
-    var tempVarToCheckPageHeight = 0;
-    var pageHeight = 0;
-    pageHeight = doc.internal.pageSize.height;
-    specialElementHandlers = {
-        // element with id of "bypass" - jQuery style selector  
-        '#bypassme': function (element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"  
-            return true
+            var doc = new jsPDF('l', 'pt');
+            var htmlstring = '';
+            var tempVarToCheckPageHeight = 0;
+            var pageHeight = 0;
+            pageHeight = doc.internal.pageSize.height;
+            specialElementHandlers = {
+                // element with id of "bypass" - jQuery style selector  
+                '#bypassme': function (element, renderer) {
+                    // true = "handled elsewhere, bypass text extraction"  
+                    return true
+                }
+            };
+            margins = {
+                top: 150,
+                bottom: 60,
+                left: 40,
+                right: 40,
+                width: 600
+            };
+            var y = 20;
+            doc.setLineWidth(2);
+            doc.text(200, y = y + 30, "Data da impressão: " + data + "  " + "Horário: " + hora);
+            doc.autoTable({
+                html: '#<%= GridView1.ClientID %>',
+        startY: 70,
+        theme: 'grid',
+        headStyles: { fillColor: [0, 0, 0] }
+    })
+            doc.save('Arquivo_' + ("0" + dataAtual.getDate()).slice(-2) + "_" + ("0" + (dataAtual.getMonth() + 1)).slice(-2) + "_" + dataAtual.getFullYear() + "_" + dataAtual.getHours() + "_" + dataAtual.getMinutes() + '.pdf');
         }
-    };
-    margins = {
-        top: 150,
-        bottom: 60,
-        left: 40,
-        right: 40,
-        width: 600
-    };
-    var y = 20;
-    doc.setLineWidth(2);
-    doc.text(200, y = y + 30, "Data da impressão: " + data + "  " + "Horário: " + hora);
-    doc.autoTable({
-        html: '#<%= GridView1.ClientID %>',
-     startY: 70,
-     theme: 'grid',
-     headStyles: { fillColor: [0, 0, 0] }
- })
-    doc.save('Arquivo_' + ("0" + dataAtual.getDate()).slice(-2) + "_" + ("0" + (dataAtual.getMonth() + 1)).slice(-2) + "_" +  dataAtual.getFullYear() + "_" + dataAtual.getHours() + "_" + dataAtual.getMinutes() + '.pdf');
-}
 
-function salvaPlanilha() {
-    var htmlPlanilha = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name></x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>' + $('#<%= GridView1.ClientID %>').html() + '</table></body></html>';
+        function salvaPlanilha() {
+            var htmlPlanilha = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name></x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>' + $('#<%= GridView1.ClientID %>').html() + '</table></body></html>';
 
-    var htmlBase64 = btoa(htmlPlanilha);
-    var link = "data:application/vnd.ms-excel;base64," + htmlBase64;
+            var htmlBase64 = btoa(htmlPlanilha);
+            var link = "data:application/vnd.ms-excel;base64," + htmlBase64;
 
 
-    var hyperlink = document.createElement("a");
-    hyperlink.download = "Arquivo.xls";
-    hyperlink.href = link;
-    hyperlink.style.display = 'none';
+            var hyperlink = document.createElement("a");
+            hyperlink.download = "Arquivo.xls";
+            hyperlink.href = link;
+            hyperlink.style.display = 'none';
 
-    document.body.appendChild(hyperlink);
-    hyperlink.click();
-    document.body.removeChild(hyperlink);
-}
+            document.body.appendChild(hyperlink);
+            hyperlink.click();
+            document.body.removeChild(hyperlink);
+        }
 
     </script>
 

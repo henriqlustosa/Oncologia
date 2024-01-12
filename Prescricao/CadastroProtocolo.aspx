@@ -41,7 +41,7 @@
                     <asp:DropDownList ID="ddlProtocolo" runat="server" class="form-control"
                         DataTextField="ddlProtocolo" DataValueField="Id">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlProtocolo"
                         InitialValue="" runat="server" ForeColor="Red" />
                 </div>
             </div>
@@ -54,7 +54,7 @@
                     <asp:DropDownList ID="ddlMedicacao" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlMedicacao"
                         InitialValue="" runat="server" ForeColor="Red" />
                 </div>
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
@@ -90,7 +90,7 @@
                     <asp:DropDownList ID="ddlViaDeAdministracao" runat="server" class="form-control"
                         DataTextField="descricao" DataValueField="Id">
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlPreQuimio"
+                    <asp:RequiredFieldValidator ErrorMessage="Escolha uma das opções." ControlToValidate="ddlViaDeAdministracao"
                         InitialValue="" runat="server" ForeColor="Red" />
 
                 </div>

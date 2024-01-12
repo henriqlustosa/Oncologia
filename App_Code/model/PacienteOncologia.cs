@@ -15,7 +15,7 @@ public class PacienteOncologia
         //
     }
 
-    public string cod_Paciente { get; set; }
+    public int cod_Paciente { get; set; }
     public string nome_paciente { get; set; }
     public DateTime data_nascimento { get; set; }
     public string sexo { get; set; }
@@ -23,5 +23,6 @@ public class PacienteOncologia
     public int ddd_telefone { get; set; }
     public int telefone { get; set; }
 
-    public DateTime dataCadastro { get; set; }
+    public DateTime data_Cadastro { get; set; }
+    public DateTime data_Ultima_Atualizacao { get; set; }
 }

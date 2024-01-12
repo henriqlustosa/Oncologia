@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Listagem_MedicoDAO
+/// Summary description for MedicacaoDAO
 /// </summary>
 public class MedicacaoDAO
 {
@@ -73,9 +73,9 @@ public class MedicacaoDAO
 
                 while (dr1.Read())
                 {
-                    Medicacao itemLista  = new Medicacao();
-                   
-                    itemLista.cod_Medicacao =  dr1.GetInt32(0);
+                    Medicacao itemLista = new Medicacao();
+
+                    itemLista.cod_Medicacao = dr1.GetInt32(0);
                     itemLista.descricao = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
 
                     listaMedicamentos.Add(itemLista);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -67,25 +68,98 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
     protected void btnGravar_Click(object sender, EventArgs e)
     {
+        string mensagem = "";
 
-        Paciente paciente = new Paciente();
+        DateTime dataCadastro = DateTime.Now;
+        PacienteOncologia pacienteOncologia = new PacienteOncologia();
+
+        pacienteOncologia.cod_Paciente = int.Parse(txbProntuario.Text.ToString());
+        pacienteOncologia.nome_paciente = txbNomePaciente.Text.ToString();
+        pacienteOncologia.nome_mae = txbPais.Text.ToString();
+        pacienteOncologia.telefone =int.Parse( txbTelefone.Text.ToString());
+        pacienteOncologia.ddd_telefone = int.Parse(txbDdd.Text.ToString());
+        pacienteOncologia.sexo = ddlSexo.SelectedItem.ToString();
+        pacienteOncologia.data_nascimento =DateTime.Parse(txbNascimento.Text.ToString());
+        pacienteOncologia.data_Cadastro =dataCadastro;
+
+        if (PacienteOncologiaDAO.VerificarPacientePorRh(pacienteOncologia.cod_Paciente))
+
+            mensagem = PacienteOncologiaDAO.AtualizarPaciente(pacienteOncologia);
        
 
+        else
+            pacienteOncologia.cod_Paciente = PacienteOncologiaDAO.GravarPacienteOncologia(pacienteOncologia);
+
+
+        CalculoSuperficieCorporea calculo = new CalculoSuperficieCorporea();
+
+        calculo.altura = int.Parse(txbAltura.Value.ToString());
+        calculo.peso = int.Parse(txbPeso.Value.ToString());
+        calculo.BSA = Decimal.Parse(txbBSA.Value.ToString().Replace('.', ','));
+        calculo.dataCadastro = dataCadastro;
+
+        calculo.cod_Calculo = CalculoSuperficieCorporeaDAO.GravarCalculoSuperficieCorporea(calculo);
+
+
+        List<CID_10> lista_cid_10 = new List<CID_10>();
+
+        for (int i = 0; i < select1.Items.Count; i++)
+        {
+            if (select1.Items[i].Selected)
+            {
+                CID_10 cid = new CID_10();
+               
+                cid.SUBCAT = select1.Items[i].Value;
+                lista_cid_10.Add(cid);
+            }
+        }
+
+
+      
+
+        Prescricao prescricao = new Prescricao();
+
+        prescricao.cod_Paciente = pacienteOncologia.cod_Paciente;
+        prescricao.cod_Finalidade = int.Parse(ddlFinalidade.SelectedValue.ToString());
+        prescricao.cod_Vias_De_Acesso = int.Parse(cblViasDeAcesso.SelectedValue.ToString());
+        prescricao.cod_Protocolos = int.Parse(ddlProtocolo.SelectedValue.ToString());
+        prescricao.cod_Calculo = calculo.cod_Calculo;
+        prescricao.ciclos_provaveis = int.Parse(txbCiclos.Text.ToString());
+        prescricao.intervalo_dias = int.Parse(txbCiclos.Text.ToString());
+        prescricao.data_inicio = DateTime.Parse(txbDtInicio.Text.ToString());
+        prescricao.data_termino = DateTime.Parse(txbDtTermino.Text.ToString());
+        prescricao.observacao = txbObservacao.Text.ToString();
+
+        prescricao.data_cadastro = dataCadastro;
+
+        prescricao.cod_Prescricao = PrescricaoDAO.GravarPrescricao(prescricao);
+
+        CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao);
 
         //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 
         //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
 
         ClearInputs(Page.Controls);// limpa os textbox
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
     }
 
     void ClearInputs(ControlCollection ctrls)
     {
         foreach (Control ctrl in ctrls)
         {
-            if (ctrl is TextBox)
-                ((TextBox)ctrl).Text = string.Empty;
+            if (ctrl is System.Web.UI.WebControls.TextBox)
+                ((System.Web.UI.WebControls.TextBox)ctrl).Text = string.Empty;
+
+            if (ctrl is System.Web.UI.WebControls.CheckBoxList)
+                ((System.Web.UI.WebControls.CheckBoxList)ctrl).ClearSelection();
+            if (ctrl is System.Web.UI.WebControls.DropDownList)
+                ((System.Web.UI.WebControls.DropDownList)ctrl).SelectedIndex =0;
             ClearInputs(ctrl.Controls);
+
         }
+
+    
+    
     }
 }

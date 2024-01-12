@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -17,7 +18,45 @@ public class CID_10_DAO
         //
     }
 
+    public static void GravaCidsPorPrescricao(List<CID_10> lista_cid_10, int cod_Prescricao)
+    {
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            string status = "A";
+            string _dtcadastro_bd = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            SqlCommand cmm = new SqlCommand();
+            cmm.Connection = cnn;
+            cnn.Open();
+            SqlTransaction mt = cnn.BeginTransaction();
+            cmm.Transaction = mt;
+            try
+            {
 
+                foreach (CID_10 cid_10 in lista_cid_10)
+                {
+                    cmm.CommandText = "Insert into [dbo].[CID_PRESCRICAO] ([SUBCAT], [cod_Prescricao],data_cadastro,status)"
+                    + " values ('"
+                                + cid_10.SUBCAT + "','"
+                                + cod_Prescricao + "','"
+                                + _dtcadastro_bd + "','"
+                                + status
+                                + "');";
+                    cmm.ExecuteNonQuery();
+
+
+                }
+
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                mt.Rollback();
+            }
+        }
+    }
 
     public static List<CID_10> listaCID_10()
     {

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     EnableEventValidation="false" CodeFile="Prescricao.aspx.cs" Inherits="Prescricao_Prescricao"
-    Title="Historico de Documentos - HSPM" %>
+    Title="Prescricao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -97,12 +97,16 @@
                         RH
                     </label>
                     <asp:TextBox ID="txbProntuario" runat="server" class="form-control numeric"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbProntuario"
+                        InitialValue="" runat="server" ForeColor="Red" />
                 </div>
                 <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nome
                     </label>
                     <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbNomePaciente"
+                        InitialValue="" runat="server" ForeColor="Red" />
                 </div>
             </div>
             <div class="row">
@@ -129,6 +133,8 @@
                     <label>
                         Nascimento</label>
                     <asp:TextBox ID="txbNascimento" runat="server" class="form-control nasc"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbNascimento"
+                        InitialValue="" runat="server" ForeColor="Red" />
                 </div>
                 <div class="col-md-1 col-sm-12 col-xs-12 form-group">
                     <label>
@@ -138,16 +144,18 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         Sexo</label>
-                    <asp:DropDownList ID="ddlSexo" runat="server" AutoPostBack="true" class="form-control">
+                    <asp:DropDownList ID="ddlSexo" runat="server" class="form-control">
                         <asp:ListItem>Masculino</asp:ListItem>
                         <asp:ListItem>Feminino</asp:ListItem>
-                        <asp:ListItem>Não Informado</asp:ListItem>
+                        <asp:ListItem Selected="True">Não Informado</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nome do Pai/Mãe</label>
                     <asp:TextBox ID="txbPais" runat="server" class="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbPais"
+                        InitialValue="" runat="server" ForeColor="Red" />
                 </div>
             </div>
             <br />
@@ -204,7 +212,7 @@
                                     <tr>
                                         <td align="right" width="42%"><span class="medCalcFontOneBold">Altura</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
-                                            <input type="text" name="Height_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Height" /></td>
+                                            <input type="text" id="txbAltura" name="Height_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Height" runat="server" /></td>
                                         <td align="left" valign="top">
                                             <select name="Height_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Height">
                                                 <option value="1|0|cm" selected="selected">cm</option>
@@ -215,7 +223,7 @@
                                     <tr>
                                         <td align="right" width="42%"><span class="medCalcFontOneBold">Peso</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
-                                            <input type="text" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" /></td>
+                                            <input type="text" id="txbPeso" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" runat="server" /></td>
                                         <td align="left" valign="top">
                                             <select name="Weight_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Weight">
 
@@ -246,7 +254,7 @@
                                     <tr>
                                         <td align="right"><span class="medCalcFontResultParam">BSA</span></td>
                                         <td valign="top" nowrap="nowrap">&nbsp;
-                                            <input type="text" name="BSA_param" size="6" aria-readonly="true" aria-label="This output box will display the calculated value BSA" /></td>
+                                            <input type="text" id="txbBSA" name="BSA_param" size="6" aria-readonly="true" aria-label="This output box will display the calculated value BSA" runat="server" /></td>
                                         <td valign="top" align="left"><span class="medCalcFontResultParam">
                                             <select name="BSA_unit" onchange="BodySurfaceArea_fx();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the result value BSA">
 
@@ -379,12 +387,16 @@
                                     Ciclos Prováveis:
                                 </label>
                                 <asp:TextBox ID="txbCiclos" runat="server" class="form-control numeric"></asp:TextBox>
+                                <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbCiclos"
+                                    InitialValue="" runat="server" ForeColor="Red" />
                             </div>
                             <div class="col-md-2  form-group">
                                 <label>
                                     Com Intervalo de:(DIAS)
                                 </label>
                                 <asp:TextBox ID="txbIntervalos" runat="server" class="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbIntervalos"
+                                    InitialValue="" runat="server" ForeColor="Red" />
                             </div>
                         </div>
 
@@ -394,12 +406,16 @@
                                     Data de Início:
                                 </label>
                                 <asp:TextBox ID="txbDtInicio" class="form-control" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbDtInicio"
+                                    InitialValue="" runat="server" ForeColor="Red" />
                             </div>
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
                                     Data de Término:
                                 </label>
                                 <asp:TextBox ID="txbDtTermino" class="form-control" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbDtTermino"
+                                    InitialValue="" runat="server" ForeColor="Red" />
                             </div>
                         </div>
                         <div class="row">
@@ -453,16 +469,16 @@
                 </div>
             </div>
         </div>
-    <!-- Large modal -->
+        <!-- Large modal -->
 
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        window.addEventListener('keydown', function (e) {
+            window.addEventListener('keydown', function (e) {
 
-            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
-            else return true;
-        });
+                if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
+                else return true;
+            });
 
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
@@ -528,211 +544,221 @@
             }
         }--%>
 
-        function log(i) {
-            return Math.log(i) * Math.LOG10E;
-        }
+            function log(i) {
+                return Math.log(i) * Math.LOG10E;
+            }
 
-        function ln(i) {
-            return Math.log(i);
-        }
+            function ln(i) {
+                return Math.log(i);
+            }
 
-        function sq(i) {
-            return i * i;
-        }
+            function sq(i) {
+                return i * i;
+            }
 
-        function sqr(i) {
-            return Math.sqrt(i);
-        }
-
-
-        function power(x, y) {
-            return Math.pow(x, y);
-        }
-
-        function eTo(x) {
-            return Math.exp(x);
-        }
+            function sqr(i) {
+                return Math.sqrt(i);
+            }
 
 
-        function fixDP(r, dps) {
-            if (isNaN(r)) return "NaN";
-            var msign = '';
-            var mfin = '';
-            if (r < 0) msign = '-';
-            x = Math.abs(r);
-            if (x > Math.pow(10, 21)) return msign + x.toString();
-            var m = Math.round(x * Math.pow(10, dps)).toString();
-            if (dps == 0) return msign + m;
-            while (m.length <= dps) m = "0" + m;
-            mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
-            if (dps == 1) return mfin.replace('.0', '');
-            if (dps == 2) return mfin.replace('.00', '');
-            if (dps == 3) return mfin.replace('.000', '');
-            if (dps == 4) return mfin.replace('.0000', '');
-            return mfin;
-        }
+            function power(x, y) {
+                return Math.pow(x, y);
+            }
 
-        function fixNearest(x, y) {
-            return Math.round(x / y) * y;
-        }
-
-        function alertNaN(thisparam) {
-            alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
-            doCalc = false;
-            clrResults();
-        }
-
-        function clrValue(field) {
-            field.value = '';
-        }
-
-        var currenttimeout;
-
-        function resetInTime() {
-            if (currenttimeout) clearTimeout(currenttimeout);
-            currenttimeout = setTimeout('minMaxCheck();', 3000);
-        }
+            function eTo(x) {
+                return Math.exp(x);
+            }
 
 
+            function fixDP(r, dps) {
+                if (isNaN(r)) return "NaN";
+                var msign = '';
+                var mfin = '';
+                if (r < 0) msign = '-';
+                x = Math.abs(r);
+                if (x > Math.pow(10, 21)) return msign + x.toString();
+                var m = Math.round(x * Math.pow(10, dps)).toString();
+                if (dps == 0) return msign + m;
+                while (m.length <= dps) m = "0" + m;
+                mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
+                if (dps == 1) return mfin.replace('.0', '');
+                if (dps == 2) return mfin.replace('.00', '');
+                if (dps == 3) return mfin.replace('.000', '');
+                if (dps == 4) return mfin.replace('.0000', '');
+                return mfin;
+            }
 
-        var curelement;
+            function fixNearest(x, y) {
+                return Math.round(x / y) * y;
+            }
 
-        function togCB(thisid) {
-            thischeckbox = document.getElementById(thisid);
-            if (thischeckbox.checked) { thischeckbox.checked = false; }
-            else { thischeckbox.checked = true; }
-            BodySurfaceArea_fx();
-        }
+            function alertNaN(thisparam) {
+                alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
+                doCalc = false;
+                clrResults();
+            }
 
-        function setRB(thisid) {
-            document.getElementById(thisid).checked = true;
-            BodySurfaceArea_fx();
-        }
+            function clrValue(field) {
+                field.value = '';
+            }
 
+            var currenttimeout;
 
-        var calctxt = '';
-        var xmltxt = '';
-        var xmlresult = '';
-        var htmtxt = '';
-        var postNow = false;
-        var printing = false;
-        var interptxt = '';
-        var interphtm = '';
-        var interpxml = '';
-        var rbchk = false;
-
-        function BodySurfaceArea_fx() {
-
-            with (document.forms[0]) {
+            function resetInTime() {
+                if (currenttimeout) clearTimeout(currenttimeout);
+                currenttimeout = setTimeout('minMaxCheck();', 3000);
+            }
 
 
-                doCalc = true;
-                param_value = parseFloat(Height_param.value);
-                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
-                Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                param_value = parseFloat(Weight_param.value);
-                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
-                Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                dp = decpts.options[decpts.selectedIndex].text;
-                BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
 
-                unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
-                if (doCalc) BSA_param.value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+            var curelement;
 
+            function togCB(thisid) {
+                thischeckbox = document.getElementById(thisid);
+                if (thischeckbox.checked) { thischeckbox.checked = false; }
+                else { thischeckbox.checked = true; }
+                BodySurfaceArea_fx();
+            }
+
+            function setRB(thisid) {
+                document.getElementById(thisid).checked = true;
+                BodySurfaceArea_fx();
+            }
+
+
+            var calctxt = '';
+            var xmltxt = '';
+            var xmlresult = '';
+            var htmtxt = '';
+            var postNow = false;
+            var printing = false;
+            var interptxt = '';
+            var interphtm = '';
+            var interpxml = '';
+            var rbchk = false;
+
+            function BodySurfaceArea_fx() {
+
+                with (document.forms[0]) {
+
+
+                    doCalc = true;
+                    
+                    param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+                    console.log(param_value);
+                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                    unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
+                    Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                    param_value = parseFloat((<%= txbPeso.ClientID %>).value);
+                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                    unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
+                    Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                    dp = decpts.options[decpts.selectedIndex].text;
+                    BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
+
+                    unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
+                    if (doCalc)(<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+
+
+
+
+
+                }
 
 
 
 
             }
 
+            function minMaxCheck() {
+                if (printing) return;
 
 
 
-        }
+                with (document.forms[0]) {
 
-        function minMaxCheck() {
-            if (printing) return;
+                    if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
+                    if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
 
 
+                }
 
-            with (document.forms[0]) {
+            }
+          
 
-                if (Height_param.value && isNaN(Height_param.value)) { clrValue(Height_param); alertNaN('Height'); }
-                if (Weight_param.value && isNaN(Weight_param.value)) { clrValue(Weight_param); alertNaN('Weight'); }
 
+            function clrResults() {
+
+
+                with (document.forms[0]) {
+
+                    (<%= txbBSA.ClientID %>).value = '';
+
+
+                }
 
             }
 
-        }
-
-        function clrResults() {
-
-
-            with (document.forms[0]) {
-
-                BSA_param.value = '';
+            var Height = null,
+                Weight = null,
+                BSA = null,
+                param_value = null;
 
 
+            function mostraCalculo() {
+
+                var div = document.getElementById('divCalculoCorpo');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
             }
+            function mostraCID() {
 
-        }
+                var div = document.getElementById('divCID');
 
-        var Height = null,
-            Weight = null,
-            BSA = null,
-            param_value = null;
-
-
-        function mostraCalculo() {
-
-            var div = document.getElementById('divCalculoCorpo');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
             }
-            else {
-                div.style.display = 'none';
+            function mostraGeral() {
+
+                var div = document.getElementById('divGeral');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
             }
-        }
-        function mostraCID() {
+            function mostraViasDeAcesso() {
 
-            var div = document.getElementById('divCID');
+                var div = document.getElementById('divViasDeAcesso');
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
             }
-            else {
-                div.style.display = 'none';
+            function ClearInputs() {
+                (<%= txbAltura.ClientID %>).value = '';
+                (<%= txbPeso.ClientID %>).value = '';
+                (<%= txbBSA.ClientID %>).value = '';
+         
+                $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
             }
-        }
-        function mostraGeral() {
+            $(document).ready(function () {
 
-            var div = document.getElementById('divGeral');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraViasDeAcesso() {
-
-            var div = document.getElementById('divViasDeAcesso');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-
-        $(document).ready(function () {
-
-            $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
+                $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker({
                     dateFormat: 'dd/mm/yy',
@@ -894,7 +920,7 @@
                 });
             });
 
-    </script>
-    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-    <script src="../js/jquery.mask.js" type="text/javascript"></script>
+        </script>
+        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mask.js" type="text/javascript"></script>
 </asp:Content>

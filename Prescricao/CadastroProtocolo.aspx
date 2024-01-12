@@ -12,11 +12,10 @@
 
 
 
-    <script type="text/javascript" src="../build/js/jspdf.plugin.autotable.min.js"></script>
 
-    <script type="text/javascript">
 
-</script>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 
@@ -373,42 +372,7 @@
 
     </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-
-
-
-
-    <script type="text/javascript">
-
-        <%--$(document).ready(function () {
-
-            $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
-
-        });--%>
 
     </script>
 </asp:Content>

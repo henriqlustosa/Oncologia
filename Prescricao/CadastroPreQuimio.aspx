@@ -9,9 +9,10 @@
      <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
     <script src='<%= ResolveUrl("~/build/js/jspdf.min.js") %>' type="text/javascript"></script>
     <script src='<%= ResolveUrl("~/build/js/jspdf.plugin.autotable.min.js") %>' type="text/javascript"></script>
-    <script type="text/javascript">
 
-</script>
+  
+
+
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -217,7 +218,7 @@
         </div>
     </div>
 
-   <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
+    <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
 
 
 
@@ -227,17 +228,18 @@
 
 
 
-   <%--   <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>--%>
-   <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
-   <script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
-   <script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
+ <%--   <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>--%>
+ <script src='<%= ResolveUrl("~/moment/moment.min.js") %>' type="text/javascript"></script>
+ <script src='<%= ResolveUrl("~/moment/jquery.dataTables.min.js") %>' type="text/javascript"></script>
+ <script src='<%= ResolveUrl("~/moment/datetime.js") %>' charset="utf8" type="text/javascript"></script>
+
 
     <script type="text/javascript">
 
         $('#<%= txbQuantidade.ClientID %>').inputmask({ 'mask': "9{0,4},9{0,2}", greedy: false });
 
         $(document).ready(function () {
-            $.noConflict();
+           
 
             $('#<%= GridView1.ClientID %>').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
                 language: {
@@ -247,7 +249,13 @@
                     info: "Mostrando página _PAGE_ de _PAGES_",
                     infoEmpty: "Nenhum registro encontrado",
                     infoFiltered: "(filtrado de _MAX_ registros no total)"
-                }
+                },
+
+                 columnDefs: [
+
+                    { targets: [10], render: DataTable.render.moment('DD/MM/YYYY HH:mm:ss', 'DD/MM/YYYY HH:mm', 'pt-br') }
+
+                ]
             });
 
         });

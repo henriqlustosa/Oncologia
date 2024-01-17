@@ -29,5 +29,6 @@ public class Prescricao
     public string observacao { get; set; }
     public DateTime data_cadastro { get; set; }
     public string status { get; set; }
+    public string nome_Usuario { get; set; }
 
 }

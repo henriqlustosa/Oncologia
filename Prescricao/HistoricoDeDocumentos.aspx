@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     EnableEventValidation="false" CodeFile="HistoricoDeDocumentos.aspx.cs" Inherits="Prescricao_HistoricoDeDocumentos "
-    Title="Historico de Prescricao - HSPM" %>
+    Title="Historico de Prescrição - HSPM" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../build/css/jquery.dataTable.css" rel="stylesheet" type="text/css" />
   <script src='<%= ResolveUrl("~/moment/jquery-3.7.0.js") %>' type="text/javascript"></script>
@@ -11,7 +11,7 @@
     <div class="container">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Lista de Protocolo</h2>
+            <h2>Histórico de Prescrição</h2>
             <div class="clearfix">
             </div>
         </div>

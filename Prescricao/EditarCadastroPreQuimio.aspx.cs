@@ -97,7 +97,7 @@ public partial class Prescricao_EditarCadastroPreQuimio : System.Web.UI.Page
         preQuimioDetalhe.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
         preQuimioDetalhe.cod_Quimio = Convert.ToInt32(ddlQuimio.SelectedValue);
         preQuimioDetalhe.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
-        preQuimioDetalhe.nome_Usuario = User.Identity.Name.ToUpper(); ;
+        preQuimioDetalhe.nome_Usuario = User.Identity.Name.ToUpper(); 
         preQuimioDetalhe.quantidade = Convert.ToDecimal(txbQuantidade.Text);
         preQuimioDetalhe.unidadeQuantidade = ddlUnidadeQuantidade.SelectedItem.ToString();
         preQuimioDetalhe.diluicao = txbDiluicao.Text;

@@ -94,7 +94,8 @@ public class PrescricaoDAO
           " , @data_termino "+
           " , @observacao "+
           " , @data_cadastro"+
-          " ,@status)";
+          " , @status"+
+                " , @nome_Usuario)";
                 //cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
                 cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
                 cmm.Parameters.Add("@cod_Finalidade", SqlDbType.Int).Value = prescricao.cod_Finalidade;
@@ -112,6 +113,7 @@ public class PrescricaoDAO
                 cmm.Parameters.Add("@data_cadastro", SqlDbType.DateTime).Value = prescricao.data_cadastro;
              
                 cmm.Parameters.Add("@status", SqlDbType.Char).Value = "A";
+                cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = prescricao.nome_Usuario;
 
 
 

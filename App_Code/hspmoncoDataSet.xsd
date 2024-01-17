@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="hspmoncoDataSet" targetNamespace="http://tempuri.org/hspmoncoDataSet.xsd" xmlns:mstns="http://tempuri.org/hspmoncoDataSet.xsd" xmlns="http://tempuri.org/hspmoncoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="hspmoncoConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="hspmoncoConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.hspmoncoConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_RelatorioPrescricaoTableAdapter" Name="Vw_RelatorioPrescricao">
+            <MainSource>
+              <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioPrescricao" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT cod_Prescricao, desc_finalidade, desc_vias_de_acesso, nome_paciente, altura, peso, BSA, intervalo_dias, data_inicio, data_termino, observacao, data_cadastro, desc_protocolo FROM dbo.Vw_RelatorioPrescricao</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="cod_Prescricao" DataSetColumn="cod_Prescricao" />
+              <Mapping SourceColumn="desc_finalidade" DataSetColumn="desc_finalidade" />
+              <Mapping SourceColumn="desc_vias_de_acesso" DataSetColumn="desc_vias_de_acesso" />
+              <Mapping SourceColumn="nome_paciente" DataSetColumn="nome_paciente" />
+              <Mapping SourceColumn="altura" DataSetColumn="altura" />
+              <Mapping SourceColumn="peso" DataSetColumn="peso" />
+              <Mapping SourceColumn="BSA" DataSetColumn="BSA" />
+              <Mapping SourceColumn="intervalo_dias" DataSetColumn="intervalo_dias" />
+              <Mapping SourceColumn="data_inicio" DataSetColumn="data_inicio" />
+              <Mapping SourceColumn="data_termino" DataSetColumn="data_termino" />
+              <Mapping SourceColumn="observacao" DataSetColumn="observacao" />
+              <Mapping SourceColumn="data_cadastro" DataSetColumn="data_cadastro" />
+              <Mapping SourceColumn="desc_protocolo" DataSetColumn="desc_protocolo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="hspmoncoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="False">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Vw_RelatorioPrescricao">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod_Prescricao" type="xs:int" />
+              <xs:element name="desc_finalidade" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="desc_vias_de_acesso" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nome_paciente" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="altura" type="xs:int" />
+              <xs:element name="peso" type="xs:int" />
+              <xs:element name="BSA" type="xs:decimal" />
+              <xs:element name="intervalo_dias" type="xs:int" minOccurs="0" />
+              <xs:element name="data_inicio" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="data_termino" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="observacao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="data_cadastro" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="desc_protocolo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Vw_RelatorioPrescricao" />
+      <xs:field xpath="mstns:cod_Prescricao" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

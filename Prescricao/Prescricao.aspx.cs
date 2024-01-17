@@ -65,7 +65,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
       
     }
-
+    public int vias { get; set; }
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         string mensagem = "";
@@ -131,6 +131,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         prescricao.observacao = txbObservacao.Text.ToString();
 
         prescricao.data_cadastro = dataCadastro;
+        prescricao.nome_Usuario = User.Identity.Name.ToUpper();
 
         prescricao.cod_Prescricao = PrescricaoDAO.GravarPrescricao(prescricao);
 
@@ -142,6 +143,11 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         ClearInputs(Page.Controls);// limpa os textbox
         ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
+
+       
+            ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Impressora");
+            vias--;
+        
     }
 
     void ClearInputs(ControlCollection ctrls)
@@ -151,10 +157,10 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             if (ctrl is System.Web.UI.WebControls.TextBox)
                 ((System.Web.UI.WebControls.TextBox)ctrl).Text = string.Empty;
 
-            if (ctrl is System.Web.UI.WebControls.CheckBoxList)
-                ((System.Web.UI.WebControls.CheckBoxList)ctrl).ClearSelection();
-            if (ctrl is System.Web.UI.WebControls.DropDownList)
-                ((System.Web.UI.WebControls.DropDownList)ctrl).SelectedIndex =0;
+            if (ctrl is CheckBoxList)
+                ((CheckBoxList)ctrl).ClearSelection();
+            if (ctrl is DropDownList)
+                ((DropDownList)ctrl).SelectedIndex =0;
             ClearInputs(ctrl.Controls);
 
         }

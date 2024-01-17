@@ -16,6 +16,7 @@ public class RelatorioPrescricaoloDAO
         // TODO: Add constructor logic here
         //
     }
+    public List<RelatorioPrescricao> relatorioLista = new List<RelatorioPrescricao>();
     public static List<RelatorioPrescricao> listaTodosProtocolos()
     {
         List<RelatorioPrescricao> relatorioPrexcricao = new List<RelatorioPrescricao>();
@@ -95,6 +96,64 @@ public class RelatorioPrescricaoloDAO
 
 
 
+
+    }
+
+    internal List<RelatorioPrescricao> GetPrescricao(int cod_relatorio_prescricao)
+    {
+        RelatorioPrescricao relatorio = new RelatorioPrescricao();
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            SqlCommand cmm = cnn.CreateCommand();
+            cmm.CommandText = "SELECT [cod_Prescricao]" +
+      ",[desc_finalidade] " +
+      ",[desc_vias_de_acesso] " +
+      ",[nome_paciente] " +
+      ",[altura] " +
+      ",[peso] " +
+      ",[BSA] " +
+      ",[intervalo_dias] " +
+      ",[data_inicio] " +
+      ",[data_termino] " +
+      ",[observacao] " +
+      ",[data_cadastro] " +
+      ",[desc_protocolo] " +
+       "   FROM [dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
+            try
+            {
+                cnn.Open();
+
+                SqlDataReader dr1 = cmm.ExecuteReader();
+
+                if (dr1.Read())
+                {
+
+                 
+                    relatorio.cod_Prescricao = dr1.GetInt32(0);
+                    relatorio.desc_finalidade = dr1.GetString(1);
+                    relatorio.desc_vias_de_acesso = dr1.GetString(2);
+                    relatorio.nome_paciente = dr1.GetString(3);
+
+                    relatorio.altura = dr1.GetInt32(4);
+                   
+                    relatorio.peso = dr1.GetInt32(5);
+                    relatorio.BSA = dr1.GetDecimal(6);
+                    relatorio.intervalo_dias = dr1.GetInt32(7);
+                    relatorio.data_inicio = dr1.GetDateTime(8);
+                    relatorio.data_termino = dr1.GetDateTime(9);
+                    relatorio.observacao = dr1.GetString(10);
+                    relatorio.dataCadastro = dr1.GetDateTime(11);
+                    relatorio.desc_protocolo = dr1.GetString(12);
+
+                    relatorioLista.Add(relatorio);
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }
+        return relatorioLista;
 
     }
 }

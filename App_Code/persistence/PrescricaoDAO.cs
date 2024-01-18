@@ -81,7 +81,8 @@ public class PrescricaoDAO
           ", [data_termino] "+
           ", [observacao] "+
           ", [data_cadastro] "+
-          ", [status])"+
+          ", [status] " +
+          ", [nome_Usuario])" +
     " VALUES"+
           " ( @cod_Paciente "+
           " , @cod_Finalidade "+
@@ -93,7 +94,7 @@ public class PrescricaoDAO
           " , @data_inicio "+
           " , @data_termino "+
           " , @observacao "+
-          " , @data_cadastro"+
+          " , @data_cadastro "+
           " , @status"+
                 " , @nome_Usuario)";
                 //cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;

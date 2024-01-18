@@ -27,7 +27,23 @@ public class RelatorioPrescricao
     public DateTime data_inicio { get; set; }
     public DateTime data_termino { get; set; }
     public string observacao { get; set; }
-    public DateTime dataCadastro { get; set; }
+    public DateTime data_cadastro { get; set; }
     public char status { get; set; }
     public string desc_protocolo { get; set; }
+
+
+
+
+    public string nome_Usuario { get; set; }
+
+    public int cod_Paciente { get; set; }
+
+    public int ddd_telefone { get; set; }
+
+
+    public int telefone { get; set; }
+    public string sexo { get; set; }
+    public DateTime data_nascimento { get; set; }
+    public int ciclos_provaveis { get; set; }
+
 }

@@ -144,8 +144,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         ClearInputs(Page.Controls);// limpa os textbox
         ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
 
-       
-            ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Impressora");
+
+        ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Impressora");
             vias--;
         
     }

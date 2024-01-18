@@ -79,7 +79,7 @@ public class RelatorioPrescricaoloDAO
                     itemLista.data_inicio = dr1.GetDateTime(8);
                     itemLista.data_termino = dr1.GetDateTime(9);
                     itemLista.observacao = dr1.IsDBNull(10) ? "" : dr1.GetString(10);
-                    itemLista.dataCadastro = dr1.GetDateTime(11);
+                    itemLista.data_cadastro = dr1.GetDateTime(11);
                     itemLista.desc_protocolo = dr1.IsDBNull(12) ? "" : dr1.GetString(12);
 
 
@@ -105,20 +105,27 @@ public class RelatorioPrescricaoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [cod_Prescricao]" +
-      ",[desc_finalidade] " +
-      ",[desc_vias_de_acesso] " +
-      ",[nome_paciente] " +
-      ",[altura] " +
-      ",[peso] " +
-      ",[BSA] " +
-      ",[intervalo_dias] " +
-      ",[data_inicio] " +
-      ",[data_termino] " +
-      ",[observacao] " +
-      ",[data_cadastro] " +
-      ",[desc_protocolo] " +
-       "   FROM [dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
+            cmm.CommandText = "SELECT [cod_Prescricao] " +
+     " ,[desc_finalidade] " +
+     " ,[desc_vias_de_acesso] " +
+     " ,[nome_paciente]" +
+     " ,[altura]" +
+     " ,[peso]" +
+     " ,[BSA]" +
+     " ,[intervalo_dias]" +
+     " ,[data_inicio]" +
+     " ,[data_termino]" +
+     " ,[observacao]" +
+     " ,[data_cadastro]" +
+     " ,[desc_protocolo]" +
+     " ,[nome_Usuario]" +
+     " ,[cod_Paciente]" +
+     " ,[ddd_telefone]" +
+     " ,[telefone]" +
+     " ,[sexo]" +
+     " ,[data_nascimento]" +
+     " ,[ciclos_provaveis]" +
+     "       FROM[dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
             try
             {
                 cnn.Open();
@@ -142,8 +149,17 @@ public class RelatorioPrescricaoloDAO
                     relatorio.data_inicio = dr1.GetDateTime(8);
                     relatorio.data_termino = dr1.GetDateTime(9);
                     relatorio.observacao = dr1.GetString(10);
-                    relatorio.dataCadastro = dr1.GetDateTime(11);
+                    relatorio.data_cadastro = dr1.GetDateTime(11);
                     relatorio.desc_protocolo = dr1.GetString(12);
+
+                    relatorio.nome_Usuario = dr1.GetString(13);
+                    relatorio.cod_Paciente = dr1.GetInt32(14);
+                    relatorio.ddd_telefone = dr1.GetInt32(15);
+                    relatorio.telefone = dr1.GetInt32(16);
+                    relatorio.sexo = dr1.GetString(17);
+                    relatorio.data_nascimento = dr1.GetDateTime(18);
+                    relatorio.ciclos_provaveis = dr1.GetInt32(19);
+
 
                     relatorioLista.Add(relatorio);
                 }

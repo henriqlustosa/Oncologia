@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioPrescricao" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT cod_Prescricao, desc_finalidade, desc_vias_de_acesso, nome_paciente, altura, peso, BSA, intervalo_dias, data_inicio, data_termino, observacao, data_cadastro, desc_protocolo FROM dbo.Vw_RelatorioPrescricao</CommandText>
+                    <CommandText>SELECT cod_Prescricao, desc_finalidade, desc_vias_de_acesso, nome_paciente, altura, peso, BSA, intervalo_dias, data_inicio, data_termino, observacao, data_cadastro, desc_protocolo, nome_Usuario, cod_Paciente, ddd_telefone, telefone, sexo, data_nascimento, ciclos_provaveis FROM dbo.Vw_RelatorioPrescricao</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -32,6 +32,13 @@
               <Mapping SourceColumn="observacao" DataSetColumn="observacao" />
               <Mapping SourceColumn="data_cadastro" DataSetColumn="data_cadastro" />
               <Mapping SourceColumn="desc_protocolo" DataSetColumn="desc_protocolo" />
+              <Mapping SourceColumn="nome_Usuario" DataSetColumn="nome_Usuario" />
+              <Mapping SourceColumn="cod_Paciente" DataSetColumn="cod_Paciente" />
+              <Mapping SourceColumn="ddd_telefone" DataSetColumn="ddd_telefone" />
+              <Mapping SourceColumn="telefone" DataSetColumn="telefone" />
+              <Mapping SourceColumn="sexo" DataSetColumn="sexo" />
+              <Mapping SourceColumn="data_nascimento" DataSetColumn="data_nascimento" />
+              <Mapping SourceColumn="ciclos_provaveis" DataSetColumn="ciclos_provaveis" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -71,17 +78,17 @@
               <xs:element name="altura" type="xs:int" />
               <xs:element name="peso" type="xs:int" />
               <xs:element name="BSA" type="xs:decimal" />
-              <xs:element name="intervalo_dias" type="xs:int" minOccurs="0" />
-              <xs:element name="data_inicio" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="data_termino" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="observacao" minOccurs="0">
+              <xs:element name="intervalo_dias" type="xs:int" />
+              <xs:element name="data_inicio" type="xs:dateTime" />
+              <xs:element name="data_termino" type="xs:dateTime" />
+              <xs:element name="observacao">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="data_cadastro" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="data_cadastro" type="xs:dateTime" />
               <xs:element name="desc_protocolo">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -89,14 +96,29 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="nome_Usuario">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cod_Paciente" type="xs:int" />
+              <xs:element name="ddd_telefone" type="xs:int" minOccurs="0" />
+              <xs:element name="telefone" type="xs:int" minOccurs="0" />
+              <xs:element name="sexo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="data_nascimento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ciclos_provaveis" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:Vw_RelatorioPrescricao" />
-      <xs:field xpath="mstns:cod_Prescricao" />
-    </xs:unique>
   </xs:element>
 </xs:schema>

@@ -179,7 +179,7 @@ public class MedicacaoPreQuimioDetalhelDAO
 
 
 
-         
+
 
                 cmm.Parameters.Add("@cod_PreQuimio", SqlDbType.Int).Value = result.cod_PreQuimio;
                 cmm.Parameters.Add("@cod_Medicacao", SqlDbType.Int).Value = result.cod_Medicacao;
@@ -211,5 +211,62 @@ public class MedicacaoPreQuimioDetalhelDAO
         }
 
         return mensagem;
+    }
+
+    internal static List<MedicacaoPreQuimioDetalhe> BuscarPrequimiosPorCodPrescricao(int cod_prequimio)
+    {
+        List<MedicacaoPreQuimioDetalhe> preQuimios = new List<MedicacaoPreQuimioDetalhe>() ;
+        MedicacaoPreQuimioDetalhe preQuimio = new MedicacaoPreQuimioDetalhe();
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            //Colocar um inner join com 
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT [Id]" +
+      ",[cod_PreQuimio]" +
+      ",[cod_Medicacao]" +
+      ",[cod_Quimio] " +
+      ",[cod_ViaDeAdministracao]" +
+      ",[nome_Usuario]" +
+      ",[quantidade] " +
+      ",[unidadeQuantidade] " +
+      ",[diluicao] " +
+      ",[tempoDeInfusao] " +
+      ",[unidadeTempoDeInfusao] " +
+      ",[dataCadastro] " +
+      ",[status] " +
+               " FROM[dbo].[MedicacaoPreQuimioDetalhe]  where cod_PreQuimio = " + cod_prequimio;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                {
+                    preQuimio.Id = dr1.GetInt32(0);
+                    preQuimio.cod_PreQuimio = dr1.GetInt32(1);
+                    preQuimio.cod_Medicacao = dr1.GetInt32(2);
+                    preQuimio.cod_Quimio = dr1.GetInt32(3);
+                    preQuimio.cod_ViaDeAdministracao = dr1.GetInt32(4);
+
+                    preQuimio.nome_Usuario = dr1.GetString(5);
+                    preQuimio.quantidade = dr1.GetDecimal(6);
+                    preQuimio.unidadeQuantidade = dr1.GetString(7);
+                    preQuimio.diluicao = dr1.GetString(8);
+                    preQuimio.tempoDeInfusao = dr1.GetInt32(9);
+                    preQuimio.unidadeTempoDeInfusao = dr1.GetString(10);
+                    preQuimio.dataCadastro = dr1.GetDateTime(11);
+                    preQuimio.status = dr1.GetString(12);
+                    preQuimios.Add(preQuimio);
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return preQuimios;
+        }
     }
 }

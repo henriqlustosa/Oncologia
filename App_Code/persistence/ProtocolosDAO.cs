@@ -14,6 +14,8 @@ using System.Security.Cryptography;
 /// </summary>
 public class ProtocolosDAO
 {
+    private static Protocolos protocolo;
+
     public ProtocolosDAO()
     {
         //
@@ -261,5 +263,119 @@ public class ProtocolosDAO
         }
 
         return mensagem;
+    }
+
+    internal static Protocolos BuscarProtocoloPorCodPrescricao(int Id)
+    {
+        
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT [Id] " +
+     ",[cod_DescricaoProtocolo]" +
+     " ,[cod_Medicacao] " +
+     " ,[cod_PreQuimio] " +
+     " ,[cod_ViaDeAdministracao] " +
+     " ,[nome_Usuario] " +
+     " ,[dataCadastro] " +
+     " ,[status] " +
+     " ,[dose] " +
+     " ,[unidadeDose] " +
+     " ,[diluicao] " +
+     " ,[tempoDeInfusao] " +
+     " ,[unidadeTempoDeInfusao] " +
+               " FROM [dbo].[Protocolos] where Id = " + Id;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                {
+                  
+                    protocolo.Id = dr1.GetInt32(0);
+                    protocolo.cod_DescricaoProtocolo = dr1.GetInt32(1);
+                    protocolo.cod_Medicacao = dr1.GetInt32(2);
+                    protocolo.cod_PreQuimio = dr1.GetInt32(3);
+                    protocolo.cod_ViaDeAdministracao = dr1.GetInt32(4);
+
+                    protocolo.nome_Usuario = dr1.GetString(5);
+                    protocolo.dataCadastro = dr1.GetDateTime(6);
+                    protocolo.status = dr1.GetString(7);
+                    protocolo.dose = dr1.GetDecimal(8);
+                    protocolo.unidadeDose = dr1.GetString(9);
+                    protocolo.diluicao = dr1.GetString(10);
+                    protocolo.tempoDeInfusao = dr1.GetString(11);
+                    protocolo.unidadeTempoDeInfusao = dr1.GetString(12);
+
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return protocolo;
+        }
+    }
+
+    public static List<Protocolos> BuscarProtocolosPorCodPrescricao(int cod_protocolo)
+    {
+        List<Protocolos> protocolos = new List<Protocolos>();
+        
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT [Id] " +
+     ",[cod_DescricaoProtocolo]" +
+     " ,[cod_Medicacao] " +
+     " ,[cod_PreQuimio] " +
+     " ,[cod_ViaDeAdministracao] " +
+     " ,[nome_Usuario] " +
+     " ,[dataCadastro] " +
+     " ,[status] " +
+     " ,[dose] " +
+     " ,[unidadeDose] " +
+     " ,[diluicao] " +
+     " ,[tempoDeInfusao] " +
+     " ,[unidadeTempoDeInfusao] " +
+               " FROM [dbo].[Protocolos] where cod_DescricaoProtocolo = " + cod_protocolo;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                {
+                    Protocolos protocolo = new Protocolos();
+                    protocolo.Id = dr1.GetInt32(0);
+                    protocolo.cod_DescricaoProtocolo = dr1.GetInt32(1);
+                    protocolo.cod_Medicacao = dr1.GetInt32(2);
+                    protocolo.cod_PreQuimio = dr1.GetInt32(3);
+                    protocolo.cod_ViaDeAdministracao = dr1.GetInt32(4);
+
+                    protocolo.nome_Usuario = dr1.GetString(5);
+                    protocolo.dataCadastro = dr1.GetDateTime(6);
+                    protocolo.status = dr1.GetString(7);
+                    protocolo.dose = dr1.GetDecimal(8);
+                    protocolo.unidadeDose = dr1.GetString(9);
+                    protocolo.diluicao = dr1.GetString(10);
+                    protocolo.tempoDeInfusao = dr1.GetString(11);
+                    protocolo.unidadeTempoDeInfusao = dr1.GetString(12);
+                    protocolos.Add(protocolo);
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return protocolos;
+        }
     }
 }

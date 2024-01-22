@@ -46,4 +46,10 @@ public class RelatorioPrescricao
     public DateTime data_nascimento { get; set; }
     public int ciclos_provaveis { get; set; }
 
+    public string desc_prequimio { get; set;}
+
+    public int cod_prequimio { get; set; }
+    public int cod_protocolo { get; set; }
+
+
 }

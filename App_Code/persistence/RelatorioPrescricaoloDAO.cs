@@ -19,44 +19,15 @@ public class RelatorioPrescricaoloDAO
     public List<RelatorioPrescricao> relatorioLista = new List<RelatorioPrescricao>();
     public static List<RelatorioPrescricao> listaTodosProtocolos()
     {
-        List<RelatorioPrescricao> relatorioPrexcricao = new List<RelatorioPrescricao>();
+        List<RelatorioPrescricao> relatorioPrescricao = new List<RelatorioPrescricao>();
 
-        /*  ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-
-          HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmonco.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio" );
-          request.Method = "GET";
-          request.PreAuthenticate = true;
-          request.ContentType = "application/json";
-          request.Headers.Add("Authorization", "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImhlbnJpcXVlIiwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJJZCI6IjEiLCJuYmYiOjE2OTk4ODM2NDcsImV4cCI6MTY5OTg5MDg0NywiaWF0IjoxNjk5ODgzNjQ3fQ.JOMIbRy_ps2brWUNZZD3a3BgfGlcXM7_mfLCC3gJofs");
-          try
-          {
-              WebResponse response = request.GetResponse();
-              using (Stream responseStream = response.GetResponseStream())
-              {
-                  StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                  model = JsonConvert.DeserializeObject<List<PreQuimio>>(reader.ReadToEnd());
-
-              }
-          }
-          catch (WebException ex)
-          {
-              WebResponse errorResponse = ex.Response;
-              using (Stream responseStream = errorResponse.GetResponseStream())
-              {
-                  StreamReader reader = new StreamReader(responseStream, Encoding.GetEncoding("utf-8"));
-                  String errorText = reader.ReadToEnd();
-                  // Log errorText
-              }
-              throw;
-          }
-           */
+       
 
 
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[data_termino],[observacao],[data_cadastro],[desc_protocolo] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]";
+            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[data_termino],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]";
 
             try
             {
@@ -82,8 +53,18 @@ public class RelatorioPrescricaoloDAO
                     itemLista.data_cadastro = dr1.GetDateTime(11);
                     itemLista.desc_protocolo = dr1.IsDBNull(12) ? "" : dr1.GetString(12);
 
+                    itemLista.nome_Usuario = dr1.IsDBNull(13) ? "" : dr1.GetString(13);
+                    itemLista.cod_Paciente = dr1.GetInt32(14);
+                    itemLista.ddd_telefone = dr1.GetInt32(15);
+                    itemLista.telefone = dr1.GetInt32(16);
+                    itemLista.sexo = dr1.IsDBNull(17) ? "" : dr1.GetString(17);
+                    itemLista.data_nascimento = dr1.GetDateTime(18);
+                    itemLista.ciclos_provaveis = dr1.GetInt32(19);
+                    itemLista.desc_prequimio = dr1.IsDBNull(20) ? "" : dr1.GetString(20);
+                    itemLista.cod_prequimio = dr1.GetInt32(21);
+                    itemLista.cod_protocolo = dr1.GetInt32(22);
 
-                    relatorioPrexcricao.Add(itemLista);
+                    relatorioPrescricao.Add(itemLista);
                 }
             }
             catch (Exception ex)
@@ -92,14 +73,14 @@ public class RelatorioPrescricaoloDAO
             }
 
         }
-        return relatorioPrexcricao;
+        return relatorioPrescricao;
 
 
 
 
     }
 
-    internal List<RelatorioPrescricao> GetPrescricao(int cod_relatorio_prescricao)
+    internal RelatorioPrescricao GetPrescricao(int cod_relatorio_prescricao)
     {
         RelatorioPrescricao relatorio = new RelatorioPrescricao();
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
@@ -125,6 +106,9 @@ public class RelatorioPrescricaoloDAO
      " ,[sexo]" +
      " ,[data_nascimento]" +
      " ,[ciclos_provaveis]" +
+     " ,[desc_prequimio]" +
+      " ,[cod_prequimio]" +
+     " ,[cod_protocolo]" +
      "       FROM[dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
             try
             {
@@ -159,9 +143,12 @@ public class RelatorioPrescricaoloDAO
                     relatorio.sexo = dr1.GetString(17);
                     relatorio.data_nascimento = dr1.GetDateTime(18);
                     relatorio.ciclos_provaveis = dr1.GetInt32(19);
+                    relatorio.desc_prequimio = dr1.GetString(20);
+                    relatorio.cod_prequimio = dr1.GetInt32(21);
+                    relatorio.cod_protocolo = dr1.GetInt32(22);
 
 
-                    relatorioLista.Add(relatorio);
+                    //relatorioLista.Add(relatorio);
                 }
             }
             catch (Exception ex)
@@ -169,7 +156,7 @@ public class RelatorioPrescricaoloDAO
                 string error = ex.Message;
             }
         }
-        return relatorioLista;
+        return relatorio;
 
     }
 }

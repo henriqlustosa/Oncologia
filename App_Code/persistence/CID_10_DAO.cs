@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Identity.Client;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,7 +24,7 @@ public class CID_10_DAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             string status = "A";
-            string _dtcadastro_bd = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            string _dtcadastro_bd = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             SqlCommand cmm = new SqlCommand();
             cmm.Connection = cnn;
             cnn.Open();
@@ -36,8 +37,8 @@ public class CID_10_DAO
                 {
                     cmm.CommandText = "Insert into [dbo].[CID_PRESCRICAO] ([SUBCAT], [cod_Prescricao],data_cadastro,status)"
                     + " values ('"
-                                + cid_10.SUBCAT + "','"
-                                + cod_Prescricao + "','"
+                                + cid_10.SUBCAT + "',"
+                                + cod_Prescricao + ",'"
                                 + _dtcadastro_bd + "','"
                                 + status
                                 + "');";
@@ -94,5 +95,42 @@ public class CID_10_DAO
 
         }
         return listaCID_10;
+    }
+
+   
+
+    public static List<CID_Prescricao> BuscarCIDsPorCodPrescricao(int cod_Prescricao)
+    {
+        List<CID_Prescricao> listaCid10 = new List<CID_Prescricao>() ;
+     
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT  [cod_Prescricao],[SUBCAT],[status],[data_cadastro],[data_atualizacao] FROM [hspmonco].[dbo].[CID_PRESCRICAO] where status = 'A' and cod_Prescricao =" + cod_Prescricao;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                while (dr1.Read())
+                {
+                    CID_Prescricao cid10 = new CID_Prescricao();
+                    cid10.cod_Prescricao = dr1.GetInt32(0);
+                    cid10.SUBCAT = dr1.GetString(1);
+                   
+
+
+                    listaCid10.Add(cid10);
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return listaCid10;
+        }
     }
 }

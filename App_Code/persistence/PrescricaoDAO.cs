@@ -20,6 +20,35 @@ public class PrescricaoDAO
         //
     }
 
+    public static int BuscarPrequimioPorCod_Protocolo(int cod_Protocolos)
+    {
+        int cod_Prescricao = 0;
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "Select top 1 cod_PreQuimio FROM [hspmonco].[dbo].[Protocolos] where cod_DescricaoProtocolo = " + cod_Protocolos;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                {
+                    cod_Prescricao = dr1.GetInt32(0);
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return cod_Prescricao;
+        }
+    }
 
     public static int BuscarPrescricaoPorDataCadastro(DateTime dataCadastro)
     {
@@ -82,8 +111,10 @@ public class PrescricaoDAO
           ", [observacao] "+
           ", [data_cadastro] "+
           ", [status] " +
-          ", [nome_Usuario])" +
-    " VALUES"+
+          ", [nome_Usuario]" +
+
+           ", [cod_Prequimio])" +
+    " VALUES" +
           " ( @cod_Paciente "+
           " , @cod_Finalidade "+
           " , @cod_Vias_De_Acesso "+
@@ -96,7 +127,8 @@ public class PrescricaoDAO
           " , @observacao "+
           " , @data_cadastro "+
           " , @status"+
-                " , @nome_Usuario)";
+           " , @nome_Usuario" +
+                " , @cod_Prequimio)";
                 //cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
                 cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
                 cmm.Parameters.Add("@cod_Finalidade", SqlDbType.Int).Value = prescricao.cod_Finalidade;
@@ -115,6 +147,8 @@ public class PrescricaoDAO
              
                 cmm.Parameters.Add("@status", SqlDbType.Char).Value = "A";
                 cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = prescricao.nome_Usuario;
+
+                cmm.Parameters.Add("@cod_Prequimio", SqlDbType.Int).Value = prescricao.cod_Prequimio;
 
 
 

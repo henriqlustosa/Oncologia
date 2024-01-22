@@ -31,4 +31,6 @@ public class Prescricao
     public string status { get; set; }
     public string nome_Usuario { get; set; }
 
+    public int cod_Prequimio { get; set; }
+
 }

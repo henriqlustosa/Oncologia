@@ -4,15 +4,15 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="hspmoncoConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="hspmoncoConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.hspmoncoConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="hspmoncoConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="hspmoncoConnectionString1 (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.hspmoncoConnectionString1.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_RelatorioPrescricaoTableAdapter" Name="Vw_RelatorioPrescricao">
             <MainSource>
-              <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioPrescricao" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+              <DbSource ConnectionRef="hspmoncoConnectionString1 (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioPrescricao" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT cod_Prescricao, desc_finalidade, desc_vias_de_acesso, nome_paciente, altura, peso, BSA, intervalo_dias, data_inicio, data_termino, observacao, data_cadastro, desc_protocolo, nome_Usuario, cod_Paciente, ddd_telefone, telefone, sexo, data_nascimento, ciclos_provaveis FROM dbo.Vw_RelatorioPrescricao</CommandText>
+                    <CommandText>SELECT cod_Prescricao, desc_finalidade, desc_vias_de_acesso, nome_paciente, altura, peso, BSA, intervalo_dias, data_inicio, data_termino, observacao, data_cadastro, desc_protocolo, nome_Usuario, cod_Paciente, ddd_telefone, telefone, sexo, data_nascimento, ciclos_provaveis, desc_prequimio, cod_prequimio, cod_protocolo FROM dbo.Vw_RelatorioPrescricao</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -39,6 +39,9 @@
               <Mapping SourceColumn="sexo" DataSetColumn="sexo" />
               <Mapping SourceColumn="data_nascimento" DataSetColumn="data_nascimento" />
               <Mapping SourceColumn="ciclos_provaveis" DataSetColumn="ciclos_provaveis" />
+              <Mapping SourceColumn="desc_prequimio" DataSetColumn="desc_prequimio" />
+              <Mapping SourceColumn="cod_prequimio" DataSetColumn="cod_prequimio" />
+              <Mapping SourceColumn="cod_protocolo" DataSetColumn="cod_protocolo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -115,6 +118,15 @@
               </xs:element>
               <xs:element name="data_nascimento" type="xs:dateTime" minOccurs="0" />
               <xs:element name="ciclos_provaveis" type="xs:int" />
+              <xs:element name="desc_prequimio">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cod_prequimio" type="xs:int" />
+              <xs:element name="cod_protocolo" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

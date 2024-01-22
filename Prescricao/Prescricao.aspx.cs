@@ -133,6 +133,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         prescricao.data_cadastro = dataCadastro;
         prescricao.nome_Usuario = User.Identity.Name.ToUpper();
 
+        prescricao.cod_Prequimio = PrescricaoDAO.BuscarPrequimioPorCod_Protocolo(prescricao.cod_Protocolos);
+
         prescricao.cod_Prescricao = PrescricaoDAO.GravarPrescricao(prescricao);
 
         CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao);

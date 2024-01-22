@@ -26,18 +26,62 @@ public class ImpressaoPrescricao
             using (var relatorio = new LocalReport())
             {
                 relatorio.ReportPath = "Report/Report.rdlc";
-                RelatorioPrescricaoloDAO sr = new RelatorioPrescricaoloDAO();
-               List<RelatorioPrescricao> sc = new List<RelatorioPrescricao>();
+
+                RelatorioPrescricaoloDAO relatorioPrescricaoDAO = new RelatorioPrescricaoloDAO();
+
+                List<RelatorioPrescricao> listaRelatorioPrescricao = new List<RelatorioPrescricao>();
+
+                RelatorioPrescricao relatorioPrescricao = new RelatorioPrescricao();
+
+
+
+
+                //
+                List<Protocolos> protocolos = new List<Protocolos>();
+
+                List<MedicacaoPreQuimioDetalhe> preQuimios = new List<MedicacaoPreQuimioDetalhe>();
+
+                List<CID_Prescricao> cids = new List<CID_Prescricao>();
+
+
+
+
+
+
                 //Ficha sc = new Ficha();
-                sc = sr.GetPrescricao(_cod_relatorio_prescricao);
+                relatorioPrescricao = relatorioPrescricaoDAO.GetPrescricao(_cod_relatorio_prescricao);
+                listaRelatorioPrescricao.Add(relatorioPrescricao);
+
+
+                protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(relatorioPrescricao.cod_protocolo);
+                preQuimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPrescricao(relatorioPrescricao.cod_prequimio);
+                cids = CID_10_DAO.BuscarCIDsPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
+
+
+
+
 
 
                 IEnumerable<RelatorioPrescricao> ie;
-                ie = sc.AsEnumerable();
+                IEnumerable<Protocolos> ie2;
+                IEnumerable<MedicacaoPreQuimioDetalhe> ie3;
+                IEnumerable<CID_Prescricao> ie4;
+      
+                ie = listaRelatorioPrescricao.AsEnumerable();
+                ie2 = protocolos.AsEnumerable();
+                ie3 = preQuimios.AsEnumerable();
+                ie4 = cids.AsEnumerable();
 
 
                 ReportDataSource datasource = new ReportDataSource("DataSet1", ie);
+                ReportDataSource datasource2 = new ReportDataSource("DataSet4", ie2);
+               ReportDataSource datasource3 = new ReportDataSource("DataSet3", ie3);
+                ReportDataSource datasource4 = new ReportDataSource("DataSet2", ie4);
                 relatorio.DataSources.Add(datasource);
+                relatorio.DataSources.Add(datasource2);
+                relatorio.DataSources.Add(datasource3);
+                relatorio.DataSources.Add(datasource4);
+               
 
                 Exportar(relatorio);
                 Imprimir(relatorio);

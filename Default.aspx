@@ -7,7 +7,7 @@
     <link href="css/login.css" rel="stylesheet" />
     <link href="bootstrap5/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="img/Logo_HSPM_.png" type="image/x-icon" />
-    <title>Login - Chamado Informática</title>
+    <title>Login - Oncologia </title>
 </head>
 <body class="text-center img-background">
     <form id="form1" runat="server">

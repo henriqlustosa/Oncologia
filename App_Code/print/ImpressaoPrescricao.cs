@@ -37,9 +37,9 @@ public class ImpressaoPrescricao
 
 
                 //
-                List<Protocolos> protocolos = new List<Protocolos>();
+                List<RelatorioProtocolo> protocolos = new List<RelatorioProtocolo>();
 
-                List<MedicacaoPreQuimioDetalhe> preQuimios = new List<MedicacaoPreQuimioDetalhe>();
+                List<RelatorioPreQuimio> preQuimios = new List<RelatorioPreQuimio>();
 
                 List<CID_Prescricao> cids = new List<CID_Prescricao>();
 
@@ -53,8 +53,10 @@ public class ImpressaoPrescricao
                 listaRelatorioPrescricao.Add(relatorioPrescricao);
 
 
-                protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(relatorioPrescricao.cod_protocolo);
-                preQuimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPrescricao(relatorioPrescricao.cod_prequimio);
+                protocolos = RelatorioProtocoloDAO.BuscarProtocolosPorCodPrescricao(relatorioPrescricao.cod_protocolo);
+
+                preQuimios = RelatorioPreQuimioDAO.BuscarPrequimiosPorCodPrescricao(relatorioPrescricao.cod_prequimio);
+
                 cids = CID_10_DAO.BuscarCIDsPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
 
 
@@ -63,8 +65,8 @@ public class ImpressaoPrescricao
 
 
                 IEnumerable<RelatorioPrescricao> ie;
-                IEnumerable<Protocolos> ie2;
-                IEnumerable<MedicacaoPreQuimioDetalhe> ie3;
+                IEnumerable<RelatorioProtocolo> ie2;
+                IEnumerable<RelatorioPreQuimio> ie3;
                 IEnumerable<CID_Prescricao> ie4;
       
                 ie = listaRelatorioPrescricao.AsEnumerable();
@@ -74,9 +76,9 @@ public class ImpressaoPrescricao
 
 
                 ReportDataSource datasource = new ReportDataSource("DataSet1", ie);
-                ReportDataSource datasource2 = new ReportDataSource("DataSet4", ie2);
+                ReportDataSource datasource2 = new ReportDataSource("DataSet2", ie2);
                ReportDataSource datasource3 = new ReportDataSource("DataSet3", ie3);
-                ReportDataSource datasource4 = new ReportDataSource("DataSet2", ie4);
+                ReportDataSource datasource4 = new ReportDataSource("DataSet4", ie4);
                 relatorio.DataSources.Add(datasource);
                 relatorio.DataSources.Add(datasource2);
                 relatorio.DataSources.Add(datasource3);

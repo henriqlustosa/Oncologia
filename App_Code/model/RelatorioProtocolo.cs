@@ -28,4 +28,5 @@ public class RelatorioProtocolo
     public string unidadeTempoDeInfusao { get; set; }
     public DateTime dataCadastro { get; set; }
     public char status { get; set; }
+    public int cod_DescricaoProtocolo { get; set; }
 }

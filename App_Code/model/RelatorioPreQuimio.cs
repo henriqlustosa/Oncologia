@@ -27,5 +27,6 @@ public class RelatorioPreQuimio
     public int tempoDeInfusao { get; set; }
     public string unidadeTempoDeInfusao { get; set; }
     public DateTime dataCadastro { get; set; }
-    public char status { get; set; }
+    public string status { get; set; }
+    public int cod_Prequimio { get; set; }
 }

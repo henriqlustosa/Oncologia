@@ -36,13 +36,13 @@ public class ImpressaoPrescricao
 
 
 
-                //
+       
                 List<RelatorioProtocolo> protocolos = new List<RelatorioProtocolo>();
 
                 List<RelatorioPreQuimio> preQuimios = new List<RelatorioPreQuimio>();
 
                 List<CID_Prescricao> cids = new List<CID_Prescricao>();
-
+                List<Agenda> agendas = new List<Agenda>();
 
 
 
@@ -59,6 +59,8 @@ public class ImpressaoPrescricao
 
                 cids = CID_10_DAO.BuscarCIDsPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
 
+                agendas = AgendaDAO.BuscarAgendasPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
+
 
 
 
@@ -68,25 +70,41 @@ public class ImpressaoPrescricao
                 IEnumerable<RelatorioProtocolo> ie2;
                 IEnumerable<RelatorioPreQuimio> ie3;
                 IEnumerable<CID_Prescricao> ie4;
-      
+               
+
                 ie = listaRelatorioPrescricao.AsEnumerable();
                 ie2 = protocolos.AsEnumerable();
                 ie3 = preQuimios.AsEnumerable();
                 ie4 = cids.AsEnumerable();
-
+                
 
                 ReportDataSource datasource = new ReportDataSource("DataSet1", ie);
                 ReportDataSource datasource2 = new ReportDataSource("DataSet2", ie2);
-               ReportDataSource datasource3 = new ReportDataSource("DataSet3", ie3);
+                ReportDataSource datasource3 = new ReportDataSource("DataSet3", ie3);
                 ReportDataSource datasource4 = new ReportDataSource("DataSet4", ie4);
+
+
+
                 relatorio.DataSources.Add(datasource);
                 relatorio.DataSources.Add(datasource2);
                 relatorio.DataSources.Add(datasource3);
                 relatorio.DataSources.Add(datasource4);
                
-
-                Exportar(relatorio);
-                Imprimir(relatorio);
+                foreach (Agenda agenda in agendas)
+                {
+                    List<Agenda> relatorioAgenda = new List<Agenda>();
+                    relatorioAgenda.Add(agenda);
+                    IEnumerable<Agenda> ie5;
+                    ie5 = relatorioAgenda.AsEnumerable();
+                    ReportDataSource datasource5 = new ReportDataSource("DataSet5", ie5);
+                   
+                    relatorio.DataSources.Add(datasource5);
+                   
+                    Exportar(relatorio);
+                    Imprimir(relatorio);
+                    relatorio.DataSources.Remove(datasource5);
+                }
+             
             }
         }
     }

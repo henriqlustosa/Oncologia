@@ -272,10 +272,9 @@
                                     <tr>
                                         <td colspan="3" align="center"><span class="medCalcFontResultParam">Decimal Precision &nbsp;</span>
                                             <select name="decpts" onchange="BodySurfaceArea_fx();" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the decimal precision of calculations">
-                                                <option>0</option>
-                                                <option>1</option>
+                                               
                                                 <option selected="selected">2</option>
-                                                <option>3</option>
+                                              
 
                                             </select></td>
                                     </tr>
@@ -761,6 +760,7 @@
                 $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker({
+                    minDate: 0,
                     dateFormat: 'dd/mm/yy',
                     dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
                     dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
@@ -787,13 +787,18 @@
 
 
                 $("#<%=txbDtTermino.ClientID%>").datepicker();
-
-
+                
                 $("#<%=txbDtTermino.ClientID%>").mask("99/99/9999");
 
                 $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
-                $("#<%=txbCiclos.ClientID%>").mask("999");
-                $("#<%=txbIntervalos.ClientID%>").mask("999");
+                $("#<%=txbCiclos.ClientID%>").maskAsNumber({
+                    min: 1,
+	                max: 12
+                });
+                $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
+                    min: 1,
+                    max: 30
+                });
 
 
                 $("#<%= txbNomePaciente.ClientID %>").autocomplete({
@@ -921,6 +926,21 @@
             });
 
         </script>
+        
+<script type="text/javascript">
+    function MutExChkList(chk) {
+        var chkList = chk.parentNode.parentNode.parentNode;
+        var chks = chkList.getElementsByTagName("input");
+        for (var i = 0; i < chks.length; i++) {
+            if (chks[i] != chk && chk.checked) {
+                chks[i].checked = false;
+            }
+        }
+    }
+</script>
+
         <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
         <script src="../js/jquery.mask.js" type="text/javascript"></script>
+        <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
+      
 </asp:Content>

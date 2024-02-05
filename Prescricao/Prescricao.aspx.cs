@@ -34,6 +34,11 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             cblViasDeAcesso.DataTextField = "descr_vias_de_acesso"; 
             cblViasDeAcesso.DataValueField = "cod_vias_de_acesso";
             cblViasDeAcesso.DataBind();
+            for (int i = 0; i < cblViasDeAcesso.Items.Count; i++)
+            {
+                cblViasDeAcesso.Items[i].Attributes.Add("onclick", "MutExChkList(this)");
+            }
+
         }
     }
     [WebMethod]
@@ -125,7 +130,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         prescricao.cod_Protocolos = int.Parse(ddlProtocolo.SelectedValue.ToString());
         prescricao.cod_Calculo = calculo.cod_Calculo;
         prescricao.ciclos_provaveis = int.Parse(txbCiclos.Text.ToString());
-        prescricao.intervalo_dias = int.Parse(txbCiclos.Text.ToString());
+        prescricao.intervalo_dias = int.Parse(txbIntervalos.Text.ToString());
         prescricao.data_inicio = DateTime.Parse(txbDtInicio.Text.ToString());
         prescricao.data_termino = DateTime.Parse(txbDtTermino.Text.ToString());
         prescricao.observacao = txbObservacao.Text.ToString();
@@ -139,6 +144,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao);
 
+        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
+
         //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 
         //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
@@ -147,7 +154,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
 
 
-        ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "pdfhspm");
+        ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Microsoft Print to PDF");
             vias--;
         
     }

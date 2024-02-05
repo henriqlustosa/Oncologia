@@ -918,9 +918,9 @@
         </Paragraphs>
         <rd:DefaultName>idade</rd:DefaultName>
         <Top>6.07736cm</Top>
-        <Left>7.05259cm</Left>
+        <Left>9.85941cm</Left>
         <Height>0.5cm</Height>
-        <Width>3.55308cm</Width>
+        <Width>2.83647cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
@@ -984,7 +984,7 @@
         <Top>6.07736cm</Top>
         <Left>4.10788cm</Left>
         <Height>0.5cm</Height>
-        <Width>2.95cm</Width>
+        <Width>4.982cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -1280,6 +1280,68 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Data:</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>16.40099cm</Top>
+        <Left>0.23116cm</Left>
+        <Height>0.6cm</Height>
+        <Width>1.02715cm</Width>
+        <ZIndex>24</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="idade5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!data_agendada.Value, "DataSet5")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>idade</rd:DefaultName>
+        <Top>16.40099cm</Top>
+        <Left>1.35444cm</Left>
+        <Height>0.5cm</Height>
+        <Width>3.70033cm</Width>
+        <ZIndex>25</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>21cm</Height>
     <Style>
@@ -1306,7 +1368,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>b6a7f631-a284-41e3-8a00-778e9b8aea1e</rd:DataSourceID>
+      <rd:DataSourceID>938ba746-fae8-4f73-9c04-20d275d8fdac</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1592,6 +1654,42 @@
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
         <rd:TableAdapterName>CID_PRESCRICAOTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet5">
+      <Query>
+        <DataSourceName>hspmoncoDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="cod_agenda">
+          <DataField>cod_agenda</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="cod_Prescricao">
+          <DataField>cod_Prescricao</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="data_agendada">
+          <DataField>data_agendada</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="data_cadastro">
+          <DataField>data_cadastro</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="status">
+          <DataField>status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
+        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncoDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>agenda</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>agendaTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

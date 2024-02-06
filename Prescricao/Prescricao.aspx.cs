@@ -154,7 +154,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
 
 
-        ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Microsoft Print to PDF");
+        ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Impressora");
             vias--;
         
     }

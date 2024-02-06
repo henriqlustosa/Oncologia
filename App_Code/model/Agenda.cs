@@ -24,4 +24,7 @@ public class Agenda
     public DateTime data_cadastro { get; set; }
     public string status { get; set; }
 
+    public int posicao { get; set; }
+    public int total_posicoes { get; set; }
+
 }

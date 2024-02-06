@@ -23,7 +23,7 @@ public class AgendaDAO
         string mensagem = "";
 
 
-
+        int posicao = 1;
 
 
         for (int i = 0; i < ciclos_provaveis; i++)
@@ -31,8 +31,8 @@ public class AgendaDAO
 
 
 
-           
 
+          
 
 
 
@@ -49,16 +49,24 @@ public class AgendaDAO
                "([cod_Prescricao]" +
                ", [data_agendada]" +
                ", [data_cadastro]" +
-               ", [status])" +
+                ", [status]" +
+                 ", [posicao]" +
+               ", [total_posicoes])" +
+
          "VALUES" +
                "(@cod_Prescricao" +
                ",@data_agendada" +
                ",@data_cadastro" +
-               ",@status)";
+               ",@status" +
+                ",@posicao" +
+               ",@total_posicoes)";
                     cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = cod_Prescricao;
                     cmm.Parameters.Add("@data_agendada", SqlDbType.DateTime).Value = data_inicio;
                     cmm.Parameters.Add("@data_cadastro", SqlDbType.DateTime).Value = data_cadastro;
                     cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "A";
+                    cmm.Parameters.Add("@posicao", SqlDbType.Int).Value = posicao;
+                    cmm.Parameters.Add("@total_posicoes", SqlDbType.Int).Value = ciclos_provaveis;
+
 
 
 
@@ -78,7 +86,7 @@ public class AgendaDAO
                     mensagem = error;
                 }
             }
-
+            posicao += 1;
             data_inicio = data_inicio.AddDays(intervalo_dias );
 
        
@@ -95,7 +103,7 @@ public class AgendaDAO
 
             SqlCommand cmm = cnn.CreateCommand();
 
-            string sqlConsulta = "SELECT [cod_agenda],[cod_Prescricao],[data_agendada],[data_cadastro],[status] FROM [hspmonco].[dbo].[Agenda] where status = 'A' and cod_Prescricao =" + cod_Prescricao;
+            string sqlConsulta = "SELECT [cod_agenda],[cod_Prescricao],[data_agendada],[data_cadastro],[status],[posicao],[total_posicoes] FROM [hspmonco].[dbo].[Agenda] where status = 'A' and cod_Prescricao =" + cod_Prescricao;
             cmm.CommandText = sqlConsulta;
             try
             {
@@ -110,6 +118,8 @@ public class AgendaDAO
                     agenda.data_agendada = dr1.GetDateTime(2);
                     agenda.data_cadastro = dr1.GetDateTime(3);
                     agenda.status = dr1.GetString(4);
+                    agenda.posicao = dr1.GetInt32(5);
+                    agenda.total_posicoes = dr1.GetInt32(6);
 
 
 

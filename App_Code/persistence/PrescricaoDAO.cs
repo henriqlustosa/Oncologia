@@ -98,37 +98,39 @@ public class PrescricaoDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "INSERT INTO [dbo].[Prescricao] "+
-          " ( [cod_Paciente]"+
-          " , [cod_Finalidade] "+
-          " , [cod_Vias_De_Acesso] "+
-          " , [cod_Protocolos] "+
-          " , [cod_Calculo] "+
-          " , [ciclos_provaveis] "+
-          " , [intervalo_dias] "+
-          " , [data_inicio] "+
-          ", [data_termino] "+
-          ", [observacao] "+
-          ", [data_cadastro] "+
+                cmm.CommandText = "INSERT INTO [dbo].[Prescricao] " +
+          " ( [cod_Paciente]" +
+          " , [cod_Finalidade] " +
+          " , [cod_Vias_De_Acesso] " +
+          " , [cod_Protocolos] " +
+          " , [cod_Calculo] " +
+          " , [ciclos_provaveis] " +
+          " , [intervalo_dias] " +
+          " , [data_inicio] " +
+          ", [data_termino] " +
+          ", [observacao] " +
+          ", [data_cadastro] " +
           ", [status] " +
           ", [nome_Usuario]" +
 
            ", [cod_Prequimio])" +
+          
     " VALUES" +
-          " ( @cod_Paciente "+
-          " , @cod_Finalidade "+
-          " , @cod_Vias_De_Acesso "+
-          " , @cod_Protocolos "+
-          " , @cod_Calculo "+
-          " , @ciclos_provaveis "+
-          " , @intervalo_dias "+
-          " , @data_inicio "+
-          " , @data_termino "+
-          " , @observacao "+
-          " , @data_cadastro "+
-          " , @status"+
+          " ( @cod_Paciente " +
+          " , @cod_Finalidade " +
+          " , @cod_Vias_De_Acesso " +
+          " , @cod_Protocolos " +
+          " , @cod_Calculo " +
+          " , @ciclos_provaveis " +
+          " , @intervalo_dias " +
+          " , @data_inicio " +
+          " , @data_termino " +
+          " , @observacao " +
+          " , @data_cadastro " +
+          " , @status" +
            " , @nome_Usuario" +
                 " , @cod_Prequimio)";
+              
                 //cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
                 cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
                 cmm.Parameters.Add("@cod_Finalidade", SqlDbType.Int).Value = prescricao.cod_Finalidade;
@@ -149,6 +151,7 @@ public class PrescricaoDAO
                 cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = prescricao.nome_Usuario;
 
                 cmm.Parameters.Add("@cod_Prequimio", SqlDbType.Int).Value = prescricao.cod_Prequimio;
+          
 
 
 

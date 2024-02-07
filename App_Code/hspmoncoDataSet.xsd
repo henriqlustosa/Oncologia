@@ -186,12 +186,12 @@
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_RelatorioProtocoloTableAdapter" Name="Vw_RelatorioProtocolo">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_RelatorioProtocoloDosagemTableAdapter" Name="Vw_RelatorioProtocoloDosagem">
             <MainSource>
-              <DbSource ConnectionRef="oncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioProtocolo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+              <DbSource ConnectionRef="oncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioProtocoloDosagem" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT Id, desc_descricao_protocolo, desc_medicacao, desc_pre_quimio, desc_via_de_administracao, nome_Usuario, dose, unidadeDose, diluicao, tempoDeInfusao, unidadeTempoDeInfusao, dataCadastro, cod_DescricaoProtocolo FROM dbo.Vw_RelatorioProtocolo</CommandText>
+                    <CommandText>SELECT Id, desc_descricao_protocolo, desc_medicacao, desc_pre_quimio, desc_via_de_administracao, nome_Usuario, dose, unidadeDose, diluicao, tempoDeInfusao, unidadeTempoDeInfusao, dataCadastro, cod_DescricaoProtocolo, unidade_dosagem, dosagem, cod_CalculoDosagem, cod_Prescricao FROM dbo.Vw_RelatorioProtocoloDosagem</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -211,6 +211,10 @@
               <Mapping SourceColumn="unidadeTempoDeInfusao" DataSetColumn="unidadeTempoDeInfusao" />
               <Mapping SourceColumn="dataCadastro" DataSetColumn="dataCadastro" />
               <Mapping SourceColumn="cod_DescricaoProtocolo" DataSetColumn="cod_DescricaoProtocolo" />
+              <Mapping SourceColumn="unidade_dosagem" DataSetColumn="unidade_dosagem" />
+              <Mapping SourceColumn="dosagem" DataSetColumn="dosagem" />
+              <Mapping SourceColumn="cod_CalculoDosagem" DataSetColumn="cod_CalculoDosagem" />
+              <Mapping SourceColumn="cod_Prescricao" DataSetColumn="cod_Prescricao" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -415,7 +419,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Vw_RelatorioProtocolo">
+        <xs:element name="Vw_RelatorioProtocoloDosagem">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" type="xs:int" />
@@ -485,6 +489,16 @@
               </xs:element>
               <xs:element name="dataCadastro" type="xs:dateTime" />
               <xs:element name="cod_DescricaoProtocolo" type="xs:int" />
+              <xs:element name="unidade_dosagem">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dosagem" type="xs:decimal" />
+              <xs:element name="cod_CalculoDosagem" type="xs:int" />
+              <xs:element name="cod_Prescricao" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -501,10 +515,6 @@
     </xs:unique>
     <xs:unique name="Vw_RelatorioPreQuimio_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Vw_RelatorioPreQuimio" />
-      <xs:field xpath="mstns:Id" />
-    </xs:unique>
-    <xs:unique name="Vw_RelatorioProtocolo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:Vw_RelatorioProtocolo" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
   </xs:element>

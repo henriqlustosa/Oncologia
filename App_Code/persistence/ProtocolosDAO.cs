@@ -351,7 +351,7 @@ public class ProtocolosDAO
             {
                 cnn.Open();
                 SqlDataReader dr1 = cmm.ExecuteReader();
-                if (dr1.Read())
+                while (dr1.Read())
                 {
                     Protocolos protocolo = new Protocolos();
                     protocolo.Id = dr1.GetInt32(0);
@@ -378,4 +378,6 @@ public class ProtocolosDAO
             return protocolos;
         }
     }
+
+    
 }

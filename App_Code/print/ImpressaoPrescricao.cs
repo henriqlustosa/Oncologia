@@ -1,9 +1,10 @@
 ﻿using Microsoft.Reporting.WebForms;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Text;
 using System.Web;
+
 
 /// <summary>
 /// Summary description for ImpressaoPrescricao
@@ -37,7 +38,7 @@ public class ImpressaoPrescricao
 
 
        
-                List<RelatorioProtocolo> protocolos = new List<RelatorioProtocolo>();
+                List<RelatorioProtocoloDosagem> protocolos = new List<RelatorioProtocoloDosagem>();
 
                 List<RelatorioPreQuimio> preQuimios = new List<RelatorioPreQuimio>();
 
@@ -53,7 +54,7 @@ public class ImpressaoPrescricao
                 listaRelatorioPrescricao.Add(relatorioPrescricao);
 
 
-                protocolos = RelatorioProtocoloDAO.BuscarProtocolosPorCodPrescricao(relatorioPrescricao.cod_protocolo);
+                protocolos = RelatorioProtocoloDosagemDAO.BuscarProtocolosPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
 
                 preQuimios = RelatorioPreQuimioDAO.BuscarPrequimiosPorCodPrescricao(relatorioPrescricao.cod_prequimio);
 
@@ -67,15 +68,15 @@ public class ImpressaoPrescricao
 
 
                 IEnumerable<RelatorioPrescricao> ie;
-                IEnumerable<RelatorioProtocolo> ie2;
+                IEnumerable<RelatorioProtocoloDosagem> ie2;
                 IEnumerable<RelatorioPreQuimio> ie3;
                 IEnumerable<CID_Prescricao> ie4;
                
 
-                ie = listaRelatorioPrescricao.AsEnumerable();
-                ie2 = protocolos.AsEnumerable();
-                ie3 = preQuimios.AsEnumerable();
-                ie4 = cids.AsEnumerable();
+                ie = listaRelatorioPrescricao;
+                ie2 = protocolos;
+                ie3 = preQuimios;
+                ie4 = cids;
                 
 
                 ReportDataSource datasource = new ReportDataSource("DataSet1", ie);
@@ -95,7 +96,7 @@ public class ImpressaoPrescricao
                     List<Agenda> relatorioAgenda = new List<Agenda>();
                     relatorioAgenda.Add(agenda);
                     IEnumerable<Agenda> ie5;
-                    ie5 = relatorioAgenda.AsEnumerable();
+                    ie5 = relatorioAgenda;
                     ReportDataSource datasource5 = new ReportDataSource("DataSet5", ie5);
                    
                     relatorio.DataSources.Add(datasource5);

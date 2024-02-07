@@ -104,6 +104,9 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         calculo.dataCadastro = dataCadastro;
 
         calculo.cod_Calculo = CalculoSuperficieCorporeaDAO.GravarCalculoSuperficieCorporea(calculo);
+        
+    
+
 
 
         List<CID_10> lista_cid_10 = new List<CID_10>();
@@ -141,10 +144,23 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         prescricao.cod_Prequimio = PrescricaoDAO.BuscarPrequimioPorCod_Protocolo(prescricao.cod_Protocolos);
 
         prescricao.cod_Prescricao = PrescricaoDAO.GravarPrescricao(prescricao);
+        
 
         CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao);
 
         AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
+        
+        
+       List<CalculoDosagemPrescricao> calculoDosagens = new List<CalculoDosagemPrescricao>();
+        CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
+
+        List<Protocolos> protocolos = new List<Protocolos>();
+
+        protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(int.Parse(ddlProtocolo.SelectedValue.ToString()));
+        calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao.cod_Prescricao);
+
+        CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
+
 
         //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 

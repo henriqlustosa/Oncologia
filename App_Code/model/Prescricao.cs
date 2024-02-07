@@ -33,6 +33,8 @@ public class Prescricao
 
     public int cod_Prequimio { get; set; }
 
+ 
+
 
 
 }

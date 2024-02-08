@@ -135,7 +135,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         prescricao.ciclos_provaveis = int.Parse(txbCiclos.Text.ToString());
         prescricao.intervalo_dias = int.Parse(txbIntervalos.Text.ToString());
         prescricao.data_inicio = DateTime.Parse(txbDtInicio.Text.ToString());
-        prescricao.data_termino = DateTime.Parse(txbDtTermino.Text.ToString());
+        prescricao.creatinina = Convert.ToDecimal(txbCreatinina.Text); 
         prescricao.observacao = txbObservacao.Text.ToString();
 
         prescricao.data_cadastro = dataCadastro;
@@ -157,7 +157,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         List<Protocolos> protocolos = new List<Protocolos>();
 
         protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(int.Parse(ddlProtocolo.SelectedValue.ToString()));
-        calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao.cod_Prescricao);
+        calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, pacienteOncologia);
 
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
 

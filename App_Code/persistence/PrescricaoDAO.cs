@@ -107,14 +107,15 @@ public class PrescricaoDAO
           " , [ciclos_provaveis] " +
           " , [intervalo_dias] " +
           " , [data_inicio] " +
-          ", [data_termino] " +
+         
           ", [observacao] " +
           ", [data_cadastro] " +
           ", [status] " +
           ", [nome_Usuario]" +
 
-           ", [cod_Prequimio])" +
-          
+           ", [cod_Prequimio]" +
+              ", [creatinina])" +
+
     " VALUES" +
           " ( @cod_Paciente " +
           " , @cod_Finalidade " +
@@ -124,13 +125,14 @@ public class PrescricaoDAO
           " , @ciclos_provaveis " +
           " , @intervalo_dias " +
           " , @data_inicio " +
-          " , @data_termino " +
+       
           " , @observacao " +
           " , @data_cadastro " +
           " , @status" +
            " , @nome_Usuario" +
-                " , @cod_Prequimio)";
-              
+                " , @cod_Prequimio" +
+                " , @creatinina)";
+
                 //cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
                 cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
                 cmm.Parameters.Add("@cod_Finalidade", SqlDbType.Int).Value = prescricao.cod_Finalidade;
@@ -141,7 +143,7 @@ public class PrescricaoDAO
                 cmm.Parameters.Add("@ciclos_provaveis", SqlDbType.Int).Value = prescricao.ciclos_provaveis;
                 cmm.Parameters.Add("@intervalo_dias", SqlDbType.Int).Value = prescricao.intervalo_dias;
                 cmm.Parameters.Add("@data_inicio", SqlDbType.DateTime).Value = prescricao.data_inicio;
-                cmm.Parameters.Add("@data_termino", SqlDbType.DateTime).Value = prescricao.data_termino;
+            
    
 
                 cmm.Parameters.Add("@observacao", SqlDbType.VarChar).Value = prescricao.observacao;
@@ -151,7 +153,8 @@ public class PrescricaoDAO
                 cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = prescricao.nome_Usuario;
 
                 cmm.Parameters.Add("@cod_Prequimio", SqlDbType.Int).Value = prescricao.cod_Prequimio;
-          
+                cmm.Parameters.Add("@creatinina", SqlDbType.Decimal).Value = prescricao.cod_Prequimio;
+
 
 
 

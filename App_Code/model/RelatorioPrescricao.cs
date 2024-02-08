@@ -50,6 +50,7 @@ public class RelatorioPrescricao
 
     public int cod_prequimio { get; set; }
     public int cod_protocolo { get; set; }
+    public decimal creatinina { get; set; }
 
 
 }

@@ -95,7 +95,7 @@ public class RelatorioPrescricaoloDAO
      " ,[BSA]" +
      " ,[intervalo_dias]" +
      " ,[data_inicio]" +
-     " ,[data_termino]" +
+  
      " ,[observacao]" +
      " ,[data_cadastro]" +
      " ,[desc_protocolo]" +
@@ -109,6 +109,7 @@ public class RelatorioPrescricaoloDAO
      " ,[desc_prequimio]" +
       " ,[cod_prequimio]" +
      " ,[cod_protocolo]" +
+      " ,[creatinina]" +
      "       FROM[dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
             try
             {
@@ -131,21 +132,22 @@ public class RelatorioPrescricaoloDAO
                     relatorio.BSA = dr1.GetDecimal(6);
                     relatorio.intervalo_dias = dr1.GetInt32(7);
                     relatorio.data_inicio = dr1.GetDateTime(8);
-                    relatorio.data_termino = dr1.GetDateTime(9);
-                    relatorio.observacao = dr1.GetString(10);
-                    relatorio.data_cadastro = dr1.GetDateTime(11);
-                    relatorio.desc_protocolo = dr1.GetString(12);
+             
+                    relatorio.observacao = dr1.GetString(9);
+                    relatorio.data_cadastro = dr1.GetDateTime(10);
+                    relatorio.desc_protocolo = dr1.GetString(11);
 
-                    relatorio.nome_Usuario = dr1.GetString(13);
-                    relatorio.cod_Paciente = dr1.GetInt32(14);
-                    relatorio.ddd_telefone = dr1.GetInt32(15);
-                    relatorio.telefone = dr1.GetInt32(16);
-                    relatorio.sexo = dr1.GetString(17);
-                    relatorio.data_nascimento = dr1.GetDateTime(18);
-                    relatorio.ciclos_provaveis = dr1.GetInt32(19);
-                    relatorio.desc_prequimio = dr1.GetString(20);
-                    relatorio.cod_prequimio = dr1.GetInt32(21);
-                    relatorio.cod_protocolo = dr1.GetInt32(22);
+                    relatorio.nome_Usuario = dr1.GetString(12);
+                    relatorio.cod_Paciente = dr1.GetInt32(13);
+                    relatorio.ddd_telefone = dr1.GetInt32(14);
+                    relatorio.telefone = dr1.GetInt32(15);
+                    relatorio.sexo = dr1.GetString(16);
+                    relatorio.data_nascimento = dr1.GetDateTime(17);
+                    relatorio.ciclos_provaveis = dr1.GetInt32(18);
+                    relatorio.desc_prequimio = dr1.GetString(19);
+                    relatorio.cod_prequimio = dr1.GetInt32(20);
+                    relatorio.cod_protocolo = dr1.GetInt32(21);
+                    relatorio.creatinina = dr1.GetDecimal(22);
 
 
                     //relatorioLista.Add(relatorio);

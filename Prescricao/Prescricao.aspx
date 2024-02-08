@@ -410,11 +410,10 @@
                             </div>
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
-                                    Data de Término:
+                                   Creatinina(mg/dl):
                                 </label>
-                                <asp:TextBox ID="txbDtTermino" class="form-control" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbDtTermino"
-                                    InitialValue="" runat="server" ForeColor="Red" />
+                                <asp:TextBox ID="txbCreatinina" class="form-control" runat="server"></asp:TextBox>
+                               
                             </div>
                         </div>
                         <div class="row">
@@ -774,21 +773,9 @@
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker();
 
-                $("#<%=txbDtTermino.ClientID%>").datepicker({
-                    dateFormat: 'dd/mm/yy',
-                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                    nextText: 'Proximo',
-                    prevText: 'Anterior'
-                });
+              
 
-
-                $("#<%=txbDtTermino.ClientID%>").datepicker();
-                
-                $("#<%=txbDtTermino.ClientID%>").mask("99/99/9999");
+                $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
 
                 $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
                 $("#<%=txbCiclos.ClientID%>").maskAsNumber({

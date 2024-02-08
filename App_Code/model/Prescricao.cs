@@ -24,7 +24,7 @@ public class Prescricao
     public int ciclos_provaveis { get; set; }
     public int intervalo_dias { get; set; }
     public DateTime data_inicio { get; set; }
-    public DateTime data_termino { get; set; }
+
 
     public string observacao { get; set; }
     public DateTime data_cadastro { get; set; }
@@ -33,7 +33,9 @@ public class Prescricao
 
     public int cod_Prequimio { get; set; }
 
- 
+    public decimal creatinina { get; set; }
+
+
 
 
 

@@ -7,7 +7,7 @@
 
 
 	
-	  <siteMapNode url="" title="Prescrição" roles="administrador" description="">
+	  <siteMapNode url="" title="Prescrição" roles="administrador,usuario" description="">
 		  <siteMapNode url="~/Prescricao/MeuPainel.aspx" title="Meus Painel"  description="" />
 		  <siteMapNode url="~/Prescricao/Prescricao.aspx" title="Nova Prescrição"  description="" />
 		  <siteMapNode url="~/Prescricao/ModelosFavoritos.aspx" title="Modelos Favoritos"  description="" />
@@ -18,7 +18,7 @@
 		
 	  </siteMapNode>
 
-	  <siteMapNode url="" title="Administrativo" roles="administrador" description="">
+	  <siteMapNode url="" title="Administrativo" roles="administrativo" description="">
 		
 		  <siteMapNode url="~/Administrativo/CadastroProtocolo.aspx" title="Cadastro Protocolo"  description="" />
 
@@ -40,7 +40,7 @@
     
     </siteMapNode>
 
-    <siteMapNode url="" title="Relatórios" roles="administrador" description="">
+    <siteMapNode url="" title="Relatórios" roles="administrador,relatorio" description="">
       <siteMapNode url="~/Controle/ConsolidadoMes.aspx" title="Consolidado Mês"  description="" />
       <siteMapNode url="~/Controle/ListaAtendimentos.aspx" title="Lista de Atendimentos Dia"  description="Exporta lista de atendimentos do dia pesquisado" />
       <siteMapNode url="~/Controle/ListaAtendimentosMes.aspx" title="Lista de Atendimentos Mês"  description="Exporta lista de atendimentos do mês pesquisado" />
@@ -51,7 +51,7 @@
       <siteMapNode url="~/Controle/ConsolidadoMesProfissionalStatus.aspx" title="Consolidado Mês Profissional e Status"  description="" />
     </siteMapNode>
 
-    <siteMapNode url="" title="Meu Perfil" roles="administrador, atendimento, administrativo" description="Páginas relácionadas ao perfil de usuário" >
+    <siteMapNode url="" title="Meu Perfil" roles="administrador, atendimento, administrativo,relatorio" description="Páginas relácionadas ao perfil de usuário" >
       <siteMapNode url="~/Profile/AlterarSenha.aspx" title="Alterar Senha" description="Alteração de senha do usuário" />
     </siteMapNode>
 

@@ -27,7 +27,7 @@ public class RelatorioPrescricaoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[data_termino],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]";
+            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]";
 
             try
             {
@@ -48,21 +48,21 @@ public class RelatorioPrescricaoloDAO
                     itemLista.BSA = dr1.GetDecimal(6);
                     itemLista.intervalo_dias = dr1.GetInt32(7);
                     itemLista.data_inicio = dr1.GetDateTime(8);
-                    itemLista.data_termino = dr1.GetDateTime(9);
-                    itemLista.observacao = dr1.IsDBNull(10) ? "" : dr1.GetString(10);
-                    itemLista.data_cadastro = dr1.GetDateTime(11);
-                    itemLista.desc_protocolo = dr1.IsDBNull(12) ? "" : dr1.GetString(12);
+                 
+                    itemLista.observacao = dr1.IsDBNull(9) ? "" : dr1.GetString(9);
+                    itemLista.data_cadastro = dr1.GetDateTime(10);
+                    itemLista.desc_protocolo = dr1.IsDBNull(11) ? "" : dr1.GetString(11);
 
-                    itemLista.nome_Usuario = dr1.IsDBNull(13) ? "" : dr1.GetString(13);
-                    itemLista.cod_Paciente = dr1.GetInt32(14);
-                    itemLista.ddd_telefone = dr1.GetInt32(15);
-                    itemLista.telefone = dr1.GetInt32(16);
-                    itemLista.sexo = dr1.IsDBNull(17) ? "" : dr1.GetString(17);
-                    itemLista.data_nascimento = dr1.GetDateTime(18);
-                    itemLista.ciclos_provaveis = dr1.GetInt32(19);
-                    itemLista.desc_prequimio = dr1.IsDBNull(20) ? "" : dr1.GetString(20);
-                    itemLista.cod_prequimio = dr1.GetInt32(21);
-                    itemLista.cod_protocolo = dr1.GetInt32(22);
+                    itemLista.nome_Usuario = dr1.IsDBNull(12) ? "" : dr1.GetString(12);
+                    itemLista.cod_Paciente = dr1.GetInt32(13);
+                    itemLista.ddd_telefone = dr1.GetInt32(14);
+                    itemLista.telefone = dr1.GetInt32(15);
+                    itemLista.sexo = dr1.IsDBNull(16) ? "" : dr1.GetString(16);
+                    itemLista.data_nascimento = dr1.GetDateTime(17);
+                    itemLista.ciclos_provaveis = dr1.GetInt32(18);
+                    itemLista.desc_prequimio = dr1.IsDBNull(19) ? "" : dr1.GetString(19);
+                    itemLista.cod_prequimio = dr1.GetInt32(20);
+                    itemLista.cod_protocolo = dr1.GetInt32(21);
 
                     relatorioPrescricao.Add(itemLista);
                 }

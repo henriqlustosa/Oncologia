@@ -51,11 +51,10 @@
 
                 <asp:BoundField DataField="data_inicio" HeaderText="DATA INICIO" SortExpression="data_inicio"
                     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                <asp:BoundField DataField="data_termino" HeaderText="DATA TERMINO" SortExpression="data_termino"
-                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+              
                 <asp:BoundField DataField="observacao" HeaderText="OBSERVACAO" SortExpression="observacao"
     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-                <asp:BoundField DataField="dataCadastro" HeaderText="DATA" SortExpression="dataCadastro"
+                <asp:BoundField DataField="data_cadastro" HeaderText="DATA" SortExpression="dataCadastro"
                     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">

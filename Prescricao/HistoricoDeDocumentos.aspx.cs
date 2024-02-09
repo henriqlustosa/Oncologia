@@ -24,7 +24,7 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
             GridViewRow row = GridView1.Rows[index];
             //string _status = row.Cells[7].Text;
 
-            Response.Redirect("~/Prescricao/EditarCadastroProtocolo.aspx?idProtocolo=" + idProtocolo + "");
+            Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricao=" + idProtocolo + "");
         }
         if (e.CommandName.Equals("deleteRecord"))
         {
@@ -34,7 +34,7 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
             GridViewRow row = GridView1.Rows[index];
 
             ProtocolosDAO.deletarProtocolo(_id_pedido);
-            Response.Redirect("~/Prescricao/CadastroProtocolo.aspx");
+            Response.Redirect("~/Prescricao/Prescricao.aspx");
 
             //string _status = row.Cells[7].Text;
 

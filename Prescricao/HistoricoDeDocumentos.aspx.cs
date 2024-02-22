@@ -20,13 +20,13 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
         {
             index = Convert.ToInt32(e.CommandArgument);
 
-            int idProtocolo = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
-            GridViewRow row = GridView1.Rows[index];
-            //string _status = row.Cells[7].Text;
+            int idPrescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+          
+           
 
-            Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricao=" + idProtocolo + "");
+            Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricao=" + idPrescricao + "");
         }
-        if (e.CommandName.Equals("deleteRecord"))
+        else if (e.CommandName.Equals("deleteRecord"))
         {
             index = Convert.ToInt32(e.CommandArgument);
 
@@ -40,6 +40,21 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
 
 
         }
+        else if  (e.CommandName.Equals("printRecord"))
+        {
+            index = Convert.ToInt32(e.CommandArgument);
+
+            int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+            GridViewRow row = GridView1.Rows[index];
+
+            ImpressaoPrescricao.imprimirFicha(_id_pedido, "Impressora");
+            Response.Redirect("~/Prescricao/Prescricao.aspx");
+
+            //string _status = row.Cells[7].Text;
+
+
+        }
+
     }
 
     protected void GridView1_PreRender(object sender, EventArgs e)

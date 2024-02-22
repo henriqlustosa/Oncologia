@@ -94,7 +94,7 @@ public class ProtocolosDAO
     public static Protocolos BuscarProtocoloPorId(int Id)
     {
         Protocolos protocolo = new Protocolos();
-        string mensagem = "";
+      
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -190,7 +190,7 @@ public class ProtocolosDAO
                     mt.Rollback();
                 }
                 catch (Exception ex1)
-                { }
+                { string error1 = ex1.Message; }
             }
         }
     }
@@ -268,7 +268,7 @@ public class ProtocolosDAO
     internal static Protocolos BuscarProtocoloPorCodPrescricao(int Id)
     {
         
-        string mensagem = "";
+      
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -326,7 +326,7 @@ public class ProtocolosDAO
     {
         List<Protocolos> protocolos = new List<Protocolos>();
         
-        string mensagem = "";
+      
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 

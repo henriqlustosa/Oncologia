@@ -23,7 +23,7 @@ public class PrescricaoDAO
     public static int BuscarPrequimioPorCod_Protocolo(int cod_Protocolos)
     {
         int cod_Prescricao = 0;
-        string mensagem = "";
+    
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -53,7 +53,7 @@ public class PrescricaoDAO
     public static int BuscarPrescricaoPorDataCadastro(DateTime dataCadastro)
     {
         int cod_Prescricao = 0;
-        string mensagem = "";
+ 
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -83,6 +83,83 @@ public class PrescricaoDAO
 
        
     }
+
+    public static Prescricao BuscarPrescricaoPorCodPrescricao(int cod_prescricao)
+    {
+        Prescricao prescricao = new Prescricao();
+
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT [cod_Prescricao]" +
+      ",[cod_Paciente]" +
+      ",[cod_Finalidade]" +
+      ",[cod_Vias_De_Acesso]" +
+      ",[cod_Protocolos]" +
+      ",[cod_Calculo]" +
+      ",[ciclos_provaveis]" +
+      ",[intervalo_dias]" +
+      ",[data_inicio]" +
+      ",[observacao]" +
+      ",[data_cadastro]" +
+      ",[status]" +
+      ",[data_atualizacao]" +
+      ",[nome_Usuario]" +
+      ",[cod_Prequimio] " +
+      ",[creatinina] " +
+      ",[nome_Usuario_Atualizacao] " +
+  " FROM[dbo].[Prescricao] where status = 'A' and cod_Prescricao = " + cod_prescricao ;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                { 
+                   
+                    prescricao.cod_Prescricao = dr1.GetInt32(0);
+                    prescricao.cod_Paciente = dr1.GetInt32(1);
+                    prescricao.cod_Finalidade = dr1.GetInt32(2);
+                    prescricao.cod_Vias_De_Acesso = dr1.GetInt32(3);
+                    prescricao.cod_Protocolos = dr1.GetInt32(4);
+                    prescricao.cod_Calculo = dr1.GetInt32(5);
+
+                    prescricao.ciclos_provaveis = dr1.GetInt32(6);
+                    prescricao.intervalo_dias = dr1.GetInt32(7);
+                    prescricao.data_inicio = dr1.GetDateTime(8);
+                    prescricao.observacao = dr1.GetString(9);
+                    prescricao.data_cadastro = dr1.GetDateTime(10);
+                    prescricao.status = dr1.GetString(11);
+                    prescricao.data_atualizacao = dr1.IsDBNull(12) ? prescricao.data_atualizacao :  dr1.GetDateTime(12);
+                    prescricao.nome_Usuario = dr1.GetString(13);
+                    prescricao.cod_Prequimio = dr1.GetInt32(14);
+                    prescricao.creatinina = dr1.GetDecimal(15);
+                    prescricao.nome_Usuario_Atualizacao = dr1.IsDBNull(16) ? "" : dr1.GetString(16);
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return prescricao;
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
     public static int GravarPrescricao(Prescricao prescricao)
     {
     

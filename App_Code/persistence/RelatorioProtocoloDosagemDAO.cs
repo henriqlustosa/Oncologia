@@ -21,7 +21,7 @@ public class RelatorioProtocoloDosagemDAO
     {
         List<RelatorioProtocoloDosagem> protocolos = new List<RelatorioProtocoloDosagem>();
 
-        string mensagem = "";
+     
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 

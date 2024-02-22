@@ -21,7 +21,7 @@ public class CalculoDosagemPrescricaoDAO
     public static void GravarCalculoDosagemPrescricao(List<CalculoDosagemPrescricao> calculos)
     {
 
-        int id = 0;
+        
         string mensagem = null;
 
         foreach(CalculoDosagemPrescricao calculo in calculos) {

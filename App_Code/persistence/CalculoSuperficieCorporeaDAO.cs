@@ -22,7 +22,7 @@ public class CalculoSuperficieCorporeaDAO
     public static int GravarCalculoSuperficieCorporea(CalculoSuperficieCorporea calculo)
     {
 
-        int id = 0;
+       
         string mensagem = null;
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
@@ -74,7 +74,7 @@ public class CalculoSuperficieCorporeaDAO
     {
         int cod_Paciente = 0;
     
-        string mensagem = "";
+     
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -102,5 +102,46 @@ public class CalculoSuperficieCorporeaDAO
             return cod_Paciente;
         }
 
+    }
+
+    public static CalculoSuperficieCorporea BuscarCalculoSuperficieCorporeaPorCod_Calculo(int cod_Calculo)
+    {
+        CalculoSuperficieCorporea calc = new CalculoSuperficieCorporea();
+
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT [cod_Calculo] " +
+     " ,[altura]" +
+     " ,[peso]" +
+     " ,[BSA]" +
+     " ,[dataCadastro]" +
+     " FROM[dbo].[Calculo_Superficie_Corporea] " +
+     " WHERE cod_Calculo = " + cod_Calculo;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                {
+                    calc.cod_Calculo = dr1.GetInt32(0);
+                    calc.altura = dr1.GetInt32(1);
+                    calc.peso = dr1.GetInt32(2);
+                    calc.BSA = dr1.GetDecimal(3);
+                    calc.dataCadastro = dr1.GetDateTime(4);
+                   
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return calc;
+        }
     }
 }

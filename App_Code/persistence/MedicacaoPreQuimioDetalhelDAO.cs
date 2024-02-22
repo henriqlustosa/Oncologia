@@ -93,7 +93,7 @@ public class MedicacaoPreQuimioDetalhelDAO
     public static MedicacaoPreQuimioDetalhe BuscarPreQuimioPorId(int Id)
     {
         MedicacaoPreQuimioDetalhe preQuimio = new MedicacaoPreQuimioDetalhe();
-        string mensagem = "";
+  
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -217,7 +217,7 @@ public class MedicacaoPreQuimioDetalhelDAO
     {
         List<MedicacaoPreQuimioDetalhe> preQuimios = new List<MedicacaoPreQuimioDetalhe>() ;
         MedicacaoPreQuimioDetalhe preQuimio = new MedicacaoPreQuimioDetalhe();
-        string mensagem = "";
+  
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             //Colocar um inner join com 

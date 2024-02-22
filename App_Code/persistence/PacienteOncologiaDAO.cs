@@ -24,7 +24,7 @@ public class PacienteOncologiaDAO
     public static PacienteOncologia ObterPacientePorRh(int rh)
     {
         PacienteOncologia pacienteOncologia = new PacienteOncologia();
-        string mensagem = "";
+  
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -132,7 +132,7 @@ public class PacienteOncologiaDAO
     public static int BuscarPacienteOncologiaPorDataCadastro(DateTime dataCadastro)
     {
         int cod_Paciente = 0;
-        string mensagem = "";
+  
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -162,7 +162,7 @@ public class PacienteOncologiaDAO
     }
         public static int GravarPacienteOncologia(PacienteOncologia pacienteOncologia)
     {
-        int id = 0;
+       
         string mensagem = null;
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
@@ -226,7 +226,7 @@ public class PacienteOncologiaDAO
     public static bool VerificarPacientePorRh(int rh)
     {
         bool PacientePorRh = false;
-        string mensagem = "";
+  
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 

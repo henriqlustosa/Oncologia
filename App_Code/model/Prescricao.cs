@@ -35,6 +35,9 @@ public class Prescricao
 
     public decimal creatinina { get; set; }
 
+    public DateTime data_atualizacao {  get; set; }
+    public string nome_Usuario_Atualizacao { get; set; }
+
 
 
 

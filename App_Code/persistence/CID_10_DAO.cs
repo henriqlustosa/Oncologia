@@ -103,7 +103,7 @@ public class CID_10_DAO
     {
         List<CID_Prescricao> listaCid10 = new List<CID_Prescricao>() ;
      
-        string mensagem = "";
+ 
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
 
@@ -133,4 +133,6 @@ public class CID_10_DAO
             return listaCid10;
         }
     }
+
+   
 }

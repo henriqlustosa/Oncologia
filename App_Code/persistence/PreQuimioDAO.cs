@@ -68,7 +68,7 @@ public class PreQuimioDAO
                     mt.Rollback();
                 }
                 catch (Exception ex1)
-                { }
+                { string error1 = ex1.Message; }
             }
         }
     }

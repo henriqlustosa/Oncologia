@@ -1,10 +1,6 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-    EnableEventValidation="false" CodeFile="Prescricao.aspx.cs" Inherits="Prescricao_Prescricao"
-    Title="Prescricao" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EditarCadastroPrescricao.aspx.cs" Inherits="Prescricao_EditarCadastroPrescricao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <meta http-equiv="refresh" content="1000" />
@@ -89,7 +85,7 @@
     <div class="container">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Prescrição</h2>
+                <h2> Editar Prescrição</h2>
                 <div class="clearfix">
                 </div>
             </div>
@@ -147,9 +143,9 @@
                     <label>
                         Sexo</label>
                     <asp:DropDownList ID="ddlSexo" runat="server" class="form-control">
-                        <asp:ListItem>Masculino</asp:ListItem>
-                        <asp:ListItem>Feminino</asp:ListItem>
-                        <asp:ListItem Selected="True">Não Informado</asp:ListItem>
+                        <asp:ListItem Value ="Masculino">Masculino</asp:ListItem>
+                        <asp:ListItem Value ="Feminino">Feminino</asp:ListItem>
+                        <asp:ListItem value="Não Informado">Não Informado</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
@@ -465,7 +461,7 @@
             </div>
             <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                    <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+                    <asp:Button ID="btnGravar" runat="server" Text="Atualizar" class="btn btn-warning" OnClick="btnGravar_Click" />
                 </div>
             </div>
         </div>
@@ -643,7 +639,7 @@
 
 
                     doCalc = true;
-                    
+
                     param_value = parseFloat((<%= txbAltura.ClientID %>).value);
                     console.log(param_value);
                     if (isNaN(param_value)) { param_value = ""; doCalc = false; }
@@ -657,7 +653,7 @@
                     BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
 
                     unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
-                    if (doCalc)(<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+                    if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
 
 
 
@@ -684,7 +680,7 @@
                 }
 
             }
-          
+
 
 
             function clrResults() {
@@ -933,3 +929,4 @@
         <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
       
 </asp:Content>
+

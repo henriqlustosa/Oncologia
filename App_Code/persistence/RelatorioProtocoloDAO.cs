@@ -102,7 +102,7 @@ public class RelatorioProtocoloDAO
         {
             List<RelatorioProtocolo> protocolos = new List<RelatorioProtocolo>();
 
-            string mensagem = "";
+          
             using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
             {
 

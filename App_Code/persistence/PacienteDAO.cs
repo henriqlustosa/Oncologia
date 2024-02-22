@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -14,6 +16,55 @@ public class PacienteDAO
         //
         // TODO: Add constructor logic here
         //
+    }
+
+    public static PacienteOncologia BuscarPacientePorCodPrescricao(int id)
+    {
+        PacienteOncologia paciente = new PacienteOncologia();
+
+     
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT [cod_Paciente] " +
+      ",[nome_paciente] " +
+      ",[data_nascimento] " +
+      ",[sexo] " +
+      ",[nome_mae] " +
+      ",[ddd_telefone] " +
+      ",[telefone] " +
+      ",[data_Cadastro] " +
+      ",[data_Ultima_Atualizacao] " +
+  "FROM[dbo].[Paciente] where cod_Paciente = " + id;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                {
+                   
+                    paciente.cod_Paciente = dr1.GetInt32(0);
+                    paciente.nome_paciente = dr1.GetString(1);
+                    paciente.data_nascimento = dr1.GetDateTime(2);
+                    paciente.sexo = dr1.GetString(3);
+                    paciente.nome_mae = dr1.GetString(4);
+
+                    paciente.ddd_telefone = dr1.GetInt32(5);
+                    paciente.telefone = dr1.GetInt32(6);
+                    paciente.data_Cadastro = dr1.GetDateTime(7);
+                    paciente.data_Ultima_Atualizacao = dr1.GetDateTime(8);
+                 
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return paciente;
+        }
     }
 
     public static Paciente GET(string prontuario)

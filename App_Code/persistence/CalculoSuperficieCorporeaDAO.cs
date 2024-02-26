@@ -37,17 +37,20 @@ public class CalculoSuperficieCorporeaDAO
            " ([altura]"+
            " , [peso] "+
            " , [BSA] "+
-           " , [dataCadastro])"+
-    " VALUES"+
+           " , [dataCadastro]"+
+              " , [status])" +
+    " VALUES" +
            " (@altura, "+
            " @peso, "+
            " @BSA, "+
-           " @data_cadastro )";
+           " @data_cadastro "+
+                " @status )";
                 cmm.Parameters.Add("@cod_Calculo", SqlDbType.Int).Value = calculo.cod_Calculo;
                 cmm.Parameters.Add("@altura", SqlDbType.Int).Value = calculo.altura;
                 cmm.Parameters.Add("@peso", SqlDbType.Int).Value = calculo.peso;
                 cmm.Parameters.Add("@BSA", SqlDbType.Decimal).Value = calculo.BSA;
                 cmm.Parameters.Add("@data_cadastro", SqlDbType.DateTime).Value = calculo.dataCadastro;
+                cmm.Parameters.Add("@status", SqlDbType.Char).Value = "A";
 
 
 
@@ -142,6 +145,52 @@ public class CalculoSuperficieCorporeaDAO
                 string error = ex.Message;
             }
             return calc;
+        }
+    }
+
+    public static void DeletarCalculoSuperficieCorporea(CalculoSuperficieCorporea calculoAnterior, DateTime dataCadastro)
+    {
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            try
+            {
+                SqlCommand cmm = new SqlCommand();
+                cmm.Connection = cnn;
+                cnn.Open();
+                SqlTransaction mt = cnn.BeginTransaction();
+                cmm.Transaction = mt;
+                cmm.CommandText = "UPDATE [dbo].[Calculo_Superficie_Corporea] SET" +
+
+
+      " [status] = @status " +
+
+      ",[dataAtualizacao] = @data_atualizacao" +
+ " WHERE cod_Calculo = @cod_Calculo and status = 'A'";
+
+
+
+
+
+
+                cmm.Parameters.Add("@cod_Calculo", SqlDbType.Int).Value = calculoAnterior.cod_Calculo;
+                cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = dataCadastro;
+                cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "D";
+
+
+
+
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+                mensagem = "Cadastro com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                mensagem = error;
+            }
         }
     }
 }

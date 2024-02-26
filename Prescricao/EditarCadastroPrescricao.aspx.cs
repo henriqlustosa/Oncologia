@@ -129,10 +129,16 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
     //}
     public int vias { get; set; }
-    protected void btnGravar_Click(object sender, EventArgs e)
+
+    protected void btnCancelar_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
+    }
+        
+        protected void btnGravar_Click(object sender, EventArgs e)
     {
         string mensagem = "";
-
+        int _id = Convert.ToInt32(Request.QueryString["idPrescricao"]);
         DateTime dataCadastro = DateTime.Now;
         PacienteOncologia pacienteOncologia = new PacienteOncologia();
 
@@ -153,7 +159,9 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         else
             pacienteOncologia.cod_Paciente = PacienteOncologiaDAO.GravarPacienteOncologia(pacienteOncologia);
 
+        CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(_id);
 
+        CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior,dataCadastro);
         CalculoSuperficieCorporea calculo = new CalculoSuperficieCorporea();
 
         calculo.altura = int.Parse(txbAltura.Value.ToString());
@@ -196,17 +204,20 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         prescricao.creatinina = Convert.ToDecimal(txbCreatinina.Text);
         prescricao.observacao = txbObservacao.Text.ToString();
 
-        prescricao.data_cadastro = dataCadastro;
-        prescricao.nome_Usuario = User.Identity.Name.ToUpper();
+        prescricao.data_atualizacao = dataCadastro;
+        prescricao.nome_Usuario_Atualizacao= User.Identity.Name.ToUpper();
 
         prescricao.cod_Prequimio = PrescricaoDAO.BuscarPrequimioPorCod_Protocolo(prescricao.cod_Protocolos);
 
-        prescricao.cod_Prescricao = PrescricaoDAO.GravarPrescricao(prescricao);
+        prescricao.cod_Prescricao = _id;
 
+        PrescricaoDAO.AtualizarPrescricao(prescricao);
 
+        CID_10_DAO.DeletarCidsPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao);
 
-        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
+        AgendaDAO.DeletarAgenda(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_atualizacao);
 
 
         List<CalculoDosagemPrescricao> calculoDosagens = new List<CalculoDosagemPrescricao>();
@@ -217,6 +228,8 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(int.Parse(ddlProtocolo.SelectedValue.ToString()));
         calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, pacienteOncologia);
 
+
+        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
 
 
@@ -226,10 +239,10 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
         ClearInputs(Page.Controls);// limpa os textbox
         ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
+        Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
 
-
-        ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Impressora");
-        vias--;
+        // ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Microsoft Print to PDF");
+        // vias--;
 
     }
 

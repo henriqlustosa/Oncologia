@@ -94,7 +94,7 @@
                     <label>
                         RH
                     </label>
-                    <asp:TextBox ID="txbProntuario" runat="server" class="form-control numeric"></asp:TextBox>
+                    <asp:TextBox ReadOnly="True" ID="txbProntuario" runat="server" class="form-control numeric"></asp:TextBox>
                     <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbProntuario"
                         InitialValue="" runat="server" ForeColor="Red" />
                 </div>
@@ -462,9 +462,11 @@
             <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Atualizar" class="btn btn-warning" OnClick="btnGravar_Click" />
-                </div>
-            </div>
-        </div>
+                     <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" class="btn btn-primary" OnClick="btnCancelar_Click" />
+   
+
+    </div>
+    </div>
         <!-- Large modal -->
 
 
@@ -749,7 +751,7 @@
                 (<%= txbAltura.ClientID %>).value = '';
                 (<%= txbPeso.ClientID %>).value = '';
                 (<%= txbBSA.ClientID %>).value = '';
-         
+
                 $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
             }
             $(document).ready(function () {
@@ -771,14 +773,14 @@
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker();
 
-              
+
 
                 $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
 
                 $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
                 $("#<%=txbCiclos.ClientID%>").maskAsNumber({
                     min: 1,
-	                max: 12
+                    max: 12
                 });
                 $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
                     min: 1,

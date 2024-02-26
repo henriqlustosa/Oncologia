@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Net.NetworkInformation;
 using Newtonsoft.Json.Linq;
+using Microsoft.Office.Interop.Excel;
+using System.Security.Cryptography;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 /// <summary>
 /// Summary description for PrescricaoDAO
@@ -230,7 +233,7 @@ public class PrescricaoDAO
                 cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = prescricao.nome_Usuario;
 
                 cmm.Parameters.Add("@cod_Prequimio", SqlDbType.Int).Value = prescricao.cod_Prequimio;
-                cmm.Parameters.Add("@creatinina", SqlDbType.Decimal).Value = prescricao.cod_Prequimio;
+                cmm.Parameters.Add("@creatinina", SqlDbType.Decimal).Value = prescricao.creatinina;
 
 
 
@@ -252,5 +255,135 @@ public class PrescricaoDAO
         }
 
        return BuscarPrescricaoPorDataCadastro(prescricao.data_cadastro);
+    }
+
+    public static void AtualizarPrescricao(Prescricao prescricao)
+    {
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            try
+            {
+                SqlCommand cmm = new SqlCommand();
+                cmm.Connection = cnn;
+                cnn.Open();
+                SqlTransaction mt = cnn.BeginTransaction();
+                cmm.Transaction = mt;
+                cmm.CommandText = "UPDATE [dbo].[Prescricao] " +
+   "SET[cod_Paciente] = @cod_Paciente" +
+      ",[cod_Finalidade] = @cod_Finalidade" +
+      ",[cod_Vias_De_Acesso] = @cod_Vias_De_Acesso " +
+      ",[cod_Protocolos] = @cod_Protocolos" +
+      ",[cod_Calculo] = @cod_Calculo " +
+      ",[ciclos_provaveis] = @ciclos_provaveis " +
+      ",[intervalo_dias] = @intervalo_dias " +
+      ",[data_inicio] = @data_inicio " +
+      ",[observacao] = @observacao " +
+    
+    
+      ",[data_atualizacao] = @data_atualizacao " +
+
+      ",[cod_Prequimio] = @cod_Prequimio " +
+      ",[creatinina] = @creatinina " +
+      ",[nome_Usuario_Atualizacao] = @nome_Usuario_Atualizacao " +
+" WHERE cod_Prescricao = @cod_Prescricao and status = 'A'";
+
+
+
+
+
+
+                cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
+                cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
+                cmm.Parameters.Add("@cod_Finalidade", SqlDbType.Int).Value = prescricao.cod_Finalidade;
+                cmm.Parameters.Add("@cod_Vias_De_Acesso", SqlDbType.Int).Value = prescricao.cod_Vias_De_Acesso;
+                cmm.Parameters.Add("@cod_Protocolos", SqlDbType.Int).Value = prescricao.cod_Protocolos;
+                cmm.Parameters.Add("@cod_Calculo", SqlDbType.Int).Value = prescricao.cod_Calculo;
+
+                cmm.Parameters.Add("@ciclos_provaveis", SqlDbType.Int).Value = prescricao.ciclos_provaveis;
+                cmm.Parameters.Add("@intervalo_dias", SqlDbType.Int).Value = prescricao.intervalo_dias;
+                cmm.Parameters.Add("@data_inicio", SqlDbType.DateTime).Value = prescricao.data_inicio;
+
+
+
+                cmm.Parameters.Add("@observacao", SqlDbType.VarChar).Value = prescricao.observacao;
+              
+
+                cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = prescricao.data_atualizacao;
+
+                cmm.Parameters.Add("@cod_Prequimio", SqlDbType.Int).Value = prescricao.cod_Prequimio;
+                cmm.Parameters.Add("@creatinina", SqlDbType.Decimal).Value = prescricao.creatinina;
+                cmm.Parameters.Add("@nome_Usuario_Atualizacao", SqlDbType.VarChar).Value = prescricao.nome_Usuario_Atualizacao;
+               
+
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+                mensagem = "Cadastro com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                mensagem = error;
+            }
+        }
+
+       
+    }
+
+    public static void DeletarPrescricao(int cod_Prescricao, DateTime dataAtualizacao)
+    {
+     
+        string msg = "";
+        string usuario = System.Web.HttpContext.Current.User.Identity.Name.ToUpper();
+        string _status = "D";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            SqlCommand cmm = new SqlCommand();
+            cmm.Connection = cnn;
+            cnn.Open();
+            SqlTransaction mt = cnn.BeginTransaction();
+            cmm.Transaction = mt;
+
+            try
+            {
+
+
+
+
+
+                // Atualiza tabela de pedido de MedicacaoPreQuimioDetalhe
+                cmm.CommandText = "UPDATE [dbo].[Prescricao]" +
+                        " SET [status] = @status " +
+                        " , [data_atualizacao] = @data_atualizacao " +
+                          " , [nome_Usuario_Atualizacao] = @nome_Usuario_Atualizacao " +
+                        " WHERE  cod_Prescricao = @Id";
+                cmm.Parameters.Add(new SqlParameter("@Id", cod_Prescricao));
+                cmm.Parameters.Add(new SqlParameter("@status", _status));
+                cmm.Parameters.Add(new SqlParameter("@data_atualizacao", dataAtualizacao));
+                cmm.Parameters.Add(new SqlParameter("@nome_Usuario_Atualizacao", usuario));
+                cmm.ExecuteNonQuery();
+
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+
+                //LogDAO.gravaLog("DELETE: CÓDIGO PEDIDO " + _id, "CAMPO STATUS", usuario);
+                msg = "Cadastro realizado com sucesso!";
+
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                msg = error;
+                try
+                {
+                    mt.Rollback();
+                }
+                catch (Exception ex1)
+                { string error1 = ex1.Message; }
+            }
+        }
     }
 }

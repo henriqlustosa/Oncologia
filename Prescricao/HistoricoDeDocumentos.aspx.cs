@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,26 +16,34 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
     protected void grdMain_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         int index;
-
+       
         if (e.CommandName.Equals("editRecord"))
         {
             index = Convert.ToInt32(e.CommandArgument);
 
+
+
             int idPrescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
-          
-           
 
             Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricao=" + idPrescricao + "");
         }
         else if (e.CommandName.Equals("deleteRecord"))
         {
             index = Convert.ToInt32(e.CommandArgument);
+            DateTime dataAtualizacao = DateTime.Now;
+            int cod_Prescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
 
-            int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+            CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(cod_Prescricao);
+
+            CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataAtualizacao);
+
+            CID_10_DAO.DeletarCidsPorPrescricao(cod_Prescricao, dataAtualizacao);
+            AgendaDAO.DeletarAgenda(cod_Prescricao, dataAtualizacao);
+            CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(cod_Prescricao, dataAtualizacao);
             GridViewRow row = GridView1.Rows[index];
-
-            ProtocolosDAO.deletarProtocolo(_id_pedido);
-            Response.Redirect("~/Prescricao/Prescricao.aspx");
+            
+            PrescricaoDAO.DeletarPrescricao(cod_Prescricao, dataAtualizacao);
+            Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
 
             //string _status = row.Cells[7].Text;
 
@@ -46,8 +55,9 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
 
             int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
             GridViewRow row = GridView1.Rows[index];
+          ImpressaoPrescricao.imprimirFicha(_id_pedido, "Microsoft Print to PDF");
 
-            ImpressaoPrescricao.imprimirFicha(_id_pedido, "Impressora");
+          
             Response.Redirect("~/Prescricao/Prescricao.aspx");
 
             //string _status = row.Cells[7].Text;

@@ -62,7 +62,7 @@
 
                             <div class="form-inline">
                                 <asp:LinkButton ID="gvlnkPrint" CommandName="printRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                    CssClass="btn btn-success" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
+                                    CssClass="btn btn-success" runat="server"  CausesValidation="false">
               <i class="fa fa-print" title="Imprimir"></i>
                                 </asp:LinkButton>
                             </div>
@@ -79,7 +79,7 @@
                             <div class="form-inline">
                                 <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                     CssClass="btn btn-info" runat="server" CausesValidation="false">
-                                <i class="fa fa-pencil-square-o" title="Informação"></i>
+                                <i class="fa fa-pencil-square-o" title="Editar"></i>
                                 </asp:LinkButton>
                             </div>
                         </ItemTemplate>

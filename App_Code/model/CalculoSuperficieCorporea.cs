@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Web;
 
@@ -19,5 +20,8 @@ public class CalculoSuperficieCorporea
     public int peso { get; set; }
     public Decimal BSA { get; set; }
     public DateTime dataCadastro { get; set; }
+    public DateTime dataAtualizacao { get; set; }
+    
+    public string status { get; set; }
 
 }

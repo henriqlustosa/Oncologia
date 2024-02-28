@@ -43,7 +43,7 @@ public class CalculoSuperficieCorporeaDAO
            " (@altura, "+
            " @peso, "+
            " @BSA, "+
-           " @data_cadastro "+
+           " @data_cadastro, "+
                 " @status )";
                 cmm.Parameters.Add("@cod_Calculo", SqlDbType.Int).Value = calculo.cod_Calculo;
                 cmm.Parameters.Add("@altura", SqlDbType.Int).Value = calculo.altura;

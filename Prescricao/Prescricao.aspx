@@ -3,8 +3,6 @@
     Title="Prescricao" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <meta http-equiv="refresh" content="1000" />
@@ -274,9 +272,9 @@
                                     <tr>
                                         <td colspan="3" align="center"><span class="medCalcFontResultParam">Decimal Precision &nbsp;</span>
                                             <select name="decpts" onchange="BodySurfaceArea_fx();" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the decimal precision of calculations">
-                                               
+
                                                 <option selected="selected">2</option>
-                                              
+
 
                                             </select></td>
                                     </tr>
@@ -412,10 +410,10 @@
                             </div>
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
-                                   Creatinina(mg/dl):
+                                    Creatinina(mg/dl):
                                 </label>
                                 <asp:TextBox ID="txbCreatinina" class="form-control" runat="server"></asp:TextBox>
-                               
+
                             </div>
                         </div>
                         <div class="row">
@@ -463,22 +461,80 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <%--   <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
                 </div>
-            </div>
+            </div>--%>
         </div>
         <!-- Large modal -->
+        <div class="container">
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                Imprimir</button>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Selecione a Impressora</h4>
+                        </div>
+                        <div class="modal-body">
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Ficha</legend>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        Impressoras:
+                                    <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
+                                        <%--<asp:ListItem>PSI - Guichê</asp:ListItem>--%>
+                                        <asp:ListItem>ONCO_SEC</asp:ListItem>
+                                        <asp:ListItem>ONCO_ENF</asp:ListItem>
+                                        <asp:ListItem>INFO</asp:ListItem>
+                                        <%--<asp:ListItem>Informatica</asp:ListItem>--%>
+                                    </asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        Cópias:
+                                        <asp:DropDownList ID="ddlVias" class="form-control " runat="server">
+                                            <asp:ListItem>1</asp:ListItem>
+                                            <asp:ListItem>2</asp:ListItem>
+                                            <asp:ListItem>3</asp:ListItem>
+                                            <asp:ListItem>4</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
 
 
-        <script type="text/javascript">
 
-            window.addEventListener('keydown', function (e) {
+                                </div>
+                            </fieldset>
 
-                if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
-                else return true;
-            });
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-8 ">
+                                        <asp:Button ID="btn" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                                            OnClick="btnGravar_Click" data-toggle="modal" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        window.addEventListener('keydown', function (e) {
+
+            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
+            else return true;
+        });
 
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
@@ -544,392 +600,392 @@
             }
         }--%>
 
-            function log(i) {
-                return Math.log(i) * Math.LOG10E;
-            }
+        function log(i) {
+            return Math.log(i) * Math.LOG10E;
+        }
 
-            function ln(i) {
-                return Math.log(i);
-            }
+        function ln(i) {
+            return Math.log(i);
+        }
 
-            function sq(i) {
-                return i * i;
-            }
+        function sq(i) {
+            return i * i;
+        }
 
-            function sqr(i) {
-                return Math.sqrt(i);
-            }
-
-
-            function power(x, y) {
-                return Math.pow(x, y);
-            }
-
-            function eTo(x) {
-                return Math.exp(x);
-            }
+        function sqr(i) {
+            return Math.sqrt(i);
+        }
 
 
-            function fixDP(r, dps) {
-                if (isNaN(r)) return "NaN";
-                var msign = '';
-                var mfin = '';
-                if (r < 0) msign = '-';
-                x = Math.abs(r);
-                if (x > Math.pow(10, 21)) return msign + x.toString();
-                var m = Math.round(x * Math.pow(10, dps)).toString();
-                if (dps == 0) return msign + m;
-                while (m.length <= dps) m = "0" + m;
-                mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
-                if (dps == 1) return mfin.replace('.0', '');
-                if (dps == 2) return mfin.replace('.00', '');
-                if (dps == 3) return mfin.replace('.000', '');
-                if (dps == 4) return mfin.replace('.0000', '');
-                return mfin;
-            }
+        function power(x, y) {
+            return Math.pow(x, y);
+        }
 
-            function fixNearest(x, y) {
-                return Math.round(x / y) * y;
-            }
-
-            function alertNaN(thisparam) {
-                alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
-                doCalc = false;
-                clrResults();
-            }
-
-            function clrValue(field) {
-                field.value = '';
-            }
-
-            var currenttimeout;
-
-            function resetInTime() {
-                if (currenttimeout) clearTimeout(currenttimeout);
-                currenttimeout = setTimeout('minMaxCheck();', 3000);
-            }
+        function eTo(x) {
+            return Math.exp(x);
+        }
 
 
+        function fixDP(r, dps) {
+            if (isNaN(r)) return "NaN";
+            var msign = '';
+            var mfin = '';
+            if (r < 0) msign = '-';
+            x = Math.abs(r);
+            if (x > Math.pow(10, 21)) return msign + x.toString();
+            var m = Math.round(x * Math.pow(10, dps)).toString();
+            if (dps == 0) return msign + m;
+            while (m.length <= dps) m = "0" + m;
+            mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
+            if (dps == 1) return mfin.replace('.0', '');
+            if (dps == 2) return mfin.replace('.00', '');
+            if (dps == 3) return mfin.replace('.000', '');
+            if (dps == 4) return mfin.replace('.0000', '');
+            return mfin;
+        }
 
-            var curelement;
+        function fixNearest(x, y) {
+            return Math.round(x / y) * y;
+        }
 
-            function togCB(thisid) {
-                thischeckbox = document.getElementById(thisid);
-                if (thischeckbox.checked) { thischeckbox.checked = false; }
-                else { thischeckbox.checked = true; }
-                BodySurfaceArea_fx();
-            }
+        function alertNaN(thisparam) {
+            alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
+            doCalc = false;
+            clrResults();
+        }
 
-            function setRB(thisid) {
-                document.getElementById(thisid).checked = true;
-                BodySurfaceArea_fx();
-            }
+        function clrValue(field) {
+            field.value = '';
+        }
 
+        var currenttimeout;
 
-            var calctxt = '';
-            var xmltxt = '';
-            var xmlresult = '';
-            var htmtxt = '';
-            var postNow = false;
-            var printing = false;
-            var interptxt = '';
-            var interphtm = '';
-            var interpxml = '';
-            var rbchk = false;
-
-            function BodySurfaceArea_fx() {
-
-                with (document.forms[0]) {
-
-
-                    doCalc = true;
-                    
-                    param_value = parseFloat((<%= txbAltura.ClientID %>).value);
-                    console.log(param_value);
-                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                    unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
-                    Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                    param_value = parseFloat((<%= txbPeso.ClientID %>).value);
-                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                    unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
-                    Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                    dp = decpts.options[decpts.selectedIndex].text;
-                    BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
-
-                    unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
-                    if (doCalc)(<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+        function resetInTime() {
+            if (currenttimeout) clearTimeout(currenttimeout);
+            currenttimeout = setTimeout('minMaxCheck();', 3000);
+        }
 
 
 
+        var curelement;
+
+        function togCB(thisid) {
+            thischeckbox = document.getElementById(thisid);
+            if (thischeckbox.checked) { thischeckbox.checked = false; }
+            else { thischeckbox.checked = true; }
+            BodySurfaceArea_fx();
+        }
+
+        function setRB(thisid) {
+            document.getElementById(thisid).checked = true;
+            BodySurfaceArea_fx();
+        }
 
 
-                }
+        var calctxt = '';
+        var xmltxt = '';
+        var xmlresult = '';
+        var htmtxt = '';
+        var postNow = false;
+        var printing = false;
+        var interptxt = '';
+        var interphtm = '';
+        var interpxml = '';
+        var rbchk = false;
+
+        function BodySurfaceArea_fx() {
+
+            with (document.forms[0]) {
+
+
+                doCalc = true;
+
+                param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+                console.log(param_value);
+                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
+                Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                param_value = parseFloat((<%= txbPeso.ClientID %>).value);
+                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
+                Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                dp = decpts.options[decpts.selectedIndex].text;
+                BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
+
+                unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
+                if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+
 
 
 
 
             }
 
-            function minMaxCheck() {
-                if (printing) return;
 
 
 
-                with (document.forms[0]) {
+        }
 
-                    if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
-                    if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
-
-
-                }
-
-            }
-          
+        function minMaxCheck() {
+            if (printing) return;
 
 
-            function clrResults() {
 
+            with (document.forms[0]) {
 
-                with (document.forms[0]) {
+                if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
+                if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
 
-                    (<%= txbBSA.ClientID %>).value = '';
-
-
-                }
 
             }
 
-            var Height = null,
-                Weight = null,
-                BSA = null,
-                param_value = null;
+        }
 
 
-            function mostraCalculo() {
 
-                var div = document.getElementById('divCalculoCorpo');
+        function clrResults() {
 
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-            function mostraCID() {
 
-                var div = document.getElementById('divCID');
+            with (document.forms[0]) {
 
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-            function mostraGeral() {
-
-                var div = document.getElementById('divGeral');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-            function mostraViasDeAcesso() {
-
-                var div = document.getElementById('divViasDeAcesso');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-            function ClearInputs() {
-                (<%= txbAltura.ClientID %>).value = '';
-                (<%= txbPeso.ClientID %>).value = '';
                 (<%= txbBSA.ClientID %>).value = '';
-         
-                $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
+
+
             }
-            $(document).ready(function () {
 
-                $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
+        }
 
-                $("#<%=txbDtInicio.ClientID%>").datepicker({
-                    minDate: 0,
-                    dateFormat: 'dd/mm/yy',
-                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                    nextText: 'Proximo',
-                    prevText: 'Anterior'
-                });
+        var Height = null,
+            Weight = null,
+            BSA = null,
+            param_value = null;
 
 
-                $("#<%=txbDtInicio.ClientID%>").datepicker();
+        function mostraCalculo() {
 
-              
+            var div = document.getElementById('divCalculoCorpo');
 
-                $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
-
-                $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
-                $("#<%=txbCiclos.ClientID%>").maskAsNumber({
-                    min: 1,
-	                max: 12
-                });
-                $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
-                    min: 1,
-                    max: 30
-                });
-
-
-                $("#<%= txbNomePaciente.ClientID %>").autocomplete({
-
-
-                    source: function (request, response) {
-                        var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
-                        $.ajax({
-                            url: "Prescricao.aspx/GetNomeDePacientes",
-                            data: JSON.stringify(param),
-                            dataType: "json",
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            dataFilter: function (data) { return data; },
-                            success: function (data) {
-                                console.log(JSON.stringify(data.d));
-
-                                response($.map(data.d, function (item) {
-
-                                    return {
-
-                                        label: item.nm_nome,
-                                        value: item.nm_nome,
-
-
-                                        prontuario: item.cd_prontuario,
-                                        nr_ddd_fone: item.nr_ddd_fone,
-                                        nr_fone: item.nr_fone,
-                                        dt_nascimento: item.dt_data_nascimento,
-                                        idade: item.nr_idade,
-                                        sexo: item.in_sexo,
-                                        nome_pai_mae: item.nm_mae,
-
-                                    }
-                                }))
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                var err = eval("(" + XMLHttpRequest.responseText + ")");
-                                alert(err.Message)
-                            }
-                        });
-                    },
-
-
-                    select: function (e, i) {
-
-
-
-
-                        $("[id$=txbProntuario").val(i.item.prontuario);
-                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
-                        $("[id$=txbTelefone").val(i.item.nr_fone);
-
-                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                        $("[id$=txbIdade").val(i.item.idade);
-                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                        $("[id$=txbPais").val(i.item.nome_pai_mae);
-                    },
-
-                    minLength: 1 //This is the Char length of inputTextBox  
-
-
-                });
-
-
-                $("#<%= txbProntuario.ClientID %>").autocomplete({
-
-                    source: function (request, response) {
-                        var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
-                        $.ajax({
-                            url: "Prescricao.aspx/GetNomeDePacientesPoRh",
-                            data: JSON.stringify(param),
-                            dataType: "json",
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            dataFilter: function (data) { return data; },
-                            success: function (data) {
-                                console.log(JSON.stringify(data));
-
-                                response($.map(data, function (item) {
-
-                                    return {
-
-                                        label: item.cd_prontuario,
-                                        value: item.cd_prontuario,
-
-
-                                        nome_paciente: item.nm_nome,
-                                        nr_ddd_fone: item.nr_ddd_fone,
-                                        nr_fone: item.nr_fone,
-                                        dt_nascimento: item.dt_data_nascimento,
-                                        idade: item.nr_idade,
-                                        sexo: item.in_sexo,
-                                        nome_pai_mae: item.nm_mae,
-
-                                    }
-                                }))
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                var err = eval("(" + XMLHttpRequest.responseText + ")");
-                                alert(err.Message)
-                            }
-                        });
-                    },
-
-
-                    select: function (e, i) {
-
-
-
-
-                        $("[id$=txbProntuario").val(i.item.prontuario);
-                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
-                        $("[id$=txbTelefone").val(i.item.nr_fone);
-                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                        $("[id$=txbIdade").val(i.item.idade);
-                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                        $("[id$=txbPais").val(i.item.nome_pai_mae);
-                    },
-                    minLength: 1 //This is the Char length of inputTextBox    
-
-                });
-            });
-
-        </script>
-        
-<script type="text/javascript">
-    function MutExChkList(chk) {
-        var chkList = chk.parentNode.parentNode.parentNode;
-        var chks = chkList.getElementsByTagName("input");
-        for (var i = 0; i < chks.length; i++) {
-            if (chks[i] != chk && chk.checked) {
-                chks[i].checked = false;
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
             }
         }
-    }
-</script>
+        function mostraCID() {
 
-        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.mask.js" type="text/javascript"></script>
-        <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
-      
+            var div = document.getElementById('divCID');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function mostraGeral() {
+
+            var div = document.getElementById('divGeral');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function mostraViasDeAcesso() {
+
+            var div = document.getElementById('divViasDeAcesso');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function ClearInputs() {
+            (<%= txbAltura.ClientID %>).value = '';
+            (<%= txbPeso.ClientID %>).value = '';
+            (<%= txbBSA.ClientID %>).value = '';
+
+            $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
+        }
+        $(document).ready(function () {
+
+            $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
+
+            $("#<%=txbDtInicio.ClientID%>").datepicker({
+                minDate: 0,
+                dateFormat: 'dd/mm/yy',
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                nextText: 'Proximo',
+                prevText: 'Anterior'
+            });
+
+
+            $("#<%=txbDtInicio.ClientID%>").datepicker();
+
+
+
+            $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
+
+            $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
+            $("#<%=txbCiclos.ClientID%>").maskAsNumber({
+                min: 1,
+                max: 12
+            });
+            $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
+                min: 1,
+                max: 30
+            });
+
+
+            $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+
+
+                source: function (request, response) {
+                    var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
+                    $.ajax({
+                        url: "Prescricao.aspx/GetNomeDePacientes",
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            console.log(JSON.stringify(data.d));
+
+                            response($.map(data.d, function (item) {
+
+                                return {
+
+                                    label: item.nm_nome,
+                                    value: item.nm_nome,
+
+
+                                    prontuario: item.cd_prontuario,
+                                    nr_ddd_fone: item.nr_ddd_fone,
+                                    nr_fone: item.nr_fone,
+                                    dt_nascimento: item.dt_data_nascimento,
+                                    idade: item.nr_idade,
+                                    sexo: item.in_sexo,
+                                    nome_pai_mae: item.nm_mae,
+
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var err = eval("(" + XMLHttpRequest.responseText + ")");
+                            alert(err.Message)
+                        }
+                    });
+                },
+
+
+                select: function (e, i) {
+
+
+
+
+                    $("[id$=txbProntuario").val(i.item.prontuario);
+                    $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                    $("[id$=txbTelefone").val(i.item.nr_fone);
+
+                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                    $("[id$=txbIdade").val(i.item.idade);
+                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                    $("[id$=txbPais").val(i.item.nome_pai_mae);
+                },
+
+                minLength: 1 //This is the Char length of inputTextBox  
+
+
+            });
+
+
+            $("#<%= txbProntuario.ClientID %>").autocomplete({
+
+                source: function (request, response) {
+                    var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
+                    $.ajax({
+                        url: "Prescricao.aspx/GetNomeDePacientesPoRh",
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            console.log(JSON.stringify(data));
+
+                            response($.map(data, function (item) {
+
+                                return {
+
+                                    label: item.cd_prontuario,
+                                    value: item.cd_prontuario,
+
+
+                                    nome_paciente: item.nm_nome,
+                                    nr_ddd_fone: item.nr_ddd_fone,
+                                    nr_fone: item.nr_fone,
+                                    dt_nascimento: item.dt_data_nascimento,
+                                    idade: item.nr_idade,
+                                    sexo: item.in_sexo,
+                                    nome_pai_mae: item.nm_mae,
+
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var err = eval("(" + XMLHttpRequest.responseText + ")");
+                            alert(err.Message)
+                        }
+                    });
+                },
+
+
+                select: function (e, i) {
+
+
+
+
+                    $("[id$=txbProntuario").val(i.item.prontuario);
+                    $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                    $("[id$=txbTelefone").val(i.item.nr_fone);
+                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                    $("[id$=txbIdade").val(i.item.idade);
+                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                    $("[id$=txbPais").val(i.item.nome_pai_mae);
+                },
+                minLength: 1 //This is the Char length of inputTextBox    
+
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        function MutExChkList(chk) {
+            var chkList = chk.parentNode.parentNode.parentNode;
+            var chks = chkList.getElementsByTagName("input");
+            for (var i = 0; i < chks.length; i++) {
+                if (chks[i] != chk && chk.checked) {
+                    chks[i].checked = false;
+                }
+            }
+        }
+    </script>
+
+    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mask.js" type="text/javascript"></script>
+    <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
+
 </asp:Content>

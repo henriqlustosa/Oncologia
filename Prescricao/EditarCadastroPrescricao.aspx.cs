@@ -158,8 +158,8 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
         else
             pacienteOncologia.cod_Paciente = PacienteOncologiaDAO.GravarPacienteOncologia(pacienteOncologia);
-
-        CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(_id);
+        Prescricao prescricaoAnterior = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(_id);
+        CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricaoAnterior.cod_Calculo);
 
         CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior,dataCadastro);
         CalculoSuperficieCorporea calculo = new CalculoSuperficieCorporea();
@@ -245,6 +245,8 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         // vias--;
 
     }
+
+
 
     void ClearInputs(ControlCollection ctrls)
     {

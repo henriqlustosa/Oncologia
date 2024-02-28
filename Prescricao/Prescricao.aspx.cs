@@ -71,13 +71,15 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
       
     }
     public int vias { get; set; }
+    public string nome_impressora { get; set; }
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         string mensagem = "";
-
+        nome_impressora = ddlImpressora.SelectedValue;
+        vias = Convert.ToInt32(ddlVias.SelectedValue);
         DateTime dataCadastro = DateTime.Now;
         PacienteOncologia pacienteOncologia = new PacienteOncologia();
-
+        
         pacienteOncologia.cod_Paciente = int.Parse(txbProntuario.Text.ToString());
         pacienteOncologia.nome_paciente = txbNomePaciente.Text.ToString();
         pacienteOncologia.nome_mae = txbPais.Text.ToString();
@@ -168,10 +170,14 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         ClearInputs(Page.Controls);// limpa os textbox
         ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
+        while (vias > 0)
+        {
 
-
-        ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, "Microsoft Print to PDF");
+            ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, nome_impressora);
             vias--;
+        }
+
+
         
     }
 

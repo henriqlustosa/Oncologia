@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
-   CodeFile="HistoricoDeDocumentos.aspx.cs" Inherits="Prescricao_HistoricoDeDocumentos "
+   CodeFile="HistoricoDeDocumentos.aspx.cs" Inherits="Prescricao_HistoricoDeDocumentos"
     Title="Historico de Prescrição - HSPM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -61,8 +61,8 @@
                         <ItemTemplate>
 
                             <div class="form-inline">
-                                <asp:LinkButton ID="gvlnkPrint" CommandName="printRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                    CssClass="btn btn-success" runat="server"  CausesValidation="false">
+                                <asp:LinkButton ID="gvlnkPrint"  CommandName="printRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                    CssClass="btn btn-success" runat="server"  CausesValidation="false" >
               <i class="fa fa-print" title="Imprimir"></i>
                                 </asp:LinkButton>
                             </div>
@@ -117,6 +117,24 @@
 
         </div>
     </div>
+     <div class="row">
+    <div class="col-md-2 form-group">
+        Impressoras:
+        <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server" >
+             <%--<asp:ListItem>PSI - Guichê</asp:ListItem>--%>
+            <asp:ListItem>ONCO_SEC</asp:ListItem>
+            <asp:ListItem>ONCO_ENF</asp:ListItem>
+            <asp:ListItem>INFO</asp:ListItem>
+               
+                
+          
+                <%--<asp:ListItem>Informatica</asp:ListItem>--%>
+               
+        </asp:DropDownList>
+        </div>
+            </div>
+  
+
     <script src='<%= ResolveUrl("~/build/js/jquery.inputmask.min.js") %>' type="text/javascript"></script>
 
 
@@ -249,5 +267,9 @@
 
 
     </script>
-
+        <script type='text/javascript'>
+            function openModal() {
+                $('#myModal').modal('show');
+            }
+        </script>
 </asp:Content>

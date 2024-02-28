@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
 {
@@ -12,9 +14,11 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
     {
 
     }
-
+    public int _id_pedido { get; set; }
+    public string nome_impressora { get; set; }
     protected void grdMain_RowCommand(object sender, GridViewCommandEventArgs e)
     {
+        nome_impressora = ddlImpressora.SelectedValue;
         int index;
        
         if (e.CommandName.Equals("editRecord"))
@@ -32,8 +36,9 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
             index = Convert.ToInt32(e.CommandArgument);
             DateTime dataAtualizacao = DateTime.Now;
             int cod_Prescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+            Prescricao prescricao = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(cod_Prescricao);
 
-            CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(cod_Prescricao);
+            CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricao.cod_Calculo);
 
             CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataAtualizacao);
 
@@ -53,19 +58,24 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
         {
             index = Convert.ToInt32(e.CommandArgument);
 
-            int _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
-            GridViewRow row = GridView1.Rows[index];
-          ImpressaoPrescricao.imprimirFicha(_id_pedido, "Microsoft Print to PDF");
+            _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
 
-          
-            Response.Redirect("~/Prescricao/Prescricao.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
 
-            //string _status = row.Cells[7].Text;
+            ImpressaoPrescricao.imprimirFicha(_id_pedido, nome_impressora);
+            Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
 
-
+            
         }
 
+
+
+        //string _status = row.Cells[7].Text;
+
+
     }
+
+
 
     protected void GridView1_PreRender(object sender, EventArgs e)
     {
@@ -94,5 +104,12 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
             GridView1.FooterRow.TableSection = TableRowSection.TableFooter;
 
         }
+    }
+
+    protected void btnGravar_Click(object sender, EventArgs e)
+    {
+
+
+
     }
 }

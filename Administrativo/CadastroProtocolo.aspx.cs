@@ -82,7 +82,7 @@ public partial class Prescricao_CadastroProtocolo : System.Web.UI.Page
         Protocolos  protocolo = new Protocolos();
         protocolo.cod_DescricaoProtocolo = Convert.ToInt32(ddlProtocolo.SelectedValue);
         protocolo.cod_Medicacao = Convert.ToInt32(ddlMedicacao.SelectedValue);
-        protocolo.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
+       
         protocolo.cod_PreQuimio = Convert.ToInt32(ddlPreQuimio.SelectedValue);
         protocolo.cod_ViaDeAdministracao = Convert.ToInt32(ddlViaDeAdministracao.SelectedValue);
         protocolo.nome_Usuario = User.Identity.Name.ToUpper(); ;

@@ -121,7 +121,7 @@
     <div class="col-md-2 form-group">
         Impressoras:
         <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server" >
-             <%--<asp:ListItem>PSI - Guichê</asp:ListItem>--%>
+            <%-- <asp:ListItem>IMPRESSORA</asp:ListItem>--%>
             <asp:ListItem>ONCO_SEC</asp:ListItem>
             <asp:ListItem>ONCO_ENF</asp:ListItem>
             <asp:ListItem>INFO</asp:ListItem>

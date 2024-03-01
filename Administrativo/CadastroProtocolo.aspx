@@ -153,10 +153,10 @@
                 <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
                 <columns>
 
-                    <asp:BoundField DataField="desc_descricao_protocolo" HeaderText="PREQUIMIO" SortExpression="desc_descricao_protocolo"
+                    <asp:BoundField DataField="desc_descricao_protocolo" HeaderText="PROTOCOLO" SortExpression="desc_descricao_protocolo"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
-                    <asp:BoundField DataField="desc_medicacao" HeaderText="MEDICACAO PREQUIMIO" SortExpression="desc_medicacao"
+                    <asp:BoundField DataField="desc_medicacao" HeaderText="MEDICACAO PROTOCOLO" SortExpression="desc_medicacao"
                         ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
 
                     <asp:BoundField DataField="desc_pre_quimio" HeaderText="QUIMIO" SortExpression="desc_pre_quimio"

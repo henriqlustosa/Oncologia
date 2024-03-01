@@ -755,7 +755,7 @@
                 $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
             }
             $(document).ready(function () {
-
+                $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
                 $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker({

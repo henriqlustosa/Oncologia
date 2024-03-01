@@ -487,7 +487,7 @@
                                     <div class="col-md-6 form-group">
                                         Impressoras:
                                     <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-                                        <%--<asp:ListItem>PSI - Guichê</asp:ListItem>--%>
+                                       <%-- <asp:ListItem>IMPRESSORA</asp:ListItem>--%>
                                         <asp:ListItem>ONCO_SEC</asp:ListItem>
                                         <asp:ListItem>ONCO_ENF</asp:ListItem>
                                         <asp:ListItem>INFO</asp:ListItem>
@@ -805,6 +805,7 @@
                 div.style.display = 'none';
             }
         }
+      
         function ClearInputs() {
             (<%= txbAltura.ClientID %>).value = '';
             (<%= txbPeso.ClientID %>).value = '';
@@ -813,7 +814,7 @@
             $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
         }
         $(document).ready(function () {
-
+            $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
             $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
             $("#<%=txbDtInicio.ClientID%>").datepicker({

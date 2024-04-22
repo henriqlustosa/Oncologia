@@ -122,6 +122,7 @@
         Impressoras:
         <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server" >
             <%-- <asp:ListItem>IMPRESSORA</asp:ListItem>--%>
+            <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
             <asp:ListItem>ONCO_SEC</asp:ListItem>
             <asp:ListItem>ONCO_ENF</asp:ListItem>
             <asp:ListItem>INFO</asp:ListItem>

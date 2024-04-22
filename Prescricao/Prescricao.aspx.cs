@@ -8,11 +8,12 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using Serilog;
 public partial class Prescricao_Prescricao : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Log.Information("Loaded Page: {PageName}", this.GetType().Name);
         if (!IsPostBack)
         {
             ddlProtocolo.DataSource = DescricaoProtocoloDAO.listaProtocolo();
@@ -73,100 +74,55 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     public int vias { get; set; }
     public string nome_impressora { get; set; }
     protected void btnGravar_Click(object sender, EventArgs e)
-    {
+    {   
+        // Variável para mostrar mensagem de erro
         string mensagem = "";
+
+        // Variável para armazenar o nome da impressora selecionada
         nome_impressora = ddlImpressora.SelectedValue;
+
+        // Variável para armazenar a quantidade cópias de cada prescrição 
         vias = Convert.ToInt32(ddlVias.SelectedValue);
+
+        // Variável que marca a data e hora da criação da prescrição
         DateTime dataCadastro = DateTime.Now;
-        PacienteOncologia pacienteOncologia = new PacienteOncologia();
-        
-        pacienteOncologia.cod_Paciente = int.Parse(txbProntuario.Text.ToString());
-        pacienteOncologia.nome_paciente = txbNomePaciente.Text.ToString();
-        pacienteOncologia.nome_mae = txbPais.Text.ToString();
-        pacienteOncologia.telefone =int.Parse( txbTelefone.Text.ToString());
-        pacienteOncologia.ddd_telefone = int.Parse(txbDdd.Text.ToString());
-        pacienteOncologia.sexo = ddlSexo.SelectedItem.ToString();
-        pacienteOncologia.data_nascimento =DateTime.Parse(txbNascimento.Text.ToString());
-        pacienteOncologia.data_Cadastro =dataCadastro;
 
-        if (PacienteOncologiaDAO.VerificarPacientePorRh(pacienteOncologia.cod_Paciente))
-
-            mensagem = PacienteOncologiaDAO.AtualizarPaciente(pacienteOncologia);
-       
-
-        else
-            pacienteOncologia.cod_Paciente = PacienteOncologiaDAO.GravarPacienteOncologia(pacienteOncologia);
+        // Variável para salvar o prontuário que o usuário digitou no formulário
+        int cod_Paciente = int.Parse(txbProntuario.Text);
 
 
-        CalculoSuperficieCorporea calculo = new CalculoSuperficieCorporea();
-
-        calculo.altura = int.Parse(txbAltura.Value.ToString());
-        calculo.peso = int.Parse(txbPeso.Value.ToString());
-        calculo.BSA = Decimal.Parse(txbBSA.Value.ToString().Replace('.', ','));
-        calculo.dataCadastro = dataCadastro;
-
-        calculo.cod_Calculo = CalculoSuperficieCorporeaDAO.GravarCalculoSuperficieCorporea(calculo);
-        
-    
+        string message = PacienteOncologiaDAO.HandlePacienteOncologia(txbProntuario.Text, txbNomePaciente.Text, txbPais.Text,
+                                         txbTelefone.Text, txbDdd.Text, ddlSexo.SelectedItem.ToString(),
+                                         txbNascimento.Text, dataCadastro);
+       Log.Information(message);
 
 
 
-        List<CID_10> lista_cid_10 = new List<CID_10>();
+        CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
 
-        for (int i = 0; i < select1.Items.Count; i++)
-        {
-            if (select1.Items[i].Selected)
-            {
-                CID_10 cid = new CID_10();
-               
-                cid.SUBCAT = select1.Items[i].Value;
-                lista_cid_10.Add(cid);
-            }
-        }
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, User.Identity.Name.ToUpper());
 
+        List<CID_10> listaDeCids = HandleCID();
 
-      
-
-        Prescricao prescricao = new Prescricao();
-
-        prescricao.cod_Paciente = pacienteOncologia.cod_Paciente;
-        prescricao.cod_Finalidade = int.Parse(ddlFinalidade.SelectedValue.ToString());
-        prescricao.cod_Vias_De_Acesso = int.Parse(cblViasDeAcesso.SelectedValue.ToString());
-        prescricao.cod_Protocolos = int.Parse(ddlProtocolo.SelectedValue.ToString());
-        prescricao.cod_Calculo = calculo.cod_Calculo;
-        prescricao.ciclos_provaveis = int.Parse(txbCiclos.Text.ToString());
-        prescricao.intervalo_dias = int.Parse(txbIntervalos.Text.ToString());
-        prescricao.data_inicio = DateTime.Parse(txbDtInicio.Text.ToString());
-        prescricao.creatinina = Convert.ToDecimal(txbCreatinina.Text); 
-        prescricao.observacao = txbObservacao.Text.ToString();
-
-        prescricao.data_cadastro = dataCadastro;
-        prescricao.nome_Usuario = User.Identity.Name.ToUpper();
-
-        prescricao.cod_Prequimio = PrescricaoDAO.BuscarPrequimioPorCod_Protocolo(prescricao.cod_Protocolos);
-
-        prescricao.cod_Prescricao = PrescricaoDAO.GravarPrescricao(prescricao);
-        
-
-        CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao);
+        CID_10_DAO.GravaCidsPorPrescricao(listaDeCids, prescricao.cod_Prescricao);
 
         AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
         
-        
-       List<CalculoDosagemPrescricao> calculoDosagens = new List<CalculoDosagemPrescricao>();
+       
+
         CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
 
-        List<Protocolos> protocolos = new List<Protocolos>();
+      
 
-        protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(int.Parse(ddlProtocolo.SelectedValue.ToString()));
-        calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, pacienteOncologia);
+
+        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(int.Parse(ddlProtocolo.SelectedValue.ToString()));
+
+        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente));
 
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
 
 
-        //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
-
-        //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+   
 
         ClearInputs(Page.Controls);// limpa os textbox
         ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
@@ -180,6 +136,22 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         
     }
+
+    public List<CID_10> HandleCID()
+    {
+
+       
+        
+        return select1.Items.Cast<ListItem>()
+                            .Where(i => i.Selected)
+                            .Select(i => new CID_10 { SUBCAT = i.Value })
+                            .ToList();
+
+    }
+
+
+
+
 
     void ClearInputs(ControlCollection ctrls)
     {

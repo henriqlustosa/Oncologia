@@ -487,7 +487,7 @@
                                     <div class="col-md-6 form-group">
                                         Impressoras:
                                     <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-                                       <%-- <asp:ListItem>IMPRESSORA</asp:ListItem>--%>
+                                       <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
                                         <asp:ListItem>ONCO_SEC</asp:ListItem>
                                         <asp:ListItem>ONCO_ENF</asp:ListItem>
                                         <asp:ListItem>INFO</asp:ListItem>
@@ -701,7 +701,7 @@
                 doCalc = true;
 
                 param_value = parseFloat((<%= txbAltura.ClientID %>).value);
-                console.log(param_value);
+                
                 if (isNaN(param_value)) { param_value = ""; doCalc = false; }
                 unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
                 Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
@@ -860,7 +860,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataFilter: function (data) { return data; },
                         success: function (data) {
-                            console.log(JSON.stringify(data.d));
+                          
 
                             response($.map(data.d, function (item) {
 
@@ -923,7 +923,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataFilter: function (data) { return data; },
                         success: function (data) {
-                            console.log(JSON.stringify(data));
+                           
 
                             response($.map(data, function (item) {
 

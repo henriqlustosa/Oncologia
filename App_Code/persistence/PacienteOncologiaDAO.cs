@@ -8,7 +8,9 @@ using System.Web;
 using Newtonsoft.Json.Linq;
 using System.Net.NetworkInformation;
 using Microsoft.Office.Interop.Excel;
-
+using Microsoft.ReportingServices.Diagnostics.Internal;
+using System.Activities.Expressions;
+using Serilog;
 /// <summary>
 /// Summary description for PacienteOncologiaDAO
 /// </summary>
@@ -68,112 +70,68 @@ public class PacienteOncologiaDAO
         }
 
     }
-    public static string AtualizarPaciente(PacienteOncologia pacienteOncologia)
+    public static void AtualizarPaciente(PacienteOncologia pacienteOncologia)
     {
         string mensagem = "";
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+
+        string updateSql = "UPDATE [dbo].[Paciente] " +
+        "  SET [nome_paciente] = @nome_paciente" +
+        " ,[data_nascimento] = @data_nascimento" +
+        " ,[sexo] = @sexo" +
+        " ,[nome_mae] = @nome_mae" +
+        " ,[ddd_telefone] = @ddd_telefone" +
+        " ,[telefone] = @telefone" +
+        " ,[data_Ultima_Atualizacao] = @data_Ultima_Atualizacao" +
+        "  WHERE cod_Paciente = @cod_Paciente";
+
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             try
             {
-                SqlCommand cmm = new SqlCommand();
-                cmm.Connection = cnn;
-                cnn.Open();
-                SqlTransaction mt = cnn.BeginTransaction();
-                cmm.Transaction = mt;
-                cmm.CommandText = "UPDATE [dbo].[Paciente] " +
-  " SET [nome_paciente] = @nome_paciente" +
-     " ,[data_nascimento] = @data_nascimento" +
-     " ,[sexo] = @sexo" +
-     " ,[nome_mae] = @nome_mae" +
-     " ,[ddd_telefone] = @ddd_telefone" +
-     " ,[telefone] = @telefone" +
-    
-     " ,[data_Ultima_Atualizacao] = @data_Ultima_Atualizacao" +
-     " WHERE cod_Paciente = @cod_Paciente" ;
 
 
- 
-
-
-
-
-
-
-
-
-                cmm.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = pacienteOncologia.nome_paciente;
-                cmm.Parameters.Add("@data_nascimento", SqlDbType.DateTime).Value = pacienteOncologia.data_nascimento;
-                cmm.Parameters.Add("@sexo", SqlDbType.VarChar).Value = pacienteOncologia.sexo;
-                cmm.Parameters.Add("@nome_mae", SqlDbType.VarChar).Value = pacienteOncologia.nome_mae;
-                cmm.Parameters.Add("@ddd_telefone", SqlDbType.Int).Value = pacienteOncologia.ddd_telefone;
-                cmm.Parameters.Add("@telefone", SqlDbType.Int).Value = pacienteOncologia.telefone;
-               
-                cmm.Parameters.Add("@data_Ultima_Atualizacao", SqlDbType.VarChar).Value = DateTime.Now;
-                cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = pacienteOncologia.cod_Paciente;
-
-
-
-
-                cmm.ExecuteNonQuery();
-                mt.Commit();
-                mt.Dispose();
-                cnn.Close();
-                mensagem = "Cadastro com sucesso!";
-            }
-            catch (Exception ex)
-            {
-                string error = ex.Message;
-                mensagem = error;
-            }
-        }
-
-        return mensagem;
-    }
-    public static int BuscarPacienteOncologiaPorDataCadastro(DateTime dataCadastro)
-    {
-        int cod_Paciente = 0;
-  
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
-        {
-
-            SqlCommand cmm = cnn.CreateCommand();
-
-            string sqlConsulta = "SELECT [cod_Paciente] " +
-
-   " FROM [dbo].[Paciente] where FORMAT(data_cadastro , 'dd/MM/yyyy HH:mm:ss') ='" + dataCadastro + "'";
-            cmm.CommandText = sqlConsulta;
-            try
-            {
-                cnn.Open();
-                SqlDataReader dr1 = cmm.ExecuteReader();
-                if (dr1.Read())
+                // Open the connection
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(updateSql, connection))
                 {
-                    cod_Paciente = dr1.GetInt32(0);
-                    
+                    // Define parameters and their values
+                    command.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = pacienteOncologia.nome_paciente;
+                    command.Parameters.Add("@data_nascimento", SqlDbType.DateTime).Value = pacienteOncologia.data_nascimento;
+                    command.Parameters.Add("@sexo", SqlDbType.VarChar).Value = pacienteOncologia.sexo;
+                    command.Parameters.Add("@nome_mae", SqlDbType.VarChar).Value = pacienteOncologia.nome_mae;
+                    command.Parameters.Add("@ddd_telefone", SqlDbType.Int).Value = pacienteOncologia.ddd_telefone;
+                    command.Parameters.Add("@telefone", SqlDbType.Int).Value = pacienteOncologia.telefone;
+                    command.Parameters.Add("@data_Ultima_Atualizacao", SqlDbType.VarChar).Value = DateTime.Now;
+                    command.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = pacienteOncologia.cod_Paciente;
+                    // Execute the command
+                    int affectedRows = command.ExecuteNonQuery();
+                   Log.Information(String.Format("{0} rows updated.", affectedRows));
 
                 }
             }
             catch (Exception ex)
             {
-                string error = ex.Message;
+                // Handle potential exceptions
+               Log.Information("Error updating data: " + ex.Message);
             }
-            return cod_Paciente;
+            finally
+            {
+                // Ensure the connection is closed
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
         }
+
     }
-        public static int GravarPacienteOncologia(PacienteOncologia pacienteOncologia)
+
+        public static void GravarPacienteOncologia(PacienteOncologia pacienteOncologia)
     {
        
         string mensagem = null;
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
-        {
-            try
-            {
-                SqlCommand cmm = new SqlCommand();
-                cmm.Connection = cnn;
-                cnn.Open();
-                SqlTransaction mt = cnn.BeginTransaction();
-                cmm.Transaction = mt;
-                cmm.CommandText = "INSERT INTO [dbo].[Paciente]" +
+
+        string insertSql = "INSERT INTO [dbo].[Paciente]" +
            "([cod_Paciente]" +
            ",[nome_paciente]" +
            ", [data_nascimento] " +
@@ -182,7 +140,7 @@ public class PacienteOncologiaDAO
            ", [ddd_telefone] " +
           " , [telefone] " +
            ", [data_Cadastro])" +
-     "VALUES" +
+           "VALUES" +
            " ( @cod_Paciente," +
            " @nome_paciente, " +
              " @data_nascimento, " +
@@ -191,33 +149,49 @@ public class PacienteOncologiaDAO
           " @ddd_telefone, " +
           " @telefone, " +
           "@data_Cadastro )";
-                cmm.Parameters.Add("@cod_paciente", SqlDbType.Int).Value = pacienteOncologia.cod_Paciente;
-                cmm.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = pacienteOncologia.nome_paciente;
-                cmm.Parameters.Add("@data_nascimento", SqlDbType.DateTime).Value = pacienteOncologia.data_nascimento;
-                cmm.Parameters.Add("@sexo", SqlDbType.VarChar).Value = pacienteOncologia.sexo;
-                cmm.Parameters.Add("@nome_mae", SqlDbType.VarChar).Value = pacienteOncologia.nome_mae;
-                cmm.Parameters.Add("@ddd_telefone", SqlDbType.Int).Value = pacienteOncologia.ddd_telefone;
-                cmm.Parameters.Add("@telefone", SqlDbType.Int).Value = pacienteOncologia.telefone;
-                cmm.Parameters.Add("@data_Cadastro", SqlDbType.VarChar).Value = pacienteOncologia.data_Cadastro;
-               
+
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            try
+            {
+                // Open the connection
+                connection.Open();
+
+                // Create SqlCommand object
+                using (SqlCommand command = new SqlCommand(insertSql, connection))
+                {
 
 
+                    command.Parameters.Add("@cod_paciente", SqlDbType.Int).Value = pacienteOncologia.cod_Paciente;
+                    command.Parameters.Add("@nome_paciente", SqlDbType.VarChar).Value = pacienteOncologia.nome_paciente;
+                    command.Parameters.Add("@data_nascimento", SqlDbType.DateTime).Value = pacienteOncologia.data_nascimento;
+                    command.Parameters.Add("@sexo", SqlDbType.VarChar).Value = pacienteOncologia.sexo;
+                    command.Parameters.Add("@nome_mae", SqlDbType.VarChar).Value = pacienteOncologia.nome_mae;
+                    command.Parameters.Add("@ddd_telefone", SqlDbType.Int).Value = pacienteOncologia.ddd_telefone;
+                    command.Parameters.Add("@telefone", SqlDbType.Int).Value = pacienteOncologia.telefone;
+                    command.Parameters.Add("@data_Cadastro", SqlDbType.VarChar).Value = pacienteOncologia.data_Cadastro;
 
 
-                cmm.ExecuteNonQuery();
-                mt.Commit();
-                mt.Dispose();
-                cnn.Close();
-                mensagem = "Cadastro com sucesso!";
+                    // Execute the command
+                    int affectedRows = command.ExecuteNonQuery();
+                   Log.Information(String.Format("{0} rows updated.", affectedRows));
+                }
             }
             catch (Exception ex)
             {
-                string error = ex.Message;
-                mensagem = error;
+                // Handle potential exceptions
+               Log.Information("Error updating data: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
             }
         }
 
-        return BuscarPacienteOncologiaPorDataCadastro(pacienteOncologia.data_Cadastro);
     }
 
 
@@ -225,34 +199,97 @@ public class PacienteOncologiaDAO
 
     public static bool VerificarPacientePorRh(int rh)
     {
-        bool PacientePorRh = false;
-  
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        bool existePacientePorRh = false;
+        string query = "SELECT [cod_Paciente] FROM [dbo].[Paciente] where cod_Paciente = " + rh;
+
+
+        using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
-
-            SqlCommand cmm = cnn.CreateCommand();
-
-            string sqlConsulta = "SELECT [cod_Paciente] " +
-     
-   "FROM [dbo].[Paciente] where cod_Paciente = " + rh;
-            cmm.CommandText = sqlConsulta;
             try
             {
-                cnn.Open();
-                SqlDataReader dr1 = cmm.ExecuteReader();
-                if (dr1.Read())
+                // Open the database connection
+                connection.Open();
+
+                // Create a SqlCommand object
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    PacientePorRh = true;
-                 
+                    // Execute the command and receive a SqlDataReader
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Check if there are rows to be read
+                        if (reader.HasRows)
+                        {
+                            existePacientePorRh = true;
+                        }
+                        else
+                        {
+                           Log.Information("No rows found.");
+                        }
+                    }
 
                 }
+
             }
             catch (Exception ex)
             {
-                string error = ex.Message;
+                // Handle any errors that might have occurred
+               Log.Information("An error occurred: " + ex.Message);
             }
-            return PacientePorRh;
+            finally
+            {
+                // Ensure the connection is closed when done
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+
+            return existePacientePorRh;
         }
 
+    }
+
+    public static string HandlePacienteOncologia(string prontuario, string nomePaciente, string nomeMae,
+                                       string telefone, string ddd, string sexo, string nascimento,
+                                       DateTime dataCadastro)
+    {
+        try
+        {
+            // Creating the PacienteOncologia object and initializing its properties
+            PacienteOncologia pacienteOncologia = new PacienteOncologia
+            {
+                cod_Paciente = int.Parse(prontuario),
+                nome_paciente = nomePaciente,
+                nome_mae = nomeMae,
+                telefone = int.Parse(telefone),
+                ddd_telefone = int.Parse(ddd),
+                sexo = sexo,
+                data_nascimento = DateTime.Parse(nascimento),
+                data_Cadastro = dataCadastro
+            };
+
+            // Verifying and updating or creating a patient record
+            if (VerificarPacientePorRh(pacienteOncologia.cod_Paciente))
+            {
+               AtualizarPaciente(pacienteOncologia);
+                return String.Format("Updated patient registered with ID {0}.", pacienteOncologia.cod_Paciente);
+            }
+            else
+            {
+                GravarPacienteOncologia(pacienteOncologia);
+                return String.Format("New patient registered with ID {0}.", pacienteOncologia.cod_Paciente);
+            }
+        }
+        catch (FormatException fe)
+        {
+            // Handling format errors for integers and DateTime types
+            return String.Format("Input format error: {0}", fe.Message);
+        }
+        catch (Exception ex)
+        {
+            // Handling other generic exceptions that could occur
+            return String.Format("An unexpected error occurred: {0}", ex.Message);
+
+        }
     }
 }

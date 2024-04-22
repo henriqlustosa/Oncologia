@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json.Linq;
+using System.Globalization;
+using Serilog;
 
 /// <summary>
 /// Summary description for CalculoSuperficieCorporeaDAO
@@ -192,5 +194,41 @@ public class CalculoSuperficieCorporeaDAO
                 mensagem = error;
             }
         }
+    }
+
+    public static CalculoSuperficieCorporea HandleCalculoSuperficieCorporea(string var_altura , string var_peso, string var_bsa, DateTime dataCadastro)
+    {
+        try
+        {
+            int altura = int.Parse(var_altura);
+            int peso = int.Parse(var_peso);
+            decimal bsa = decimal.Parse(var_bsa, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
+
+            CalculoSuperficieCorporea calculo = new CalculoSuperficieCorporea
+            {
+                altura = altura,
+                peso = peso,
+                BSA = bsa,
+                dataCadastro = dataCadastro
+            };
+
+            calculo.cod_Calculo = GravarCalculoSuperficieCorporea(calculo);
+            return calculo;
+        }
+        catch (FormatException ex)
+        {
+            // Handle specific format errors or general parsing errors
+           Log.Information("An error occurred while parsing the inputs: " + ex.Message);
+           return null;
+        }
+        catch (OverflowException ex)
+        {
+            // Handle overflow conditions
+           Log.Information("An error occurred - one of the values is too large or too small: " + ex.Message);
+            return null;
+        }
+
+
+  
     }
 }

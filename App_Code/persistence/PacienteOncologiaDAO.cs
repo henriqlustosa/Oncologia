@@ -101,7 +101,7 @@ public class PacienteOncologiaDAO
                     command.Parameters.Add("@nome_mae", SqlDbType.VarChar).Value = pacienteOncologia.nome_mae;
                     command.Parameters.Add("@ddd_telefone", SqlDbType.Int).Value = pacienteOncologia.ddd_telefone;
                     command.Parameters.Add("@telefone", SqlDbType.Int).Value = pacienteOncologia.telefone;
-                    command.Parameters.Add("@data_Ultima_Atualizacao", SqlDbType.VarChar).Value = DateTime.Now;
+                    command.Parameters.Add("@data_Ultima_Atualizacao", SqlDbType.VarChar).Value = pacienteOncologia.data_Ultima_Atualizacao;
                     command.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = pacienteOncologia.cod_Paciente;
                     // Execute the command
                     int affectedRows = command.ExecuteNonQuery();
@@ -265,17 +265,19 @@ public class PacienteOncologiaDAO
                 ddd_telefone = int.Parse(ddd),
                 sexo = sexo,
                 data_nascimento = DateTime.Parse(nascimento),
-                data_Cadastro = dataCadastro
+                
             };
 
             // Verifying and updating or creating a patient record
             if (VerificarPacientePorRh(pacienteOncologia.cod_Paciente))
-            {
+            {  
+                pacienteOncologia.data_Ultima_Atualizacao = dataCadastro;
                AtualizarPaciente(pacienteOncologia);
                 return String.Format("Updated patient registered with ID {0}.", pacienteOncologia.cod_Paciente);
             }
             else
             {
+                pacienteOncologia.data_Cadastro = dataCadastro;
                 GravarPacienteOncologia(pacienteOncologia);
                 return String.Format("New patient registered with ID {0}.", pacienteOncologia.cod_Paciente);
             }

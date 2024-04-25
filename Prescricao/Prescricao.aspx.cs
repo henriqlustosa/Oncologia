@@ -104,7 +104,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         List<CID_10> listaDeCids = HandleCID();
 
-        CID_10_DAO.GravaCidsPorPrescricao(listaDeCids, prescricao.cod_Prescricao);
+        CID_10_DAO.GravaCidsPorPrescricao(listaDeCids, prescricao.cod_Prescricao, dataCadastro);
 
         AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
         

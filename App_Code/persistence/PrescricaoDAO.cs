@@ -406,7 +406,7 @@ public class PrescricaoDAO
             nome_Usuario_Atualizacao = nome_Usuario_Atualizacao
 
         };
-        prescricao.cod_Protocolos = BuscarPrequimioPorCod_Protocolo(prescricao.cod_Protocolos);
+        prescricao.cod_Prequimio = BuscarPrequimioPorCod_Protocolo(cod_Protocolos);
         AtualizarPrescricao(prescricao);
         return prescricao;  
        
@@ -430,7 +430,7 @@ public class PrescricaoDAO
             nome_Usuario = nome_Usuario
 
         };
-        prescricao.cod_Protocolos = BuscarPrequimioPorCod_Protocolo(prescricao.cod_Protocolos);
+        prescricao.cod_Prequimio = BuscarPrequimioPorCod_Protocolo(cod_Protocolos);
         prescricao.cod_Prescricao = GravarPrescricao(prescricao);
         return prescricao;
 

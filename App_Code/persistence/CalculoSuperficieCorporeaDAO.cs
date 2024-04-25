@@ -202,6 +202,7 @@ public class CalculoSuperficieCorporeaDAO
         {
             int altura = int.Parse(var_altura);
             int peso = int.Parse(var_peso);
+            var_bsa = var_bsa.Replace(',', '.');
             decimal bsa = decimal.Parse(var_bsa, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture);
 
             CalculoSuperficieCorporea calculo = new CalculoSuperficieCorporea
@@ -213,6 +214,7 @@ public class CalculoSuperficieCorporeaDAO
             };
 
             calculo.cod_Calculo = GravarCalculoSuperficieCorporea(calculo);
+            calculo.status = "A";
             return calculo;
         }
         catch (FormatException ex)

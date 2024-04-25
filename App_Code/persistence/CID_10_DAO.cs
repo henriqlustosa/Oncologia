@@ -20,12 +20,12 @@ public class CID_10_DAO
         //
     }
 
-    public static void GravaCidsPorPrescricao(List<CID_10> lista_cid_10, int cod_Prescricao)
+    public static void GravaCidsPorPrescricao(List<CID_10> lista_cid_10, int cod_Prescricao, DateTime dataCadastro)
     {
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             string status = "A";
-            string _dtcadastro_bd = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+           
             SqlCommand cmm = new SqlCommand();
             cmm.Connection = cnn;
             cnn.Open();
@@ -40,7 +40,7 @@ public class CID_10_DAO
                     + " values ('"
                                 + cid_10.SUBCAT + "',"
                                 + cod_Prescricao + ",'"
-                                + _dtcadastro_bd + "','"
+                                + dataCadastro + "','"
                                 + status
                                 + "');";
                     cmm.ExecuteNonQuery();

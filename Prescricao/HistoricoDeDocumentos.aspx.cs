@@ -3,17 +3,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Principal;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+
 
 public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            MembershipUser user = Membership.GetUser(User.Identity.Name);
+            // Set the user ID in the hidden field when the page loads
+            if (user != null)
+            {
+                // Assuming UserId is stored as ProviderUserKey
+                Guid _userId = (Guid)user.ProviderUserKey;
+                userId = _userId.ToString();
+               
+            }
+        }
 
     }
+    public string userId { get; set; }
     public int _id_pedido { get; set; }
     public string nome_impressora { get; set; }
     protected void grdMain_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -79,15 +95,17 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
 
     protected void GridView1_PreRender(object sender, EventArgs e)
     {
+    
 
 
 
+        Profissional profissional = ProfissionalDAO.GetProfissionalByUserId(userId);
 
         // colocar no grid OnPreRender="GridView1_PreRender"
 
         // You only need the following 2 lines of code if you are not 
         // using an ObjectDataSource of SqlDataSource
-        GridView1.DataSource = RelatorioPrescricaoloDAO.listaTodosProtocolos();
+        GridView1.DataSource = RelatorioPrescricaoloDAO.listaTodosProtocolosByCod_Profissional(profissional.cod_profissional);
 
         GridView1.DataBind();
 

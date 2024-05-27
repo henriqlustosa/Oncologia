@@ -27,7 +27,7 @@ public class RelatorioPrescricaoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]";
+            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]";
 
             try
             {
@@ -63,6 +63,9 @@ public class RelatorioPrescricaoloDAO
                     itemLista.desc_prequimio = dr1.IsDBNull(19) ? "" : dr1.GetString(19);
                     itemLista.cod_prequimio = dr1.GetInt32(20);
                     itemLista.cod_protocolo = dr1.GetInt32(21);
+
+                    itemLista.nome_profissional = dr1.GetString(22);
+                    itemLista.nr_conselho = dr1.GetInt32(23);
 
                     relatorioPrescricao.Add(itemLista);
                 }
@@ -110,7 +113,9 @@ public class RelatorioPrescricaoloDAO
       " ,[cod_prequimio]" +
      " ,[cod_protocolo]" +
       " ,[creatinina]" +
-     "       FROM[dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
+      " ,[nome_profissional]" +
+        " ,[nr_conselho]" +
+            "       FROM[dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
             try
             {
                 cnn.Open();
@@ -149,6 +154,9 @@ public class RelatorioPrescricaoloDAO
                     relatorio.cod_protocolo = dr1.GetInt32(21);
                     relatorio.creatinina = dr1.GetDecimal(22);
 
+                    relatorio.nome_profissional = dr1.GetString(23);
+                    relatorio.nr_conselho = dr1.GetInt32(24);
+
 
                     //relatorioLista.Add(relatorio);
                 }
@@ -172,7 +180,7 @@ public class RelatorioPrescricaoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao] where cod_profissional = " + cod_profissional ;
+            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao] where cod_profissional = " + cod_profissional ;
 
             try
             {
@@ -208,6 +216,8 @@ public class RelatorioPrescricaoloDAO
                     itemLista.desc_prequimio = dr1.IsDBNull(19) ? "" : dr1.GetString(19);
                     itemLista.cod_prequimio = dr1.GetInt32(20);
                     itemLista.cod_protocolo = dr1.GetInt32(21);
+                    itemLista.nome_profissional = dr1.GetString(22);
+                    itemLista.nr_conselho = dr1.GetInt32(23);
 
                     relatorioPrescricao.Add(itemLista);
                 }

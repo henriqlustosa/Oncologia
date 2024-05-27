@@ -17,6 +17,11 @@ public class RelatorioProtocoloDosagemDAO
         //
     }
 
+    public static List<RelatorioProtocoloDosagem> MostrarMedicamentosParaEdicao(int cod_Prescricao)
+    {
+        return RelatorioProtocoloDosagemDAO.BuscarProtocolosPorCodPrescricao(cod_Prescricao);
+    }
+
     internal static List<RelatorioProtocoloDosagem> BuscarProtocolosPorCodPrescricao(int cod_prescricao)
     {
         List<RelatorioProtocoloDosagem> protocolos = new List<RelatorioProtocoloDosagem>();

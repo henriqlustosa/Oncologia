@@ -158,4 +158,8 @@ public class RelatorioPreQuimioDAO
         }
     }
 
+    public static List<RelatorioPreQuimio>  MostrarMedicamentosParaEdicao(int cod_Prescricao)
+    {
+        return RelatorioPreQuimioDAO.BuscarPrequimiosPorCodPrescricao(cod_Prescricao);
+    }
 }

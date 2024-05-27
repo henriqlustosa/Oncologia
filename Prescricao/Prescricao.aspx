@@ -1,4 +1,4 @@
-﻿    <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
     EnableEventValidation="false" CodeFile="Prescricao.aspx.cs" Inherits="Prescricao_Prescricao"
     Title="Prescricao" %>
 
@@ -10,6 +10,42 @@
 
     <link href="../js_datepicker/jquery-ui.css" rel="stylesheet" />
     <style type="text/css">
+        /* Container for the modal that covers the entire viewport */
+        .modal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.4); /* Optional: Dim background */
+        }
+
+        /* Styles for the modal content itself */
+        .modal-content {
+            width: 800px; /* Fixed width */
+            height: 800px; /* Fixed height */
+            background: white; /* Optional: Background color */
+            border-radius: 8px; /* Optional: Rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Box shadow for better visibility */
+            /* Centering the modal content within the container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-body {
+            max-height: 1000px;
+            overflow-y: auto;
+        }
+
+        .gridview-custom th, .gridview-custom td {
+            padding: 8px;
+            text-align: left;
+        }
+
         fieldset.scheduler-border {
             border: 1px groove #ddd !important;
             padding: 0 1.4em 1.4em 1.4em !important;
@@ -470,10 +506,10 @@
         <!-- Large modal -->
         <div class="container">
             <!-- Trigger the modal with a button -->
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-                Imprimir</button>
+            <%--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                Imprimir</button>--%>
             <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="myModalImpressora" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -487,7 +523,7 @@
                                     <div class="col-md-6 form-group">
                                         Impressoras:
                                     <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-                                       <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
+                                        <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
                                         <asp:ListItem>ONCO_SEC</asp:ListItem>
                                         <asp:ListItem>ONCO_ENF</asp:ListItem>
                                         <asp:ListItem>INFO</asp:ListItem>
@@ -524,9 +560,184 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <!-- Trigger the modal with a button -->
+            <div class="col-md-4 col-sm-4 col-xs-8 ">
+                <asp:Button ID="Button1" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                    OnClick="btnGravar_Click" data-toggle="modal" />
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModalMedicamento" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Informações dos Medicamentos</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-header">
+                                <h4 class="modal-title">PreQuimio</h4>
+                            </div>
+                            <asp:GridView ID="GridViewPreQuimio" runat="server" AutoGenerateColumns="False"
+                                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                                Width="100%">
 
+                                <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
+                                <Columns>
+                                    <asp:BoundField DataField="desc_medicacao_pre_quimio" HeaderText="Medicação" SortExpression="desc_medicacao_pre_quimio"
+                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+
+                                    <asp:TemplateField HeaderText="Dosagem" SortExpression="quantidade">
+                                        <ItemTemplate>
+                                            <%# Eval("quantidade") %> <%# Eval("unidadeQuantidade") %>
+                                        </ItemTemplate>
+                                        <ItemStyle CssClass="hidden-md" />
+                                        <HeaderStyle CssClass="hidden-md" />
+                                    </asp:TemplateField>
+
+                                    <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
+                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+                                    <asp:BoundField DataField="desc_quimio" HeaderText="Quimio" SortExpression="desc_quimio"
+                                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
+
+                                    <asp:BoundField DataField="diluicao" HeaderText="Diluicao" SortExpression="diluicao"
+                                        HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+
+
+
+                                    <asp:TemplateField HeaderText="Infusão" SortExpression="tempoDeInfusao">
+                                        <ItemTemplate>
+                                            <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
+                                        </ItemTemplate>
+                                        <ItemStyle CssClass="hidden-md" />
+                                        <HeaderStyle CssClass="hidden-md" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+                                        <ItemTemplate>
+                                            <div class="form-inline">
+                                                <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                    CssClass="btn btn-info" runat="server" CausesValidation="false">
+              <i class="fa fa-pencil-square-o" title="Editar"></i>
+                                                </asp:LinkButton>
+                                            </div>
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+                                        <ItemTemplate>
+
+                                            <div class="form-inline">
+                                                <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
+              <i class="fa fa-trash" title="Excluir"></i>
+                                                </asp:LinkButton>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                </Columns>
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <EditRowStyle BackColor="#999999" />
+                            </asp:GridView>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Protocolo</h4>
+                            </div>
+                            <asp:GridView ID="GridViewProtocolo" runat="server" AutoGenerateColumns="False"
+                                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                                Width="100%">
+
+                                <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
+                                <Columns>
+                                    <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
+                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+                                    <asp:TemplateField HeaderText="Dosagem" SortExpression="dosagem">
+                                        <ItemTemplate>
+                                            <%# Eval("dosagem") %> <%# Eval("unidade_dosagem") %>
+                                        </ItemTemplate>
+                                        <ItemStyle CssClass="hidden-md" />
+                                        <HeaderStyle CssClass="hidden-md" />
+                                    </asp:TemplateField>
+
+
+
+                                    <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
+                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+
+                                    <asp:BoundField DataField="diluicao" HeaderText="Diluicao" SortExpression="diluicao"
+                                        HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+
+
+                                    <asp:TemplateField HeaderText="Infusao" SortExpression="tempoDeInfusao">
+                                        <ItemTemplate>
+                                            <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
+                                        </ItemTemplate>
+                                        <ItemStyle CssClass="hidden-md" />
+                                        <HeaderStyle CssClass="hidden-md" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+                                        <ItemTemplate>
+                                            <div class="form-inline">
+                                                <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                    CssClass="btn btn-info" runat="server" CausesValidation="false">
+<i class="fa fa-pencil-square-o" title="Editar"></i>
+                                                </asp:LinkButton>
+                                            </div>
+                                        </ItemTemplate>
+
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+                                        <ItemTemplate>
+
+                                            <div class="form-inline">
+                                                <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
+<i class="fa fa-trash" title="Excluir"></i>
+                                                </asp:LinkButton>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                </Columns>
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <EditRowStyle BackColor="#999999" />
+                            </asp:GridView>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
+    <script type="text/javascript">
+        function showModal() {
+            $('#myModalMedicamento').modal('show');
+        }
 
+        function hideModal() {
+            $('#myModalMedicamento').modal('hiden');
+        }
+    </script>
 
     <script type="text/javascript">
 
@@ -701,7 +912,7 @@
                 doCalc = true;
 
                 param_value = parseFloat((<%= txbAltura.ClientID %>).value);
-                
+
                 if (isNaN(param_value)) { param_value = ""; doCalc = false; }
                 unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
                 Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
@@ -805,7 +1016,7 @@
                 div.style.display = 'none';
             }
         }
-      
+
         function ClearInputs() {
             (<%= txbAltura.ClientID %>).value = '';
             (<%= txbPeso.ClientID %>).value = '';
@@ -860,7 +1071,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataFilter: function (data) { return data; },
                         success: function (data) {
-                          
+
 
                             response($.map(data.d, function (item) {
 
@@ -923,7 +1134,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataFilter: function (data) { return data; },
                         success: function (data) {
-                           
+
 
                             response($.map(data, function (item) {
 

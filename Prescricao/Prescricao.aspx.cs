@@ -124,17 +124,27 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
    
 
-        ClearInputs(Page.Controls);// limpa os textbox
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
-        while (vias > 0)
-        {
+      
+        //while (vias > 0)
+        //{
 
-            ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, nome_impressora);
-            vias--;
-        }
-
+        //    ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, nome_impressora);
+        //    vias--;
+        //}
+     
 
         
+
+        GridViewPreQuimio.DataSource = RelatorioPreQuimioDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prequimio);
+        GridViewPreQuimio.DataBind();
+
+        GridViewProtocolo.DataSource = RelatorioProtocoloDosagemDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prescricao);
+
+        GridViewProtocolo.DataBind();
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal();", true);
+
+        //ClearInputs(Page.Controls);// limpa os textbox
+        //ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
     }
 
     public List<CID_10> HandleCID()

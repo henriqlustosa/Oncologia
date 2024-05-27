@@ -52,5 +52,9 @@ public class RelatorioPrescricao
     public int cod_protocolo { get; set; }
     public decimal creatinina { get; set; }
 
+    public string nome_profissional { get; set; }
+
+    public int nr_conselho { get; set; }
+
 
 }

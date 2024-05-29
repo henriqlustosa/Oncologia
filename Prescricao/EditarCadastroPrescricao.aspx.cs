@@ -140,10 +140,10 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         string mensagem = "";
         int _id = Convert.ToInt32(Request.QueryString["idPrescricao"]);
 
+        string usuario = User.Identity.Name.ToUpper();
 
 
 
-       
 
         // Variável que marca a data e hora da criação da prescrição
         DateTime dataCadastro = DateTime.Now;
@@ -177,7 +177,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
 
 
-        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(_id,cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, User.Identity.Name.ToUpper());
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(_id,cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario);
 
 
    
@@ -196,8 +196,8 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
    
 
-        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(int.Parse(ddlProtocolo.SelectedValue.ToString()));
-        List<CalculoDosagemPrescricao>  calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente));
+        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodProtocolo(int.Parse(ddlProtocolo.SelectedValue.ToString()));
+        List<CalculoDosagemPrescricao>  calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
 
 
         CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);

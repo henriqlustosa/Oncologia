@@ -322,7 +322,7 @@ public class ProtocolosDAO
         }
     }
 
-    public static List<Protocolos> BuscarProtocolosPorCodPrescricao(int cod_protocolo)
+    public static List<Protocolos> BuscarProtocolosPorCodProtocolo(int cod_protocolo)
     {
         List<Protocolos> protocolos = new List<Protocolos>();
         

@@ -24,8 +24,20 @@ public class CalculoDosagemPrescricao
     public string unidade_dose { get; set; }
     public DateTime dataCadastro { get; set; }
     public int cod_Prescricao { get; set; }
+    public string status { get; set; }
+    public int porcentagemDiminuirDose { get; set; }
 
-    public List<CalculoDosagemPrescricao> calcular(CalculoSuperficieCorporea calculo,List<Protocolos> protocolos, DateTime datacadastro, Prescricao prescricao, PacienteOncologia pacienteOncologia)
+    public DateTime data_atualizacao { get; set; }
+
+    public Decimal dose_alterada { get; set; }
+    public string nome_Usuario { get; set; }
+    public string nome_Usuario_Atualizacao { get; set; }
+
+
+
+
+
+    public List<CalculoDosagemPrescricao> calcular(CalculoSuperficieCorporea calculo,List<Protocolos> protocolos, DateTime datacadastro, Prescricao prescricao, PacienteOncologia pacienteOncologia,string nome_Usuario)
     {
         List<CalculoDosagemPrescricao> calcDoses = new List<CalculoDosagemPrescricao>();
         foreach (Protocolos protocolo in protocolos)
@@ -108,6 +120,7 @@ public class CalculoDosagemPrescricao
                 calcDose.cod_Prescricao = cod_Prescricao;
 
             }
+            calcDose.nome_Usuario = nome_Usuario;
             calcDoses.Add(calcDose);
         }
         return calcDoses;

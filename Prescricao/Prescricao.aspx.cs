@@ -74,7 +74,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     public int vias { get; set; }
     public string nome_impressora { get; set; }
     protected void btnGravar_Click(object sender, EventArgs e)
-    {   
+    {
+        string usuario = User.Identity.Name.ToUpper();
         // Variável para mostrar mensagem de erro
         string mensagem = "";
 
@@ -100,7 +101,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
 
-        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, User.Identity.Name.ToUpper());
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario);
 
         List<CID_10> listaDeCids = HandleCID();
 
@@ -111,31 +112,35 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
        
 
         CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
+        CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricao = new CalculoDosagemPrescricaoPreQuimio();
 
-      
 
 
-        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodPrescricao(int.Parse(ddlProtocolo.SelectedValue.ToString()));
 
-        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente));
+        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodProtocolo(int.Parse(ddlProtocolo.SelectedValue.ToString()));
 
+        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+        List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
+
+        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricao.calcular( prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
+        CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
 
 
-   
 
-      
+
+
         //while (vias > 0)
         //{
 
         //    ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, nome_impressora);
         //    vias--;
         //}
-     
 
-        
 
-        GridViewPreQuimio.DataSource = RelatorioPreQuimioDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prequimio);
+
+
+        GridViewPreQuimio.DataSource = RelatorioPreQuimioDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prescricao);
         GridViewPreQuimio.DataBind();
 
         GridViewProtocolo.DataSource = RelatorioProtocoloDosagemDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prescricao);

@@ -41,7 +41,7 @@ public class PacienteOncologiaDAO
              ",[telefone] " +
       " ,[data_Cadastro] " +
        ",[data_Ultima_Atualizacao] " +
-   "FROM [dbo].[Paciente] where cod_Paciente " + rh;
+   "FROM [dbo].[Paciente] where cod_Paciente =" + rh;
             cmm.CommandText = sqlConsulta;
             try
             {

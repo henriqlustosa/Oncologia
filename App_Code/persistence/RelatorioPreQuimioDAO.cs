@@ -98,7 +98,7 @@ public class RelatorioPreQuimioDAO
     }
 
 
-    public static List<RelatorioPreQuimio> BuscarPrequimiosPorCodPrescricao(int cod_prequimio)
+    public static List<RelatorioPreQuimio> BuscarPrequimiosPorCodPrescricao(int cod_prescricao)
     {
         List<RelatorioPreQuimio> preQuimios = new List<RelatorioPreQuimio>();
         
@@ -111,19 +111,20 @@ public class RelatorioPreQuimioDAO
 
             string sqlConsulta = "SELECT [Id]" +
       ",[desc_pre_quimio] "+
-      ",[desc_medicacao_pre_quimio] " +
+      ",[desc_medicacao] " +
      ",[desc_quimio] " +
      " ,[desc_via_de_administracao] " +
      " ,[nome_Usuario] " +
-     " ,[quantidade] " +
-      ",[unidadeQuantidade] " +
+     " ,[dose] " +
+      ",[unidade_dose] " +
       ",[diluicao] " +
       ",[tempoDeInfusao] " +
       ",[unidadeTempoDeInfusao] " +
       ",[dataCadastro] " +
       ",[status] " +
       ",[cod_PreQuimio]" +
-  "FROM [dbo].[Vw_RelatorioPreQuimio]  where cod_PreQuimio = " + cod_prequimio;
+      
+  "FROM [dbo].[Vw_RelatorioPreQuimioDosagem]  where cod_prescricao = " + cod_prescricao;
             cmm.CommandText = sqlConsulta;
             try
             {

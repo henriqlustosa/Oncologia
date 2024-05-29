@@ -213,11 +213,10 @@ public class MedicacaoPreQuimioDetalhelDAO
         return mensagem;
     }
 
-    internal static List<MedicacaoPreQuimioDetalhe> BuscarPrequimiosPorCodPrescricao(int cod_prequimio)
+    public static List<MedicacaoPreQuimioDetalhe> BuscarPrequimiosPorCodPreQuimio(int cod_prequimio)
     {
         List<MedicacaoPreQuimioDetalhe> preQuimios = new List<MedicacaoPreQuimioDetalhe>() ;
-        MedicacaoPreQuimioDetalhe preQuimio = new MedicacaoPreQuimioDetalhe();
-  
+       
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             //Colocar um inner join com 
@@ -243,8 +242,10 @@ public class MedicacaoPreQuimioDetalhelDAO
             {
                 cnn.Open();
                 SqlDataReader dr1 = cmm.ExecuteReader();
-                if (dr1.Read())
+                while (dr1.Read())
                 {
+                    MedicacaoPreQuimioDetalhe preQuimio = new MedicacaoPreQuimioDetalhe();
+
                     preQuimio.Id = dr1.GetInt32(0);
                     preQuimio.cod_PreQuimio = dr1.GetInt32(1);
                     preQuimio.cod_Medicacao = dr1.GetInt32(2);
@@ -269,4 +270,6 @@ public class MedicacaoPreQuimioDetalhelDAO
             return preQuimios;
         }
     }
+
+    
 }

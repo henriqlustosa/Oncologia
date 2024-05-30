@@ -40,7 +40,7 @@ public class ImpressaoPrescricao
        
                 List<RelatorioProtocoloDosagem> protocolos = new List<RelatorioProtocoloDosagem>();
 
-                List<RelatorioPreQuimio> preQuimios = new List<RelatorioPreQuimio>();
+                List<RelatorioPreQuimioDosagem> preQuimios = new List<RelatorioPreQuimioDosagem>();
 
                 List<CID_Prescricao> cids = new List<CID_Prescricao>();
                 List<Agenda> agendas = new List<Agenda>();
@@ -56,7 +56,7 @@ public class ImpressaoPrescricao
 
                 protocolos = RelatorioProtocoloDosagemDAO.BuscarProtocolosPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
 
-                preQuimios = RelatorioPreQuimioDAO.BuscarPrequimiosPorCodPrescricao(relatorioPrescricao.cod_prequimio);
+                preQuimios = RelatorioPreQumioDosagemDAO.BuscarPrequimiosPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
 
                 cids = CID_10_DAO.BuscarCIDsPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
 
@@ -69,7 +69,7 @@ public class ImpressaoPrescricao
 
                 IEnumerable<RelatorioPrescricao> ie;
                 IEnumerable<RelatorioProtocoloDosagem> ie2;
-                IEnumerable<RelatorioPreQuimio> ie3;
+                IEnumerable<RelatorioPreQuimioDosagem> ie3;
                 IEnumerable<CID_Prescricao> ie4;
                
 

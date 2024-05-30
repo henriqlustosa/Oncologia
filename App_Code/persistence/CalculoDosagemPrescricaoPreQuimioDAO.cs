@@ -18,6 +18,94 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
         //
     }
 
+    public static CalculoDosagemPrescricaoPreQuimio ApresentarDadosCalculoDosagemPreQuimio(int idCalculoDosagemPreQuimio)
+    {
+        CalculoDosagemPrescricaoPreQuimio calc = new CalculoDosagemPrescricaoPreQuimio();
+
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+
+            SqlCommand cmm = cnn.CreateCommand();
+
+            string sqlConsulta = "SELECT [cod_CalculoDosagemPreQuimio] " +
+     " ,[dose] " +
+     " ,[unidade_dose]" +
+     " ,[dose_alterada]" +
+     " ,[porcentagemDiminuirDose]" +
+     " FROM [dbo].[Calculo_Dosagem_Prescricao_Prequimio] " +
+     " WHERE cod_CalculoDosagemPreQuimio = " + idCalculoDosagemPreQuimio;
+            cmm.CommandText = sqlConsulta;
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+                if (dr1.Read())
+                {
+                    calc.cod_CalculoDosagem = dr1.GetInt32(0);
+                    calc.dose = dr1.GetDecimal(1);
+                    calc.unidade_dose = dr1.GetString(2);
+                    calc.dose_alterada = dr1.GetDecimal(3);
+                    calc.porcentagemDiminuirDose = dr1.GetInt32(4);
+                 
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+            return calc;
+        }
+    }
+
+    public static void DeletarCalculoDosagemPrescricaoPreQuimio(int cod_Prescricao, DateTime data_cadastro)
+    {
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            try
+            {
+                SqlCommand cmm = new SqlCommand();
+                cmm.Connection = cnn;
+                cnn.Open();
+                SqlTransaction mt = cnn.BeginTransaction();
+                cmm.Transaction = mt;
+                cmm.CommandText = "UPDATE [dbo].[Calculo_Dosagem_Prescricao_Prequimio] SET" +
+
+
+      " [status] = @status " +
+
+      ",[data_atualizacao] = @data_atualizacao" +
+ " WHERE cod_Prescricao = @cod_Prescricao and status = 'A'";
+
+
+
+
+
+
+                cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = cod_Prescricao;
+                cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = data_cadastro;
+                cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "I";
+
+
+
+
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+                mensagem = "Cadastro com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                mensagem = error;
+            }
+        }
+    }
+
     public static void GravarCalculoDosagemPrescricaoPreQuimio(List<CalculoDosagemPrescricaoPreQuimio> calculos)
     {
 

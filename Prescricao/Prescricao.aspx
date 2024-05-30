@@ -5,6 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
+ 
     <meta http-equiv="refresh" content="1000" />
 
 
@@ -104,22 +105,26 @@
             color: #fff;
         }
     </style>
+       
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-        <Scripts>
+     <Scripts>
 
 
 
-            <asp:ScriptReference Path="../js_datepicker/jquery-ui.js" />
+         <asp:ScriptReference Path="../js_datepicker/jquery-ui.js" />
 
 
 
-        </Scripts>
-    </asp:ScriptManagerProxy>
+     </Scripts>
+ </asp:ScriptManagerProxy>
 
 
 
     <!-- CDN for chosen plugin -->
     <link href="../js/chosen.min.css" rel="stylesheet" type="text/css" />
+      
+
+         
     <div class="container">
         <div class="x_panel">
             <div class="x_title">
@@ -497,12 +502,13 @@
                     </div>
                 </div>
             </div>
-            <%--   <div class="row">
+               <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
                 </div>
-            </div>--%>
+            </div>
         </div>
+         
         <!-- Large modal -->
         <div class="container">
             <!-- Trigger the modal with a button -->
@@ -549,7 +555,7 @@
                                 <div class="form-group">
                                     <div class="col-md-4 col-sm-4 col-xs-8 ">
                                         <asp:Button ID="btn" runat="server" Text="Gravar" class="btn btn-primary gravar"
-                                            OnClick="btnGravar_Click" data-toggle="modal" />
+                                            OnClick="btnGravarImpressora_Click" data-toggle="modal" />
                                     </div>
 
 
@@ -562,10 +568,10 @@
         </div>
         <div class="container">
             <!-- Trigger the modal with a button -->
-            <div class="col-md-4 col-sm-4 col-xs-8 ">
-                <asp:Button ID="Button1" runat="server" Text="Gravar" class="btn btn-primary gravar"
-                    OnClick="btnGravar_Click" data-toggle="modal" />
-            </div>
+            <%--<div class="col-md-4 col-sm-4 col-xs-8 ">
+                <asp:Button ID="Button1" runat="server" Text="Gravar" EnableViewState="true"  
+                    OnClick="btnGravar_Click"  />
+            </div>--%>
             <!-- Modal -->
             <div class="modal fade" id="myModalMedicamento" role="dialog">
                 <div class="modal-dialog">
@@ -578,9 +584,10 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">PreQuimio</h4>
                             </div>
-                            <asp:GridView ID="GridViewPreQuimio" runat="server" AutoGenerateColumns="False"
+                            <asp:GridView ID="GridViewPreQuimio" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagemPreQuimio"  OnRowCommand="gridViewPreQuimio_RowCommand" 
                                 CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                                 Width="100%">
+                               
 
                                 <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
                                 <Columns>
@@ -649,13 +656,13 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Protocolo</h4>
                             </div>
-                            <asp:GridView ID="GridViewProtocolo" runat="server" AutoGenerateColumns="False"
-                                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                            <asp:GridView ID="GridViewProtocolo" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagem" OnRowCommand="gridViewProtocolo_RowCommand" 
+                               CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                                 Width="100%">
 
                                 <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
                                 <Columns>
-                                    <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
+                                    <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao" 
                                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
@@ -727,7 +734,83 @@
                 </div>
             </div>
         </div>
+
+        <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModalDosagem" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Informações dos Medicamentos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <h4 class="modal-title">PreQuimio</h4>
+                        </div>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Protocolo</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Ficha</legend>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <asp:Label ID="lbMedicacao" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="col-md-5 col-sm-12 col-xs-12 form-group">
+                                        <label>
+                                            Valor do Protocolo:
+                                        </label>
+                                        <asp:TextBox ID="txbDoseProtocolo" runat="server" class="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                    </div>
+
+                                    <asp:DropDownList ID="ddlPercentagem" runat="server">
+                                        <asp:ListItem Value="0">0%</asp:ListItem>
+                                        <asp:ListItem Value="10">10%</asp:ListItem>
+                                        <asp:ListItem Value="20">20%</asp:ListItem>
+                                        <asp:ListItem Value="30">30%</asp:ListItem>
+                                        <asp:ListItem Value="40">40%</asp:ListItem>
+                                        <asp:ListItem Value="50">50%</asp:ListItem>
+                                        <asp:ListItem Value="60">60%</asp:ListItem>
+                                        <asp:ListItem Value="70">70%</asp:ListItem>
+                                        <asp:ListItem Value="80">80%</asp:ListItem>
+                                        <asp:ListItem Value="90">90%</asp:ListItem>
+                                        <asp:ListItem Value="100">100%</asp:ListItem>
+                                    </asp:DropDownList>
+
+                                </div>
+                                <div class="col-md-5 col-sm-12 col-xs-12 form-group">
+                                    <label>
+                                        Valor Atualizado:
+                                    </label>
+                                    <asp:TextBox ID="txbDoseAlterada" runat="server" class="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                </div>
+                            </fieldset>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-xs-8 ">
+                                    <asp:Button ID="Button2" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                                        OnClick="btnGravarPreQuimio_Click" data-toggle="modal" />
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+  
     <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
     <script type="text/javascript">
         function showModal() {
@@ -736,6 +819,15 @@
 
         function hideModal() {
             $('#myModalMedicamento').modal('hiden');
+
+        }
+
+        function showModalMedicamento() {
+            $('#myModalDosagem').modal('show');
+        }
+
+        function hideModal() {
+            $('#myModalDosagem').modal('hiden');
         }
     </script>
 

@@ -32,7 +32,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             select1.DataBind();
 
             cblViasDeAcesso.DataSource = ViasDeAcessoDAO.ListaViasDeAcesso();
-            cblViasDeAcesso.DataTextField = "descr_vias_de_acesso"; 
+            cblViasDeAcesso.DataTextField = "descr_vias_de_acesso";
             cblViasDeAcesso.DataValueField = "cod_vias_de_acesso";
             cblViasDeAcesso.DataBind();
             for (int i = 0; i < cblViasDeAcesso.Items.Count; i++)
@@ -45,10 +45,10 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     [WebMethod]
 
     public static List<Paciente> GetNomeDePacientes(string prefixo)
-   {
-        
+    {
+
         List<Paciente> pacientes = new List<Paciente>();
-        pacientes = PacienteDAO.GETNOME( prefixo.ToUpper());
+        pacientes = PacienteDAO.GETNOME(prefixo.ToUpper());
 
         return pacientes;
     }
@@ -66,13 +66,12 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
     protected void btnPesquisar_Click(object sender, EventArgs e)
     {
-        
+
         ScriptManager.RegisterStartupScript(this, this.GetType(), "#modalAdicionarPaciente", "$('#modalDadosDoPaciente').modal('show');", true);
 
-      
+
     }
-    public int vias { get; set; }
-    public string nome_impressora { get; set; }
+   
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         string usuario = User.Identity.Name.ToUpper();
@@ -80,10 +79,10 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         string mensagem = "";
 
         // Variável para armazenar o nome da impressora selecionada
-        nome_impressora = ddlImpressora.SelectedValue;
+        string nome_impressora = ddlImpressora.SelectedValue;
 
         // Variável para armazenar a quantidade cópias de cada prescrição 
-        vias = Convert.ToInt32(ddlVias.SelectedValue);
+        int vias = Convert.ToInt32(ddlVias.SelectedValue);
 
         // Variável que marca a data e hora da criação da prescrição
         DateTime dataCadastro = DateTime.Now;
@@ -95,7 +94,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         string message = PacienteOncologiaDAO.HandlePacienteOncologia(txbProntuario.Text, txbNomePaciente.Text, txbPais.Text,
                                          txbTelefone.Text, txbDdd.Text, ddlSexo.SelectedItem.ToString(),
                                          txbNascimento.Text, dataCadastro);
-       Log.Information(message);
+        Log.Information(message);
 
 
 
@@ -108,8 +107,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         CID_10_DAO.GravaCidsPorPrescricao(listaDeCids, prescricao.cod_Prescricao, dataCadastro);
 
         AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
-        
-       
+
+
 
         CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
         CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricao = new CalculoDosagemPrescricaoPreQuimio();
@@ -122,7 +121,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
         List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
 
-        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricao.calcular( prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricao.calcular(prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
         CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
 
@@ -140,7 +139,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
 
-        GridViewPreQuimio.DataSource = RelatorioPreQuimioDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prescricao);
+        GridViewPreQuimio.DataSource = RelatorioPreQumioDosagemDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prescricao);
         GridViewPreQuimio.DataBind();
 
         GridViewProtocolo.DataSource = RelatorioProtocoloDosagemDAO.MostrarMedicamentosParaEdicao(prescricao.cod_Prescricao);
@@ -155,8 +154,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     public List<CID_10> HandleCID()
     {
 
-       
-        
+
+
         return select1.Items.Cast<ListItem>()
                             .Where(i => i.Selected)
                             .Select(i => new CID_10 { SUBCAT = i.Value })
@@ -178,12 +177,119 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             if (ctrl is CheckBoxList)
                 ((CheckBoxList)ctrl).ClearSelection();
             if (ctrl is DropDownList)
-                ((DropDownList)ctrl).SelectedIndex =0;
+                ((DropDownList)ctrl).SelectedIndex = 0;
             ClearInputs(ctrl.Controls);
 
         }
 
-    
-    
+
+
+    }
+    protected void gridViewPreQuimio_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+
+        int index;
+        int idCalculoDosagemPreQuimio;
+
+        if (e.CommandName.Equals("editRecord"))
+        {
+            index = Convert.ToInt32(e.CommandArgument);
+
+
+
+            idCalculoDosagemPreQuimio = Convert.ToInt32(GridViewPreQuimio.DataKeys[index].Value.ToString()); //id da consulta
+                                                                                                             // Get the selected row
+            GridViewRow row = GridViewPreQuimio.Rows[index];
+            lbMedicacao.Text = row.Cells[0].Text;
+            CalculoDosagemPrescricaoPreQuimio dados = CalculoDosagemPrescricaoPreQuimioDAO.ApresentarDadosCalculoDosagemPreQuimio(idCalculoDosagemPreQuimio);
+            txbDoseProtocolo.Text = dados.dose.ToString();
+            // Initialize the dropdown list with a specific value
+            string initialPercentage = dados.porcentagemDiminuirDose.ToString(); // Example value 
+            ListItem selectedItem = ddlPercentagem.Items.FindByValue(initialPercentage);
+            ddlPercentagem.ClearSelection();
+            selectedItem.Selected = true;
+            txbDoseAlterada.Text = dados.dose_alterada.ToString();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModalMedicamento", "showModalMedicamento();", true);
+        }
+        else if (e.CommandName.Equals("deleteRecord"))
+        {
+            //index = Convert.ToInt32(e.CommandArgument);
+            //DateTime dataAtualizacao = DateTime.Now;
+            //int cod_Prescricao = Convert.ToInt32(GridViewPreQuimio.DataKeys[index].Value.ToString()); //id da consulta
+            //Prescricao prescricao = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(cod_Prescricao);
+
+            //CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricao.cod_Calculo);
+
+            //CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataAtualizacao);
+
+            //CID_10_DAO.DeletarCidsPorPrescricao(cod_Prescricao, dataAtualizacao);
+            //AgendaDAO.DeletarAgenda(cod_Prescricao, dataAtualizacao);
+            //CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(cod_Prescricao, dataAtualizacao);
+            //GridViewRow row = GridView1.Rows[index];
+
+            //PrescricaoDAO.DeletarPrescricao(cod_Prescricao, dataAtualizacao);
+            //Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
+
+            //string _status = row.Cells[7].Text;
+
+
+        }
+
+
+
+
+
+
+    }
+    protected void btnGravarImpressora_Click(object sender, EventArgs e)
+    {
+    }
+    protected void btnGravarPreQuimio_Click(object sender, EventArgs e)
+    {
+    }
+    protected void gridViewProtocolo_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        string nome_impressora = ddlImpressora.SelectedValue;
+        int index;
+
+        if (e.CommandName.Equals("editRecord"))
+        {
+            //index = Convert.ToInt32(e.CommandArgument);
+
+
+
+            //int idPrescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+
+            //Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricao=" + idPrescricao + "");
+        }
+        else if (e.CommandName.Equals("deleteRecord"))
+        {
+            //index = Convert.ToInt32(e.CommandArgument);
+            //DateTime dataAtualizacao = DateTime.Now;
+            //int cod_Prescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+            //Prescricao prescricao = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(cod_Prescricao);
+
+            //CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricao.cod_Calculo);
+
+            //CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataAtualizacao);
+
+            //CID_10_DAO.DeletarCidsPorPrescricao(cod_Prescricao, dataAtualizacao);
+            //AgendaDAO.DeletarAgenda(cod_Prescricao, dataAtualizacao);
+            //CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(cod_Prescricao, dataAtualizacao);
+            //GridViewRow row = GridView1.Rows[index];
+
+            //PrescricaoDAO.DeletarPrescricao(cod_Prescricao, dataAtualizacao);
+            //Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
+
+            //string _status = row.Cells[7].Text;
+
+
+        }
+
+
+
+
+
+
     }
 }

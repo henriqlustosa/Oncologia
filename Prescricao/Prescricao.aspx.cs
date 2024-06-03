@@ -200,7 +200,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             idCalculoDosagemPreQuimio = Convert.ToInt32(GridViewPreQuimio.DataKeys[index].Value.ToString()); //id da consulta
                                                                                                              // Get the selected row
             GridViewRow row = GridViewPreQuimio.Rows[index];
-            lbMedicacao.Text = row.Cells[0].Text;
+            lbMedicacao.InnerText = row.Cells[0].Text;
             CalculoDosagemPrescricaoPreQuimio dados = CalculoDosagemPrescricaoPreQuimioDAO.ApresentarDadosCalculoDosagemPreQuimio(idCalculoDosagemPreQuimio);
             txbDoseProtocolo.Text = dados.dose.ToString();
             // Initialize the dropdown list with a specific value

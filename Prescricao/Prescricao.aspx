@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
- 
+
     <meta http-equiv="refresh" content="1000" />
 
 
@@ -38,6 +38,36 @@
         }
 
         .modal-body {
+            max-height: 1000px;
+            overflow-y: auto;
+        }
+        /* Container for the modal that covers the entire viewport */
+        .modal-container-dose {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.4); /* Optional: Dim background */
+        }
+
+        /* Styles for the modal content itself */
+        .modal-content-dose {
+            width: 800px; /* Fixed width */
+            height: 800px; /* Fixed height */
+            background: white; /* Optional: Background color */
+            border-radius: 8px; /* Optional: Rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Box shadow for better visibility */
+            /* Centering the modal content within the container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-body-dose {
             max-height: 1000px;
             overflow-y: auto;
         }
@@ -105,26 +135,26 @@
             color: #fff;
         }
     </style>
-       
+
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-     <Scripts>
+        <scripts>
 
 
 
-         <asp:ScriptReference Path="../js_datepicker/jquery-ui.js" />
+            <asp:ScriptReference Path="../js_datepicker/jquery-ui.js" />
 
 
 
-     </Scripts>
- </asp:ScriptManagerProxy>
+        </scripts>
+    </asp:ScriptManagerProxy>
 
 
 
     <!-- CDN for chosen plugin -->
     <link href="../js/chosen.min.css" rel="stylesheet" type="text/css" />
-      
 
-         
+
+
     <div class="container">
         <div class="x_panel">
             <div class="x_title">
@@ -502,13 +532,13 @@
                     </div>
                 </div>
             </div>
-               <div class="row">
+            <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
                 </div>
             </div>
         </div>
-         
+
         <!-- Large modal -->
         <div class="container">
             <!-- Trigger the modal with a button -->
@@ -584,24 +614,24 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">PreQuimio</h4>
                             </div>
-                            <asp:GridView ID="GridViewPreQuimio" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagemPreQuimio"  OnRowCommand="gridViewPreQuimio_RowCommand" 
+                            <asp:GridView ID="GridViewPreQuimio" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagemPreQuimio" OnRowCommand="gridViewPreQuimio_RowCommand"
                                 CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                                 Width="100%">
-                               
 
-                                <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
-                                <Columns>
+
+                                <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                                <columns>
                                     <asp:BoundField DataField="desc_medicacao_pre_quimio" HeaderText="Medicação" SortExpression="desc_medicacao_pre_quimio"
                                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
 
                                     <asp:TemplateField HeaderText="Dosagem" SortExpression="quantidade">
-                                        <ItemTemplate>
+                                        <itemtemplate>
                                             <%# Eval("quantidade") %> <%# Eval("unidadeQuantidade") %>
-                                        </ItemTemplate>
-                                        <ItemStyle CssClass="hidden-md" />
-                                        <HeaderStyle CssClass="hidden-md" />
+                                        </itemtemplate>
+                                        <itemstyle cssclass="hidden-md" />
+                                        <headerstyle cssclass="hidden-md" />
                                     </asp:TemplateField>
 
                                     <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
@@ -616,62 +646,62 @@
 
 
                                     <asp:TemplateField HeaderText="Infusão" SortExpression="tempoDeInfusao">
-                                        <ItemTemplate>
+                                        <itemtemplate>
                                             <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                        </ItemTemplate>
-                                        <ItemStyle CssClass="hidden-md" />
-                                        <HeaderStyle CssClass="hidden-md" />
+                                        </itemtemplate>
+                                        <itemstyle cssclass="hidden-md" />
+                                        <headerstyle cssclass="hidden-md" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                        <ItemTemplate>
+                                        <itemtemplate>
                                             <div class="form-inline">
                                                 <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                     CssClass="btn btn-info" runat="server" CausesValidation="false">
-              <i class="fa fa-pencil-square-o" title="Editar"></i>
+                                                    <i class="fa fa-pencil-square-o" title="Editar"></i>
                                                 </asp:LinkButton>
                                             </div>
-                                        </ItemTemplate>
+                                        </itemtemplate>
 
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
-                                        <ItemTemplate>
+                                        <itemtemplate>
 
                                             <div class="form-inline">
                                                 <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                     CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
-              <i class="fa fa-trash" title="Excluir"></i>
+                                                    <i class="fa fa-trash" title="Excluir"></i>
                                                 </asp:LinkButton>
                                             </div>
-                                        </ItemTemplate>
+                                        </itemtemplate>
                                     </asp:TemplateField>
 
-                                </Columns>
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <EditRowStyle BackColor="#999999" />
+                                </columns>
+                                <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                                <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                                <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                                <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                                <editrowstyle backcolor="#999999" />
                             </asp:GridView>
                             <div class="modal-header">
                                 <h4 class="modal-title">Protocolo</h4>
                             </div>
-                            <asp:GridView ID="GridViewProtocolo" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagem" OnRowCommand="gridViewProtocolo_RowCommand" 
-                               CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                            <asp:GridView ID="GridViewProtocolo" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagem" OnRowCommand="gridViewProtocolo_RowCommand"
+                                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                                 Width="100%">
 
-                                <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
-                                <Columns>
-                                    <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao" 
+                                <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                                <columns>
+                                    <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
                                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
                                     <asp:TemplateField HeaderText="Dosagem" SortExpression="dosagem">
-                                        <ItemTemplate>
+                                        <itemtemplate>
                                             <%# Eval("dosagem") %> <%# Eval("unidade_dosagem") %>
-                                        </ItemTemplate>
-                                        <ItemStyle CssClass="hidden-md" />
-                                        <HeaderStyle CssClass="hidden-md" />
+                                        </itemtemplate>
+                                        <itemstyle cssclass="hidden-md" />
+                                        <headerstyle cssclass="hidden-md" />
                                     </asp:TemplateField>
 
 
@@ -686,42 +716,42 @@
 
 
                                     <asp:TemplateField HeaderText="Infusao" SortExpression="tempoDeInfusao">
-                                        <ItemTemplate>
+                                        <itemtemplate>
                                             <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                        </ItemTemplate>
-                                        <ItemStyle CssClass="hidden-md" />
-                                        <HeaderStyle CssClass="hidden-md" />
+                                        </itemtemplate>
+                                        <itemstyle cssclass="hidden-md" />
+                                        <headerstyle cssclass="hidden-md" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                        <ItemTemplate>
+                                        <itemtemplate>
                                             <div class="form-inline">
                                                 <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                     CssClass="btn btn-info" runat="server" CausesValidation="false">
-<i class="fa fa-pencil-square-o" title="Editar"></i>
+                                                    <i class="fa fa-pencil-square-o" title="Editar"></i>
                                                 </asp:LinkButton>
                                             </div>
-                                        </ItemTemplate>
+                                        </itemtemplate>
 
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
-                                        <ItemTemplate>
+                                        <itemtemplate>
 
                                             <div class="form-inline">
                                                 <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                     CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
-<i class="fa fa-trash" title="Excluir"></i>
+                                                    <i class="fa fa-trash" title="Excluir"></i>
                                                 </asp:LinkButton>
                                             </div>
-                                        </ItemTemplate>
+                                        </itemtemplate>
                                     </asp:TemplateField>
 
-                                </Columns>
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                <EditRowStyle BackColor="#999999" />
+                                </columns>
+                                <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                                <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                                <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                                <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                                <editrowstyle backcolor="#999999" />
                             </asp:GridView>
 
 
@@ -735,109 +765,126 @@
             </div>
         </div>
 
-        <div class="container">
-        <!-- Modal -->
-        <div class="modal fade" id="myModalDosagem" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Informações dos Medicamentos</h4>
-                    </div>
-                    <div class="modal-body">
+        <div class="container-dose">
+            <!-- Modal -->
+            <div class="modal fade" id="myModalDosagem" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">PreQuimio</h4>
+                            <h4 class="modal-title">Atualização da dosagem</h4>
                         </div>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Protocolo</h4>
-                        </div>
+                        
+                       
 
-                        <div class="modal-body">
-                            <fieldset class="scheduler-border">
-                                <legend class="scheduler-border">Ficha</legend>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <asp:Label ID="lbMedicacao" runat="server"></asp:Label>
+                            <div class="modal-body-dose">
+                                <fieldset class="scheduler-border">
+                                    <legend id="lbMedicacao" class="scheduler-border" runat="server"></legend>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-12">
+                                                    <label for="txbDoseProtocolo">
+                                                        Valor Protocolo:
+                                                    </label>
+                                                    <asp:TextBox ID="txbDoseProtocolo" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-3 col-sm-12">
+                                                    <label for="ddlPercentagem">
+                                                        Porcentagem:
+                                                    </label>
+                                                    <asp:DropDownList ID="ddlPercentagem" runat="server" class="form-control">
+                                                        <asp:ListItem Value="0">0%</asp:ListItem>
+                                                        <asp:ListItem Value="10">10%</asp:ListItem>
+                                                        <asp:ListItem Value="20">20%</asp:ListItem>
+                                                        <asp:ListItem Value="30">30%</asp:ListItem>
+                                                        <asp:ListItem Value="40">40%</asp:ListItem>
+                                                        <asp:ListItem Value="50">50%</asp:ListItem>
+                                                        <asp:ListItem Value="60">60%</asp:ListItem>
+                                                        <asp:ListItem Value="70">70%</asp:ListItem>
+                                                        <asp:ListItem Value="80">80%</asp:ListItem>
+                                                        <asp:ListItem Value="90">90%</asp:ListItem>
+                                                        <asp:ListItem Value="100">100%</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                                <div class="col-md-3 col-sm-12">
+                                                    <label for="txbDoseAlterada">
+                                                        Valor Atualizado:
+                                                    </label>
+                                                    <asp:TextBox ID="txbDoseAlterada" runat="server" class="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-5 col-sm-12 col-xs-12 form-group">
-                                        <label>
-                                            Valor do Protocolo:
-                                        </label>
-                                        <asp:TextBox ID="txbDoseProtocolo" runat="server" class="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
-                                    </div>
-
-                                    <asp:DropDownList ID="ddlPercentagem" runat="server">
-                                        <asp:ListItem Value="0">0%</asp:ListItem>
-                                        <asp:ListItem Value="10">10%</asp:ListItem>
-                                        <asp:ListItem Value="20">20%</asp:ListItem>
-                                        <asp:ListItem Value="30">30%</asp:ListItem>
-                                        <asp:ListItem Value="40">40%</asp:ListItem>
-                                        <asp:ListItem Value="50">50%</asp:ListItem>
-                                        <asp:ListItem Value="60">60%</asp:ListItem>
-                                        <asp:ListItem Value="70">70%</asp:ListItem>
-                                        <asp:ListItem Value="80">80%</asp:ListItem>
-                                        <asp:ListItem Value="90">90%</asp:ListItem>
-                                        <asp:ListItem Value="100">100%</asp:ListItem>
-                                    </asp:DropDownList>
-
-                                </div>
-                                <div class="col-md-5 col-sm-12 col-xs-12 form-group">
-                                    <label>
-                                        Valor Atualizado:
-                                    </label>
-                                    <asp:TextBox ID="txbDoseAlterada" runat="server" class="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
-                                </div>
-                            </fieldset>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="form-group">
-                                <div class="col-md-4 col-sm-4 col-xs-8 ">
-                                    <asp:Button ID="Button2" runat="server" Text="Gravar" class="btn btn-primary gravar"
-                                        OnClick="btnGravarPreQuimio_Click" data-toggle="modal" />
-                                </div>
-
-
+                                </fieldset>
                             </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-xs-8 ">
+                                        <asp:Button ID="Button2" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                                            OnClick="btnGravarPreQuimio_Click" data-toggle="modal" />
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+
                         </div>
-
-
-
-
                     </div>
-                </div>
+               
             </div>
         </div>
-    </div>
-  
-    <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
-    <script type="text/javascript">
-        function showModal() {
-            $('#myModalMedicamento').modal('show');
-        }
 
-        function hideModal() {
-            $('#myModalMedicamento').modal('hiden');
+        <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
+        <script type="text/javascript">
 
-        }
+            function calculateValorAtualizado() {
+                var valorProtocolo = document.getElementById('<%= txbDoseProtocolo.ClientID %>').value;
+                    var percentagem = document.getElementById('<%= ddlPercentagem.ClientID %>').value;
+                    var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
 
-        function showModalMedicamento() {
-            $('#myModalDosagem').modal('show');
-        }
+                if (valorProtocolo && percentagem) {
+                    var result = (parseFloat(valorProtocolo) * parseFloat(percentagem) / 100).toFixed(2);
+                    valorAtualizado.value = result.replace('.', ',');
+                } else {
+                    valorAtualizado.value = "";
+                }
+            }
 
-        function hideModal() {
-            $('#myModalDosagem').modal('hiden');
-        }
-    </script>
+            window.onload = function () {
+                document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
+            document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
+            }
 
-    <script type="text/javascript">
+            function showModal() {
+                $('#myModalMedicamento').modal('show');
+            }
 
-        window.addEventListener('keydown', function (e) {
+            function hideModal() {
+                $('#myModalMedicamento').modal('hiden');
 
-            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
-            else return true;
-        });
+            }
+
+            function showModalMedicamento() {
+                $('#myModalDosagem').modal('show');
+            }
+
+            function hideModal() {
+                $('#myModalDosagem').modal('hiden');
+            }
+        </script>
+
+        <script type="text/javascript">
+
+            window.addEventListener('keydown', function (e) {
+
+                if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
+                else return true;
+            });
 
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
@@ -903,393 +950,392 @@
             }
         }--%>
 
-        function log(i) {
-            return Math.log(i) * Math.LOG10E;
-        }
+            function log(i) {
+                return Math.log(i) * Math.LOG10E;
+            }
 
-        function ln(i) {
-            return Math.log(i);
-        }
+            function ln(i) {
+                return Math.log(i);
+            }
 
-        function sq(i) {
-            return i * i;
-        }
+            function sq(i) {
+                return i * i;
+            }
 
-        function sqr(i) {
-            return Math.sqrt(i);
-        }
-
-
-        function power(x, y) {
-            return Math.pow(x, y);
-        }
-
-        function eTo(x) {
-            return Math.exp(x);
-        }
+            function sqr(i) {
+                return Math.sqrt(i);
+            }
 
 
-        function fixDP(r, dps) {
-            if (isNaN(r)) return "NaN";
-            var msign = '';
-            var mfin = '';
-            if (r < 0) msign = '-';
-            x = Math.abs(r);
-            if (x > Math.pow(10, 21)) return msign + x.toString();
-            var m = Math.round(x * Math.pow(10, dps)).toString();
-            if (dps == 0) return msign + m;
-            while (m.length <= dps) m = "0" + m;
-            mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
-            if (dps == 1) return mfin.replace('.0', '');
-            if (dps == 2) return mfin.replace('.00', '');
-            if (dps == 3) return mfin.replace('.000', '');
-            if (dps == 4) return mfin.replace('.0000', '');
-            return mfin;
-        }
+            function power(x, y) {
+                return Math.pow(x, y);
+            }
 
-        function fixNearest(x, y) {
-            return Math.round(x / y) * y;
-        }
-
-        function alertNaN(thisparam) {
-            alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
-            doCalc = false;
-            clrResults();
-        }
-
-        function clrValue(field) {
-            field.value = '';
-        }
-
-        var currenttimeout;
-
-        function resetInTime() {
-            if (currenttimeout) clearTimeout(currenttimeout);
-            currenttimeout = setTimeout('minMaxCheck();', 3000);
-        }
+            function eTo(x) {
+                return Math.exp(x);
+            }
 
 
+            function fixDP(r, dps) {
+                if (isNaN(r)) return "NaN";
+                var msign = '';
+                var mfin = '';
+                if (r < 0) msign = '-';
+                x = Math.abs(r);
+                if (x > Math.pow(10, 21)) return msign + x.toString();
+                var m = Math.round(x * Math.pow(10, dps)).toString();
+                if (dps == 0) return msign + m;
+                while (m.length <= dps) m = "0" + m;
+                mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
+                if (dps == 1) return mfin.replace('.0', '');
+                if (dps == 2) return mfin.replace('.00', '');
+                if (dps == 3) return mfin.replace('.000', '');
+                if (dps == 4) return mfin.replace('.0000', '');
+                return mfin;
+            }
 
-        var curelement;
+            function fixNearest(x, y) {
+                return Math.round(x / y) * y;
+            }
 
-        function togCB(thisid) {
-            thischeckbox = document.getElementById(thisid);
-            if (thischeckbox.checked) { thischeckbox.checked = false; }
-            else { thischeckbox.checked = true; }
-            BodySurfaceArea_fx();
-        }
+            function alertNaN(thisparam) {
+                alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
+                doCalc = false;
+                clrResults();
+            }
 
-        function setRB(thisid) {
-            document.getElementById(thisid).checked = true;
-            BodySurfaceArea_fx();
-        }
+            function clrValue(field) {
+                field.value = '';
+            }
 
+            var currenttimeout;
 
-        var calctxt = '';
-        var xmltxt = '';
-        var xmlresult = '';
-        var htmtxt = '';
-        var postNow = false;
-        var printing = false;
-        var interptxt = '';
-        var interphtm = '';
-        var interpxml = '';
-        var rbchk = false;
-
-        function BodySurfaceArea_fx() {
-
-            with (document.forms[0]) {
+            function resetInTime() {
+                if (currenttimeout) clearTimeout(currenttimeout);
+                currenttimeout = setTimeout('minMaxCheck();', 3000);
+            }
 
 
-                doCalc = true;
 
-                param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+            var curelement;
 
-                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
-                Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                param_value = parseFloat((<%= txbPeso.ClientID %>).value);
-                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
-                Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                dp = decpts.options[decpts.selectedIndex].text;
-                BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
+            function togCB(thisid) {
+                thischeckbox = document.getElementById(thisid);
+                if (thischeckbox.checked) { thischeckbox.checked = false; }
+                else { thischeckbox.checked = true; }
+                BodySurfaceArea_fx();
+            }
 
-                unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
-                if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+            function setRB(thisid) {
+                document.getElementById(thisid).checked = true;
+                BodySurfaceArea_fx();
+            }
 
+
+            var calctxt = '';
+            var xmltxt = '';
+            var xmlresult = '';
+            var htmtxt = '';
+            var postNow = false;
+            var printing = false;
+            var interptxt = '';
+            var interphtm = '';
+            var interpxml = '';
+            var rbchk = false;
+
+            function BodySurfaceArea_fx() {
+
+                with (document.forms[0]) {
+
+
+                    doCalc = true;
+
+                    param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+
+                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                    unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
+                    Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                    param_value = parseFloat((<%= txbPeso.ClientID %>).value);
+                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                    unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
+                    Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                    dp = decpts.options[decpts.selectedIndex].text;
+                    BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
+
+                    unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
+                    if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+
+
+
+
+
+                }
 
 
 
 
             }
 
+            function minMaxCheck() {
+                if (printing) return;
 
 
 
-        }
+                with (document.forms[0]) {
 
-        function minMaxCheck() {
-            if (printing) return;
+                    if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
+                    if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
 
 
-
-            with (document.forms[0]) {
-
-                if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
-                if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
-
+                }
 
             }
 
-        }
 
 
+            function clrResults() {
 
-        function clrResults() {
+
+                with (document.forms[0]) {
+
+                    (<%= txbBSA.ClientID %>).value = '';
 
 
-            with (document.forms[0]) {
-
-                (<%= txbBSA.ClientID %>).value = '';
-
+                }
 
             }
 
-        }
-
-        var Height = null,
-            Weight = null,
-            BSA = null,
-            param_value = null;
+            var Height = null,
+                Weight = null,
+                BSA = null,
+                param_value = null;
 
 
-        function mostraCalculo() {
+            function mostraCalculo() {
 
-            var div = document.getElementById('divCalculoCorpo');
+                var div = document.getElementById('divCalculoCorpo');
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraCID() {
-
-            var div = document.getElementById('divCID');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraGeral() {
-
-            var div = document.getElementById('divGeral');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraViasDeAcesso() {
-
-            var div = document.getElementById('divViasDeAcesso');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-
-        function ClearInputs() {
-            (<%= txbAltura.ClientID %>).value = '';
-            (<%= txbPeso.ClientID %>).value = '';
-            (<%= txbBSA.ClientID %>).value = '';
-
-            $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
-        }
-        $(document).ready(function () {
-            $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
-            $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
-
-            $("#<%=txbDtInicio.ClientID%>").datepicker({
-                minDate: 0,
-                dateFormat: 'dd/mm/yy',
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                nextText: 'Proximo',
-                prevText: 'Anterior'
-            });
-
-
-            $("#<%=txbDtInicio.ClientID%>").datepicker();
-
-
-
-            $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
-
-            $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
-            $("#<%=txbCiclos.ClientID%>").maskAsNumber({
-                min: 1,
-                max: 12
-            });
-            $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
-                min: 1,
-                max: 30
-            });
-
-
-            $("#<%= txbNomePaciente.ClientID %>").autocomplete({
-
-
-                source: function (request, response) {
-                    var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
-                    $.ajax({
-                        url: "Prescricao.aspx/GetNomeDePacientes",
-                        data: JSON.stringify(param),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
-
-
-                            response($.map(data.d, function (item) {
-
-                                return {
-
-                                    label: item.nm_nome,
-                                    value: item.nm_nome,
-
-
-                                    prontuario: item.cd_prontuario,
-                                    nr_ddd_fone: item.nr_ddd_fone,
-                                    nr_fone: item.nr_fone,
-                                    dt_nascimento: item.dt_data_nascimento,
-                                    idade: item.nr_idade,
-                                    sexo: item.in_sexo,
-                                    nome_pai_mae: item.nm_mae,
-
-                                }
-                            }))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var err = eval("(" + XMLHttpRequest.responseText + ")");
-                            alert(err.Message)
-                        }
-                    });
-                },
-
-
-                select: function (e, i) {
-
-
-
-
-                    $("[id$=txbProntuario").val(i.item.prontuario);
-                    $("[id$=txbDdd").val(i.item.nr_ddd_fone);
-                    $("[id$=txbTelefone").val(i.item.nr_fone);
-
-                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                    $("[id$=txbIdade").val(i.item.idade);
-                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                    $("[id$=txbPais").val(i.item.nome_pai_mae);
-                },
-
-                minLength: 1 //This is the Char length of inputTextBox  
-
-
-            });
-
-
-            $("#<%= txbProntuario.ClientID %>").autocomplete({
-
-                source: function (request, response) {
-                    var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
-                    $.ajax({
-                        url: "Prescricao.aspx/GetNomeDePacientesPoRh",
-                        data: JSON.stringify(param),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
-
-
-                            response($.map(data, function (item) {
-
-                                return {
-
-                                    label: item.cd_prontuario,
-                                    value: item.cd_prontuario,
-
-
-                                    nome_paciente: item.nm_nome,
-                                    nr_ddd_fone: item.nr_ddd_fone,
-                                    nr_fone: item.nr_fone,
-                                    dt_nascimento: item.dt_data_nascimento,
-                                    idade: item.nr_idade,
-                                    sexo: item.in_sexo,
-                                    nome_pai_mae: item.nm_mae,
-
-                                }
-                            }))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var err = eval("(" + XMLHttpRequest.responseText + ")");
-                            alert(err.Message)
-                        }
-                    });
-                },
-
-
-                select: function (e, i) {
-
-
-
-
-                    $("[id$=txbProntuario").val(i.item.prontuario);
-                    $("[id$=txbDdd").val(i.item.nr_ddd_fone);
-                    $("[id$=txbTelefone").val(i.item.nr_fone);
-                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                    $("[id$=txbIdade").val(i.item.idade);
-                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                    $("[id$=txbPais").val(i.item.nome_pai_mae);
-                },
-                minLength: 1 //This is the Char length of inputTextBox    
-
-            });
-        });
-
-    </script>
-
-    <script type="text/javascript">
-        function MutExChkList(chk) {
-            var chkList = chk.parentNode.parentNode.parentNode;
-            var chks = chkList.getElementsByTagName("input");
-            for (var i = 0; i < chks.length; i++) {
-                if (chks[i] != chk && chk.checked) {
-                    chks[i].checked = false;
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
                 }
             }
-        }
-    </script>
+            function mostraCID() {
 
-    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-    <script src="../js/jquery.mask.js" type="text/javascript"></script>
-    <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
+                var div = document.getElementById('divCID');
 
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+            function mostraGeral() {
+
+                var div = document.getElementById('divGeral');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+            function mostraViasDeAcesso() {
+
+                var div = document.getElementById('divViasDeAcesso');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+
+            function ClearInputs() {
+                (<%= txbAltura.ClientID %>).value = '';
+                (<%= txbPeso.ClientID %>).value = '';
+                (<%= txbBSA.ClientID %>).value = '';
+
+                $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
+            }
+            $(document).ready(function () {
+                $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
+                $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
+
+                $("#<%=txbDtInicio.ClientID%>").datepicker({
+                    minDate: 0,
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                });
+
+
+                $("#<%=txbDtInicio.ClientID%>").datepicker();
+
+
+
+                $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
+
+                $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
+                $("#<%=txbCiclos.ClientID%>").maskAsNumber({
+                    min: 1,
+                    max: 12
+                });
+                $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
+                    min: 1,
+                    max: 30
+                });
+
+
+                $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+
+
+                    source: function (request, response) {
+                        var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
+                        $.ajax({
+                            url: "Prescricao.aspx/GetNomeDePacientes",
+                            data: JSON.stringify(param),
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataFilter: function (data) { return data; },
+                            success: function (data) {
+
+
+                                response($.map(data.d, function (item) {
+
+                                    return {
+
+                                        label: item.nm_nome,
+                                        value: item.nm_nome,
+
+
+                                        prontuario: item.cd_prontuario,
+                                        nr_ddd_fone: item.nr_ddd_fone,
+                                        nr_fone: item.nr_fone,
+                                        dt_nascimento: item.dt_data_nascimento,
+                                        idade: item.nr_idade,
+                                        sexo: item.in_sexo,
+                                        nome_pai_mae: item.nm_mae,
+
+                                    }
+                                }))
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                var err = eval("(" + XMLHttpRequest.responseText + ")");
+                                alert(err.Message)
+                            }
+                        });
+                    },
+
+
+                    select: function (e, i) {
+
+
+
+
+                        $("[id$=txbProntuario").val(i.item.prontuario);
+                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                        $("[id$=txbTelefone").val(i.item.nr_fone);
+
+                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                        $("[id$=txbIdade").val(i.item.idade);
+                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                        $("[id$=txbPais").val(i.item.nome_pai_mae);
+                    },
+
+                    minLength: 1 //This is the Char length of inputTextBox  
+
+
+                });
+
+
+                $("#<%= txbProntuario.ClientID %>").autocomplete({
+
+                    source: function (request, response) {
+                        var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
+                        $.ajax({
+                            url: "Prescricao.aspx/GetNomeDePacientesPoRh",
+                            data: JSON.stringify(param),
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataFilter: function (data) { return data; },
+                            success: function (data) {
+
+
+                                response($.map(data, function (item) {
+
+                                    return {
+
+                                        label: item.cd_prontuario,
+                                        value: item.cd_prontuario,
+
+
+                                        nome_paciente: item.nm_nome,
+                                        nr_ddd_fone: item.nr_ddd_fone,
+                                        nr_fone: item.nr_fone,
+                                        dt_nascimento: item.dt_data_nascimento,
+                                        idade: item.nr_idade,
+                                        sexo: item.in_sexo,
+                                        nome_pai_mae: item.nm_mae,
+
+                                    }
+                                }))
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                var err = eval("(" + XMLHttpRequest.responseText + ")");
+                                alert(err.Message)
+                            }
+                        });
+                    },
+
+
+                    select: function (e, i) {
+
+
+
+
+                        $("[id$=txbProntuario").val(i.item.prontuario);
+                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                        $("[id$=txbTelefone").val(i.item.nr_fone);
+                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                        $("[id$=txbIdade").val(i.item.idade);
+                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                        $("[id$=txbPais").val(i.item.nome_pai_mae);
+                    },
+                    minLength: 1 //This is the Char length of inputTextBox    
+
+                });
+            });
+
+        </script>
+
+        <script type="text/javascript">
+            function MutExChkList(chk) {
+                var chkList = chk.parentNode.parentNode.parentNode;
+                var chks = chkList.getElementsByTagName("input");
+                for (var i = 0; i < chks.length; i++) {
+                    if (chks[i] != chk && chk.checked) {
+                        chks[i].checked = false;
+                    }
+                }
+            }
+        </script>
+
+        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mask.js" type="text/javascript"></script>
+        <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
 </asp:Content>

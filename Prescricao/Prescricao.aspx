@@ -6,12 +6,31 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
 
-    <meta http-equiv="refresh" content="1000" />
+    <%-- <meta http-equiv="refresh" content="1000" />--%>
 
 
     <link href="../js_datepicker/jquery-ui.css" rel="stylesheet" />
+
+
+
     <style type="text/css">
-        /* Container for the modal that covers the entire viewport */
+        /* Custom styles to ensure the second modal appears above the first */
+        /* Custom styles to ensure the second modal appears above the first */
+        /*.modal-backdrop {
+            z-index: 1040;
+        }
+
+        .modal {
+            z-index: 1050;
+        }*/
+
+        /* Container for the modal that covers the entire viewport 	*/
+        .custom-green-button {
+            background-color: green;
+            border-color: green;
+            color: white; /* Optional: To change the text color to white */
+        }
+
         .modal-container {
             position: fixed;
             top: 0;
@@ -21,53 +40,49 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.4); /* Optional: Dim background */
+            background-color: rgba(0, 0, 0, 0.4);
+            Optional: Dim background
         }
-
-        /* Styles for the modal content itself */
+        /*
+        Styles for the modal content itself*/
         .modal-content {
-            width: 800px; /* Fixed width */
-            height: 800px; /* Fixed height */
-            background: white; /* Optional: Background color */
-            border-radius: 8px; /* Optional: Rounded corners */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Box shadow for better visibility */
-            /* Centering the modal content within the container */
-            display: flex;
+            width: 800px;
+            Fixed width height: 800px;
+            Fixed height background: white;
+            Optional: Background color border-radius: 8px;
+            Optional: Rounded corners box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            Optional: Box shadow for better visibility Centering the modal content within the container display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        /*  Custom styles for the first modal*/
+        .modal-fade-one .modal-content {
+            /*  background-color: #f0f8ff;
+            AliceBlue background border: 1px solid #0000ff;
+            Blue border*/
+        }
+
+        /* Custom styles for the second modal*/
+        .modal-fade-two .modal-content {
+            width: 800px;
+            Fixed width height: 400px;
+            Fixed height background-color: #fff0f5;
+            /* LavenderBlush background border: 1px solid #ff69b4;
+            HotPink border*/
+        }
+
+        .modal-fade-two .modal-header {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .modal-fade-two .modal-body {
+            padding: 4rem;
+            border-bottom: 1px solid #e9ecef;
         }
 
         .modal-body {
-            max-height: 1000px;
-            overflow-y: auto;
-        }
-        /* Container for the modal that covers the entire viewport */
-        .modal-container-dose {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.4); /* Optional: Dim background */
-        }
-
-        /* Styles for the modal content itself */
-        .modal-content-dose {
-            width: 800px; /* Fixed width */
-            height: 800px; /* Fixed height */
-            background: white; /* Optional: Background color */
-            border-radius: 8px; /* Optional: Rounded corners */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Box shadow for better visibility */
-            /* Centering the modal content within the container */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-body-dose {
             max-height: 1000px;
             overflow-y: auto;
         }
@@ -133,7 +148,6 @@
         .danger {
             background-color: #c0392b;
             color: #fff;
-        }
     </style>
 
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
@@ -536,28 +550,31 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
                 </div>
+                <%--<button type="button" class="btn btn-primary" onclick="showModal('myModalMedicamento')">
+                    Open First Modal
+                </button>--%>
             </div>
         </div>
 
         <!-- Large modal -->
-        <div class="container">
-            <!-- Trigger the modal with a button -->
-            <%--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+        <%--  <div class="container">--%>
+        <!-- Trigger the modal with a button -->
+        <%--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
                 Imprimir</button>--%>
-            <!-- Modal -->
-            <div class="modal fade" id="myModalImpressora" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Selecione a Impressora</h4>
-                        </div>
-                        <div class="modal-body">
-                            <fieldset class="scheduler-border">
-                                <legend class="scheduler-border">Ficha</legend>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        Impressoras:
+        <!-- Modal -->
+        <div class="modal fade" id="myModalImpressora" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Selecione a Impressora</h4>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset class="scheduler-border">
+                            <legend class="scheduler-border">Ficha</legend>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    Impressoras:
                                     <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
                                         <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
                                         <asp:ListItem>ONCO_SEC</asp:ListItem>
@@ -565,290 +582,410 @@
                                         <asp:ListItem>INFO</asp:ListItem>
                                         <%--<asp:ListItem>Informatica</asp:ListItem>--%>
                                     </asp:DropDownList>
-                                    </div>
-                                    <div class="col-md-3 form-group">
-                                        Cópias:
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    Cópias:
                                         <asp:DropDownList ID="ddlVias" class="form-control " runat="server">
                                             <asp:ListItem>1</asp:ListItem>
                                             <asp:ListItem>2</asp:ListItem>
                                             <asp:ListItem>3</asp:ListItem>
                                             <asp:ListItem>4</asp:ListItem>
                                         </asp:DropDownList>
-                                    </div>
-
-
-
                                 </div>
-                            </fieldset>
-
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4 col-sm-4 col-xs-8 ">
-                                        <asp:Button ID="btn" runat="server" Text="Gravar" class="btn btn-primary gravar"
-                                            OnClick="btnGravarImpressora_Click" data-toggle="modal" />
-                                    </div>
 
 
+
+                            </div>
+                        </fieldset>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-xs-8 ">
+                                    <asp:Button ID="btn" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                                        OnClick="btnGravarImpressora_Click" data-toggle="modal" />
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <!-- Trigger the modal with a button -->
-            <%--<div class="col-md-4 col-sm-4 col-xs-8 ">
+        <%-- </div>--%>
+        <%-- <div class="container">--%>
+        <!-- Trigger the modal with a button -->
+        <%--<div class="col-md-4 col-sm-4 col-xs-8 ">
                 <asp:Button ID="Button1" runat="server" Text="Gravar" EnableViewState="true"  
                     OnClick="btnGravar_Click"  />
             </div>--%>
-            <!-- Modal -->
-            <div class="modal fade" id="myModalMedicamento" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
+
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade one" id="myModalMedicamento">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Informações dos Medicamentos</h4>
+                    </div>
+                    <div class="modal-body">
                         <div class="modal-header">
-                            <h4 class="modal-title">Informações dos Medicamentos</h4>
+                            <h4 class="modal-title">PreQuimio</h4>
                         </div>
-                        <div class="modal-body">
-                            <div class="modal-header">
-                                <h4 class="modal-title">PreQuimio</h4>
-                            </div>
-                            <asp:GridView ID="GridViewPreQuimio" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagemPreQuimio" OnRowCommand="gridViewPreQuimio_RowCommand"
-                                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
-                                Width="100%">
+                        <asp:GridView ID="GridViewPreQuimio" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagemPreQuimio" OnRowCommand="gridViewPreQuimio_RowCommand"
+                            CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                            Width="100%">
 
 
-                                <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
-                                <columns>
-                                    <asp:BoundField DataField="desc_medicacao_pre_quimio" HeaderText="Medicação" SortExpression="desc_medicacao_pre_quimio"
-                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                            <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                            <columns>
+                                <asp:BoundField DataField="desc_medicacao_pre_quimio" HeaderText="Medicação" SortExpression="desc_medicacao_pre_quimio"
+                                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
 
-                                    <asp:TemplateField HeaderText="Dosagem" SortExpression="quantidade">
-                                        <itemtemplate>
-                                            <%# Eval("quantidade") %> <%# Eval("unidadeQuantidade") %>
-                                        </itemtemplate>
-                                        <itemstyle cssclass="hidden-md" />
-                                        <headerstyle cssclass="hidden-md" />
-                                    </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Dosagem" SortExpression="quantidade">
+                                    <itemtemplate>
+                                        <%# Eval("dose_alterada") %> <%# Eval("unidadeQuantidade") %>
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
+                                </asp:TemplateField>
 
-                                    <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
-                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                                <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
+                                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
-                                    <asp:BoundField DataField="desc_quimio" HeaderText="Quimio" SortExpression="desc_quimio"
-                                        ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
+                                <asp:BoundField DataField="desc_quimio" HeaderText="Quimio" SortExpression="desc_quimio"
+                                    ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
 
-                                    <asp:BoundField DataField="diluicao" HeaderText="Diluicao" SortExpression="diluicao"
-                                        HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
-
-
-
-                                    <asp:TemplateField HeaderText="Infusão" SortExpression="tempoDeInfusao">
-                                        <itemtemplate>
-                                            <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                        </itemtemplate>
-                                        <itemstyle cssclass="hidden-md" />
-                                        <headerstyle cssclass="hidden-md" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                        <itemtemplate>
-                                            <div class="form-inline">
-                                                <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                                    CssClass="btn btn-info" runat="server" CausesValidation="false">
-                                                    <i class="fa fa-pencil-square-o" title="Editar"></i>
-                                                </asp:LinkButton>
-                                            </div>
-                                        </itemtemplate>
-
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-
-                                        <itemtemplate>
-
-                                            <div class="form-inline">
-                                                <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
-                                                    <i class="fa fa-trash" title="Excluir"></i>
-                                                </asp:LinkButton>
-                                            </div>
-                                        </itemtemplate>
-                                    </asp:TemplateField>
-
-                                </columns>
-                                <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                                <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
-                                <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
-                                <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                                <editrowstyle backcolor="#999999" />
-                            </asp:GridView>
-                            <div class="modal-header">
-                                <h4 class="modal-title">Protocolo</h4>
-                            </div>
-                            <asp:GridView ID="GridViewProtocolo" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagem" OnRowCommand="gridViewProtocolo_RowCommand"
-                                CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
-                                Width="100%">
-
-                                <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
-                                <columns>
-                                    <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
-                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
-
-
-                                    <asp:TemplateField HeaderText="Dosagem" SortExpression="dosagem">
-                                        <itemtemplate>
-                                            <%# Eval("dosagem") %> <%# Eval("unidade_dosagem") %>
-                                        </itemtemplate>
-                                        <itemstyle cssclass="hidden-md" />
-                                        <headerstyle cssclass="hidden-md" />
-                                    </asp:TemplateField>
+                                <asp:BoundField DataField="diluicao" HeaderText="Diluicao" SortExpression="diluicao"
+                                    HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
 
 
 
-                                    <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
-                                        ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                                <asp:TemplateField HeaderText="Infusão" SortExpression="tempoDeInfusao">
+                                    <itemtemplate>
+                                        <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+                                    <itemtemplate>
+                                        <div class="form-inline">
+                                            <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                CssClass="btn btn-info" runat="server" CausesValidation="false">
+                                                <i class="fa fa-pencil-square-o" title="Editar"></i>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </itemtemplate>
 
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
+                                    <itemtemplate>
 
-                                    <asp:BoundField DataField="diluicao" HeaderText="Diluicao" SortExpression="diluicao"
-                                        HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+                                        <div class="form-inline">
+                                            <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
+                                                <i class="fa fa-trash" title="Excluir"></i>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </itemtemplate>
+                                </asp:TemplateField>
 
-
-                                    <asp:TemplateField HeaderText="Infusao" SortExpression="tempoDeInfusao">
-                                        <itemtemplate>
-                                            <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                        </itemtemplate>
-                                        <itemstyle cssclass="hidden-md" />
-                                        <headerstyle cssclass="hidden-md" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                        <itemtemplate>
-                                            <div class="form-inline">
-                                                <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                                    CssClass="btn btn-info" runat="server" CausesValidation="false">
-                                                    <i class="fa fa-pencil-square-o" title="Editar"></i>
-                                                </asp:LinkButton>
-                                            </div>
-                                        </itemtemplate>
-
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-
-                                        <itemtemplate>
-
-                                            <div class="form-inline">
-                                                <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
-                                                    CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
-                                                    <i class="fa fa-trash" title="Excluir"></i>
-                                                </asp:LinkButton>
-                                            </div>
-                                        </itemtemplate>
-                                    </asp:TemplateField>
-
-                                </columns>
-                                <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                                <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
-                                <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
-                                <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                                <editrowstyle backcolor="#999999" />
-                            </asp:GridView>
-
-
-
-
-
-
+                            </columns>
+                            <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                            <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                            <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <editrowstyle backcolor="#999999" />
+                        </asp:GridView>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Protocolo</h4>
                         </div>
+                        <asp:GridView ID="GridViewProtocolo" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_CalculoDosagem" OnRowCommand="gridViewProtocolo_RowCommand"
+                            CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                            Width="100%">
+
+                            <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                            <columns>
+                                <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
+                                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+                                <asp:TemplateField HeaderText="Dosagem" SortExpression="dosagem">
+                                    <itemtemplate>
+                                        <%# Eval("dose_alterada") %> <%# Eval("unidade_dosagem") %>
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
+                                </asp:TemplateField>
+
+
+
+                                <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
+                                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+
+                                <asp:BoundField DataField="diluicao" HeaderText="Diluicao" SortExpression="diluicao"
+                                    HeaderStyle-CssClass="visible-lg" ItemStyle-CssClass="visible-lg" />
+
+
+                                <asp:TemplateField HeaderText="Infusao" SortExpression="tempoDeInfusao">
+                                    <itemtemplate>
+                                        <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+                                    <itemtemplate>
+                                        <div class="form-inline">
+                                            <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                CssClass="btn btn-info" runat="server" CausesValidation="false">
+                                                <i class="fa fa-pencil-square-o" title="Editar"></i>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </itemtemplate>
+
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+                                    <itemtemplate>
+
+                                        <div class="form-inline">
+                                            <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
+                                                <i class="fa fa-trash" title="Excluir"></i>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </itemtemplate>
+                                </asp:TemplateField>
+
+                            </columns>
+                            <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                            <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                            <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <editrowstyle backcolor="#999999" />
+                        </asp:GridView>
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container-dose">
-            <!-- Modal -->
-            <div class="modal fade" id="myModalDosagem" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Atualização da dosagem</h4>
-                        </div>
-                        
-                       
+        <%--   <div class="container">--%>
+        <!-- Modal -->
+        <div class="modal fade two" id="myModalDosagem" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Atualização da dosagem</h4>
+                    </div>
 
-                            <div class="modal-body-dose">
-                                <fieldset class="scheduler-border">
-                                    <legend id="lbMedicacao" class="scheduler-border" runat="server"></legend>
+
+
+                    <div class="modal-body">
+                        <asp:Label ID="lblNome" runat="server"></asp:Label>
+                        <fieldset class="scheduler-border">
+                            <legend id="lbMedicacao" class="scheduler-border" runat="server"></legend>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-12">
+                                    <label id="lbCodigo" for="txbCodigo" runat="server">
+                                        Codigo:
+                                    </label>
+                                    <asp:TextBox ID="txbCodigo" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     <div class="row">
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                            <div class="row">
-                                                <div class="col-md-3 col-sm-12">
-                                                    <label for="txbDoseProtocolo">
-                                                        Valor Protocolo:
-                                                    </label>
-                                                    <asp:TextBox ID="txbDoseProtocolo" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12">
-                                                    <label for="ddlPercentagem">
-                                                        Porcentagem:
-                                                    </label>
-                                                    <asp:DropDownList ID="ddlPercentagem" runat="server" class="form-control">
-                                                        <asp:ListItem Value="0">0%</asp:ListItem>
-                                                        <asp:ListItem Value="10">10%</asp:ListItem>
-                                                        <asp:ListItem Value="20">20%</asp:ListItem>
-                                                        <asp:ListItem Value="30">30%</asp:ListItem>
-                                                        <asp:ListItem Value="40">40%</asp:ListItem>
-                                                        <asp:ListItem Value="50">50%</asp:ListItem>
-                                                        <asp:ListItem Value="60">60%</asp:ListItem>
-                                                        <asp:ListItem Value="70">70%</asp:ListItem>
-                                                        <asp:ListItem Value="80">80%</asp:ListItem>
-                                                        <asp:ListItem Value="90">90%</asp:ListItem>
-                                                        <asp:ListItem Value="100">100%</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-                                                <div class="col-md-3 col-sm-12">
-                                                    <label for="txbDoseAlterada">
-                                                        Valor Atualizado:
-                                                    </label>
-                                                    <asp:TextBox ID="txbDoseAlterada" runat="server" class="form-control"></asp:TextBox>
-                                                </div>
-                                            </div>
+
+                                        <div class="col-md-4 col-sm-12">
+                                            <label for="txbDoseProtocolo">
+                                                Valor Protocolo:
+                                            </label>
+                                            <asp:TextBox ID="txbDoseProtocolo" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <label for="ddlPercentagem">
+                                                Porcentagem:
+                                            </label>
+                                            <asp:DropDownList ID="ddlPercentagem" runat="server" class="form-control">
+                                                <asp:ListItem Value="0">0%</asp:ListItem>
+                                                <asp:ListItem Value="10">10%</asp:ListItem>
+                                                <asp:ListItem Value="20">20%</asp:ListItem>
+                                                <asp:ListItem Value="30">30%</asp:ListItem>
+                                                <asp:ListItem Value="40">40%</asp:ListItem>
+                                                <asp:ListItem Value="50">50%</asp:ListItem>
+                                                <asp:ListItem Value="60">60%</asp:ListItem>
+                                                <asp:ListItem Value="70">70%</asp:ListItem>
+                                                <asp:ListItem Value="80">80%</asp:ListItem>
+                                                <asp:ListItem Value="90">90%</asp:ListItem>
+                                                <asp:ListItem Value="100">100%</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <label for="txbDoseAlterada">
+                                                Valor Atualizado:
+                                            </label>
+                                            <asp:TextBox ID="txbDoseAlterada" runat="server" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
-                                </fieldset>
-                            </div>
-
-                            <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-4 col-sm-4 col-xs-8 ">
-                                        <asp:Button ID="Button2" runat="server" Text="Gravar" class="btn btn-primary gravar"
-                                            OnClick="btnGravarPreQuimio_Click" data-toggle="modal" />
-                                    </div>
-
-
                                 </div>
                             </div>
+                        </fieldset>
+                    </div>
 
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <div class="col-md-6 col-sm-4 col-xs-8 ">
+                                    <asp:Button ID="btnGravarDosagem" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                                        OnClick="btnGravarDosagem_Click" data-toggle="modal" />
+                                </div>
 
-
-
+                                <div class="col-md-6 col-sm-4 col-xs-8 ">
+                                    <asp:Button ID="btnCancelarDosagem" runat="server" Text="Cancelar" class="btn btn-success"
+                                        OnClick="btnCancelarDosagem_Click" data-toggle="modal" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-               
+
+
+
+
+                </div>
             </div>
+
         </div>
 
-        <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
-        <script type="text/javascript">
+        <%--     <!-- The First Modal -->
+            <div class="modal fade" id="myModal1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">First Modal</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            This is the body of the first modal.
+        <br>
+                            <br>
+                            <!-- Button to Open the Second Modal from within the First Modal -->
+                            <button type="button" class="btn btn-secondary" onclick="showModal('myModal2')">
+                                Open Second Modal
+                            </button>
+                        </div>
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- The Second Modal -->
+            <div class="modal fade" id="myModal2">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Second Modal</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            This is the body of the second modal.
+                        </div>
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>--%>
+        <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
+
+        <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            function showModal(modalId) {
+                $('#' + modalId).modal('show');
+            }
+
+            //function adjustZIndex() {
+            //    var visibleModals = $('.modal:visible');
+            //    visibleModals.each(function (index) {
+            //        var zIndex = 1050 + (10 * index);
+            //        $(this).css('z-index', zIndex);
+            //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
+            //    });
+            //}
+
+            //$('#myModalDosagem').on('shown.bs.modal', function () {
+            //    adjustZIndex();
+            //});
+
+            //$('#myModalMedicamento').on('shown.bs.modal', function () {
+            //    adjustZIndex();
+            //});
+
+            ////function adjustZIndex() {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Adjusting z-index to:", zIndex);
+            ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
+            ////}
+
+            ////// Adjust the backdrop to ensure proper stacking order for the second modal
+            ////$('#myModalDosagem').on('show.bs.modal', function () {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Showing second modal, z-index:", zIndex);
+            ////    $(this).css('z-index', zIndex);
+            ////    adjustZIndex();
+            ////});
+
+            ////// Adjust the backdrop to ensure proper stacking order for the first modal
+            ////$('#myModalMedicamento').on('show.bs.modal', function () {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Showing first modal, z-index:", zIndex);
+            ////    $(this).css('z-index', zIndex);
+            ////    adjustZIndex();
+            //});
+            // Adjust the backdrop to ensure proper stacking order
+            //$('#myModalDosagem').on('show.bs.modal', function () {
+            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            //    $(this).css('z-index', zIndex);
+
+            //     adjustZIndex();
+            //});
+            //function adjustZIndex() {
+            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            //}
             function calculateValorAtualizado() {
-                var valorProtocolo = document.getElementById('<%= txbDoseProtocolo.ClientID %>').value;
-                    var percentagem = document.getElementById('<%= ddlPercentagem.ClientID %>').value;
-                    var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
+
+                var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
+
+                var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
+                var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
 
                 if (valorProtocolo && percentagem) {
-                    var result = (parseFloat(valorProtocolo) * parseFloat(percentagem) / 100).toFixed(2);
+                    var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
+
                     valorAtualizado.value = result.replace('.', ',');
                 } else {
                     valorAtualizado.value = "";
@@ -857,25 +994,25 @@
 
             window.onload = function () {
                 document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
-            document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
+                document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
             }
 
-            function showModal() {
-                $('#myModalMedicamento').modal('show');
-            }
+            //function showModal() {
+            //    $('#myModalMedicamento').modal('show');
+            //}
 
-            function hideModal() {
-                $('#myModalMedicamento').modal('hiden');
+            //function hideModal() {
+            //    $('#myModalMedicamento').modal('hiden');
 
-            }
+            //}
 
-            function showModalMedicamento() {
-                $('#myModalDosagem').modal('show');
-            }
+            //function showModalMedicamento() {
+            //    $('#myModalDosagem').modal('show');
+            //}
 
-            function hideModal() {
-                $('#myModalDosagem').modal('hiden');
-            }
+            //function hideModal() {
+            //    $('#myModalDosagem').modal('hiden');
+            //}
         </script>
 
         <script type="text/javascript">

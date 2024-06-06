@@ -42,6 +42,8 @@ public class RelatorioPreQumioDosagemDAO
       ",[status] " +
       ",[cod_PreQuimio]" +
        ",[cod_CalculoDosagemPreQuimio]" +
+        ",[dose_alterada]" +
+
 
   "FROM [dbo].[Vw_RelatorioPreQuimioDosagem]  where cod_prescricao = " + cod_prescricao;
             cmm.CommandText = sqlConsulta;
@@ -68,6 +70,8 @@ public class RelatorioPreQumioDosagemDAO
                     preQuimio.status = dr1.GetString(12);
                     preQuimio.cod_Prequimio = dr1.GetInt32(13);
                     preQuimio.cod_CalculoDosagemPreQuimio= dr1.GetInt32(14);
+
+                    preQuimio.dose_alterada = dr1.GetDecimal(15);
                     preQuimios.Add(preQuimio);
                 }
             }

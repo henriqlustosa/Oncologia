@@ -29,4 +29,5 @@ public class RelatorioPreQuimioDosagem
     public string status { get; set; }
     public int cod_Prequimio { get; set; }
     public int cod_CalculoDosagemPreQuimio { get; set; }
+    public decimal dose_alterada { get; set; }
 }

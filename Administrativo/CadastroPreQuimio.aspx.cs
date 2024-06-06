@@ -65,7 +65,7 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
 
             Response.Redirect("~/Administrativo/EditarCadastroPreQuimio.aspx?idPreQuimio=" + idPreQuimio + "");
         }
-        if (e.CommandName.Equals("deleteRecord"))
+        else if (e.CommandName.Equals("deleteRecord"))
         {
             index = Convert.ToInt32(e.CommandArgument);
 
@@ -113,7 +113,7 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
         string mensagem = MedicacaoPreQuimioDetalhelDAO.GravarPreQuimio(preQuimioDetalhe);
 
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
-        Response.Redirect("~/Prescricao/CadastroPreQuimio.aspx");
+        Response.Redirect("~/Administrativo/CadastroPreQuimio.aspx");
 
         ClearInputs(Page.Controls);// limpa os textbox
     }

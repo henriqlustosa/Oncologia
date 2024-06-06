@@ -60,7 +60,53 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
         }
     }
 
-    public static void DeletarCalculoDosagemPrescricaoPreQuimio(int cod_Prescricao, DateTime data_cadastro)
+    public static void AtualizarCalculoDosagemPrescricaoPreQuimio(int cod_CalculoDosagemPreQuimio, DateTime data_cadastro, string usuario, int porcentagemDiminuirDose, Decimal dose_alterada)
+    {
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            try
+            {
+                SqlCommand cmm = new SqlCommand();
+                cmm.Connection = cnn;
+                cnn.Open();
+                SqlTransaction mt = cnn.BeginTransaction();
+                cmm.Transaction = mt;
+                cmm.CommandText = "UPDATE [dbo].[Calculo_Dosagem_Prescricao_Prequimio] SET" +
+
+    " [dose_alterada] = @dose_alterada " +
+       " ,[nome_Usuario_Atualizacao] = @nome_Usuario_Atualizacao " +
+        ",[porcentagemDiminuirDose] = @porcentagemDiminuirDose" +
+      ",[data_atualizacao] = @data_atualizacao" +
+ " WHERE cod_CalculoDosagemPreQuimio = @cod_CalculoDosagemPreQuimio and status = 'A'";
+
+
+
+                cmm.Parameters.Add("@cod_CalculoDosagemPreQuimio", SqlDbType.Int).Value = cod_CalculoDosagemPreQuimio;
+                cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = data_cadastro;
+                cmm.Parameters.Add("@nome_Usuario_Atualizacao", SqlDbType.VarChar).Value = usuario;
+                cmm.Parameters.Add("@porcentagemDiminuirDose", SqlDbType.Int).Value = porcentagemDiminuirDose;
+                cmm.Parameters.Add("@dose_alterada", SqlDbType.Decimal).Value = dose_alterada;
+
+
+
+
+
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+                mensagem = "Cadastro com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                mensagem = error;
+            }
+        }
+    }
+
+    public static void DeletarCalculoDosagemPrescricaoPreQuimio(int cod_CalculoDosagemPreQuimio, DateTime data_cadastro)
     {
         string mensagem = "";
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
@@ -78,14 +124,14 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
       " [status] = @status " +
 
       ",[data_atualizacao] = @data_atualizacao" +
- " WHERE cod_Prescricao = @cod_Prescricao and status = 'A'";
+ " WHERE cod_CalculoDosagemPreQuimio = @cod_CalculoDosagemPreQuimio and status = 'A'";
 
 
 
 
 
 
-                cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = cod_Prescricao;
+                cmm.Parameters.Add("@cod_CalculoDosagemPreQuimio", SqlDbType.Int).Value = cod_CalculoDosagemPreQuimio;
                 cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = data_cadastro;
                 cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "I";
 
@@ -105,6 +151,8 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
             }
         }
     }
+
+    
 
     public static void GravarCalculoDosagemPrescricaoPreQuimio(List<CalculoDosagemPrescricaoPreQuimio> calculos)
     {
@@ -156,7 +204,7 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
                     cmm.Parameters.Add("@cod_Id_Prequimio", SqlDbType.Int).Value = calculo.cod_Id_Prequimio;
                     cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = calculo.cod_Prescricao;
                     cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "A";
-                    cmm.Parameters.Add("@porcentagemDiminuirDose", SqlDbType.Int).Value = 0;
+                    cmm.Parameters.Add("@porcentagemDiminuirDose", SqlDbType.Int).Value = 100;
                     cmm.Parameters.Add("@dose_alterada", SqlDbType.Decimal).Value = calculo.dose;
                     cmm.Parameters.Add("@nome_Usuario", SqlDbType.VarChar).Value = calculo.nome_Usuario;
 

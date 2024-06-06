@@ -59,7 +59,7 @@ public partial class Prescricao_CadastroProtocolo : System.Web.UI.Page
 
             Response.Redirect("~/Administrativo/EditarCadastroProtocolo.aspx?idProtocolo=" + idProtocolo + "");
         }
-        if (e.CommandName.Equals("deleteRecord"))
+        else if (e.CommandName.Equals("deleteRecord"))
         {
             index = Convert.ToInt32(e.CommandArgument);
 
@@ -98,7 +98,7 @@ public partial class Prescricao_CadastroProtocolo : System.Web.UI.Page
         string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
-        Response.Redirect("~/Prescricao/CadastroProtocolo.aspx");
+        Response.Redirect("~/Administrativo/CadastroProtocolo.aspx");
 
         ClearInputs(Page.Controls);// limpa os textbox
     }

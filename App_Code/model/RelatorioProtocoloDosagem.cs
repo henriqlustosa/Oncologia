@@ -35,5 +35,5 @@ public class RelatorioProtocoloDosagem
     public decimal dosagem { get; set; }
 
     public string unidade_dosagem{ get; set; }
-
+    public decimal dose_alterada { get; set; }
 }

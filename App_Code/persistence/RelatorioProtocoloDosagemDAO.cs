@@ -49,6 +49,7 @@ public class RelatorioProtocoloDosagemDAO
 "  ,[cod_Prescricao] " +
 "  ,[dosagem] " +
 "  ,[unidade_dosagem] " +
+"  ,[dose_alterada] " +
 " FROM[dbo].[Vw_RelatorioProtocoloDosagem] where cod_Prescricao = " + cod_prescricao;
             cmm.CommandText = sqlConsulta;
             try
@@ -78,6 +79,7 @@ public class RelatorioProtocoloDosagemDAO
                     protocolo.cod_Prescricao = dr1.GetInt32(14);
                     protocolo.dosagem = dr1.GetDecimal(15);
                     protocolo.unidade_dosagem = dr1.GetString(16);
+                    protocolo.dose_alterada = dr1.GetDecimal(17);
                     protocolos.Add(protocolo);
                 }
             }

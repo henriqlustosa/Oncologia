@@ -24,6 +24,16 @@
             z-index: 1050;
         }*/
 
+
+        .modal-dialog-custom {
+            max-width: 50%; /* Adjust width as needed */
+        }
+
+        .modal-body-custom {
+            height: 500px; /* Adjust height as needed */
+            width: 500px;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
         /* Container for the modal that covers the entire viewport 	*/
         .custom-green-button {
             background-color: green;
@@ -70,6 +80,14 @@
             Fixed height background-color: #fff0f5;
             /* LavenderBlush background border: 1px solid #ff69b4;
             HotPink border*/
+        }
+
+        .modal-content-custom {
+            width: 700px;
+            border-radius: 15px; 
+            justify-content: center;
+            align-items: center;
+            height: 300px; 
         }
 
         .modal-fade-two .modal-header {
@@ -565,8 +583,8 @@
                             OnClick="btnVisualizarMedicamento_Click" data-toggle="modal" />
                     </div>
                     <div class="col-md-4 col-sm-12">
-                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" CssClass="btn btn-success imprimir"
-                            OnClick="btnImprimir_Click" data-toggle="modal" />
+                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success" OnClientClick="openConfirmationModal2(); return false;" />
+
                     </div>
 
                 </div>
@@ -588,9 +606,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                      
+
                         <asp:Button ID="btnTeste" runat="server" Text="Confirm" CssClass="btn btn-success imprimir"
-    OnClick="btnGravar_Click" />
+                            OnClick="btnGravar_Click" />
                     </div>
                 </div>
             </div>
@@ -598,50 +616,59 @@
         <!-- Large modal -->
         <%--  <div class="container">--%>
         <!-- Trigger the modal with a button -->
-        <%--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+        <%--<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalImpressora">
                 Imprimir</button>--%>
         <!-- Modal -->
         <div class="modal fade" id="myModalImpressora" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-custom">
                 <!-- Modal content-->
-                <div class="modal-content">
+                <div class="modal-content modal-content-custom">
                     <div class="modal-header">
                         <h4 class="modal-title">Selecione a Impressora</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body modal-body-custom">
                         <fieldset class="scheduler-border">
                             <legend class="scheduler-border">Ficha</legend>
                             <div class="row">
-                                <div class="col-md-6 form-group">
-                                    Impressoras:
-                                    <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-                                        <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
-                                        <asp:ListItem>ONCO_SEC</asp:ListItem>
-                                        <asp:ListItem>ONCO_ENF</asp:ListItem>
-                                        <asp:ListItem>INFO</asp:ListItem>
-                                        <%--<asp:ListItem>Informatica</asp:ListItem>--%>
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="col-md-3 form-group">
-                                    Cópias:
+
+
+
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+
+                                    <div class="col-md-6 col-sm-12">
+                                        Impressoras:
+    <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
+        <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
+        <asp:ListItem>ONCO_SEC</asp:ListItem>
+        <asp:ListItem>ONCO_ENF</asp:ListItem>
+        <asp:ListItem>INFO</asp:ListItem>
+        <%--<asp:ListItem>Informatica</asp:ListItem>--%>
+    </asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        Cópias:
                                         <asp:DropDownList ID="ddlVias" class="form-control " runat="server">
                                             <asp:ListItem>1</asp:ListItem>
                                             <asp:ListItem>2</asp:ListItem>
                                             <asp:ListItem>3</asp:ListItem>
                                             <asp:ListItem>4</asp:ListItem>
                                         </asp:DropDownList>
+                                    </div>
+
+
+
+
                                 </div>
-
-
-
                             </div>
+
+
                         </fieldset>
 
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-4 col-sm-4 col-xs-8 ">
                                     <asp:Button ID="btn" runat="server" Text="Gravar" class="btn btn-primary gravar"
-                                        OnClick="btnGravarImpressora_Click" data-toggle="modal" />
+                                        OnClick="btnImprimir_Click" data-toggle="modal" />
                                 </div>
 
 
@@ -968,7 +995,9 @@
             function openConfirmationModal() {
                 $('#confirmationModal').modal('show');
             }
-            
+            function openConfirmationModal2() {
+                $('#myModalImpressora').modal('show');
+            }
             //function adjustZIndex() {
             //    var visibleModals = $('.modal:visible');
             //    visibleModals.each(function (index) {

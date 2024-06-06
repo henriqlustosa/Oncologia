@@ -57,7 +57,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             }
             btnAtualizar.Visible = false;
             btnVisualizarMedicamento.Visible = false;
-            btnImprimir.Visible = false;    
+            btnImprimir.Visible = false;
         }
     }
     [WebMethod]
@@ -96,11 +96,9 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         // Variável para mostrar mensagem de erro
         string mensagem = "";
 
-        // Variável para armazenar o nome da impressora selecionada
-        string nome_impressora = ddlImpressora.SelectedValue;
+  
 
-        // Variável para armazenar a quantidade cópias de cada prescrição 
-        int vias = Convert.ToInt32(ddlVias.SelectedValue);
+      
 
         // Variável que marca a data e hora da criação da prescrição
         DateTime dataCadastro = DateTime.Now;
@@ -268,6 +266,16 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
     protected void btnImprimir_Click(object sender, EventArgs e)
     {
+        // Variável para armazenar o nome da impressora selecionada
+        string nome_impressora = ddlImpressora.SelectedValue;
+        // Variável para armazenar a quantidade cópias de cada prescrição 
+        int vias = Convert.ToInt32(ddlVias.SelectedValue);
+        while (vias > 0)
+        {
+
+            ImpressaoPrescricao.imprimirFicha(cod_Prescricao, nome_impressora);
+            vias--;
+        }
     }
 
     protected void btnVisualizarMedicamento_Click(object sender, EventArgs e)

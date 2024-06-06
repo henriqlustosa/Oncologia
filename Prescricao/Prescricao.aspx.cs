@@ -55,7 +55,9 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             {
                 cblViasDeAcesso.Items[i].Attributes.Add("onclick", "MutExChkList(this)");
             }
-
+            btnAtualizar.Visible = false;
+            btnVisualizarMedicamento.Visible = false;
+            btnImprimir.Visible = false;    
         }
     }
     [WebMethod]
@@ -152,11 +154,18 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         //    vias--;
         //}
 
-        cod_Prescricao = prescricao.cod_Prescricao;
-        MostrarTodosMedicamentos(cod_Prescricao);
+        //cod_Prescricao = prescricao.cod_Prescricao;
+        //MostrarTodosMedicamentos(cod_Prescricao);
 
        
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
+        //ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
+        cod_Prescricao = prescricao.cod_Prescricao;
+
+        btnGravar.Visible = false;
+        btnAtualizar.Visible = true;
+        btnVisualizarMedicamento.Visible = true;
+        btnImprimir.Visible = true;
+
 
         //ClearInputs(Page.Controls);// limpa os textbox
         //ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
@@ -256,7 +265,36 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     protected void btnGravarImpressora_Click(object sender, EventArgs e)
     {
     }
-        protected void btnGravarDosagem_Click(object sender, EventArgs e)
+
+    protected void btnImprimir_Click(object sender, EventArgs e)
+    {
+    }
+
+    protected void btnVisualizarMedicamento_Click(object sender, EventArgs e)
+    {
+        MostrarTodosMedicamentos(cod_Prescricao);
+
+
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
+    }
+
+    protected void btnAtualizar_Click(object sender, EventArgs e)
+    {
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    protected void btnGravarDosagem_Click(object sender, EventArgs e)
     {
         DateTime dataCadastro = DateTime.Now;
         int cod_Codigo = Convert.ToInt32(txbCodigo.Text);

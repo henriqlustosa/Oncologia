@@ -548,14 +548,53 @@
             </div>
             <div class="row">
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                    <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClick="btnGravar_Click" />
+                    <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClientClick="openConfirmationModal(); return false;" />
                 </div>
                 <%--<button type="button" class="btn btn-primary" onclick="showModal('myModalMedicamento')">
                     Open First Modal
                 </button>--%>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <div class="col-md-4 col-sm-12">
+                        <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" class="btn btn-primary atualizar"
+                            OnClick="btnAtualizar_Click" data-toggle="modal" />
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <asp:Button ID="btnVisualizarMedicamento" runat="server" Text="Visualizar Medicamento" class="btn btn-info visualizar medicamento"
+                            OnClick="btnVisualizarMedicamento_Click" data-toggle="modal" />
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" CssClass="btn btn-success imprimir"
+                            OnClick="btnImprimir_Click" data-toggle="modal" />
+                    </div>
 
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to proceed?
+     
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                      
+                        <asp:Button ID="btnTeste" runat="server" Text="Confirm" CssClass="btn btn-success imprimir"
+    OnClick="btnGravar_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Large modal -->
         <%--  <div class="container">--%>
         <!-- Trigger the modal with a button -->
@@ -926,7 +965,10 @@
             function showModal(modalId) {
                 $('#' + modalId).modal('show');
             }
-
+            function openConfirmationModal() {
+                $('#confirmationModal').modal('show');
+            }
+            
             //function adjustZIndex() {
             //    var visibleModals = $('.modal:visible');
             //    visibleModals.each(function (index) {

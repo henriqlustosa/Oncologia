@@ -106,7 +106,7 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
         }
     }
 
-    public static void DeletarCalculoDosagemPrescricaoPreQuimio(int cod_CalculoDosagemPreQuimio, DateTime data_cadastro)
+    public static void DeletarCalculoDosagemPrescricaoPreQuimio(int cod_Prescricao, DateTime data_cadastro)
     {
         string mensagem = "";
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
@@ -118,20 +118,20 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "UPDATE [dbo].[Calculo_Dosagem_Prescricao_Prequimio] SET" +
+                cmm.CommandText = "UPDATE [dbo].[Calculo_Dosagem_Prescricao_PreQuimio] SET" +
 
 
       " [status] = @status " +
 
       ",[data_atualizacao] = @data_atualizacao" +
- " WHERE cod_CalculoDosagemPreQuimio = @cod_CalculoDosagemPreQuimio and status = 'A'";
+ " WHERE cod_Prescricao = @cod_Prescricao and status = 'A'";
 
 
 
 
 
 
-                cmm.Parameters.Add("@cod_CalculoDosagemPreQuimio", SqlDbType.Int).Value = cod_CalculoDosagemPreQuimio;
+                cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = cod_Prescricao;
                 cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = data_cadastro;
                 cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "I";
 
@@ -151,6 +151,8 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
             }
         }
     }
+
+   
 
     
 

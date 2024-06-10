@@ -113,6 +113,7 @@ public class PrescricaoDAO
       ",[cod_Prequimio] " +
       ",[creatinina] " +
       ",[nome_Usuario_Atualizacao] " +
+       ",[cod_profissional] " +
   " FROM[dbo].[Prescricao] where status = 'A' and cod_Prescricao = " + cod_prescricao;
             cmm.CommandText = sqlConsulta;
             try
@@ -140,6 +141,7 @@ public class PrescricaoDAO
                     prescricao.cod_Prequimio = dr1.GetInt32(14);
                     prescricao.creatinina = dr1.GetDecimal(15);
                     prescricao.nome_Usuario_Atualizacao = dr1.IsDBNull(16) ? "" : dr1.GetString(16);
+                    prescricao.cod_profissional = dr1.GetInt32(17);
 
 
 
@@ -194,7 +196,8 @@ public class PrescricaoDAO
           ", [nome_Usuario]" +
 
            ", [cod_Prequimio]" +
-              ", [creatinina])" +
+              ", [creatinina]" +
+               ", [cod_profissional])" +
 
     " VALUES" +
           " ( @cod_Paciente " +
@@ -211,7 +214,8 @@ public class PrescricaoDAO
           " , @status" +
            " , @nome_Usuario" +
                 " , @cod_Prequimio" +
-                " , @creatinina)";
+                " , @creatinina"+
+                " , @cod_profissional)";
 
                 //cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
                 cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
@@ -234,6 +238,7 @@ public class PrescricaoDAO
 
                 cmm.Parameters.Add("@cod_Prequimio", SqlDbType.Int).Value = prescricao.cod_Prequimio;
                 cmm.Parameters.Add("@creatinina", SqlDbType.Decimal).Value = prescricao.creatinina;
+                cmm.Parameters.Add("@cod_profissional", SqlDbType.Int).Value = prescricao.cod_profissional;
 
 
 
@@ -411,7 +416,7 @@ public class PrescricaoDAO
         return prescricao;  
        
     }
-    public static Prescricao HandlePrescricaoGravacao( int cod_Paciente, int cod_Finalidade, int cod_Vias_De_Acesso, int cod_Protocolos, int cod_Calculo, int ciclos_provaveis, int intervalo_dias, DateTime data_inicio, decimal creatinina, string observacao, DateTime data_cadastro, string nome_Usuario)
+    public static Prescricao HandlePrescricaoGravacao( int cod_Paciente, int cod_Finalidade, int cod_Vias_De_Acesso, int cod_Protocolos, int cod_Calculo, int ciclos_provaveis, int intervalo_dias, DateTime data_inicio, decimal creatinina, string observacao, DateTime data_cadastro, string nome_Usuario, int cod_profissional)
     {
         Prescricao prescricao = new Prescricao
         {
@@ -427,8 +432,8 @@ public class PrescricaoDAO
             creatinina = creatinina,
             observacao = observacao,
             data_cadastro = data_cadastro,
-            nome_Usuario = nome_Usuario
-
+            nome_Usuario = nome_Usuario,
+            cod_profissional = cod_profissional
         };
         prescricao.cod_Prequimio = BuscarPrequimioPorCod_Protocolo(cod_Protocolos);
         prescricao.cod_Prescricao = GravarPrescricao(prescricao);

@@ -17,7 +17,7 @@ public class RelatorioPreQuimio
 
     public int Id { get; set; }
     public string desc_pre_quimio { get; set; }
-    public string desc_medicacao_pre_quimio { get; set; }
+    public string desc_medicacao { get; set; }
     public string desc_quimio { get; set; }
     public string desc_via_de_administracao { get; set; }
     public string nome_Usuario { get; set; }

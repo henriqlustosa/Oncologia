@@ -56,7 +56,7 @@ public class RelatorioPreQuimioDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [Id],[desc_pre_quimio],[desc_medicacao_pre_quimio],[desc_quimio],[desc_via_de_administracao],[nome_Usuario],[quantidade],[unidadeQuantidade],[diluicao],[tempoDeInfusao],[unidadeTempoDeInfusao],[dataCadastro],[status] FROM [hspmonco].[dbo].[Vw_RelatorioPreQuimio]";
+            cmm.CommandText = "SELECT [Id],[desc_pre_quimio],[desc_medicacao],[desc_quimio],[desc_via_de_administracao],[nome_Usuario],[quantidade],[unidadeQuantidade],[diluicao],[tempoDeInfusao],[unidadeTempoDeInfusao],[dataCadastro],[status] FROM [hspmonco].[dbo].[Vw_RelatorioPreQuimio]";
 
             try
             {
@@ -69,7 +69,7 @@ public class RelatorioPreQuimioDAO
                     RelatorioPreQuimio itemLista = new RelatorioPreQuimio();
                     itemLista.Id = dr1.GetInt32(0);
                     itemLista.desc_pre_quimio = dr1.IsDBNull(1) ? "" : dr1.GetString(1);
-                    itemLista.desc_medicacao_pre_quimio = dr1.IsDBNull(2) ? "" : dr1.GetString(2);
+                    itemLista.desc_medicacao = dr1.IsDBNull(2) ? "" : dr1.GetString(2);
                     itemLista.desc_quimio = dr1.IsDBNull(3) ? "" : dr1.GetString(3);
                     itemLista.desc_via_de_administracao = dr1.IsDBNull(4) ? "" : dr1.GetString(4);
                     itemLista.nome_Usuario = dr1.IsDBNull(5) ? "" : dr1.GetString(5);

@@ -204,6 +204,20 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
 
 
+
+
+        CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricaoPreQuimio = new CalculoDosagemPrescricaoPreQuimio();
+
+
+
+
+        List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
+        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricaoPreQuimio.calcular(prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+
+
+
+        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimio(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
         //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 
         //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);

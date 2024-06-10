@@ -10,6 +10,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Serilog;
 using System.Reflection;
+using System.Web.Security;
+using Microsoft.Exchange.WebServices.Data;
+
 public partial class Prescricao_Prescricao : System.Web.UI.Page
 {
     private int cod_Prescricao
@@ -93,7 +96,19 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     protected void btnGravar_Click(object sender, EventArgs e)
     {
         string usuario = User.Identity.Name.ToUpper();
-        // Variável para mostrar mensagem de erro
+        int cod_profissional =0;
+        MembershipUser currentUser = Membership.GetUser();
+        if (currentUser != null)
+        {
+            object userId = currentUser.ProviderUserKey;
+            cod_profissional = ProfissionalDAO.GetProfissionalByUserId(userId.ToString()).cod_profissional;
+        }
+        else
+        {
+            Response.Write("Failed to retrieve user information.");
+        }
+        
+
         string mensagem = "";
 
   
@@ -116,7 +131,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
         CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
 
-        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario);
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
 
         List<CID_10> listaDeCids = HandleCID();
 
@@ -288,6 +303,97 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
     protected void btnAtualizar_Click(object sender, EventArgs e)
     {
+        string mensagem = "";
+        int _id = cod_Prescricao;
+
+        string usuario = User.Identity.Name.ToUpper();
+
+
+
+
+        // Variável que marca a data e hora da criação da prescrição
+        DateTime dataCadastro = DateTime.Now;
+
+        // Variável para salvar o prontuário que o usuário digitou no formulário
+        int cod_Paciente = int.Parse(txbProntuario.Text);
+
+
+        string message = PacienteOncologiaDAO.HandlePacienteOncologia(txbProntuario.Text, txbNomePaciente.Text, txbPais.Text,
+                                      txbTelefone.Text, txbDdd.Text, ddlSexo.SelectedItem.ToString(),
+                                      txbNascimento.Text, dataCadastro);
+        Log.Information(message);
+
+
+
+        Prescricao prescricaoAnterior = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(_id);
+
+        CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricaoAnterior.cod_Calculo);
+
+        CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataCadastro);
+
+        CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
+
+
+
+
+
+
+        List<CID_10> lista_cid_10 = HandleCID();
+
+
+
+
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(_id, cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario);
+
+
+
+
+
+
+        CID_10_DAO.DeletarCidsPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao, dataCadastro);
+
+        AgendaDAO.DeletarAgenda(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_atualizacao);
+
+
+
+        CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
+
+
+
+        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodProtocolo(int.Parse(ddlProtocolo.SelectedValue.ToString()));
+        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+
+
+        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
+
+        CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricaoPrequimio = new CalculoDosagemPrescricaoPreQuimio();
+
+      
+
+
+
+        List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
+        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricaoPrequimio.calcular(prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+
+
+
+        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimio(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
+
+
+
+
+        //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
+
+        //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+
+        //ClearInputs(Page.Controls);// limpa os textbox
+        //ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
+        //Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
+
     }
 
 

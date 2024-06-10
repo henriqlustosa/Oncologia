@@ -23,7 +23,63 @@
         .modal {
             z-index: 1050;
         }*/
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
 
+        .button-wrapper {
+            flex: 1 0 33.33%; /* Three buttons per row */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+            .button-wrapper .btn {
+                width: 100%;
+                max-width: 200px; /* Set a max width if needed */
+                padding: 10px;
+                font-size: 16px;
+                cursor: pointer;
+                border: 1px solid #ccc;
+                transition: background-color 0.3s;
+            }
+
+        .btn-primary.atualizar {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .btn-info.visualizar-medicamento {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            color: white;
+        }
+
+        .btn-success.imprimir {
+            background-color: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        .button-wrapper .btn:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .button-wrapper {
+                flex: 1 0 50%; /* Two buttons per row on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button-wrapper {
+                flex: 1 0 100%; /* One button per row on very small screens */
+            }
+        }
 
         .modal-dialog-custom {
             max-width: 50%; /* Adjust width as needed */
@@ -84,10 +140,10 @@
 
         .modal-content-custom {
             width: 700px;
-            border-radius: 15px; 
+            border-radius: 15px;
             justify-content: center;
             align-items: center;
-            height: 300px; 
+            height: 300px;
         }
 
         .modal-fade-two .modal-header {
@@ -169,7 +225,7 @@
     </style>
 
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-        <scripts>
+        <Scripts>
 
 
 
@@ -177,7 +233,7 @@
 
 
 
-        </scripts>
+        </Scripts>
     </asp:ScriptManagerProxy>
 
 
@@ -573,20 +629,16 @@
                 </button>--%>
             </div>
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                    <div class="col-md-4 col-sm-12">
-                        <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" class="btn btn-primary atualizar"
-                            OnClick="btnAtualizar_Click" data-toggle="modal" />
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group button-container">
+                    <div class="button-wrapper">
+                        <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" class="btn btn-primary atualizar" OnClick="btnAtualizar_Click" data-toggle="modal" />
                     </div>
-                    <div class="col-md-4 col-sm-12">
-                        <asp:Button ID="btnVisualizarMedicamento" runat="server" Text="Visualizar Medicamento" class="btn btn-info visualizar medicamento"
-                            OnClick="btnVisualizarMedicamento_Click" data-toggle="modal" />
+                    <div class="button-wrapper">
+                        <asp:Button ID="btnVisualizarMedicamento" runat="server" Text="Visualizar Medicamento" class="btn btn-info visualizar-medicamento" OnClick="btnVisualizarMedicamento_Click" data-toggle="modal" />
                     </div>
-                    <div class="col-md-4 col-sm-12">
-                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success" OnClientClick="openConfirmationModal2(); return false;" />
-
+                    <div class="button-wrapper">
+                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success imprimir" OnClientClick="openConfirmationModal2(); return false;" />
                     </div>
-
                 </div>
             </div>
         </div>
@@ -642,7 +694,7 @@
         <asp:ListItem>ONCO_SEC</asp:ListItem>
         <asp:ListItem>ONCO_ENF</asp:ListItem>
         <asp:ListItem>INFO</asp:ListItem>
-        <%--<asp:ListItem>Informatica</asp:ListItem>--%>
+        <asp:ListItem>IMPRESSORA</asp:ListItem>
     </asp:DropDownList>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
@@ -708,19 +760,19 @@
                             Width="100%">
 
 
-                            <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
-                            <columns>
-                                <asp:BoundField DataField="desc_medicacao_pre_quimio" HeaderText="Medicação" SortExpression="desc_medicacao_pre_quimio"
+                            <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
+                            <Columns>
+                                <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
                                     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
 
                                 <asp:TemplateField HeaderText="Dosagem" SortExpression="quantidade">
-                                    <itemtemplate>
+                                    <ItemTemplate>
                                         <%# Eval("dose_alterada") %> <%# Eval("unidadeQuantidade") %>
-                                    </itemtemplate>
-                                    <itemstyle cssclass="hidden-md" />
-                                    <headerstyle cssclass="hidden-md" />
+                                    </ItemTemplate>
+                                    <ItemStyle CssClass="hidden-md" />
+                                    <HeaderStyle CssClass="hidden-md" />
                                 </asp:TemplateField>
 
                                 <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
@@ -735,26 +787,26 @@
 
 
                                 <asp:TemplateField HeaderText="Infusão" SortExpression="tempoDeInfusao">
-                                    <itemtemplate>
+                                    <ItemTemplate>
                                         <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                    </itemtemplate>
-                                    <itemstyle cssclass="hidden-md" />
-                                    <headerstyle cssclass="hidden-md" />
+                                    </ItemTemplate>
+                                    <ItemStyle CssClass="hidden-md" />
+                                    <HeaderStyle CssClass="hidden-md" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                    <itemtemplate>
+                                    <ItemTemplate>
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                 CssClass="btn btn-info" runat="server" CausesValidation="false">
                                                 <i class="fa fa-pencil-square-o" title="Editar"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </itemtemplate>
+                                    </ItemTemplate>
 
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
-                                    <itemtemplate>
+                                    <ItemTemplate>
 
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
@@ -762,15 +814,15 @@
                                                 <i class="fa fa-trash" title="Excluir"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </itemtemplate>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
 
-                            </columns>
-                            <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                            <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
-                            <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
-                            <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                            <editrowstyle backcolor="#999999" />
+                            </Columns>
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <EditRowStyle BackColor="#999999" />
                         </asp:GridView>
                         <div class="modal-header">
                             <h4 class="modal-title">Protocolo</h4>
@@ -779,18 +831,18 @@
                             CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                             Width="100%">
 
-                            <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
-                            <columns>
+                            <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
+                            <Columns>
                                 <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
                                     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
                                 <asp:TemplateField HeaderText="Dosagem" SortExpression="dosagem">
-                                    <itemtemplate>
+                                    <ItemTemplate>
                                         <%# Eval("dose_alterada") %> <%# Eval("unidade_dosagem") %>
-                                    </itemtemplate>
-                                    <itemstyle cssclass="hidden-md" />
-                                    <headerstyle cssclass="hidden-md" />
+                                    </ItemTemplate>
+                                    <ItemStyle CssClass="hidden-md" />
+                                    <HeaderStyle CssClass="hidden-md" />
                                 </asp:TemplateField>
 
 
@@ -805,26 +857,26 @@
 
 
                                 <asp:TemplateField HeaderText="Infusao" SortExpression="tempoDeInfusao">
-                                    <itemtemplate>
+                                    <ItemTemplate>
                                         <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                    </itemtemplate>
-                                    <itemstyle cssclass="hidden-md" />
-                                    <headerstyle cssclass="hidden-md" />
+                                    </ItemTemplate>
+                                    <ItemStyle CssClass="hidden-md" />
+                                    <HeaderStyle CssClass="hidden-md" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                    <itemtemplate>
+                                    <ItemTemplate>
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                 CssClass="btn btn-info" runat="server" CausesValidation="false">
                                                 <i class="fa fa-pencil-square-o" title="Editar"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </itemtemplate>
+                                    </ItemTemplate>
 
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
-                                    <itemtemplate>
+                                    <ItemTemplate>
 
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
@@ -832,17 +884,23 @@
                                                 <i class="fa fa-trash" title="Excluir"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </itemtemplate>
+                                    </ItemTemplate>
                                 </asp:TemplateField>
 
-                            </columns>
-                            <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                            <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
-                            <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
-                            <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
-                            <editrowstyle backcolor="#999999" />
+                            </Columns>
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <EditRowStyle BackColor="#999999" />
                         </asp:GridView>
 
+                    </div>
+                    <div class="modal-footer">
+
+
+                        <asp:Button ID="Button1" runat="server" Text="Confirmar" CssClass="btn btn-success imprimir"
+                            data-dismiss="modal" />
                     </div>
                 </div>
             </div>

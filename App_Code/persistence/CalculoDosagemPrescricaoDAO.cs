@@ -57,7 +57,7 @@ public class CalculoDosagemPrescricaoDAO
             return calc;
         }
     }
-    public static void DeletarCalculoDosagemPrescricao(int cod_CalculoDosagem, DateTime data_cadastro)
+    public static void DeletarCalculoDosagemPrescricao(int cod_prescricao, DateTime data_cadastro)
     {
         string mensagem = "";
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
@@ -75,14 +75,14 @@ public class CalculoDosagemPrescricaoDAO
       " [status] = @status " +
 
       ",[data_atualizacao] = @data_atualizacao" +
- " WHERE cod_CalculoDosagem = @cod_CalculoDosagem and status = 'A'";
+ " WHERE cod_Prescricao = @cod_Prescricao and status = 'A'";
 
 
 
 
 
 
-                cmm.Parameters.Add("@cod_CalculoDosagem", SqlDbType.Int).Value = cod_CalculoDosagem;
+                cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = cod_prescricao;
                 cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = data_cadastro;
                 cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "I";
 

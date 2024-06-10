@@ -67,43 +67,43 @@ public class ImpressaoPrescricao
 
 
 
-                IEnumerable<RelatorioPrescricao> ie;
-                IEnumerable<RelatorioProtocoloDosagem> ie2;
-                IEnumerable<RelatorioPreQuimioDosagem> ie3;
-                IEnumerable<CID_Prescricao> ie4;
-               
+                IEnumerable<RelatorioPrescricao> RelatorioPrescricao;
+                IEnumerable<RelatorioProtocoloDosagem> RelatorioProtocoloDosagem;
+                IEnumerable<RelatorioPreQuimioDosagem> RelatorioPreQuimioDosagem;
+                IEnumerable<CID_Prescricao> RelatorioCID_Prescricao;
 
-                ie = listaRelatorioPrescricao;
-                ie2 = protocolos;
-                ie3 = preQuimios;
-                ie4 = cids;
+
+                RelatorioPrescricao = listaRelatorioPrescricao;
+                RelatorioProtocoloDosagem = protocolos;
+                RelatorioPreQuimioDosagem = preQuimios;
+                RelatorioCID_Prescricao = cids;
                 
 
-                ReportDataSource datasource = new ReportDataSource("DataSet1", ie);
-                ReportDataSource datasource2 = new ReportDataSource("DataSet2", ie2);
-                ReportDataSource datasource3 = new ReportDataSource("DataSet3", ie3);
-                ReportDataSource datasource4 = new ReportDataSource("DataSet4", ie4);
+                ReportDataSource datasourceRelatorioPrescricaoe = new ReportDataSource("DataSet1", RelatorioPrescricao);
+                ReportDataSource datasourceRelatorioProtocoloDosagem = new ReportDataSource("DataSet2", RelatorioProtocoloDosagem);
+                ReportDataSource datasourceRelatorioPreQuimioDosagem = new ReportDataSource("DataSet3", RelatorioPreQuimioDosagem);
+                ReportDataSource datasourceRelatorioCID_Prescricao = new ReportDataSource("DataSet4", RelatorioCID_Prescricao);
 
 
 
-                relatorio.DataSources.Add(datasource);
-                relatorio.DataSources.Add(datasource2);
-                relatorio.DataSources.Add(datasource3);
-                relatorio.DataSources.Add(datasource4);
+                relatorio.DataSources.Add(datasourceRelatorioPrescricaoe);
+                relatorio.DataSources.Add(datasourceRelatorioProtocoloDosagem);
+                relatorio.DataSources.Add(datasourceRelatorioPreQuimioDosagem);
+                relatorio.DataSources.Add(datasourceRelatorioCID_Prescricao);
                
                 foreach (Agenda agenda in agendas)
                 {
                     List<Agenda> relatorioAgenda = new List<Agenda>();
                     relatorioAgenda.Add(agenda);
-                    IEnumerable<Agenda> ie5;
-                    ie5 = relatorioAgenda;
-                    ReportDataSource datasource5 = new ReportDataSource("DataSet5", ie5);
+                    IEnumerable<Agenda> Agenda;
+                    Agenda = relatorioAgenda;
+                    ReportDataSource datasourceAgenda = new ReportDataSource("DataSet5", Agenda);
                    
-                    relatorio.DataSources.Add(datasource5);
+                    relatorio.DataSources.Add(datasourceAgenda);
                    
                     Exportar(relatorio);
                     Imprimir(relatorio);
-                    relatorio.DataSources.Remove(datasource5);
+                    relatorio.DataSources.Remove(datasourceAgenda);
                 }
              
             }

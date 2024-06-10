@@ -56,7 +56,7 @@ public class RelatorioPreQumioDosagemDAO
                     RelatorioPreQuimioDosagem preQuimio = new RelatorioPreQuimioDosagem();
                     preQuimio.Id = dr1.GetInt32(0);
                     preQuimio.desc_pre_quimio = dr1.GetString(1);
-                    preQuimio.desc_medicacao_pre_quimio = dr1.GetString(2);
+                    preQuimio.desc_medicacao = dr1.GetString(2);
                     preQuimio.desc_quimio = dr1.GetString(3);
                     preQuimio.desc_via_de_administracao = dr1.GetString(4);
 

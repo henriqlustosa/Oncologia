@@ -37,6 +37,7 @@ public class Prescricao
 
     public DateTime data_atualizacao {  get; set; }
     public string nome_Usuario_Atualizacao { get; set; }
+    public int cod_profissional { get; set; }
 
 
 

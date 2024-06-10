@@ -115,6 +115,7 @@ public class RelatorioPrescricaoloDAO
       " ,[creatinina]" +
       " ,[nome_profissional]" +
         " ,[nr_conselho]" +
+          " ,[sigla_conselho]" +
             "       FROM[dbo].[Vw_RelatorioPrescricao] WHERE cod_Prescricao = " + cod_relatorio_prescricao;
             try
             {
@@ -156,10 +157,12 @@ public class RelatorioPrescricaoloDAO
 
                     relatorio.nome_profissional = dr1.GetString(23);
                     relatorio.nr_conselho = dr1.GetInt32(24);
+                    relatorio.sigla_conselho = dr1.GetString(25);
 
 
-                    //relatorioLista.Add(relatorio);
-                }
+
+    //relatorioLista.Add(relatorio);
+}
             }
             catch (Exception ex)
             {

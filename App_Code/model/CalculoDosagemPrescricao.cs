@@ -37,92 +37,61 @@ public class CalculoDosagemPrescricao
 
 
 
-    public List<CalculoDosagemPrescricao> calcular(CalculoSuperficieCorporea calculo,List<Protocolos> protocolos, DateTime datacadastro, Prescricao prescricao, PacienteOncologia pacienteOncologia,string nome_Usuario)
+    public List<CalculoDosagemPrescricao> calcular(CalculoSuperficieCorporea calculo, List<Protocolos> protocolos, DateTime datacadastro, Prescricao prescricao, PacienteOncologia pacienteOncologia, string nome_Usuario)
     {
         List<CalculoDosagemPrescricao> calcDoses = new List<CalculoDosagemPrescricao>();
+
         foreach (Protocolos protocolo in protocolos)
         {
-            CalculoDosagemPrescricao calcDose = new CalculoDosagemPrescricao();
-            if (protocolo.unidadeDose.Equals("mg/m² "))
+            CalculoDosagemPrescricao calcDose = new CalculoDosagemPrescricao
             {
-                calcDose.dose = calculo.BSA * protocolo.dose;
-                calcDose.unidade_dose = "mg";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo ;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = prescricao.cod_Prescricao;
-            }
-            else if (protocolo.unidadeDose.Equals("mg"))
+                dataCadastro = datacadastro,
+                cod_Protocolo = protocolo.cod_DescricaoProtocolo,
+                cod_Id_Protocolo = protocolo.Id,
+                cod_Prescricao = prescricao.cod_Prescricao,
+                nome_Usuario = nome_Usuario
+            };
+
+            switch (protocolo.unidadeDose.Trim())
             {
-                calcDose.dose = protocolo.dose;
-                calcDose.unidade_dose = "mg";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = prescricao.cod_Prescricao;
-            }
-            else if (protocolo.unidadeDose.Equals("mg/Kg "))
-            {
-                calcDose.dose = protocolo.dose*calculo.peso;
-                calcDose.unidade_dose = "mg";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = prescricao.cod_Prescricao;
-            }
-            else if (protocolo.unidadeDose.Equals("mg/m² 12/12h "))
-            {
-                calcDose.dose = calculo.BSA * protocolo.dose;
-                calcDose.unidade_dose = "mg 12/12h";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = prescricao.cod_Prescricao;
-            }
-            else if (protocolo.unidadeDose.Equals("U "))
-            {
-                calcDose.dose = protocolo.dose;
-                calcDose.unidade_dose = "U";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = prescricao.cod_Prescricao;
-            }
-            else if (protocolo.unidadeDose.Equals("mcg "))
-            {
-                calcDose.dose = protocolo.dose;
-                calcDose.unidade_dose = "mcg";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = prescricao.cod_Prescricao;
+                case "mg/m²":
+                    calcDose.dose = calculo.BSA * protocolo.dose;
+                    calcDose.unidade_dose = "mg";
+                    break;
+                case "mg":
+                    calcDose.dose = protocolo.dose;
+                    calcDose.unidade_dose = "mg";
+                    break;
+                case "mg/Kg":
+                    calcDose.dose = protocolo.dose * Convert.ToDecimal(calculo.peso);
+                    calcDose.unidade_dose = "mg";
+                    break;
+                case "mg/m² 12/12h":
+                    calcDose.dose = calculo.BSA * protocolo.dose;
+                    calcDose.unidade_dose = "mg 12/12h";
+                    break;
+                case "U":
+                    calcDose.dose = protocolo.dose;
+                    calcDose.unidade_dose = "U";
+                    break;
+                case "mcg":
+                    calcDose.dose = protocolo.dose;
+                    calcDose.unidade_dose = "mcg";
+                    break;
+                case "AUC":
+                    decimal paramtroSexo = pacienteOncologia.sexo.Equals("Feminino") ? 0.85m : 1.00m;
+                    calcDose.dose = protocolo.dose * ((paramtroSexo * ((140 - CalcularIdade(pacienteOncologia.data_nascimento)) / prescricao.creatinina) * (Convert.ToDecimal(calculo.peso) / 72m)) + 25);
+                    calcDose.unidade_dose = "mg";
+                    break;
+                default:
+                    calcDose.dose = 0;
+                    calcDose.unidade_dose = "mg";
+                    break;
             }
 
-            else if (protocolo.unidadeDose.Equals("AUC "))
-            {
-                Decimal paramtroSexo = 1.00m;
-                if (pacienteOncologia.sexo.Equals("Feminino"))
-                    paramtroSexo = 0.85m;
-                calcDose.dose = protocolo.dose*((paramtroSexo*((140 - CalcularIdade(pacienteOncologia.data_nascimento)) / (prescricao.creatinina))* (Convert.ToDecimal(calculo.peso)/Convert.ToDecimal(72))) + 25);
-                calcDose.unidade_dose = "mg";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = prescricao.cod_Prescricao;
-            }
-            else
-            {
-                calcDose.dose = 0;
-                calcDose.unidade_dose = "mg";
-                calcDose.dataCadastro = datacadastro;
-                calcDose.cod_Protocolo = protocolo.cod_DescricaoProtocolo;
-                calcDose.cod_Id_Protocolo = protocolo.Id;
-                calcDose.cod_Prescricao = cod_Prescricao;
-
-            }
-            calcDose.nome_Usuario = nome_Usuario;
             calcDoses.Add(calcDose);
         }
+
         return calcDoses;
     }
 

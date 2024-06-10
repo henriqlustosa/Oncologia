@@ -115,7 +115,7 @@
         </Paragraphs>
         <rd:DefaultName>cod_ficha</rd:DefaultName>
         <Top>3.57642cm</Top>
-        <Left>8.43223cm</Left>
+        <Left>0.23116cm</Left>
         <Height>0.5cm</Height>
         <Width>2.56559cm</Width>
         <ZIndex>3</ZIndex>
@@ -144,7 +144,7 @@
         </Paragraphs>
         <rd:DefaultName>dt_rh_be</rd:DefaultName>
         <Top>3.57642cm</Top>
-        <Left>10.99782cm</Left>
+        <Left>5.1606cm</Left>
         <Height>0.5cm</Height>
         <Width>6.16389cm</Width>
         <ZIndex>4</ZIndex>
@@ -176,10 +176,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>cns</rd:DefaultName>
-        <Top>3.57642cm</Top>
-        <Left>0.23116cm</Left>
+        <Top>2.78267cm</Top>
+        <Left>0.2929cm</Left>
         <Height>0.5cm</Height>
-        <Width>8.20107cm</Width>
+        <Width>16.86881cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -206,21 +206,21 @@
                   <CellContents>
                     <Rectangle Name="Rectangle2">
                       <ReportItems>
-                        <Textbox Name="desc_medicacao_pre_quimio">
+                        <Textbox Name="desc_medicacao1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!desc_medicacao_pre_quimio.Value</Value>
+                                  <Value>=Fields!desc_medicacao.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>desc_medicacao_pre_quimio</rd:DefaultName>
+                          <rd:DefaultName>desc_medicacao1</rd:DefaultName>
                           <Top>0.3175cm</Top>
                           <Height>0.6cm</Height>
                           <Width>3.01985cm</Width>
@@ -234,21 +234,21 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <Textbox Name="quantidade">
+                        <Textbox Name="dose_alterada">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!quantidade.Value</Value>
+                                  <Value>=Fields!dose_alterada.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>quantidade</rd:DefaultName>
+                          <rd:DefaultName>dose_alterada</rd:DefaultName>
                           <Top>0.3175cm</Top>
                           <Left>3.01985cm</Left>
                           <Height>0.6cm</Height>
@@ -264,21 +264,21 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <Textbox Name="unidadeQuantidade">
+                        <Textbox Name="unidade_dose">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!unidadeQuantidade.Value</Value>
+                                  <Value>=Fields!unidade_dose.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>unidadeQuantidade</rd:DefaultName>
+                          <rd:DefaultName>unidade_dose</rd:DefaultName>
                           <Top>0.3175cm</Top>
                           <Left>4.5029cm</Left>
                           <Height>0.6cm</Height>
@@ -768,83 +768,25 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <Textbox Name="dose">
+                        <Textbox Name="dose_alterada1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!dose.Value</Value>
+                                  <Value>=Fields!dose_alterada.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>dose</rd:DefaultName>
+                          <rd:DefaultName>dose_alterada1</rd:DefaultName>
                           <Left>3.05513cm</Left>
                           <Height>0.6cm</Height>
                           <Width>1.7332cm</Width>
                           <ZIndex>6</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <Textbox Name="unidadeDose2">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!unidade_dosagem.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>unidadeDose</rd:DefaultName>
-                          <Left>14.55951cm</Left>
-                          <Height>0.6cm</Height>
-                          <Width>1.51173cm</Width>
-                          <ZIndex>7</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <Textbox Name="dose2">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!dosagem.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>dose</rd:DefaultName>
-                          <Left>12.72048cm</Left>
-                          <Height>0.6cm</Height>
-                          <Width>1.7332cm</Width>
-                          <ZIndex>8</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -978,7 +920,7 @@
         <Top>6.07736cm</Top>
         <Left>9.85941cm</Left>
         <Height>0.5cm</Height>
-        <Width>2.47487cm</Width>
+        <Width>2.21439cm</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
@@ -1477,8 +1419,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>17.97875cm</Top>
-        <Left>0.2929cm</Left>
+        <Top>20.14833cm</Top>
+        <Left>0.18707cm</Left>
         <Height>0.6cm</Height>
         <Width>1.68861cm</Width>
         <ZIndex>28</ZIndex>
@@ -1509,8 +1451,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>idade</rd:DefaultName>
-        <Top>17.97875cm</Top>
-        <Left>1.98151cm</Left>
+        <Top>20.14833cm</Top>
+        <Left>1.87568cm</Left>
         <Height>0.6cm</Height>
         <Width>1.33124cm</Width>
         <ZIndex>29</ZIndex>
@@ -1541,8 +1483,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>idade</rd:DefaultName>
-        <Top>17.97875cm</Top>
-        <Left>3.94298cm</Left>
+        <Top>20.14833cm</Top>
+        <Left>3.83715cm</Left>
         <Height>0.6cm</Height>
         <Width>1.33124cm</Width>
         <ZIndex>30</ZIndex>
@@ -1571,11 +1513,57 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>17.97875cm</Top>
-        <Left>3.36616cm</Left>
+        <Top>20.14833cm</Top>
+        <Left>3.26033cm</Left>
         <Height>0.6cm</Height>
         <Width>0.57682cm</Width>
         <ZIndex>31</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox15">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!sigla_conselho.Value, "DataSet1")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value> : </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!nr_conselho.Value, "DataSet1")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>  - </Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!nome_profissional.Value, "DataSet1")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox15</rd:DefaultName>
+        <Top>19.07328cm</Top>
+        <Left>0.2929cm</Left>
+        <Height>0.6cm</Height>
+        <Width>16.8688cm</Width>
+        <ZIndex>32</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1612,7 +1600,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>da0d1b15-e24c-49d9-a280-447924307248</rd:DataSourceID>
+      <rd:DataSourceID>ddce176a-ade1-4351-933b-46fb47666287</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1656,10 +1644,6 @@
         </Field>
         <Field Name="data_inicio">
           <DataField>data_inicio</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="data_termino">
-          <DataField>data_termino</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="observacao">
@@ -1713,6 +1697,26 @@
         <Field Name="cod_protocolo">
           <DataField>cod_protocolo</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="creatinina">
+          <DataField>creatinina</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="cod_profissional">
+          <DataField>cod_profissional</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="nome_profissional">
+          <DataField>nome_profissional</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nr_conselho">
+          <DataField>nr_conselho</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="sigla_conselho">
+          <DataField>sigla_conselho</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -1798,6 +1802,10 @@
           <DataField>cod_Prescricao</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="dose_alterada">
+          <DataField>dose_alterada</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
@@ -1814,17 +1822,25 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="cod_CalculoDosagemPreQuimio">
+          <DataField>cod_CalculoDosagemPreQuimio</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="dose">
+          <DataField>dose</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="unidade_dose">
+          <DataField>unidade_dose</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cod_Prescricao">
+          <DataField>cod_Prescricao</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="Id">
           <DataField>Id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="desc_pre_quimio">
-          <DataField>desc_pre_quimio</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="desc_medicacao_pre_quimio">
-          <DataField>desc_medicacao_pre_quimio</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="desc_quimio">
           <DataField>desc_quimio</DataField>
@@ -1834,17 +1850,21 @@
           <DataField>desc_via_de_administracao</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="nome_Usuario">
-          <DataField>nome_Usuario</DataField>
+        <Field Name="desc_medicacao">
+          <DataField>desc_medicacao</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="quantidade">
-          <DataField>quantidade</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="unidadeQuantidade">
-          <DataField>unidadeQuantidade</DataField>
+        <Field Name="desc_pre_quimio">
+          <DataField>desc_pre_quimio</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="cod_PreQuimio">
+          <DataField>cod_PreQuimio</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="cod_Medicacao">
+          <DataField>cod_Medicacao</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="diluicao">
           <DataField>diluicao</DataField>
@@ -1854,30 +1874,38 @@
           <DataField>tempoDeInfusao</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="unidadeTempoDeInfusao">
-          <DataField>unidadeTempoDeInfusao</DataField>
+        <Field Name="dose_alterada">
+          <DataField>dose_alterada</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="porcentagemDiminuirDose">
+          <DataField>porcentagemDiminuirDose</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="status">
+          <DataField>status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nome_Usuario">
+          <DataField>nome_Usuario</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="dataCadastro">
           <DataField>dataCadastro</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="status">
-          <DataField>status</DataField>
+        <Field Name="unidadeTempoDeInfusao">
+          <DataField>unidadeTempoDeInfusao</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="cod_PreQuimio">
-          <DataField>cod_PreQuimio</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
         <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncoDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>Vw_RelatorioPreQuimio</rd:TableName>
+        <rd:TableName>Vw_RelatorioPreQuimioDosagem</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>Vw_RelatorioPreQuimioTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>Vw_RelatorioPreQuimioDosagemTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
     <DataSet Name="DataSet4">
@@ -1949,6 +1977,10 @@
         <Field Name="total_posicoes">
           <DataField>total_posicoes</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="data_atualizacao">
+          <DataField>data_atualizacao</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

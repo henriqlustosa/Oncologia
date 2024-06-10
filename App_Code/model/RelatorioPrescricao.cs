@@ -56,5 +56,6 @@ public class RelatorioPrescricao
 
     public int nr_conselho { get; set; }
 
+    public string sigla_conselho { get; set; }
 
 }

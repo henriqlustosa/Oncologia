@@ -144,7 +144,7 @@
                     <asp:BoundField DataField="desc_pre_quimio" HeaderText="PREQUIMIO" SortExpression="desc_pre_quimio"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
-                    <asp:BoundField DataField="desc_medicacao_pre_quimio" HeaderText="MEDICACAO PREQUIMIO" SortExpression="desc_medicacao_pre_quimio"
+                    <asp:BoundField DataField="desc_medicacao" HeaderText="MEDICACAO PREQUIMIO" SortExpression="desc_medicacao"
                         ItemStyle-CssClass="hidden-md" HeaderStyle-CssClass="hidden-md" />
 
                     <asp:BoundField DataField="desc_quimio" HeaderText="QUIMIO" SortExpression="desc_quimio"

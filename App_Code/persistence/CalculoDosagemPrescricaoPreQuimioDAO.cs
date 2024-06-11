@@ -106,7 +106,7 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
         }
     }
 
-    public static void DeletarCalculoDosagemPrescricaoPreQuimio(int cod_Prescricao, DateTime data_cadastro)
+    public static void DeletarCalculoDosagemPrescricaoPreQuimioTodos(int cod_Prescricao, DateTime data_cadastro)
     {
         string mensagem = "";
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
@@ -152,9 +152,51 @@ public class CalculoDosagemPrescricaoPreQuimioDAO
         }
     }
 
-   
+    public static void DeletarCalculoDosagemPrescricaoPreQuimioIndividual(int cod_CalculoDosagemPreQuimio, DateTime dataCadastro)
+    {
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            try
+            {
+                SqlCommand cmm = new SqlCommand();
+                cmm.Connection = cnn;
+                cnn.Open();
+                SqlTransaction mt = cnn.BeginTransaction();
+                cmm.Transaction = mt;
+                cmm.CommandText = "UPDATE [dbo].[Calculo_Dosagem_Prescricao_PreQuimio] SET" +
 
-    
+
+      " [status] = @status " +
+
+      ",[data_atualizacao] = @data_atualizacao" +
+ " WHERE cod_CalculoDosagemPreQuimio = @cod_CalculoDosagemPreQuimio and status = 'A'";
+
+
+
+
+
+
+                cmm.Parameters.Add("@cod_CalculoDosagemPreQuimio", SqlDbType.Int).Value = cod_CalculoDosagemPreQuimio;
+                cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = dataCadastro;
+                cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "I";
+
+
+
+
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+                mensagem = "Cadastro com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                mensagem = error;
+            }
+        }
+    }
 
     public static void GravarCalculoDosagemPrescricaoPreQuimio(List<CalculoDosagemPrescricaoPreQuimio> calculos)
     {

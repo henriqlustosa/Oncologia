@@ -30,7 +30,8 @@
         }
 
         .button-wrapper {
-            flex: 1 0 33.33%; /* Three buttons per row */
+            /*flex: 1 0 33.33%;*/ /* Three buttons per row */
+            flex: 1 0 25%; /* Four buttons per row */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -62,6 +63,12 @@
         .btn-success.imprimir {
             background-color: #28a745;
             border-color: #28a745;
+            color: white;
+        }
+
+        .btn-warning.visualizar-agendamento {
+            background-color: #023020;
+            border-color: #023020;
             color: white;
         }
 
@@ -639,6 +646,9 @@
                     <div class="button-wrapper">
                         <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success imprimir" OnClientClick="openConfirmationModal2(); return false;" />
                     </div>
+                    <div class="button-wrapper">
+                        <asp:Button ID="btnAgendar" runat="server" Text="Visualizar Agendamento" class="btn btn-warning visualizar-agendamento" data-toggle="modal" OnClick="btnAgendar_Click" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -738,7 +748,84 @@
                     OnClick="btnGravar_Click"  />
             </div>--%>
 
+        <!-- Modal -->
+        <div class="modal fade one" id="myModalAgendamento">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Informações dos Agendamento</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Agenda</h4>
+                        </div>
+                        <asp:GridView ID="GridViewAgendamento" runat="server" AutoGenerateColumns="False" DataKeyNames="cod_agenda" OnRowCommand="gridViewAgendamento_RowCommand"
+                            CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
+                            Width="100%">
 
+
+                            <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
+                            <Columns>
+                                <asp:BoundField DataField="posicao" HeaderText="Posicao" SortExpression="posicao"
+                                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+
+
+
+                                <asp:BoundField DataField="data_agendada" HeaderText="Data Agendada" SortExpression="data_agendada"
+                                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+
+
+
+
+                                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+                                    <ItemTemplate>
+                                        <div class="form-inline">
+                                            <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                CssClass="btn btn-info" runat="server" CausesValidation="false">
+                                          <i class="fa fa-pencil-square-o" title="Editar"></i>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+
+                                    <ItemTemplate>
+
+                                        <div class="form-inline">
+                                            <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                                                CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
+                                          <i class="fa fa-trash" title="Excluir"></i>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                            </Columns>
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <EditRowStyle BackColor="#999999" />
+                        </asp:GridView>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+
+
+                        <asp:Button ID="Button2" runat="server" Text="Confirmar" CssClass="btn btn-success imprimir"
+                            data-dismiss="modal" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -906,6 +993,74 @@
             </div>
         </div>
 
+        <%--   <div class="container">--%>
+        <!-- Modal -->
+        <div class="modal fade two" id="myModalEdicaoAgenda" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Atualização da Agenda</h4>
+                    </div>
+
+
+
+                    <div class="modal-body">
+
+                        <fieldset class="scheduler-border">
+                            <legend id="lbPaciente" class="scheduler-border" runat="server"></legend>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-12">
+                                    <label for="txbCodigoAgenda" runat="server">
+                                        Codigo:
+                                    </label>
+                                    <asp:TextBox ID="txbCodigoAgenda" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-4 col-sm-12">
+                                            <label for="txbDataAgenda">
+                                                Data Agenda:
+                                            </label>
+                                            <asp:TextBox ID="txbDataAgenda" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-12">
+                                            <label for="txbDataAlterada">
+                                                Data Atualizada:
+                                            </label>
+                                            <asp:TextBox ID="txbDataAlterada" runat="server" class="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                <div class="col-md-6 col-sm-4 col-xs-8 ">
+                                    <asp:Button ID="Button3" runat="server" Text="Gravar" class="btn btn-primary gravar"
+                                        OnClick="btnGravarAgenda_Click" data-toggle="modal" />
+                                </div>
+
+                                <div class="col-md-6 col-sm-4 col-xs-8 ">
+                                    <asp:Button ID="Button4" runat="server" Text="Cancelar" class="btn btn-success"
+                                        OnClick="btnCancelarAgenda_Click" data-toggle="modal" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
         <%--   <div class="container">--%>
         <!-- Modal -->
         <div class="modal fade two" id="myModalDosagem" role="dialog">
@@ -1448,7 +1603,20 @@
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker();
 
+                $("#<%=txbDataAlterada.ClientID%>").datepicker({
+                    minDate: 0,
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                });
+                $("#<%=txbDataAlterada.ClientID%>").mask("99/99/9999");
 
+                $("#<%=txbDataAlterada.ClientID%>").datepicker();
 
                 $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
 

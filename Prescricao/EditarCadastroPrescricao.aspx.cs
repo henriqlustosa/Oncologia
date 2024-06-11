@@ -201,7 +201,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         CID_10_DAO.DeletarCidsPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao,dataCadastro);
 
-        AgendaDAO.DeletarAgenda(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        AgendaDAO.DeletarAgendaTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_atualizacao);
 
 
@@ -214,7 +214,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         List<CalculoDosagemPrescricao>  calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
 
 
-        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricaoTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
 
 
@@ -230,7 +230,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
 
 
-        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimio(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
         //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
 

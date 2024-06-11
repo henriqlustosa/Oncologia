@@ -61,6 +61,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             btnAtualizar.Visible = false;
             btnVisualizarMedicamento.Visible = false;
             btnImprimir.Visible = false;
+            btnAgendar.Visible = false;
         }
     }
     [WebMethod]
@@ -178,7 +179,11 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         btnAtualizar.Visible = true;
         btnVisualizarMedicamento.Visible = true;
         btnImprimir.Visible = true;
-
+        btnAgendar.Visible = true;
+        for (int i = 0; i < cblViasDeAcesso.Items.Count; i++)
+        {
+            cblViasDeAcesso.Items[i].Attributes.Add("onclick", "MutExChkList(this)");
+        }
 
         //ClearInputs(Page.Controls);// limpa os textbox
         //ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
@@ -192,6 +197,14 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         GridViewProtocolo.DataSource = RelatorioProtocoloDosagemDAO.MostrarMedicamentosParaEdicao(cod_Prescricao);
 
         GridViewProtocolo.DataBind();
+    }
+
+    private void MostrarTodosAgendamentos(int cod_Prescricao)
+    {
+        GridViewAgendamento.DataSource = AgendaDAO.BuscarAgendasPorCodPrescricao(cod_Prescricao);
+        GridViewAgendamento.DataBind();
+
+     
     }
 
     public List<CID_10> HandleCID()
@@ -228,7 +241,39 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
     }
-    protected void gridViewPreQuimio_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void gridViewAgendamento_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        int index = Convert.ToInt32(e.CommandArgument);
+        int idAgenda = Convert.ToInt32(GridViewAgendamento.DataKeys[index].Value.ToString()); //id da consulta
+        DateTime dataCadastro = DateTime.Now;
+
+        if (e.CommandName.Equals("editRecord"))
+        {
+
+            
+            GridViewRow row = GridViewAgendamento.Rows[index];
+
+            txbCodigoAgenda.Text = idAgenda.ToString();
+            lbPaciente.InnerText = HttpUtility.HtmlDecode(PacienteDAO.BuscarPacientePorCodPrescricao(cod_Prescricao).nome_paciente);
+            Agenda dadosAgenda = AgendaDAO.ApresentarDadosAgendamento(idAgenda);
+            txbDataAgenda.Text = dadosAgenda.data_agendada.ToString();
+            // Initialize the dropdown list with a specific value
+          
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalEdicaoAgenda');", true);
+        }
+        else if (e.CommandName.Equals("deleteRecord"))
+        {
+
+
+            AgendaDAO.DeletarAgendaIndividual(idAgenda, dataCadastro);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
+
+            MostrarTodosAgendamentos(cod_Prescricao);
+
+        }
+    }
+        protected void gridViewPreQuimio_RowCommand(object sender, GridViewCommandEventArgs e)
     {
 
         int index = Convert.ToInt32(e.CommandArgument);
@@ -257,7 +302,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         {
 
 
-            CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimio(idCalculoDosagemPreQuimio, dataCadastro);
+            CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioIndividual(idCalculoDosagemPreQuimio, dataCadastro);
           
             ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
 
@@ -364,7 +409,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         CID_10_DAO.DeletarCidsPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao, dataCadastro);
 
-        AgendaDAO.DeletarAgenda(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        AgendaDAO.DeletarAgendaTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_atualizacao);
 
 
@@ -377,7 +422,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
 
 
-        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricaoTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
 
         CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricaoPrequimio = new CalculoDosagemPrescricaoPreQuimio();
@@ -391,7 +436,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
 
-        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimio(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
 
 
@@ -409,14 +454,29 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
 
+    protected void btnGravarAgenda_Click(object sender, EventArgs e)
+    {
+        DateTime dataCadastro = DateTime.Now;
+        int cod_Codigo_Agenda = Convert.ToInt32(txbCodigoAgenda.Text);
+        string usuario = User.Identity.Name.ToUpper();
+        AgendaDAO.AtualizarAgenda(cod_Codigo_Agenda, dataCadastro, usuario,  DateTime.Parse(txbDataAlterada.Text.ToString()));
+
+       
+       
+
+        MostrarTodosAgendamentos(cod_Prescricao);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
+    }
 
 
 
 
 
 
-
-
+    protected void btnCancelarAgenda_Click(object sender, EventArgs e)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
+    }
 
 
     protected void btnGravarDosagem_Click(object sender, EventArgs e)
@@ -472,7 +532,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
 
-            CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(idCalculoDosagemProtocolo, dataCadastro);
+            CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricaoIndividual(idCalculoDosagemProtocolo, dataCadastro);
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
             MostrarTodosMedicamentos(cod_Prescricao);
@@ -484,5 +544,15 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
 
+    }
+
+   
+
+    protected void btnAgendar_Click(object sender, EventArgs e)
+    {
+        MostrarTodosAgendamentos(cod_Prescricao);
+
+
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
     }
 }

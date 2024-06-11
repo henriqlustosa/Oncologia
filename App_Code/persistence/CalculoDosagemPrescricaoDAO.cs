@@ -57,7 +57,7 @@ public class CalculoDosagemPrescricaoDAO
             return calc;
         }
     }
-    public static void DeletarCalculoDosagemPrescricao(int cod_prescricao, DateTime data_cadastro)
+    public static void DeletarCalculoDosagemPrescricaoTodos(int cod_prescricao, DateTime data_cadastro)
     {
         string mensagem = "";
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
@@ -224,4 +224,49 @@ public class CalculoDosagemPrescricaoDAO
      
     }
 
+    public static void DeletarCalculoDosagemPrescricaoIndividual(int cod_CalculoDosagem, DateTime dataCadastro)
+    {
+        string mensagem = "";
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            try
+            {
+                SqlCommand cmm = new SqlCommand();
+                cmm.Connection = cnn;
+                cnn.Open();
+                SqlTransaction mt = cnn.BeginTransaction();
+                cmm.Transaction = mt;
+                cmm.CommandText = "UPDATE [dbo].[Calculo_Dosagem_Prescricao] SET" +
+
+
+      " [status] = @status " +
+
+      ",[data_atualizacao] = @data_atualizacao" +
+ " WHERE cod_CalculoDosagem = @cod_CalculoDosagem and status = 'A'";
+
+
+
+
+
+
+                cmm.Parameters.Add("@cod_CalculoDosagem", SqlDbType.Int).Value = cod_CalculoDosagem;
+                cmm.Parameters.Add("@data_atualizacao", SqlDbType.DateTime).Value = dataCadastro;
+                cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "I";
+
+
+
+
+                cmm.ExecuteNonQuery();
+                mt.Commit();
+                mt.Dispose();
+                cnn.Close();
+                mensagem = "Cadastro com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+                mensagem = error;
+            }
+        }
+    }
 }

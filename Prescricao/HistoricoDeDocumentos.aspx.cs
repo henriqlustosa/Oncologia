@@ -59,8 +59,9 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
             CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataAtualizacao);
 
             CID_10_DAO.DeletarCidsPorPrescricao(cod_Prescricao, dataAtualizacao);
-            AgendaDAO.DeletarAgenda(cod_Prescricao, dataAtualizacao);
-            CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricao(cod_Prescricao, dataAtualizacao);
+            AgendaDAO.DeletarAgendaTodos(cod_Prescricao, dataAtualizacao);
+            CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricaoTodos(cod_Prescricao, dataAtualizacao);
+            CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioTodos(cod_Prescricao, dataAtualizacao);
             GridViewRow row = GridView1.Rows[index];
             
             PrescricaoDAO.DeletarPrescricao(cod_Prescricao, dataAtualizacao);

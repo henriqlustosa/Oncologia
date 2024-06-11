@@ -291,6 +291,8 @@ public class PrescricaoDAO
       ",[cod_Prequimio] = @cod_Prequimio " +
       ",[creatinina] = @creatinina " +
       ",[nome_Usuario_Atualizacao] = @nome_Usuario_Atualizacao " +
+
+      ",[cod_profissional] = @cod_profissional " +
 " WHERE cod_Prescricao = @cod_Prescricao and status = 'A'";
 
 
@@ -319,7 +321,7 @@ public class PrescricaoDAO
                 cmm.Parameters.Add("@cod_Prequimio", SqlDbType.Int).Value = prescricao.cod_Prequimio;
                 cmm.Parameters.Add("@creatinina", SqlDbType.Decimal).Value = prescricao.creatinina;
                 cmm.Parameters.Add("@nome_Usuario_Atualizacao", SqlDbType.VarChar).Value = prescricao.nome_Usuario_Atualizacao;
-
+                cmm.Parameters.Add("@cod_profissional", SqlDbType.Int).Value = prescricao.cod_profissional;
 
                 cmm.ExecuteNonQuery();
                 mt.Commit();
@@ -392,7 +394,7 @@ public class PrescricaoDAO
         }
     }
 
-    public static Prescricao HandlePrescricaoEdicao(int cod_prescricao, int cod_Paciente, int cod_Finalidade, int cod_Vias_De_Acesso, int cod_Protocolos, int cod_Calculo, int ciclos_provaveis, int intervalo_dias, DateTime data_inicio, decimal creatinina, string observacao, DateTime data_atualizacao, string nome_Usuario_Atualizacao)
+    public static Prescricao HandlePrescricaoEdicao(int cod_prescricao, int cod_Paciente, int cod_Finalidade, int cod_Vias_De_Acesso, int cod_Protocolos, int cod_Calculo, int ciclos_provaveis, int intervalo_dias, DateTime data_inicio, decimal creatinina, string observacao, DateTime data_atualizacao, string nome_Usuario_Atualizacao, int cod_profissional)
     {
         Prescricao prescricao = new Prescricao
         {
@@ -408,7 +410,8 @@ public class PrescricaoDAO
             creatinina = creatinina,
             observacao = observacao,
             data_atualizacao = data_atualizacao,
-            nome_Usuario_Atualizacao = nome_Usuario_Atualizacao
+            nome_Usuario_Atualizacao = nome_Usuario_Atualizacao,
+            cod_profissional = cod_profissional
 
         };
         prescricao.cod_Prequimio = BuscarPrequimioPorCod_Protocolo(cod_Protocolos);

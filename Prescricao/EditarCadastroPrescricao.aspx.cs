@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -141,6 +142,19 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
         int _id = Convert.ToInt32(Request.QueryString["idPrescricao"]);
 
         string usuario = User.Identity.Name.ToUpper();
+        int cod_profissional = 0;
+        MembershipUser currentUser = Membership.GetUser();
+        if (currentUser != null)
+        {
+            object userId = currentUser.ProviderUserKey;
+            cod_profissional = ProfissionalDAO.GetProfissionalByUserId(userId.ToString()).cod_profissional;
+        }
+        else
+        {
+            Response.Write("Failed to retrieve user information.");
+        }
+
+       
 
 
 
@@ -177,7 +191,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
 
 
-        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(_id,cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario);
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(_id,cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario,cod_profissional);
 
 
    

@@ -18,78 +18,65 @@ public class AgendaDAO
         //
     }
 
-    public static void GravarAgenda(DateTime data_inicio, int cod_Prescricao, int ciclos_provaveis, int intervalo_dias, DateTime data_cadastro)
+    public static void GravarAgenda(DateTime dataInicio, int codPrescricao, int ciclosProvaveis, int intervaloDias, DateTime dataCadastro)
     {
         string mensagem = "";
-
-
         int posicao = 1;
 
-
-        for (int i = 0; i < ciclos_provaveis; i++)
+        for (int i = 0; i < ciclosProvaveis; i++)
         {
-
-
-
-
-          
-
-
-
             using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
             {
                 try
                 {
-                    SqlCommand cmm = new SqlCommand();
-                    cmm.Connection = cnn;
                     cnn.Open();
-                    SqlTransaction mt = cnn.BeginTransaction();
-                    cmm.Transaction = mt;
-                    cmm.CommandText = "INSERT INTO [dbo].[Agenda]" +
-               "([cod_Prescricao]" +
-               ", [data_agendada]" +
-               ", [data_cadastro]" +
-                ", [status]" +
-                 ", [posicao]" +
-               ", [total_posicoes])" +
+                    using (SqlTransaction transaction = cnn.BeginTransaction())
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = cnn;
+                        cmd.Transaction = transaction;
 
-         "VALUES" +
-               "(@cod_Prescricao" +
-               ",@data_agendada" +
-               ",@data_cadastro" +
-               ",@status" +
-                ",@posicao" +
-               ",@total_posicoes)";
-                    cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = cod_Prescricao;
-                    cmm.Parameters.Add("@data_agendada", SqlDbType.DateTime).Value = data_inicio;
-                    cmm.Parameters.Add("@data_cadastro", SqlDbType.DateTime).Value = data_cadastro;
-                    cmm.Parameters.Add("@status", SqlDbType.VarChar).Value = "A";
-                    cmm.Parameters.Add("@posicao", SqlDbType.Int).Value = posicao;
-                    cmm.Parameters.Add("@total_posicoes", SqlDbType.Int).Value = ciclos_provaveis;
+                        cmd.CommandText = @"
+                        INSERT INTO [dbo].[Agenda]
+                        (
+                            [cod_Prescricao], 
+                            [data_agendada], 
+                            [data_cadastro], 
+                            [status], 
+                            [posicao], 
+                            [total_posicoes]
+                        )
+                        VALUES
+                        (
+                            @codPrescricao, 
+                            @dataAgendada, 
+                            @dataCadastro, 
+                            @status, 
+                            @posicao, 
+                            @totalPosicoes
+                        )";
 
+                        cmd.Parameters.AddWithValue("@codPrescricao", codPrescricao);
+                        cmd.Parameters.AddWithValue("@dataAgendada", dataInicio);
+                        cmd.Parameters.AddWithValue("@dataCadastro", dataCadastro);
+                        cmd.Parameters.AddWithValue("@status", "A");
+                        cmd.Parameters.AddWithValue("@posicao", posicao);
+                        cmd.Parameters.AddWithValue("@totalPosicoes", ciclosProvaveis);
 
+                        cmd.ExecuteNonQuery();
+                        transaction.Commit();
+                    }
 
-
-
-
-
-
-                    cmm.ExecuteNonQuery();
-                    mt.Commit();
-                    mt.Dispose();
-                    cnn.Close();
                     mensagem = "Cadastro com sucesso!";
                 }
                 catch (Exception ex)
                 {
-                    string error = ex.Message;
-                    mensagem = error;
+                    mensagem = ex.Message;
                 }
             }
-            posicao += 1;
-            data_inicio = data_inicio.AddDays(intervalo_dias );
 
-       
+            posicao++;
+            dataInicio = dataInicio.AddDays(intervaloDias);
         }
     }
 

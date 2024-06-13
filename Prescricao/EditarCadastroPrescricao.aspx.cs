@@ -25,7 +25,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
                 txbObservacao.Text = prescricao.observacao.ToString();
 
 
-                PacienteOncologia paciente = PacienteDAO.BuscarPacientePorCodPrescricao(prescricao.cod_Paciente);
+                PacienteOncologia paciente = PacienteDAO.BuscarPacientePorCodPaciente(prescricao.cod_Paciente);
 
                 txbNomePaciente.Text = paciente.nome_paciente.ToString();
                 txbProntuario.Text = paciente.cod_Paciente.ToString();

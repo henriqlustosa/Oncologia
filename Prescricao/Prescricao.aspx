@@ -66,7 +66,7 @@
             color: white;
         }
 
-        .btn-warning.visualizar-agendamento {
+        .btn-secondary.visualizar-agendamento {
             background-color: #023020;
             border-color: #023020;
             color: white;
@@ -88,15 +88,20 @@
             }
         }
 
+
+
         .modal-dialog-custom {
             max-width: 50%; /* Adjust width as needed */
         }
+
+
 
         .modal-body-custom {
             height: 500px; /* Adjust height as needed */
             width: 500px;
             overflow-y: auto; /* Enable scrolling if content overflows */
         }
+
         /* Container for the modal that covers the entire viewport 	*/
         .custom-green-button {
             background-color: green;
@@ -145,6 +150,8 @@
             HotPink border*/
         }
 
+
+
         .modal-content-custom {
             width: 700px;
             border-radius: 15px;
@@ -163,10 +170,16 @@
             border-bottom: 1px solid #e9ecef;
         }
 
+        #myModalAgendamento .modal-body {
+            max-height: 1000px; /* Altura específica para o modal customizado */
+            width: 500px; /* Largura específica para o modal customizado */
+        }
+
         .modal-body {
             max-height: 1000px;
             overflow-y: auto;
         }
+
 
         .gridview-custom th, .gridview-custom td {
             padding: 8px;
@@ -232,7 +245,7 @@
     </style>
 
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
-        <Scripts>
+        <scripts>
 
 
 
@@ -240,7 +253,7 @@
 
 
 
-        </Scripts>
+        </scripts>
     </asp:ScriptManagerProxy>
 
 
@@ -644,11 +657,12 @@
                         <asp:Button ID="btnVisualizarMedicamento" runat="server" Text="Visualizar Medicamento" class="btn btn-info visualizar-medicamento" OnClick="btnVisualizarMedicamento_Click" data-toggle="modal" />
                     </div>
                     <div class="button-wrapper">
-                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success imprimir" OnClientClick="openConfirmationModal2(); return false;" />
+                        <asp:Button ID="btnAgendar" runat="server" Text="Visualizar Agendamento" class="btn btn-secondary visualizar-agendamento" data-toggle="modal" OnClick="btnAgendar_Click" />
                     </div>
                     <div class="button-wrapper">
-                        <asp:Button ID="btnAgendar" runat="server" Text="Visualizar Agendamento" class="btn btn-warning visualizar-agendamento" data-toggle="modal" OnClick="btnAgendar_Click" />
+                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success imprimir" OnClientClick="openConfirmationModal2(); return false;" />
                     </div>
+
                 </div>
             </div>
         </div>
@@ -749,7 +763,7 @@
             </div>--%>
 
         <!-- Modal -->
-        <div class="modal fade one" id="myModalAgendamento">
+        <div class="modal fade three" id="myModalAgendamento">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -765,8 +779,8 @@
                             Width="100%">
 
 
-                            <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
-                            <Columns>
+                            <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                            <columns>
                                 <asp:BoundField DataField="posicao" HeaderText="Posicao" SortExpression="posicao"
                                     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
@@ -775,7 +789,8 @@
 
 
                                 <asp:BoundField DataField="data_agendada" HeaderText="Data Agendada" SortExpression="data_agendada"
-                                    ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+                                    DataFormatString="{0:dd/MM/yyyy}" ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
 
 
 
@@ -783,35 +798,35 @@
 
 
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                 CssClass="btn btn-info" runat="server" CausesValidation="false">
-                                          <i class="fa fa-pencil-square-o" title="Editar"></i>
+                                                <i class="fa fa-pencil-square-o" title="Editar"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </ItemTemplate>
+                                    </itemtemplate>
 
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
-                                    <ItemTemplate>
+                                    <itemtemplate>
 
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                 CssClass="btn btn-danger" runat="server" OnClientClick="return confirmation();" CausesValidation="false">
-                                          <i class="fa fa-trash" title="Excluir"></i>
+                                                <i class="fa fa-trash" title="Excluir"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </ItemTemplate>
+                                    </itemtemplate>
                                 </asp:TemplateField>
 
-                            </Columns>
-                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                            <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
-                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <EditRowStyle BackColor="#999999" />
+                            </columns>
+                            <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                            <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                            <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <editrowstyle backcolor="#999999" />
                         </asp:GridView>
 
 
@@ -847,19 +862,19 @@
                             Width="100%">
 
 
-                            <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
-                            <Columns>
+                            <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                            <columns>
                                 <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
                                     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
 
                                 <asp:TemplateField HeaderText="Dosagem" SortExpression="quantidade">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <%# Eval("dose_alterada") %> <%# Eval("unidadeQuantidade") %>
-                                    </ItemTemplate>
-                                    <ItemStyle CssClass="hidden-md" />
-                                    <HeaderStyle CssClass="hidden-md" />
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
                                 </asp:TemplateField>
 
                                 <asp:BoundField DataField="desc_via_de_administracao" HeaderText="Via de Administração" SortExpression="desc_via_de_administracao"
@@ -874,26 +889,26 @@
 
 
                                 <asp:TemplateField HeaderText="Infusão" SortExpression="tempoDeInfusao">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                    </ItemTemplate>
-                                    <ItemStyle CssClass="hidden-md" />
-                                    <HeaderStyle CssClass="hidden-md" />
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                 CssClass="btn btn-info" runat="server" CausesValidation="false">
                                                 <i class="fa fa-pencil-square-o" title="Editar"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </ItemTemplate>
+                                    </itemtemplate>
 
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
-                                    <ItemTemplate>
+                                    <itemtemplate>
 
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
@@ -901,15 +916,15 @@
                                                 <i class="fa fa-trash" title="Excluir"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </ItemTemplate>
+                                    </itemtemplate>
                                 </asp:TemplateField>
 
-                            </Columns>
-                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                            <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
-                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <EditRowStyle BackColor="#999999" />
+                            </columns>
+                            <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                            <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                            <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <editrowstyle backcolor="#999999" />
                         </asp:GridView>
                         <div class="modal-header">
                             <h4 class="modal-title">Protocolo</h4>
@@ -918,18 +933,18 @@
                             CellPadding="4" ForeColor="#333333" GridLines="Horizontal" BorderColor="#e0ddd1"
                             Width="100%">
 
-                            <RowStyle BackColor="#f7f6f3" ForeColor="#333333" />
-                            <Columns>
+                            <rowstyle backcolor="#f7f6f3" forecolor="#333333" />
+                            <columns>
                                 <asp:BoundField DataField="desc_medicacao" HeaderText="Medicação" SortExpression="desc_medicacao"
                                     ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
 
 
                                 <asp:TemplateField HeaderText="Dosagem" SortExpression="dosagem">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <%# Eval("dose_alterada") %> <%# Eval("unidade_dosagem") %>
-                                    </ItemTemplate>
-                                    <ItemStyle CssClass="hidden-md" />
-                                    <HeaderStyle CssClass="hidden-md" />
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
                                 </asp:TemplateField>
 
 
@@ -944,26 +959,26 @@
 
 
                                 <asp:TemplateField HeaderText="Infusao" SortExpression="tempoDeInfusao">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <%# Eval("tempoDeInfusao") %> <%# Eval("unidadeTempoDeInfusao") %>
-                                    </ItemTemplate>
-                                    <ItemStyle CssClass="hidden-md" />
-                                    <HeaderStyle CssClass="hidden-md" />
+                                    </itemtemplate>
+                                    <itemstyle cssclass="hidden-md" />
+                                    <headerstyle cssclass="hidden-md" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
-                                    <ItemTemplate>
+                                    <itemtemplate>
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkEdit" CommandName="editRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
                                                 CssClass="btn btn-info" runat="server" CausesValidation="false">
                                                 <i class="fa fa-pencil-square-o" title="Editar"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </ItemTemplate>
+                                    </itemtemplate>
 
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
 
-                                    <ItemTemplate>
+                                    <itemtemplate>
 
                                         <div class="form-inline">
                                             <asp:LinkButton ID="gvlnkDelete" CommandName="deleteRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
@@ -971,15 +986,15 @@
                                                 <i class="fa fa-trash" title="Excluir"></i>
                                             </asp:LinkButton>
                                         </div>
-                                    </ItemTemplate>
+                                    </itemtemplate>
                                 </asp:TemplateField>
 
-                            </Columns>
-                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                            <SelectedRowStyle BackColor="#ffffff" Font-Bold="True" ForeColor="#333333" />
-                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                            <EditRowStyle BackColor="#999999" />
+                            </columns>
+                            <footerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <pagerstyle backcolor="#284775" forecolor="White" horizontalalign="Center" />
+                            <selectedrowstyle backcolor="#ffffff" font-bold="True" forecolor="#333333" />
+                            <headerstyle backcolor="#5D7B9D" font-bold="True" forecolor="White" />
+                            <editrowstyle backcolor="#999999" />
                         </asp:GridView>
 
                     </div>
@@ -1011,7 +1026,7 @@
                             <legend id="lbPaciente" class="scheduler-border" runat="server"></legend>
                             <div class="row">
                                 <div class="col-md-3 col-sm-12">
-                                    <label for="txbCodigoAgenda" runat="server">
+                                    <label id="lbCodigoAgenda" for="txbCodigoAgenda" runat="server">
                                         Codigo:
                                     </label>
                                     <asp:TextBox ID="txbCodigoAgenda" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
@@ -1019,14 +1034,14 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                     <div class="row">
 
-                                        <div class="col-md-4 col-sm-12">
+                                        <div class="col-md-6 col-sm-12">
                                             <label for="txbDataAgenda">
                                                 Data Agenda:
                                             </label>
                                             <asp:TextBox ID="txbDataAgenda" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
                                         </div>
 
-                                        <div class="col-md-4 col-sm-12">
+                                        <div class="col-md-6 col-sm-12">
                                             <label for="txbDataAlterada">
                                                 Data Atualizada:
                                             </label>
@@ -1767,6 +1782,14 @@
                     }
                 }
             }
+            document.addEventListener('DOMContentLoaded', function () {
+                var checkBoxList = document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]');
+                checkBoxList.forEach(function (chk) {
+                    chk.addEventListener('click', function () {
+                        MutExChkList(this);
+                    });
+                });
+            });
         </script>
 
         <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>

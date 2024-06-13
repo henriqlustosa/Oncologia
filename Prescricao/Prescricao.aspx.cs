@@ -256,9 +256,11 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             txbCodigoAgenda.Text = idAgenda.ToString();
             lbPaciente.InnerText = HttpUtility.HtmlDecode(PacienteDAO.BuscarPacientePorCodPrescricao(cod_Prescricao).nome_paciente);
             Agenda dadosAgenda = AgendaDAO.ApresentarDadosAgendamento(idAgenda);
-            txbDataAgenda.Text = dadosAgenda.data_agendada.ToString();
+            txbDataAgenda.Text = dadosAgenda.data_agendada.ToString("dd/MM/yyyy");
             // Initialize the dropdown list with a specific value
-          
+            txbCodigoAgenda.Visible = false;
+            lbCodigoAgenda.Visible = false;
+            txbDataAlterada.Text = "";
             ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalEdicaoAgenda');", true);
         }
         else if (e.CommandName.Equals("deleteRecord"))
@@ -290,6 +292,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             lbMedicacao.InnerText = HttpUtility.HtmlDecode(row.Cells[0].Text);
             CalculoDosagemPrescricaoPreQuimio dados = CalculoDosagemPrescricaoPreQuimioDAO.ApresentarDadosCalculoDosagemPreQuimio(idCalculoDosagemPreQuimio);
             txbDoseProtocolo.Text = dados.dose.ToString();
+            txbCodigo.Visible = false;
+            lbCodigo.Visible = false;
             // Initialize the dropdown list with a specific value
             string initialPercentage = dados.porcentagemDiminuirDose.ToString(); // Example value 
             ListItem selectedItem = ddlPercentagem.Items.FindByValue(initialPercentage);

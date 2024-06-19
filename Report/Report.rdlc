@@ -759,7 +759,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!unidadeDose.Value</Value>
+                                  <Value>=Fields!unidade_dosagem.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -814,7 +814,6 @@
                           <ReportItems>
                             <Rectangle Name="Rectangle8">
                               <KeepTogether>true</KeepTogether>
-                              <Top>0cm</Top>
                               <Height>0.51562cm</Height>
                               <Width>0.70935cm</Width>
                               <Style>

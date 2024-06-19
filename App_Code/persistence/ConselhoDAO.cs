@@ -22,7 +22,7 @@ public class ConselhoDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [cod_conselho], [sigla_conselho], [descricao_conselho] FROM [dbo].[conselho]";
+            cmm.CommandText = "SELECT [cod_conselho], [sigla_conselho], [descricao_conselho] FROM [dbo].[conselho] where cod_conselho = " + _cod_conselho;
             try
             {
                 cnn.Open();
@@ -42,5 +42,40 @@ public class ConselhoDAO
             }
         }
         return conselho;
+    }
+
+    public static List<Conselho> ListaConselho()
+    {
+        var lista = new List<Conselho>();
+
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            SqlCommand cmm = cnn.CreateCommand();
+
+            cmm.CommandText = "SELECT * " +
+                              "  FROM [hspmonco].[dbo].[Conselho]";
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+
+
+                while (dr1.Read())
+                {
+                    Conselho conselho = new Conselho();
+                    conselho.cod_conselho = dr1.GetInt32(0);
+                    conselho.sigla_conselho = dr1.GetString(1);
+                   
+
+                    lista.Add(conselho);
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }
+        return lista;
+
     }
 }

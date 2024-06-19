@@ -353,7 +353,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     protected void btnAtualizar_Click(object sender, EventArgs e)
     {
         string mensagem = "";
-        int _id = cod_Prescricao;
+        
         int cod_profissional = 0;
         MembershipUser currentUser = Membership.GetUser();
         if (currentUser != null)
@@ -385,7 +385,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
 
-        Prescricao prescricaoAnterior = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(_id);
+        Prescricao prescricaoAnterior = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(cod_Prescricao);
 
         CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricaoAnterior.cod_Calculo);
 
@@ -403,7 +403,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
 
-        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(_id, cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(cod_Prescricao, cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
 
 
 

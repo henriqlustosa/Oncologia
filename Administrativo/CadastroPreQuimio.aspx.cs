@@ -45,7 +45,7 @@ public partial class Prescricao_CadastroPreQuimio : System.Web.UI.Page
             ddlQuimio.DataBind();
             ddlQuimio.Items.Insert(0, new ListItem(string.Empty, string.Empty));
             ddlQuimio.SelectedIndex = 0;
-            ;
+           
         }
 
 

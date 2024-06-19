@@ -62,7 +62,7 @@ public class RelatorioPreQumioDosagemDAO
 
                     preQuimio.nome_Usuario = dr1.GetString(5);
                     preQuimio.quantidade = dr1.GetDecimal(6);
-                    preQuimio.unidadeQuantidade = dr1.GetString(7);
+                    preQuimio.unidade_dose = dr1.GetString(7);
                     preQuimio.diluicao = dr1.GetString(8);
                     preQuimio.tempoDeInfusao = dr1.GetInt32(9);
                     preQuimio.unidadeTempoDeInfusao = dr1.GetString(10);

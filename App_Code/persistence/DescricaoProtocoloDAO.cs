@@ -17,94 +17,94 @@ public class DescricaoProtocoloDAO
         //
     }
 
-    public static void GravaMedicamentosPorProtocolo(List<Medicamento_Amostra> medicamentos, int cod_protocolo)
-    {
+    //public static void GravaMedicamentosPorProtocolo(List<Medicamento_Amostra> medicamentos, int cod_protocolo)
+    //{
 
-        string status = "A";
-        string v = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-        string _dtcadastro_bd = v;
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
-        {
+    //    string status = "A";
+    //    string v = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+    //    string _dtcadastro_bd = v;
+    //    using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+    //    {
 
-            SqlCommand cmm = new SqlCommand();
-            cmm.Connection = cnn;
-            cnn.Open();
-            SqlTransaction mt = cnn.BeginTransaction();
-            cmm.Transaction = mt;
-            try
-            {
+    //        SqlCommand cmm = new SqlCommand();
+    //        cmm.Connection = cnn;
+    //        cnn.Open();
+    //        SqlTransaction mt = cnn.BeginTransaction();
+    //        cmm.Transaction = mt;
+    //        try
+    //        {
 
-                foreach (Medicamento_Amostra medicamento in medicamentos)
-                {
-                    cmm.CommandText = "Insert into [Oncologia_Desenv].[dbo].[Protocolo_Medicamento] ([cod_protocolo],[cod_medicamento],[data_cadastro],[status])"
-                    + " values ("
-                                + cod_protocolo + ","
-                                + medicamento.cod_medicamento + ",'"
+    //            foreach (Medicamento_Amostra medicamento in medicamentos)
+    //            {
+    //                cmm.CommandText = "Insert into [Oncologia_Desenv].[dbo].[Protocolo_Medicamento] ([cod_protocolo],[cod_medicamento],[data_cadastro],[status])"
+    //                + " values ("
+    //                            + cod_protocolo + ","
+    //                            + medicamento.cod_medicamento + ",'"
                                 
-                                + _dtcadastro_bd + "','"
-                                + status
-                                + "');";
-                    cmm.ExecuteNonQuery();
+    //                            + _dtcadastro_bd + "','"
+    //                            + status
+    //                            + "');";
+    //                cmm.ExecuteNonQuery();
 
 
-                }
+    //            }
 
-                mt.Commit();
-                mt.Dispose();
-                cnn.Close();
-            }
-            catch (Exception ex)
-            {
-                string msg = ex.Message;
-                mt.Rollback();
-            }
-        }
-
-
-
-    }
-
-    public static void InativaMedicamentosPorProtocolo(int cod_protocolo)
-    {
-        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
-        {
-            SqlCommand cmm = new SqlCommand();
-            cmm.Connection = cnn;
-            cnn.Open();
-            SqlTransaction mt = cnn.BeginTransaction();
-            cmm.Transaction = mt;
-            try
-            {
-
-                cmm.CommandText = "UPDATE [Oncologia_Desenv].[dbo].[Protocolo_Medicamento]" +
-                 " SET status = @status " +
-                 " WHERE  cod_protocolo = " + cod_protocolo;
-                cmm.Parameters.Add(new SqlParameter("@status", "I"));
-
-                cmm.ExecuteNonQuery();
-                mt.Commit();
-                mt.Dispose();
-                cnn.Close();
+    //            mt.Commit();
+    //            mt.Dispose();
+    //            cnn.Close();
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            string msg = ex.Message;
+    //            mt.Rollback();
+    //        }
+    //    }
 
 
-            }
-            catch (Exception ex)
-            {
-                string error = ex.Message;
 
-                try
-                {
-                    mt.Rollback();
-                }
-                catch (Exception ex1)
-                {
-                    string error1 = ex1.Message;
+    //}
 
-                }
-            }
-        }
+    //public static void InativaMedicamentosPorProtocolo(int cod_protocolo)
+    //{
+    //    using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+    //    {
+    //        SqlCommand cmm = new SqlCommand();
+    //        cmm.Connection = cnn;
+    //        cnn.Open();
+    //        SqlTransaction mt = cnn.BeginTransaction();
+    //        cmm.Transaction = mt;
+    //        try
+    //        {
 
-    }
+    //            cmm.CommandText = "UPDATE [Oncologia_Desenv].[dbo].[Protocolo_Medicamento]" +
+    //             " SET status = @status " +
+    //             " WHERE  cod_protocolo = " + cod_protocolo;
+    //            cmm.Parameters.Add(new SqlParameter("@status", "I"));
+
+    //            cmm.ExecuteNonQuery();
+    //            mt.Commit();
+    //            mt.Dispose();
+    //            cnn.Close();
+
+
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            string error = ex.Message;
+
+    //            try
+    //            {
+    //                mt.Rollback();
+    //            }
+    //            catch (Exception ex1)
+    //            {
+    //                string error1 = ex1.Message;
+
+    //            }
+    //        }
+    //    }
+
+    //}
 
     public static List<DescricaoProtocolo> listaProtocolo()
     {

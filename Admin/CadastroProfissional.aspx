@@ -10,13 +10,48 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <style type="text/css">
-        #myModalProfissional .modal-content {
-            width: 800px;
-            Fixed width height: 400px;
-            Fixed height background-color: #fff0f5;
-            /* LavenderBlush background border: 1px solid #ff69b4;
-            HotPink border*/
+        .button-container {
+            display: flex;
+          
+            width: 100%;
+            justify-content: space-evenly;
         }
+
+     
+
+        /* Center the modal title */
+        #myModalProfissional .modal-header {
+            text-align: center;
+        }
+
+        #myModalProfissional .modal-title {
+            width: 100%;
+        }
+        /* Modal parent container */
+        #myModalProfissional .modal-dialog {
+            display: flex;
+            
+  justify-content: center;
+            height: 100vh; /* Ensure it takes the full viewport height */
+            margin: 0 auto; /* Ensure no extra margin */
+        }
+
+        /* Modal content */
+        #myModalProfissional .modal-content {
+            width: 1200px;
+            height: 300px;
+            background-color: white;
+        }
+
+        #myModalProfissional .modal-body {
+            width: 1000px;
+            height: 300px;
+            background-color: white;
+        }
+           #myModalProfissional .btn {
+       padding: 5px 80px;
+   }
+          
     </style>
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
         <Scripts>
@@ -188,26 +223,26 @@
                     </fieldset>
                 </div>
 
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                            <div class="col-md-6 col-sm-4 col-xs-8">
-                                <asp:Button ID="btnGravarProfissional" runat="server" Text="Gravar" class="btn btn-primary gravar" OnClick="btnGravarProfissional_Click" data-toggle="modal" />
-                            </div>
 
-                            <div class="col-md-6 col-sm-4 col-xs-8">
-                                <asp:Button ID="btnCancelarProfissional" runat="server" Text="Cancelar" class="btn btn-success" OnClick="btnCancelarProfissional_Click" data-toggle="modal" />
-                            </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group button-container">
+                        <div >
+                            <asp:Button ID="btnGravarProfissional" runat="server" Text="Gravar" class="btn btn-primary btn-sm" OnClick="btnGravarProfissional_Click" data-toggle="modal" />
+                        </div>
+                        <div >
+                            <asp:Button ID="btnCancelarProfissional" runat="server" Text="Cancelar" class="btn btn-info btn-sm" OnClick="btnCancelarProfissional_Click" data-toggle="modal" />
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+
     </div>
+    </div>
+      <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
     <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
 
-
+    
     <script src='<%= ResolveUrl("~/build/js/jquery.dataTables.js") %>' type="text/javascript"></script>
 
     <script type="text/javascript">

@@ -521,6 +521,7 @@
             <div class="nav justify-content-md-center">
                 <input id="btnCID" type="button" value="CID" onclick="mostraCID()" class="btn btn-outline-info btn-block" />
             </div>
+
             <div class="x_content">
                 <div id="divCID">
                     <div class="x_panel">
@@ -535,7 +536,7 @@
                     </div>
                     <br />
                 </div>
-                <br />
+              
             </div>
             <div class="nav justify-content-md-center">
                 <input id="btnGeral" type="button" value="Geral" onclick="mostraGeral()" class="btn btn-outline-info btn-block" />
@@ -618,55 +619,55 @@
 
 
 
+            </div>
 
-
-                <div class="nav justify-content-md-center">
-                    <input id="btnViaDeAcesso" type="button" value="Vias de Acesso" onclick="mostraViasDeAcesso()" class="btn btn-outline-info btn-block" />
-                </div>
-                <div class="x_content">
-                    <div id="divViasDeAcesso" style="display: none;">
-                        <div class="x_panel">
-                            <div class="col-5">
-                                Vias de Acesso:
-                            </div>
-                            <div>
-
-                                <asp:CheckBoxList ID="cblViasDeAcesso" RepeatDirection="Horizontal" runat="server" Font-Size="Large" Width="1000"></asp:CheckBoxList>
-                            </div>
-
-
-
+            <div class="nav justify-content-md-center">
+                <input id="btnViaDeAcesso" type="button" value="Vias de Acesso" onclick="mostraViasDeAcesso()" class="btn btn-outline-info btn-block" />
+            </div>
+            <div class="x_content">
+                <div id="divViasDeAcesso" style="display: none;">
+                    <div class="x_panel">
+                        <div class="col-5">
+                            Vias de Acesso:
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
-                    <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClientClick="openConfirmationModal(); return false;" />
-                </div>
-                <%--<button type="button" class="btn btn-primary" onclick="showModal('myModalMedicamento')">
-                    Open First Modal
-                </button>--%>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group button-container">
-                    <div class="button-wrapper">
-                        <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" class="btn btn-primary atualizar" OnClick="btnAtualizar_Click" data-toggle="modal" />
-                    </div>
-                    <div class="button-wrapper">
-                        <asp:Button ID="btnVisualizarMedicamento" runat="server" Text="Visualizar Medicamento" class="btn btn-info visualizar-medicamento" OnClick="btnVisualizarMedicamento_Click" data-toggle="modal" />
-                    </div>
-                    <div class="button-wrapper">
-                        <asp:Button ID="btnAgendar" runat="server" Text="Visualizar Agendamento" class="btn btn-secondary visualizar-agendamento" data-toggle="modal" OnClick="btnAgendar_Click" />
-                    </div>
-                    <div class="button-wrapper">
-                        <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success imprimir" OnClientClick="openConfirmationModal2(); return false;" />
-                    </div>
+                        <div>
 
+                            <asp:CheckBoxList ID="cblViasDeAcesso" RepeatDirection="Horizontal" runat="server" Font-Size="Large" Width="1000"></asp:CheckBoxList>
+                        </div>
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Modal -->
+        <div class="row">
+            <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                <asp:Button ID="btnGravar" runat="server" Text="Gravar" class="btn btn-primary" OnClientClick="openConfirmationModal(); return false;" />
+            </div>
+            <%--<button type="button" class="btn btn-primary" onclick="showModal('myModalMedicamento')">
+                    Open First Modal
+                </button>--%>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 form-group button-container">
+                <div class="button-wrapper">
+                    <asp:Button ID="btnAtualizar" runat="server" Text="Atualizar" class="btn btn-primary atualizar" OnClick="btnAtualizar_Click" data-toggle="modal" />
+                </div>
+                <div class="button-wrapper">
+                    <asp:Button ID="btnVisualizarMedicamento" runat="server" Text="Visualizar Medicamento" class="btn btn-info visualizar-medicamento" OnClick="btnVisualizarMedicamento_Click" data-toggle="modal" />
+                </div>
+                <div class="button-wrapper">
+                    <asp:Button ID="btnAgendar" runat="server" Text="Visualizar Agendamento" class="btn btn-secondary visualizar-agendamento" data-toggle="modal" OnClick="btnAgendar_Click" />
+                </div>
+                <div class="button-wrapper">
+                    <asp:Button ID="btnImprimir" runat="server" Text="Imprimir" class="btn btn-success imprimir" OnClientClick="openConfirmationModal2(); return false;" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -1212,8 +1213,9 @@
                 </div>
             </div>
         </div>--%>
+         <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
         <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
-
+        
         <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
 
         <script src="../js/decimal.min.js" type="text/javascript"></script>
@@ -1281,8 +1283,8 @@
 
                 var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
 
-            var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
-            var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
+                var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
+                var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
 
                 if (valorProtocolo && percentagem) {
                     var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
@@ -1295,7 +1297,7 @@
 
             window.onload = function () {
                 document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
-            document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
+                document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
             }
 
             //function showModal() {
@@ -1490,18 +1492,18 @@
 
                     param_value = parseFloat((<%= txbAltura.ClientID %>).value);
 
-                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
-                Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                param_value = parseFloat((<%= txbPeso.ClientID %>).value);
-                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
-                Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                dp = decpts.options[decpts.selectedIndex].text;
-                BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
+                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                    unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
+                    Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                    param_value = parseFloat((<%= txbPeso.ClientID %>).value);
+                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                    unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
+                    Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                    dp = decpts.options[decpts.selectedIndex].text;
+                    BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
 
-                unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
-                if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+                    unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
+                    if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
 
 
 
@@ -1522,7 +1524,7 @@
                 with (document.forms[0]) {
 
                     if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
-                if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
+                    if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
 
 
                 }
@@ -1596,63 +1598,63 @@
 
             function ClearInputs() {
                 (<%= txbAltura.ClientID %>).value = '';
-            (<%= txbPeso.ClientID %>).value = '';
-            (<%= txbBSA.ClientID %>).value = '';
+                (<%= txbPeso.ClientID %>).value = '';
+                (<%= txbBSA.ClientID %>).value = '';
 
-            $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
+                $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
             }
             $(document).ready(function () {
                 $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
-            $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
+                $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
-            $("#<%=txbDtInicio.ClientID%>").datepicker({
-                minDate: 0,
-                dateFormat: 'dd/mm/yy',
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                nextText: 'Proximo',
-                prevText: 'Anterior'
-            });
-
-
-            $("#<%=txbDtInicio.ClientID%>").datepicker();
-
-            $("#<%=txbDataAlterada.ClientID%>").datepicker({
-                minDate: 0,
-                dateFormat: 'dd/mm/yy',
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                nextText: 'Proximo',
-                prevText: 'Anterior'
-            });
-            $("#<%=txbDataAlterada.ClientID%>").mask("99/99/9999");
-
-            $("#<%=txbDataAlterada.ClientID%>").datepicker();
-
-            $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
-
-            $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
-            $("#<%=txbCiclos.ClientID%>").maskAsNumber({
-                min: 1,
-                max: 12
-            });
-            $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
-                min: 1,
-                max: 30
-            });
+                $("#<%=txbDtInicio.ClientID%>").datepicker({
+                    minDate: 0,
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                });
 
 
-            $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+                $("#<%=txbDtInicio.ClientID%>").datepicker();
+
+                $("#<%=txbDataAlterada.ClientID%>").datepicker({
+                    minDate: 0,
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                });
+                $("#<%=txbDataAlterada.ClientID%>").mask("99/99/9999");
+
+                $("#<%=txbDataAlterada.ClientID%>").datepicker();
+
+                $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
+
+                $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
+                $("#<%=txbCiclos.ClientID%>").maskAsNumber({
+                    min: 1,
+                    max: 12
+                });
+                $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
+                    min: 1,
+                    max: 30
+                });
 
 
-                source: function (request, response) {
-                    var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
+                $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+
+
+                    source: function (request, response) {
+                        var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
                     $.ajax({
                         url: "Prescricao.aspx/GetNomeDePacientes",
                         data: JSON.stringify(param),
@@ -1712,10 +1714,10 @@
             });
 
 
-            $("#<%= txbProntuario.ClientID %>").autocomplete({
+                $("#<%= txbProntuario.ClientID %>").autocomplete({
 
-                source: function (request, response) {
-                    var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
+                    source: function (request, response) {
+                        var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
                     $.ajax({
                         url: "Prescricao.aspx/GetNomeDePacientesPoRh",
                         data: JSON.stringify(param),
@@ -1770,7 +1772,7 @@
                 minLength: 1 //This is the Char length of inputTextBox    
 
             });
-        });
+            });
 
         </script>
 
@@ -1786,12 +1788,12 @@
             }
             document.addEventListener('DOMContentLoaded', function () {
                 var checkBoxList = document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]');
-            checkBoxList.forEach(function (chk) {
-                chk.addEventListener('click', function () {
-                    MutExChkList(this);
+                checkBoxList.forEach(function (chk) {
+                    chk.addEventListener('click', function () {
+                        MutExChkList(this);
+                    });
                 });
             });
-        });
         </script>
 
         <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>

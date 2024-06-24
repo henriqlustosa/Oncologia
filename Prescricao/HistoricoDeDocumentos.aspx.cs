@@ -13,6 +13,21 @@ using System.Xml.Linq;
 
 public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
 {
+    private int cod_Prescricao
+    {
+        get
+        {
+            if (ViewState["cod_Prescicao"] == null)
+            {
+                ViewState["cod_Prescicao"] = 0;
+            }
+            return Convert.ToInt32(ViewState["cod_Prescicao"].ToString());
+        }
+        set
+        {
+            ViewState["cod_Prescicao"] = value;
+        }
+    }
     private string nome_da_impressora
     {
         get
@@ -111,16 +126,27 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
         {
             index = Convert.ToInt32(e.CommandArgument);
 
-            _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal();", true);
 
-            ImpressaoPrescricao.imprimirFicha(_id_pedido, nome_impressora);
-            Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
+            int idPrescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+
+            Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricao=" + idPrescricao + "");
 
 
         }
+        else if (e.CommandName.Equals("copyRecord"))
+        {
+            index = Convert.ToInt32(e.CommandArgument);
 
+            _id_pedido = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+
+       
+            int idPrescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+     
+            Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricaoCopia=" + idPrescricao + "");
+
+
+        }
 
 
         //string _status = row.Cells[7].Text;

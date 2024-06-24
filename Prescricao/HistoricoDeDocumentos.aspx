@@ -57,6 +57,21 @@
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
                     <asp:BoundField DataField="data_cadastro" HeaderText="DATA" SortExpression="dataCadastro"
                         ItemStyle-CssClass="hidden-xs" HeaderStyle-CssClass="hidden-xs" />
+
+
+
+
+                          <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
+          <ItemTemplate>
+
+              <div class="form-inline">
+                  <asp:LinkButton ID="gvlnkCopy"  CommandName="copyRecord" CommandArgument='<%#((GridViewRow)Container).RowIndex%>'
+                      CssClass="btn btn-primary" runat="server"  CausesValidation="false" >
+<i class="fa fa-clone" title="Copiar"></i>
+                  </asp:LinkButton>
+              </div>
+          </ItemTemplate>
+      </asp:TemplateField>
                     <asp:TemplateField HeaderStyle-CssClass="sorting_disabled">
                         <ItemTemplate>
 

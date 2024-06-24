@@ -866,7 +866,7 @@
 
 
 
-                                <asp:TemplateField HeaderText="Dosagem" SortExpression="quantidade">
+                                <asp:TemplateField HeaderText="Dosagem" SortExpression="dose_alterada">
                                     <ItemTemplate>
                                         <%# Eval("dose_alterada") %> <%# Eval("unidade_dose") %>
                                     </ItemTemplate>

@@ -536,7 +536,7 @@
                     </div>
                     <br />
                 </div>
-              
+
             </div>
             <div class="nav justify-content-md-center">
                 <input id="btnGeral" type="button" value="Geral" onclick="mostraGeral()" class="btn btn-outline-info btn-block" />
@@ -666,8 +666,8 @@
 
             </div>
         </div>
-    </div>
-    <!-- Modal -->
+
+        <!-- Modal -->
         <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -715,11 +715,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         Impressoras:
     <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-        <asp:ListItem>Microsoft Print to PDF</asp:ListItem>
-        <asp:ListItem>ONCO_SEC</asp:ListItem>
-        <asp:ListItem>ONCO_ENF</asp:ListItem>
-        <asp:ListItem>INFO</asp:ListItem>
-        <asp:ListItem>IMPRESSORA</asp:ListItem>
+     
     </asp:DropDownList>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
@@ -1164,8 +1160,7 @@
         </div>
 
 
-
-        <%--     <!-- The First Modal -->
+    <%--     <!-- The First Modal -->
             <div class="modal fade" id="myModal1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1213,118 +1208,118 @@
                 </div>
             </div>
         </div>--%>
-         <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
-        <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
-        
-        <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
+    <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
+    <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
 
-        <script src="../js/decimal.min.js" type="text/javascript"></script>
+    <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
 
-        <script type="text/javascript">
-            function showModal(modalId) {
-                $('#' + modalId).modal('show');
-            }
-            function openConfirmationModal() {
-                $('#confirmationModal').modal('show');
-            }
-            function openConfirmationModal2() {
-                $('#myModalImpressora').modal('show');
-            }
-            //function adjustZIndex() {
-            //    var visibleModals = $('.modal:visible');
-            //    visibleModals.each(function (index) {
-            //        var zIndex = 1050 + (10 * index);
-            //        $(this).css('z-index', zIndex);
-            //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
-            //    });
-            //}
+    <script src="../js/decimal.min.js" type="text/javascript"></script>
 
-            //$('#myModalDosagem').on('shown.bs.modal', function () {
-            //    adjustZIndex();
-            //});
+    <script type="text/javascript">
+        function showModal(modalId) {
+            $('#' + modalId).modal('show');
+        }
+        function openConfirmationModal() {
+            $('#confirmationModal').modal('show');
+        }
+        function openConfirmationModal2() {
+            $('#myModalImpressora').modal('show');
+        }
+        //function adjustZIndex() {
+        //    var visibleModals = $('.modal:visible');
+        //    visibleModals.each(function (index) {
+        //        var zIndex = 1050 + (10 * index);
+        //        $(this).css('z-index', zIndex);
+        //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
+        //    });
+        //}
 
-            //$('#myModalMedicamento').on('shown.bs.modal', function () {
-            //    adjustZIndex();
-            //});
+        //$('#myModalDosagem').on('shown.bs.modal', function () {
+        //    adjustZIndex();
+        //});
 
-            ////function adjustZIndex() {
-            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            ////    console.log("Adjusting z-index to:", zIndex);
-            ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
-            ////}
+        //$('#myModalMedicamento').on('shown.bs.modal', function () {
+        //    adjustZIndex();
+        //});
 
-            ////// Adjust the backdrop to ensure proper stacking order for the second modal
-            ////$('#myModalDosagem').on('show.bs.modal', function () {
-            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            ////    console.log("Showing second modal, z-index:", zIndex);
-            ////    $(this).css('z-index', zIndex);
-            ////    adjustZIndex();
-            ////});
+        ////function adjustZIndex() {
+        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        ////    console.log("Adjusting z-index to:", zIndex);
+        ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
+        ////}
 
-            ////// Adjust the backdrop to ensure proper stacking order for the first modal
-            ////$('#myModalMedicamento').on('show.bs.modal', function () {
-            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            ////    console.log("Showing first modal, z-index:", zIndex);
-            ////    $(this).css('z-index', zIndex);
-            ////    adjustZIndex();
-            //});
-            // Adjust the backdrop to ensure proper stacking order
-            //$('#myModalDosagem').on('show.bs.modal', function () {
-            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            //    $(this).css('z-index', zIndex);
+        ////// Adjust the backdrop to ensure proper stacking order for the second modal
+        ////$('#myModalDosagem').on('show.bs.modal', function () {
+        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        ////    console.log("Showing second modal, z-index:", zIndex);
+        ////    $(this).css('z-index', zIndex);
+        ////    adjustZIndex();
+        ////});
 
-            //     adjustZIndex();
-            //});
-            //function adjustZIndex() {
-            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-            //}
-            function calculateValorAtualizado() {
+        ////// Adjust the backdrop to ensure proper stacking order for the first modal
+        ////$('#myModalMedicamento').on('show.bs.modal', function () {
+        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        ////    console.log("Showing first modal, z-index:", zIndex);
+        ////    $(this).css('z-index', zIndex);
+        ////    adjustZIndex();
+        //});
+        // Adjust the backdrop to ensure proper stacking order
+        //$('#myModalDosagem').on('show.bs.modal', function () {
+        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        //    $(this).css('z-index', zIndex);
 
-                var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
+        //     adjustZIndex();
+        //});
+        //function adjustZIndex() {
+        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        //}
+        function calculateValorAtualizado() {
+
+            var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
 
                 var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
                 var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
 
-                if (valorProtocolo && percentagem) {
-                    var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
+            if (valorProtocolo && percentagem) {
+                var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
 
-                    valorAtualizado.value = result.replace('.', ',');
-                } else {
-                    valorAtualizado.value = "";
-                }
+                valorAtualizado.value = result.replace('.', ',');
+            } else {
+                valorAtualizado.value = "";
             }
+        }
 
-            window.onload = function () {
-                document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
+        window.onload = function () {
+            document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
                 document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
-            }
+        }
 
-            //function showModal() {
-            //    $('#myModalMedicamento').modal('show');
-            //}
+        //function showModal() {
+        //    $('#myModalMedicamento').modal('show');
+        //}
 
-            //function hideModal() {
-            //    $('#myModalMedicamento').modal('hiden');
+        //function hideModal() {
+        //    $('#myModalMedicamento').modal('hiden');
 
-            //}
+        //}
 
-            //function showModalMedicamento() {
-            //    $('#myModalDosagem').modal('show');
-            //}
+        //function showModalMedicamento() {
+        //    $('#myModalDosagem').modal('show');
+        //}
 
-            //function hideModal() {
-            //    $('#myModalDosagem').modal('hiden');
-            //}
-        </script>
+        //function hideModal() {
+        //    $('#myModalDosagem').modal('hiden');
+        //}
+    </script>
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            window.addEventListener('keydown', function (e) {
+        window.addEventListener('keydown', function (e) {
 
-                if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
-                else return true;
-            });
+            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
+            else return true;
+        });
 
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
@@ -1390,107 +1385,107 @@
             }
         }--%>
 
-            function log(i) {
-                return Math.log(i) * Math.LOG10E;
-            }
+        function log(i) {
+            return Math.log(i) * Math.LOG10E;
+        }
 
-            function ln(i) {
-                return Math.log(i);
-            }
+        function ln(i) {
+            return Math.log(i);
+        }
 
-            function sq(i) {
-                return i * i;
-            }
+        function sq(i) {
+            return i * i;
+        }
 
-            function sqr(i) {
-                return Math.sqrt(i);
-            }
-
-
-            function power(x, y) {
-                return Math.pow(x, y);
-            }
-
-            function eTo(x) {
-                return Math.exp(x);
-            }
+        function sqr(i) {
+            return Math.sqrt(i);
+        }
 
 
-            function fixDP(r, dps) {
-                if (isNaN(r)) return "NaN";
-                var msign = '';
-                var mfin = '';
-                if (r < 0) msign = '-';
-                x = Math.abs(r);
-                if (x > Math.pow(10, 21)) return msign + x.toString();
-                var m = Math.round(x * Math.pow(10, dps)).toString();
-                if (dps == 0) return msign + m;
-                while (m.length <= dps) m = "0" + m;
-                mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
-                if (dps == 1) return mfin.replace('.0', '');
-                if (dps == 2) return mfin.replace('.00', '');
-                if (dps == 3) return mfin.replace('.000', '');
-                if (dps == 4) return mfin.replace('.0000', '');
-                return mfin;
-            }
+        function power(x, y) {
+            return Math.pow(x, y);
+        }
 
-            function fixNearest(x, y) {
-                return Math.round(x / y) * y;
-            }
-
-            function alertNaN(thisparam) {
-                alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
-                doCalc = false;
-                clrResults();
-            }
-
-            function clrValue(field) {
-                field.value = '';
-            }
-
-            var currenttimeout;
-
-            function resetInTime() {
-                if (currenttimeout) clearTimeout(currenttimeout);
-                currenttimeout = setTimeout('minMaxCheck();', 3000);
-            }
+        function eTo(x) {
+            return Math.exp(x);
+        }
 
 
+        function fixDP(r, dps) {
+            if (isNaN(r)) return "NaN";
+            var msign = '';
+            var mfin = '';
+            if (r < 0) msign = '-';
+            x = Math.abs(r);
+            if (x > Math.pow(10, 21)) return msign + x.toString();
+            var m = Math.round(x * Math.pow(10, dps)).toString();
+            if (dps == 0) return msign + m;
+            while (m.length <= dps) m = "0" + m;
+            mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
+            if (dps == 1) return mfin.replace('.0', '');
+            if (dps == 2) return mfin.replace('.00', '');
+            if (dps == 3) return mfin.replace('.000', '');
+            if (dps == 4) return mfin.replace('.0000', '');
+            return mfin;
+        }
 
-            var curelement;
+        function fixNearest(x, y) {
+            return Math.round(x / y) * y;
+        }
 
-            function togCB(thisid) {
-                thischeckbox = document.getElementById(thisid);
-                if (thischeckbox.checked) { thischeckbox.checked = false; }
-                else { thischeckbox.checked = true; }
-                BodySurfaceArea_fx();
-            }
+        function alertNaN(thisparam) {
+            alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
+            doCalc = false;
+            clrResults();
+        }
 
-            function setRB(thisid) {
-                document.getElementById(thisid).checked = true;
-                BodySurfaceArea_fx();
-            }
+        function clrValue(field) {
+            field.value = '';
+        }
 
+        var currenttimeout;
 
-            var calctxt = '';
-            var xmltxt = '';
-            var xmlresult = '';
-            var htmtxt = '';
-            var postNow = false;
-            var printing = false;
-            var interptxt = '';
-            var interphtm = '';
-            var interpxml = '';
-            var rbchk = false;
-
-            function BodySurfaceArea_fx() {
-
-                with (document.forms[0]) {
+        function resetInTime() {
+            if (currenttimeout) clearTimeout(currenttimeout);
+            currenttimeout = setTimeout('minMaxCheck();', 3000);
+        }
 
 
-                    doCalc = true;
 
-                    param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+        var curelement;
+
+        function togCB(thisid) {
+            thischeckbox = document.getElementById(thisid);
+            if (thischeckbox.checked) { thischeckbox.checked = false; }
+            else { thischeckbox.checked = true; }
+            BodySurfaceArea_fx();
+        }
+
+        function setRB(thisid) {
+            document.getElementById(thisid).checked = true;
+            BodySurfaceArea_fx();
+        }
+
+
+        var calctxt = '';
+        var xmltxt = '';
+        var xmlresult = '';
+        var htmtxt = '';
+        var postNow = false;
+        var printing = false;
+        var interptxt = '';
+        var interphtm = '';
+        var interpxml = '';
+        var rbchk = false;
+
+        function BodySurfaceArea_fx() {
+
+            with (document.forms[0]) {
+
+
+                doCalc = true;
+
+                param_value = parseFloat((<%= txbAltura.ClientID %>).value);
 
                     if (isNaN(param_value)) { param_value = ""; doCalc = false; }
                     unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
@@ -1509,102 +1504,102 @@
 
 
 
-                }
-
-
-
-
             }
 
-            function minMaxCheck() {
-                if (printing) return;
 
 
 
-                with (document.forms[0]) {
+        }
 
-                    if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
+        function minMaxCheck() {
+            if (printing) return;
+
+
+
+            with (document.forms[0]) {
+
+                if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
                     if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
 
 
-                }
+            }
+
+        }
+
+
+
+        function clrResults() {
+
+
+            with (document.forms[0]) {
+
+                (<%= txbBSA.ClientID %>).value = '';
+
 
             }
 
+        }
+
+        var Height = null,
+            Weight = null,
+            BSA = null,
+            param_value = null;
 
 
-            function clrResults() {
+        function mostraCalculo() {
 
+            var div = document.getElementById('divCalculoCorpo');
 
-                with (document.forms[0]) {
-
-                    (<%= txbBSA.ClientID %>).value = '';
-
-
-                }
-
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
             }
-
-            var Height = null,
-                Weight = null,
-                BSA = null,
-                param_value = null;
-
-
-            function mostraCalculo() {
-
-                var div = document.getElementById('divCalculoCorpo');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
+            else {
+                div.style.display = 'none';
             }
-            function mostraCID() {
+        }
+        function mostraCID() {
 
-                var div = document.getElementById('divCID');
+            var div = document.getElementById('divCID');
 
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
             }
-            function mostraGeral() {
-
-                var div = document.getElementById('divGeral');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
+            else {
+                div.style.display = 'none';
             }
-            function mostraViasDeAcesso() {
+        }
+        function mostraGeral() {
 
-                var div = document.getElementById('divViasDeAcesso');
+            var div = document.getElementById('divGeral');
 
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
             }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function mostraViasDeAcesso() {
 
-            function ClearInputs() {
-                (<%= txbAltura.ClientID %>).value = '';
+            var div = document.getElementById('divViasDeAcesso');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+
+        function ClearInputs() {
+            (<%= txbAltura.ClientID %>).value = '';
                 (<%= txbPeso.ClientID %>).value = '';
                 (<%= txbBSA.ClientID %>).value = '';
 
                 $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
-            }
-            $(document).ready(function () {
-                $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
+        }
+        $(document).ready(function () {
+            $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
                 $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker({
@@ -1655,148 +1650,148 @@
 
                     source: function (request, response) {
                         var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
-                    $.ajax({
-                        url: "Prescricao.aspx/GetNomeDePacientes",
-                        data: JSON.stringify(param),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
+                        $.ajax({
+                            url: "Prescricao.aspx/GetNomeDePacientes",
+                            data: JSON.stringify(param),
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataFilter: function (data) { return data; },
+                            success: function (data) {
 
 
-                            response($.map(data.d, function (item) {
+                                response($.map(data.d, function (item) {
 
-                                return {
+                                    return {
 
-                                    label: item.nm_nome,
-                                    value: item.nm_nome,
-
-
-                                    prontuario: item.cd_prontuario,
-                                    nr_ddd_fone: item.nr_ddd_fone,
-                                    nr_fone: item.nr_fone,
-                                    dt_nascimento: item.dt_data_nascimento,
-                                    idade: item.nr_idade,
-                                    sexo: item.in_sexo,
-                                    nome_pai_mae: item.nm_mae,
-
-                                }
-                            }))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var err = eval("(" + XMLHttpRequest.responseText + ")");
-                            alert(err.Message)
-                        }
-                    });
-                },
+                                        label: item.nm_nome,
+                                        value: item.nm_nome,
 
 
-                select: function (e, i) {
+                                        prontuario: item.cd_prontuario,
+                                        nr_ddd_fone: item.nr_ddd_fone,
+                                        nr_fone: item.nr_fone,
+                                        dt_nascimento: item.dt_data_nascimento,
+                                        idade: item.nr_idade,
+                                        sexo: item.in_sexo,
+                                        nome_pai_mae: item.nm_mae,
+
+                                    }
+                                }))
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                var err = eval("(" + XMLHttpRequest.responseText + ")");
+                                alert(err.Message)
+                            }
+                        });
+                    },
+
+
+                    select: function (e, i) {
 
 
 
 
-                    $("[id$=txbProntuario").val(i.item.prontuario);
-                    $("[id$=txbDdd").val(i.item.nr_ddd_fone);
-                    $("[id$=txbTelefone").val(i.item.nr_fone);
+                        $("[id$=txbProntuario").val(i.item.prontuario);
+                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                        $("[id$=txbTelefone").val(i.item.nr_fone);
 
-                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                    $("[id$=txbIdade").val(i.item.idade);
-                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                    $("[id$=txbPais").val(i.item.nome_pai_mae);
-                },
+                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                        $("[id$=txbIdade").val(i.item.idade);
+                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                        $("[id$=txbPais").val(i.item.nome_pai_mae);
+                    },
 
-                minLength: 1 //This is the Char length of inputTextBox  
+                    minLength: 1 //This is the Char length of inputTextBox  
 
 
-            });
+                });
 
 
                 $("#<%= txbProntuario.ClientID %>").autocomplete({
 
                     source: function (request, response) {
                         var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
-                    $.ajax({
-                        url: "Prescricao.aspx/GetNomeDePacientesPoRh",
-                        data: JSON.stringify(param),
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
+                        $.ajax({
+                            url: "Prescricao.aspx/GetNomeDePacientesPoRh",
+                            data: JSON.stringify(param),
+                            dataType: "json",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataFilter: function (data) { return data; },
+                            success: function (data) {
 
 
-                            response($.map(data, function (item) {
+                                response($.map(data, function (item) {
 
-                                return {
+                                    return {
 
-                                    label: item.cd_prontuario,
-                                    value: item.cd_prontuario,
-
-
-                                    nome_paciente: item.nm_nome,
-                                    nr_ddd_fone: item.nr_ddd_fone,
-                                    nr_fone: item.nr_fone,
-                                    dt_nascimento: item.dt_data_nascimento,
-                                    idade: item.nr_idade,
-                                    sexo: item.in_sexo,
-                                    nome_pai_mae: item.nm_mae,
-
-                                }
-                            }))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            var err = eval("(" + XMLHttpRequest.responseText + ")");
-                            alert(err.Message)
-                        }
-                    });
-                },
+                                        label: item.cd_prontuario,
+                                        value: item.cd_prontuario,
 
 
-                select: function (e, i) {
+                                        nome_paciente: item.nm_nome,
+                                        nr_ddd_fone: item.nr_ddd_fone,
+                                        nr_fone: item.nr_fone,
+                                        dt_nascimento: item.dt_data_nascimento,
+                                        idade: item.nr_idade,
+                                        sexo: item.in_sexo,
+                                        nome_pai_mae: item.nm_mae,
+
+                                    }
+                                }))
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                var err = eval("(" + XMLHttpRequest.responseText + ")");
+                                alert(err.Message)
+                            }
+                        });
+                    },
+
+
+                    select: function (e, i) {
 
 
 
 
-                    $("[id$=txbProntuario").val(i.item.prontuario);
-                    $("[id$=txbDdd").val(i.item.nr_ddd_fone);
-                    $("[id$=txbTelefone").val(i.item.nr_fone);
-                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                    $("[id$=txbIdade").val(i.item.idade);
-                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                    $("[id$=txbPais").val(i.item.nome_pai_mae);
-                },
-                minLength: 1 //This is the Char length of inputTextBox    
+                        $("[id$=txbProntuario").val(i.item.prontuario);
+                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                        $("[id$=txbTelefone").val(i.item.nr_fone);
+                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                        $("[id$=txbIdade").val(i.item.idade);
+                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                        $("[id$=txbPais").val(i.item.nome_pai_mae);
+                    },
+                    minLength: 1 //This is the Char length of inputTextBox    
 
+                });
             });
-            });
 
-        </script>
+    </script>
 
-        <script type="text/javascript">
-            function MutExChkList(chk) {
-                var chkList = chk.parentNode.parentNode.parentNode;
-                var chks = chkList.getElementsByTagName("input");
-                for (var i = 0; i < chks.length; i++) {
-                    if (chks[i] != chk && chk.checked) {
-                        chks[i].checked = false;
-                    }
+    <script type="text/javascript">
+        function MutExChkList(chk) {
+            var chkList = chk.parentNode.parentNode.parentNode;
+            var chks = chkList.getElementsByTagName("input");
+            for (var i = 0; i < chks.length; i++) {
+                if (chks[i] != chk && chk.checked) {
+                    chks[i].checked = false;
                 }
             }
-            document.addEventListener('DOMContentLoaded', function () {
-                var checkBoxList = document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]');
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var checkBoxList = document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]');
                 checkBoxList.forEach(function (chk) {
                     chk.addEventListener('click', function () {
                         MutExChkList(this);
                     });
                 });
             });
-        </script>
+    </script>
 
-        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.mask.js" type="text/javascript"></script>
-        <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
+    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mask.js" type="text/javascript"></script>
+    <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
 </asp:Content>

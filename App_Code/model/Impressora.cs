@@ -15,9 +15,12 @@ using System.Xml.Linq;
 /// </summary>
 public class Impressora
 {
-    public int id_impressora { get; set; }
-    public string tipo { get; set; }
+    public int cod_impressora { get; set; }
+  
     public string nome_impressora { get; set; }
-    public string descricao_impressora { get; set; }
-    public string ip_impressora { get; set; }
+    
+    public string ip_computador { get; set; }
+
+    public string nome_computador { get; set; }
 }
+

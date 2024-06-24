@@ -34,7 +34,7 @@ public class ImpressoraDAO
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT * " +
-                              " FROM [Oncologia_Desenv].[dbo].[Impressoras]";
+                              " FROM [dbo].[Impressora]";
             try
             {
                 cnn.Open();
@@ -44,11 +44,12 @@ public class ImpressoraDAO
                 while (dr1.Read())
                 {
                     Impressora imp = new Impressora();
-                    imp.id_impressora = dr1.GetInt32(0);
-                    imp.tipo = dr1.GetString(1);
-                    imp.nome_impressora = dr1.GetString(2);
-                    imp.descricao_impressora = dr1.GetString(3);
-                    imp.ip_impressora = dr1.IsDBNull(4) ? "" : dr1.GetString(4);
+                    imp.cod_impressora = dr1.GetInt32(0);
+                   
+                    imp.nome_impressora = dr1.GetString(1);
+                
+                    imp.ip_computador = dr1.IsDBNull(2) ? "" : dr1.GetString(2);
+                    imp.nome_computador = dr1.IsDBNull(3) ? "" : dr1.GetString(3);
                     lista.Add(imp);
                 }
             }
@@ -58,6 +59,43 @@ public class ImpressoraDAO
             }
         }
         return lista;
+
+    }
+
+    public static Impressora buscarNomeDaImpressoraPorIP(string ip_computador)
+    {
+        Impressora imp = new Impressora();
+
+        using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
+        {
+            SqlCommand cmm = cnn.CreateCommand();
+
+            cmm.CommandText = "SELECT * " +
+                              " FROM [dbo].[Impressora] where ip_computador ='" + ip_computador +"'";
+            try
+            {
+                cnn.Open();
+                SqlDataReader dr1 = cmm.ExecuteReader();
+
+                //char[] ponto = { '.', ' ' };
+                if (dr1.Read())
+                {
+                  
+                    imp.cod_impressora = dr1.GetInt32(0);
+
+                    imp.nome_impressora = dr1.GetString(1);
+                 
+                    imp.ip_computador = dr1.IsDBNull(2) ? "" : dr1.GetString(2);
+                    imp.nome_computador = dr1.IsDBNull(3) ? "" : dr1.GetString(3);
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message;
+            }
+        }
+        return imp;
 
     }
 
@@ -73,7 +111,7 @@ public class ImpressoraDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "INSERT INTO [Oncologia_Desenv].[dbo].[Impressoras]" +
+                cmm.CommandText = "INSERT INTO [dbo].[Impressora]" +
                                    "([tipo]" +
                                    ",[nome_impressora]" +
                                    ",[descricao_impressora]" +

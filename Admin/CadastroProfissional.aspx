@@ -31,7 +31,7 @@
         #myModalProfissional .modal-dialog {
             display: flex;
             
-  justify-content: center;
+            justify-content: center;
             height: 100vh; /* Ensure it takes the full viewport height */
             margin: 0 auto; /* Ensure no extra margin */
         }

@@ -30,6 +30,21 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             ViewState["cod_Prescicao"] = value;
         }
     }
+    private string nome_da_impressora
+    {
+        get
+        {
+            if (ViewState["nome_da_impressora"] == null)
+            {
+                ViewState["nome_da_impressora"] = "";
+            }
+            return ViewState["nome_da_impressora"].ToString();
+        }
+        set
+        {
+            ViewState["nome_da_impressora"] = value;
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         Log.Information("Loaded Page: {PageName}", this.GetType().Name);
@@ -54,6 +69,12 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             cblViasDeAcesso.DataTextField = "descr_vias_de_acesso";
             cblViasDeAcesso.DataValueField = "cod_vias_de_acesso";
             cblViasDeAcesso.DataBind();
+
+
+            ddlImpressora.DataSource = ImpressoraDAO.ListaImpressora();
+            ddlImpressora.DataTextField = "nome_impressora";
+            ddlImpressora.DataValueField = "cod_impressora";
+            ddlImpressora.DataBind();
             for (int i = 0; i < cblViasDeAcesso.Items.Count; i++)
             {
                 cblViasDeAcesso.Items[i].Attributes.Add("onclick", "MutExChkList(this)");
@@ -62,6 +83,18 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             btnVisualizarMedicamento.Visible = false;
             btnImprimir.Visible = false;
             btnAgendar.Visible = false;
+            string ipAddress = IPUsuario();
+            var impressora = ImpressoraDAO.buscarNomeDaImpressoraPorIP(ipAddress);
+            string nome_da_impressora;
+            if (impressora == null || impressora.nome_impressora == null)
+            {
+                nome_da_impressora = "";
+            }
+            else
+            {
+                nome_da_impressora = impressora.nome_impressora;
+            }
+            ddlImpressora.Items.FindByText(nome_da_impressora).Selected = true;
         }
     }
     [WebMethod]
@@ -92,6 +125,34 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         ScriptManager.RegisterStartupScript(this, this.GetType(), "#modalAdicionarPaciente", "$('#modalDadosDoPaciente').modal('show');", true);
 
 
+    }
+    public string IPUsuario()
+    {
+        string strIPUsuario = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+        if (!string.IsNullOrEmpty(strIPUsuario))
+        {
+            // If there are multiple IP addresses, take the first one
+            string[] addresses = strIPUsuario.Split(',');
+            if (addresses.Length != 0)
+            {
+                return addresses[0];
+            }
+        }
+        else
+        {
+            // Fall back to REMOTE_ADDR if HTTP_X_FORWARDED_FOR is not present
+            strIPUsuario = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+        }
+
+        // Check if the IP is "::1" (IPv6 loopback address) and handle it accordingly
+        if (strIPUsuario == "::1" || strIPUsuario == "127.0.0.1")
+        {
+            // Handle the loopback address case here (e.g., return a default message or a specific IP)
+            strIPUsuario = "Localhost";
+        }
+        // Fall back to REMOTE_ADDR if HTTP_X_FORWARDED_FOR is not present
+        return strIPUsuario;
     }
 
     protected void btnGravar_Click(object sender, EventArgs e)
@@ -330,6 +391,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
     protected void btnImprimir_Click(object sender, EventArgs e)
     {
+
         // Variável para armazenar o nome da impressora selecionada
         string nome_impressora = ddlImpressora.SelectedValue;
         // Variável para armazenar a quantidade cópias de cada prescrição 

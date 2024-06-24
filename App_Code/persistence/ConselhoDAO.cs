@@ -53,7 +53,7 @@ public class ConselhoDAO
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT * " +
-                              "  FROM [hspmonco].[dbo].[Conselho]";
+                              "  FROM [hspmoncohomologacao].[dbo].[Conselho]";
             try
             {
                 cnn.Open();

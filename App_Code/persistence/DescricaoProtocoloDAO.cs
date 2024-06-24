@@ -112,7 +112,7 @@ public class DescricaoProtocoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [Id],[descricao] FROM [hspmonco].[dbo].[DescricaoProtocolo] order by [descricao]";
+            cmm.CommandText = "SELECT [Id],[descricao] FROM [hspmoncohomologacao].[dbo].[DescricaoProtocolo] order by [descricao]";
 
             try
             {

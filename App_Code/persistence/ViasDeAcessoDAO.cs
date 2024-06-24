@@ -26,7 +26,7 @@ public class ViasDeAcessoDAO
             SqlCommand cmm = cnn.CreateCommand();
 
             cmm.CommandText = "SELECT * " +
-                              "  FROM [hspmonco].[dbo].[Vias_De_Acesso]";
+                              "  FROM [hspmoncohomologacao].[dbo].[Vias_De_Acesso]";
             try
             {
                 cnn.Open();

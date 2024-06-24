@@ -23,7 +23,7 @@ public class ViaDeAdministracaoDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[ViaDeAdministracao] order by [descricao]";
+            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmoncohomologacao].[dbo].[ViaDeAdministracao] order by [descricao]";
 
             try
             {

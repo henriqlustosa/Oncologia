@@ -86,7 +86,7 @@ public class PacienteDAO
       ",[telefone] " +
       ",p.[data_Cadastro] " +
       ",[data_Ultima_Atualizacao] " +
-  "FROM [hspmonco].[dbo].[Paciente] as p inner join [hspmonco].[dbo].[Prescricao] as presc on p.cod_Paciente = presc.cod_Paciente where cod_prescricao = " + cod_prescricao;
+  "FROM [hspmoncohomologacao].[dbo].[Paciente] as p inner join [hspmoncohomologacao].[dbo].[Prescricao] as presc on p.cod_Paciente = presc.cod_Paciente where cod_prescricao = " + cod_prescricao;
             cmm.CommandText = sqlConsulta;
             try
             {

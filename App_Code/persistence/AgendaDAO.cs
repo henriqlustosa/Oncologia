@@ -90,7 +90,7 @@ public class AgendaDAO
 
             SqlCommand cmm = cnn.CreateCommand();
 
-            string sqlConsulta = "SELECT [cod_agenda],[cod_Prescricao],[data_agendada],[data_cadastro],[status],[posicao],[total_posicoes] FROM [hspmonco].[dbo].[Agenda] where status = 'A' and cod_Prescricao =" + cod_Prescricao;
+            string sqlConsulta = "SELECT [cod_agenda],[cod_Prescricao],[data_agendada],[data_cadastro],[status],[posicao],[total_posicoes] FROM [hspmoncohomologacao].[dbo].[Agenda] where status = 'A' and cod_Prescricao =" + cod_Prescricao;
             cmm.CommandText = sqlConsulta;
             try
             {
@@ -176,7 +176,7 @@ public class AgendaDAO
 
             SqlCommand cmm = cnn.CreateCommand();
 
-            string sqlConsulta = "SELECT  [cod_agenda], [cod_Prescricao], [data_agendada],  [status], [posicao], [total_posicoes] FROM [hspmonco].[dbo].[agenda] where cod_agenda =" +
+            string sqlConsulta = "SELECT  [cod_agenda], [cod_Prescricao], [data_agendada],  [status], [posicao], [total_posicoes] FROM [hspmoncohomologacao].[dbo].[agenda] where cod_agenda =" +
      + idAgenda;
             cmm.CommandText = sqlConsulta;
             try
@@ -221,7 +221,7 @@ public class AgendaDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "UPDATE [hspmonco].[dbo].[agenda] SET" +
+                cmm.CommandText = "UPDATE [hspmoncohomologacao].[dbo].[agenda] SET" +
 
 
       " [status] = @status " +
@@ -267,7 +267,7 @@ public class AgendaDAO
                 cnn.Open();
                 SqlTransaction mt = cnn.BeginTransaction();
                 cmm.Transaction = mt;
-                cmm.CommandText = "UPDATE [hspmonco].[dbo].[agenda] SET" +
+                cmm.CommandText = "UPDATE [hspmoncohomologacao].[dbo].[agenda] SET" +
 
 
       

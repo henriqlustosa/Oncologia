@@ -27,7 +27,7 @@ public class RelatorioPrescricaoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]";
+            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmoncohomologacao].[dbo].[Vw_RelatorioPrescricao]";
 
             try
             {
@@ -183,7 +183,7 @@ public class RelatorioPrescricaoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao] where cod_profissional = " + cod_profissional ;
+            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmoncohomologacao].[dbo].[Vw_RelatorioPrescricao] where cod_profissional = " + cod_profissional ;
 
             try
             {
@@ -246,7 +246,7 @@ public class RelatorioPrescricaoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmonco].[dbo].[Vw_RelatorioPrescricao]  ";
+            cmm.CommandText = "SELECT  [cod_Prescricao],[desc_finalidade],[desc_vias_de_acesso],[nome_paciente],[altura],[peso],[BSA],[intervalo_dias],[data_inicio],[observacao],[data_cadastro],[desc_protocolo],[nome_Usuario],[cod_Paciente],[ddd_telefone],[telefone],[sexo],[data_nascimento],[ciclos_provaveis],[desc_prequimio], [cod_prequimio],[cod_protocolo],[nome_profissional],[nr_conselho] FROM [hspmoncohomologacao].[dbo].[Vw_RelatorioPrescricao]  ";
 
             try
             {

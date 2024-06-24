@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="hspmoncoDataSet" targetNamespace="http://tempuri.org/hspmoncoDataSet.xsd" xmlns:mstns="http://tempuri.org/hspmoncoDataSet.xsd" xmlns="http://tempuri.org/hspmoncoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="hspmoncohomologacaoDataSet" targetNamespace="http://tempuri.org/hspmoncohomologacaoDataSet.xsd" xmlns:mstns="http://tempuri.org/hspmoncohomologacaoDataSet.xsd" xmlns="http://tempuri.org/hspmoncohomologacaoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="hspmoncoConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="hspmoncoConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.hspmoncoConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="hspmoncohomologacaoConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="hspmoncohomologacaoConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.hspmoncohomologacaoConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="agendaTableAdapter" Name="agenda">
             <MainSource>
-              <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.agenda" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+              <DbSource ConnectionRef="hspmoncohomologacaoConnectionString (Web.config)" DbObjectName="hspmoncohomologacao.dbo.agenda" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[agenda] WHERE (([cod_agenda] = @Original_cod_agenda))</CommandText>
@@ -69,7 +69,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CID_PRESCRICAOTableAdapter" Name="CID_PRESCRICAO">
             <MainSource>
-              <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.CID_PRESCRICAO" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+              <DbSource ConnectionRef="hspmoncohomologacaoConnectionString (Web.config)" DbObjectName="hspmoncohomologacao.dbo.CID_PRESCRICAO" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[CID_PRESCRICAO] WHERE (([cod_Prescricao] = @Original_cod_Prescricao) AND ([SUBCAT] = @Original_SUBCAT) AND ([data_cadastro] = @Original_data_cadastro))</CommandText>
@@ -126,7 +126,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_RelatorioPreQuimioDosagemTableAdapter" Name="Vw_RelatorioPreQuimioDosagem">
             <MainSource>
-              <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioPreQuimioDosagem" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+              <DbSource ConnectionRef="hspmoncohomologacaoConnectionString (Web.config)" DbObjectName="hspmoncohomologacao.dbo.Vw_RelatorioPreQuimioDosagem" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT cod_CalculoDosagemPreQuimio, dose, unidade_dose, cod_Prescricao, Id, desc_quimio, desc_via_de_administracao, desc_medicacao, desc_pre_quimio, cod_PreQuimio, cod_Medicacao, diluicao, tempoDeInfusao, dose_alterada, porcentagemDiminuirDose, status, nome_Usuario, dataCadastro, unidadeTempoDeInfusao FROM dbo.Vw_RelatorioPreQuimioDosagem</CommandText>
@@ -160,7 +160,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_RelatorioPrescricaoTableAdapter" Name="Vw_RelatorioPrescricao">
             <MainSource>
-              <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioPrescricao" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+              <DbSource ConnectionRef="hspmoncohomologacaoConnectionString (Web.config)" DbObjectName="hspmoncohomologacao.dbo.Vw_RelatorioPrescricao" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT cod_Prescricao, desc_finalidade, desc_vias_de_acesso, nome_paciente, altura, peso, BSA, intervalo_dias, data_inicio, observacao, data_cadastro, desc_protocolo, nome_Usuario, cod_Paciente, ddd_telefone, telefone, sexo, data_nascimento, ciclos_provaveis, desc_prequimio, cod_prequimio, cod_protocolo, creatinina, cod_profissional, nome_profissional, nr_conselho, sigla_conselho FROM dbo.Vw_RelatorioPrescricao</CommandText>
@@ -202,7 +202,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Vw_RelatorioProtocoloDosagemTableAdapter" Name="Vw_RelatorioProtocoloDosagem">
             <MainSource>
-              <DbSource ConnectionRef="hspmoncoConnectionString (Web.config)" DbObjectName="hspmonco.dbo.Vw_RelatorioProtocoloDosagem" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
+              <DbSource ConnectionRef="hspmoncohomologacaoConnectionString (Web.config)" DbObjectName="hspmoncohomologacao.dbo.Vw_RelatorioProtocoloDosagem" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT Id, desc_descricao_protocolo, desc_medicacao, desc_pre_quimio, desc_via_de_administracao, nome_Usuario, dose, unidadeDose, diluicao, tempoDeInfusao, unidadeTempoDeInfusao, dataCadastro, cod_DescricaoProtocolo, unidade_dosagem, dosagem, cod_CalculoDosagem, cod_Prescricao, dose_alterada FROM dbo.Vw_RelatorioProtocoloDosagem</CommandText>
@@ -238,7 +238,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="hspmoncoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="False">
+  <xs:element name="hspmoncohomologacaoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="False">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="agenda">

@@ -24,7 +24,7 @@ public class RelatorioProtocoloDAO
         /*  ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
 
-          HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmonco.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio" );
+          HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmoncohomologacao.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio" );
           request.Method = "GET";
           request.PreAuthenticate = true;
           request.ContentType = "application/json";
@@ -56,7 +56,7 @@ public class RelatorioProtocoloDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT [Id],[desc_descricao_protocolo],[desc_medicacao],[desc_pre_quimio],[desc_via_de_administracao],[nome_Usuario],[dose],[unidadeDose],[diluicao],[tempoDeInfusao],[unidadeTempoDeInfusao],[dataCadastro] FROM [hspmonco].[dbo].[Vw_RelatorioProtocolo]";
+            cmm.CommandText = "SELECT [Id],[desc_descricao_protocolo],[desc_medicacao],[desc_pre_quimio],[desc_via_de_administracao],[nome_Usuario],[dose],[unidadeDose],[diluicao],[tempoDeInfusao],[unidadeTempoDeInfusao],[dataCadastro] FROM [hspmoncohomologacao].[dbo].[Vw_RelatorioProtocolo]";
 
             try
             {

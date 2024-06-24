@@ -1645,7 +1645,7 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="hspmoncoDataSet">
+    <DataSource Name="hspmoncohomologacaoDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -1656,7 +1656,7 @@
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>hspmoncoDataSet</DataSourceName>
+        <DataSourceName>hspmoncohomologacaoDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1770,8 +1770,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
-        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncoDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>hspmoncohomologacaoDataSet</rd:DataSetName>
+        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncohomologacaoDataSet.xsd</rd:SchemaPath>
         <rd:TableName>Vw_RelatorioPrescricao</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -1780,7 +1780,7 @@
     </DataSet>
     <DataSet Name="DataSet2">
       <Query>
-        <DataSourceName>hspmoncoDataSet</DataSourceName>
+        <DataSourceName>hspmoncohomologacaoDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1858,8 +1858,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
-        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncoDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>hspmoncohomologacaoDataSet</rd:DataSetName>
+        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncohomologacaoDataSet.xsd</rd:SchemaPath>
         <rd:TableName>Vw_RelatorioProtocoloDosagem</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -1868,7 +1868,7 @@
     </DataSet>
     <DataSet Name="DataSet3">
       <Query>
-        <DataSourceName>hspmoncoDataSet</DataSourceName>
+        <DataSourceName>hspmoncohomologacaoDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1950,8 +1950,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
-        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncoDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>hspmoncohomologacaoDataSet</rd:DataSetName>
+        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncohomologacaoDataSet.xsd</rd:SchemaPath>
         <rd:TableName>Vw_RelatorioPreQuimioDosagem</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -1960,7 +1960,7 @@
     </DataSet>
     <DataSet Name="DataSet4">
       <Query>
-        <DataSourceName>hspmoncoDataSet</DataSourceName>
+        <DataSourceName>hspmoncohomologacaoDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1986,8 +1986,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
-        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncoDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>hspmoncohomologacaoDataSet</rd:DataSetName>
+        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncohomologacaoDataSet.xsd</rd:SchemaPath>
         <rd:TableName>CID_PRESCRICAO</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -1996,7 +1996,7 @@
     </DataSet>
     <DataSet Name="DataSet5">
       <Query>
-        <DataSourceName>hspmoncoDataSet</DataSourceName>
+        <DataSourceName>hspmoncohomologacaoDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -2034,8 +2034,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>hspmoncoDataSet</rd:DataSetName>
-        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncoDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>hspmoncohomologacaoDataSet</rd:DataSetName>
+        <rd:SchemaPath>G:\OneDrive - Default Directory\OneDrive - rede.sp\WorkSpace_Oncologia_VS_2022\Oncologia\App_Code\hspmoncohomologacaoDataSet.xsd</rd:SchemaPath>
         <rd:TableName>agenda</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

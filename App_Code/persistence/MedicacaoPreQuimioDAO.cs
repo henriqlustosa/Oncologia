@@ -23,7 +23,7 @@ public class MedicacaoPreQuimioDAO
         /*  ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
 
-          HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmonco.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio" );
+          HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://hspmoncohomologacao.azurewebsites.net/tipo-pre-quimio/obter-todos-tipos-pre-quimio" );
           request.Method = "GET";
           request.PreAuthenticate = true;
           request.ContentType = "application/json";
@@ -55,7 +55,7 @@ public class MedicacaoPreQuimioDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmonco].[dbo].[MedicacaoPreQuimio] order by [descricao]";
+            cmm.CommandText = "SELECT  [Id],[descricao],[status] FROM [hspmoncohomologacao].[dbo].[MedicacaoPreQuimio] order by [descricao]";
 
             try
             {

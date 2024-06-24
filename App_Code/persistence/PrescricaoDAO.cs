@@ -32,7 +32,7 @@ public class PrescricaoDAO
 
             SqlCommand cmm = cnn.CreateCommand();
 
-            string sqlConsulta = "Select top 1 cod_PreQuimio FROM [hspmonco].[dbo].[Protocolos] where cod_DescricaoProtocolo = " + cod_Protocolos;
+            string sqlConsulta = "Select top 1 cod_PreQuimio FROM [hspmoncohomologacao].[dbo].[Protocolos] where cod_DescricaoProtocolo = " + cod_Protocolos;
             cmm.CommandText = sqlConsulta;
             try
             {

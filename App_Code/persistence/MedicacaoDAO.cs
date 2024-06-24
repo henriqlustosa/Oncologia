@@ -25,7 +25,7 @@ public class MedicacaoDAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [Id],[descricao]  FROM [hspmonco].[dbo].[Medicacao] order by [descricao] ";
+            cmm.CommandText = "SELECT  [Id],[descricao]  FROM [hspmoncohomologacao].[dbo].[Medicacao] order by [descricao] ";
 
             try
             {

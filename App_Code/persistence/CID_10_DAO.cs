@@ -66,7 +66,7 @@ public class CID_10_DAO
         using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["oncoConnectionString"].ToString()))
         {
             SqlCommand cmm = cnn.CreateCommand();
-            cmm.CommandText = "SELECT  [SUBCAT],[CLASSIF],[RESTRSEXO],[CAUSAOBITO],[DESCRICAO],[DESCRABREV],[REFER],[EXCLUIDOS] FROM[hspmonco].[dbo].[CID_10_SUBCATEGORIAS]";
+            cmm.CommandText = "SELECT  [SUBCAT],[CLASSIF],[RESTRSEXO],[CAUSAOBITO],[DESCRICAO],[DESCRABREV],[REFER],[EXCLUIDOS] FROM[hspmoncohomologacao].[dbo].[CID_10_SUBCATEGORIAS]";
 
             try
             {
@@ -110,7 +110,7 @@ public class CID_10_DAO
 
             SqlCommand cmm = cnn.CreateCommand();
 
-            string sqlConsulta = "SELECT  [cod_Prescricao],[SUBCAT],[status],[data_cadastro],[data_atualizacao] FROM [hspmonco].[dbo].[CID_PRESCRICAO] where status = 'A' and cod_Prescricao =" + cod_Prescricao;
+            string sqlConsulta = "SELECT  [cod_Prescricao],[SUBCAT],[status],[data_cadastro],[data_atualizacao] FROM [hspmoncohomologacao].[dbo].[CID_PRESCRICAO] where status = 'A' and cod_Prescricao =" + cod_Prescricao;
             cmm.CommandText = sqlConsulta;
             try
             {

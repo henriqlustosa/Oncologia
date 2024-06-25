@@ -393,7 +393,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
     {
 
         // Variável para armazenar o nome da impressora selecionada
-        string nome_impressora = ddlImpressora.SelectedValue;
+        string nome_impressora = ddlImpressora.SelectedItem.Text;
         // Variável para armazenar a quantidade cópias de cada prescrição 
         int vias = Convert.ToInt32(ddlVias.SelectedValue);
         while (vias > 0)

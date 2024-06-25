@@ -539,7 +539,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
     protected void btnImprimir_Click(object sender, EventArgs e)
     {
         // Variável para armazenar o nome da impressora selecionada
-        string nome_impressora = ddlImpressora.SelectedValue;
+        string nome_impressora = ddlImpressora.SelectedItem.Text;
         // Variável para armazenar a quantidade cópias de cada prescrição 
         int vias = Convert.ToInt32(ddlVias.SelectedValue);
         while (vias > 0)

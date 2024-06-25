@@ -126,11 +126,17 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
         {
             index = Convert.ToInt32(e.CommandArgument);
 
+            int cod_Prescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
 
+            nome_impressora = ddlImpressora.SelectedItem.Text;
+            // Variável para armazenar a quantidade cópias de cada prescrição 
+           
 
-            int idPrescricao = Convert.ToInt32(GridView1.DataKeys[index].Value.ToString()); //id da consulta
+                ImpressaoPrescricao.imprimirFicha(cod_Prescricao, nome_impressora);
+           
+          
 
-            Response.Redirect("~/Prescricao/EditarCadastroPrescricao.aspx?idPrescricao=" + idPrescricao + "");
+            Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
 
 
         }

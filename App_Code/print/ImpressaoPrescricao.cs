@@ -132,8 +132,12 @@ public class ImpressaoPrescricao
         }
         catch (Win32Exception ex)
         {
+            // Log detailed error information
+            Console.WriteLine("A Win32 error occurred:"+ ex.Message);
+            Console.WriteLine("Error Code:" + ex.NativeErrorCode);
+            Console.WriteLine("Stack Trace: "+ ex.StackTrace);
             Console.WriteLine("A Win32 error occurred:" + ex.Message);
-            MessageBox.Show("A Win32 error occurred: " +ex.Message, "Win32 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("A Win32 error occurred: "+ex.Message+"\nError Code: "+ex.NativeErrorCode, "Win32 Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         catch (InvalidPrinterException ex)
         {

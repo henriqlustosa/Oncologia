@@ -64,7 +64,7 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
             string nome_da_impressora;
             if (impressora == null || impressora.nome_impressora == null)
             {
-                nome_da_impressora = "";
+                nome_da_impressora = "INFO";
             }
             else
             {
@@ -228,10 +228,5 @@ public partial class Prescricao_HistoricoDeDocumentos : System.Web.UI.Page
         }
     }
 
-    protected void btnGravar_Click(object sender, EventArgs e)
-    {
-
-
-
-    }
+   
 }

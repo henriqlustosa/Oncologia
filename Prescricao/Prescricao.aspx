@@ -23,6 +23,25 @@
         .modal {
             z-index: 1050;
         }*/
+       /* #calc_main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #calc_input, #calc_result {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            text-align: center;
+        }*/
+
         .button-container {
             display: flex;
             flex-wrap: wrap;
@@ -378,91 +397,72 @@
                     </table>
                     <br />
                     &nbsp;<br />
-
                     <div id="calc_main">
-
                         <div id="calc_input">
                             <center>
-                                <span class="medCalcFontIO">Entrada
-                                </span>
+                                <span class="medCalcFontIO">Entrada</span>
                                 <br />
                                 &nbsp;<br />
                                 <table cellpadding="3" cellspacing="0" summary="EBMcalc Table">
                                     <tr>
                                         <td align="right" width="42%"><span class="medCalcFontOneBold">Altura</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
-                                            <input type="text" id="txbAltura" name="Height_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Height" runat="server" /></td>
+                        <input type="text" id="txbAltura" name="Height_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Height" runat="server" />
+                                        </td>
                                         <td align="left" valign="top">
                                             <select name="Height_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Height">
                                                 <option value="1|0|cm" selected="selected">cm</option>
-
-                                            </select></td>
+                                            </select>
+                                        </td>
                                     </tr>
-
                                     <tr>
                                         <td align="right" width="42%"><span class="medCalcFontOneBold">Peso</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
-                                            <input type="text" id="txbPeso" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" runat="server" /></td>
+                        <input type="text" id="txbPeso" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" runat="server" />
+                                        </td>
                                         <td align="left" valign="top">
                                             <select name="Weight_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the value Weight">
-
                                                 <option value="1|0|kg" selected="selected">kg</option>
-
-                                            </select></td>
+                                            </select>
+                                        </td>
                                     </tr>
-
-
                                 </table>
-
                             </center>
-
                         </div>
                         <br />
                         &nbsp;<br />
+
                         <div id="calc_result">
                             <center>
                                 <span class="medCalcFontIO">Resultado</span>
-
                                 <br />
                                 &nbsp;<br />
-                                <table summary="EBMcalc Table" class="medCalcResultBox" cellpadding="4">
+                                <table cellpadding="3" cellspacing="0" summary="EBMcalc Table">
                                     <tr>
-                                        <td colspan="3">&nbsp;<br />
+                                        <td align="right" width="42%"><span class="medCalcFontOneBold">BSA</span> </td>
+                                        <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
+       <input type="text" id="txbBSA" name="BSA_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="This output box will display the calculated value BSA" runat="server" />
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right"><span class="medCalcFontResultParam">BSA</span></td>
-                                        <td valign="top" nowrap="nowrap">&nbsp;
-                                            <input type="text" id="txbBSA" name="BSA_param" size="6" aria-readonly="true" aria-label="This output box will display the calculated value BSA" runat="server" /></td>
-                                        <td valign="top" align="left"><span class="medCalcFontResultParam">
-                                            <select name="BSA_unit" onchange="BodySurfaceArea_fx();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the result value BSA">
-
+                                        <td align="left" valign="top">
+                                            <select name="BSA_unit" onchange="BodySurfaceArea_fx(); minMaxCheck();" style="width: 115px;" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the unit of measure for the result value BSA">
                                                 <option value="1|0|sqm" selected="selected">sqm</option>
-
                                             </select>
-                                        </span></td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td colspan="3">&nbsp;<br />
                                         </td>
                                     </tr>
+
                                     <tr>
-                                        <td colspan="3" align="center"><span class="medCalcFontResultParam">Decimal Precision &nbsp;</span>
+
+                                        <td colspan="3" align="center">                                        <br />
+   &nbsp;<br /><span class="medCalcFontResultParam">Decimal Precision</span>&nbsp;
                                             <select name="decpts" onchange="BodySurfaceArea_fx();" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the decimal precision of calculations">
-
                                                 <option selected="selected">2</option>
-
-
-                                            </select></td>
+                                            </select>
+                                        </td>
                                     </tr>
-
                                 </table>
                             </center>
-
-
                         </div>
+                      
                     </div>
                     <div id="pretextrefs">
                         &nbsp;
@@ -715,7 +715,6 @@
                                     <div class="col-md-6 col-sm-12">
                                         Impressoras:
     <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-     
     </asp:DropDownList>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
@@ -1160,7 +1159,7 @@
         </div>
 
 
-    <%--     <!-- The First Modal -->
+        <%--     <!-- The First Modal -->
             <div class="modal fade" id="myModal1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1208,118 +1207,118 @@
                 </div>
             </div>
         </div>--%>
-    <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
-    <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
+        <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
+        <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
 
-    <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
+        <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
 
-    <script src="../js/decimal.min.js" type="text/javascript"></script>
+        <script src="../js/decimal.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript">
-        function showModal(modalId) {
-            $('#' + modalId).modal('show');
-        }
-        function openConfirmationModal() {
-            $('#confirmationModal').modal('show');
-        }
-        function openConfirmationModal2() {
-            $('#myModalImpressora').modal('show');
-        }
-        //function adjustZIndex() {
-        //    var visibleModals = $('.modal:visible');
-        //    visibleModals.each(function (index) {
-        //        var zIndex = 1050 + (10 * index);
-        //        $(this).css('z-index', zIndex);
-        //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
-        //    });
-        //}
+        <script type="text/javascript">
+            function showModal(modalId) {
+                $('#' + modalId).modal('show');
+            }
+            function openConfirmationModal() {
+                $('#confirmationModal').modal('show');
+            }
+            function openConfirmationModal2() {
+                $('#myModalImpressora').modal('show');
+            }
+            //function adjustZIndex() {
+            //    var visibleModals = $('.modal:visible');
+            //    visibleModals.each(function (index) {
+            //        var zIndex = 1050 + (10 * index);
+            //        $(this).css('z-index', zIndex);
+            //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
+            //    });
+            //}
 
-        //$('#myModalDosagem').on('shown.bs.modal', function () {
-        //    adjustZIndex();
-        //});
+            //$('#myModalDosagem').on('shown.bs.modal', function () {
+            //    adjustZIndex();
+            //});
 
-        //$('#myModalMedicamento').on('shown.bs.modal', function () {
-        //    adjustZIndex();
-        //});
+            //$('#myModalMedicamento').on('shown.bs.modal', function () {
+            //    adjustZIndex();
+            //});
 
-        ////function adjustZIndex() {
-        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        ////    console.log("Adjusting z-index to:", zIndex);
-        ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
-        ////}
+            ////function adjustZIndex() {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Adjusting z-index to:", zIndex);
+            ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
+            ////}
 
-        ////// Adjust the backdrop to ensure proper stacking order for the second modal
-        ////$('#myModalDosagem').on('show.bs.modal', function () {
-        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        ////    console.log("Showing second modal, z-index:", zIndex);
-        ////    $(this).css('z-index', zIndex);
-        ////    adjustZIndex();
-        ////});
+            ////// Adjust the backdrop to ensure proper stacking order for the second modal
+            ////$('#myModalDosagem').on('show.bs.modal', function () {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Showing second modal, z-index:", zIndex);
+            ////    $(this).css('z-index', zIndex);
+            ////    adjustZIndex();
+            ////});
 
-        ////// Adjust the backdrop to ensure proper stacking order for the first modal
-        ////$('#myModalMedicamento').on('show.bs.modal', function () {
-        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        ////    console.log("Showing first modal, z-index:", zIndex);
-        ////    $(this).css('z-index', zIndex);
-        ////    adjustZIndex();
-        //});
-        // Adjust the backdrop to ensure proper stacking order
-        //$('#myModalDosagem').on('show.bs.modal', function () {
-        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        //    $(this).css('z-index', zIndex);
+            ////// Adjust the backdrop to ensure proper stacking order for the first modal
+            ////$('#myModalMedicamento').on('show.bs.modal', function () {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Showing first modal, z-index:", zIndex);
+            ////    $(this).css('z-index', zIndex);
+            ////    adjustZIndex();
+            //});
+            // Adjust the backdrop to ensure proper stacking order
+            //$('#myModalDosagem').on('show.bs.modal', function () {
+            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            //    $(this).css('z-index', zIndex);
 
-        //     adjustZIndex();
-        //});
-        //function adjustZIndex() {
-        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        //}
-        function calculateValorAtualizado() {
+            //     adjustZIndex();
+            //});
+            //function adjustZIndex() {
+            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            //}
+            function calculateValorAtualizado() {
 
-            var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
+                var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
 
                 var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
                 var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
 
-            if (valorProtocolo && percentagem) {
-                var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
+                if (valorProtocolo && percentagem) {
+                    var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
 
-                valorAtualizado.value = result.replace('.', ',');
-            } else {
-                valorAtualizado.value = "";
+                    valorAtualizado.value = result.replace('.', ',');
+                } else {
+                    valorAtualizado.value = "";
+                }
             }
-        }
 
-        window.onload = function () {
-            document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
+            window.onload = function () {
+                document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
                 document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
-        }
+            }
 
-        //function showModal() {
-        //    $('#myModalMedicamento').modal('show');
-        //}
+            //function showModal() {
+            //    $('#myModalMedicamento').modal('show');
+            //}
 
-        //function hideModal() {
-        //    $('#myModalMedicamento').modal('hiden');
+            //function hideModal() {
+            //    $('#myModalMedicamento').modal('hiden');
 
-        //}
+            //}
 
-        //function showModalMedicamento() {
-        //    $('#myModalDosagem').modal('show');
-        //}
+            //function showModalMedicamento() {
+            //    $('#myModalDosagem').modal('show');
+            //}
 
-        //function hideModal() {
-        //    $('#myModalDosagem').modal('hiden');
-        //}
-    </script>
+            //function hideModal() {
+            //    $('#myModalDosagem').modal('hiden');
+            //}
+        </script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        window.addEventListener('keydown', function (e) {
+            window.addEventListener('keydown', function (e) {
 
-            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
-            else return true;
-        });
+                if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
+                else return true;
+            });
 
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
@@ -1385,107 +1384,107 @@
             }
         }--%>
 
-        function log(i) {
-            return Math.log(i) * Math.LOG10E;
-        }
+            function log(i) {
+                return Math.log(i) * Math.LOG10E;
+            }
 
-        function ln(i) {
-            return Math.log(i);
-        }
+            function ln(i) {
+                return Math.log(i);
+            }
 
-        function sq(i) {
-            return i * i;
-        }
+            function sq(i) {
+                return i * i;
+            }
 
-        function sqr(i) {
-            return Math.sqrt(i);
-        }
-
-
-        function power(x, y) {
-            return Math.pow(x, y);
-        }
-
-        function eTo(x) {
-            return Math.exp(x);
-        }
+            function sqr(i) {
+                return Math.sqrt(i);
+            }
 
 
-        function fixDP(r, dps) {
-            if (isNaN(r)) return "NaN";
-            var msign = '';
-            var mfin = '';
-            if (r < 0) msign = '-';
-            x = Math.abs(r);
-            if (x > Math.pow(10, 21)) return msign + x.toString();
-            var m = Math.round(x * Math.pow(10, dps)).toString();
-            if (dps == 0) return msign + m;
-            while (m.length <= dps) m = "0" + m;
-            mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
-            if (dps == 1) return mfin.replace('.0', '');
-            if (dps == 2) return mfin.replace('.00', '');
-            if (dps == 3) return mfin.replace('.000', '');
-            if (dps == 4) return mfin.replace('.0000', '');
-            return mfin;
-        }
+            function power(x, y) {
+                return Math.pow(x, y);
+            }
 
-        function fixNearest(x, y) {
-            return Math.round(x / y) * y;
-        }
-
-        function alertNaN(thisparam) {
-            alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
-            doCalc = false;
-            clrResults();
-        }
-
-        function clrValue(field) {
-            field.value = '';
-        }
-
-        var currenttimeout;
-
-        function resetInTime() {
-            if (currenttimeout) clearTimeout(currenttimeout);
-            currenttimeout = setTimeout('minMaxCheck();', 3000);
-        }
+            function eTo(x) {
+                return Math.exp(x);
+            }
 
 
+            function fixDP(r, dps) {
+                if (isNaN(r)) return "NaN";
+                var msign = '';
+                var mfin = '';
+                if (r < 0) msign = '-';
+                x = Math.abs(r);
+                if (x > Math.pow(10, 21)) return msign + x.toString();
+                var m = Math.round(x * Math.pow(10, dps)).toString();
+                if (dps == 0) return msign + m;
+                while (m.length <= dps) m = "0" + m;
+                mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
+                if (dps == 1) return mfin.replace('.0', '');
+                if (dps == 2) return mfin.replace('.00', '');
+                if (dps == 3) return mfin.replace('.000', '');
+                if (dps == 4) return mfin.replace('.0000', '');
+                return mfin;
+            }
 
-        var curelement;
+            function fixNearest(x, y) {
+                return Math.round(x / y) * y;
+            }
 
-        function togCB(thisid) {
-            thischeckbox = document.getElementById(thisid);
-            if (thischeckbox.checked) { thischeckbox.checked = false; }
-            else { thischeckbox.checked = true; }
-            BodySurfaceArea_fx();
-        }
+            function alertNaN(thisparam) {
+                alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
+                doCalc = false;
+                clrResults();
+            }
 
-        function setRB(thisid) {
-            document.getElementById(thisid).checked = true;
-            BodySurfaceArea_fx();
-        }
+            function clrValue(field) {
+                field.value = '';
+            }
 
+            var currenttimeout;
 
-        var calctxt = '';
-        var xmltxt = '';
-        var xmlresult = '';
-        var htmtxt = '';
-        var postNow = false;
-        var printing = false;
-        var interptxt = '';
-        var interphtm = '';
-        var interpxml = '';
-        var rbchk = false;
-
-        function BodySurfaceArea_fx() {
-
-            with (document.forms[0]) {
+            function resetInTime() {
+                if (currenttimeout) clearTimeout(currenttimeout);
+                currenttimeout = setTimeout('minMaxCheck();', 3000);
+            }
 
 
-                doCalc = true;
 
-                param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+            var curelement;
+
+            function togCB(thisid) {
+                thischeckbox = document.getElementById(thisid);
+                if (thischeckbox.checked) { thischeckbox.checked = false; }
+                else { thischeckbox.checked = true; }
+                BodySurfaceArea_fx();
+            }
+
+            function setRB(thisid) {
+                document.getElementById(thisid).checked = true;
+                BodySurfaceArea_fx();
+            }
+
+
+            var calctxt = '';
+            var xmltxt = '';
+            var xmlresult = '';
+            var htmtxt = '';
+            var postNow = false;
+            var printing = false;
+            var interptxt = '';
+            var interphtm = '';
+            var interpxml = '';
+            var rbchk = false;
+
+            function BodySurfaceArea_fx() {
+
+                with (document.forms[0]) {
+
+
+                    doCalc = true;
+
+                    param_value = parseFloat((<%= txbAltura.ClientID %>).value);
 
                     if (isNaN(param_value)) { param_value = ""; doCalc = false; }
                     unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
@@ -1504,102 +1503,102 @@
 
 
 
+                }
+
+
+
+
             }
 
+            function minMaxCheck() {
+                if (printing) return;
 
 
 
-        }
+                with (document.forms[0]) {
 
-        function minMaxCheck() {
-            if (printing) return;
-
-
-
-            with (document.forms[0]) {
-
-                if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
+                    if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
                     if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
 
 
-            }
-
-        }
-
-
-
-        function clrResults() {
-
-
-            with (document.forms[0]) {
-
-                (<%= txbBSA.ClientID %>).value = '';
-
+                }
 
             }
 
-        }
-
-        var Height = null,
-            Weight = null,
-            BSA = null,
-            param_value = null;
 
 
-        function mostraCalculo() {
+            function clrResults() {
 
-            var div = document.getElementById('divCalculoCorpo');
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
+                with (document.forms[0]) {
+
+                    (<%= txbBSA.ClientID %>).value = '';
+
+
+                }
+
             }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraCID() {
 
-            var div = document.getElementById('divCID');
+            var Height = null,
+                Weight = null,
+                BSA = null,
+                param_value = null;
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraGeral() {
 
-            var div = document.getElementById('divGeral');
+            function mostraCalculo() {
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraViasDeAcesso() {
+                var div = document.getElementById('divCalculoCorpo');
 
-            var div = document.getElementById('divViasDeAcesso');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
             }
-            else {
-                div.style.display = 'none';
-            }
-        }
+            function mostraCID() {
 
-        function ClearInputs() {
-            (<%= txbAltura.ClientID %>).value = '';
+                var div = document.getElementById('divCID');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+            function mostraGeral() {
+
+                var div = document.getElementById('divGeral');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+            function mostraViasDeAcesso() {
+
+                var div = document.getElementById('divViasDeAcesso');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+
+            function ClearInputs() {
+                (<%= txbAltura.ClientID %>).value = '';
                 (<%= txbPeso.ClientID %>).value = '';
                 (<%= txbBSA.ClientID %>).value = '';
 
                 $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
-        }
-        $(document).ready(function () {
-            $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
+            }
+            $(document).ready(function () {
+                $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
                 $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
                 $("#<%=txbDtInicio.ClientID%>").datepicker({
@@ -1769,29 +1768,29 @@
                 });
             });
 
-    </script>
+        </script>
 
-    <script type="text/javascript">
-        function MutExChkList(chk) {
-            var chkList = chk.parentNode.parentNode.parentNode;
-            var chks = chkList.getElementsByTagName("input");
-            for (var i = 0; i < chks.length; i++) {
-                if (chks[i] != chk && chk.checked) {
-                    chks[i].checked = false;
+        <script type="text/javascript">
+            function MutExChkList(chk) {
+                var chkList = chk.parentNode.parentNode.parentNode;
+                var chks = chkList.getElementsByTagName("input");
+                for (var i = 0; i < chks.length; i++) {
+                    if (chks[i] != chk && chk.checked) {
+                        chks[i].checked = false;
+                    }
                 }
             }
-        }
-        document.addEventListener('DOMContentLoaded', function () {
-            var checkBoxList = document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]');
+            document.addEventListener('DOMContentLoaded', function () {
+                var checkBoxList = document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]');
                 checkBoxList.forEach(function (chk) {
                     chk.addEventListener('click', function () {
                         MutExChkList(this);
                     });
                 });
             });
-    </script>
+        </script>
 
-    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-    <script src="../js/jquery.mask.js" type="text/javascript"></script>
-    <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
+        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mask.js" type="text/javascript"></script>
+        <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
 </asp:Content>

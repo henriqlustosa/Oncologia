@@ -305,14 +305,16 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>diluicao</rd:DefaultName>
                           <Top>0.3175cm</Top>
-                          <Left>9.59297cm</Left>
+                          <Left>9.00865cm</Left>
                           <Height>0.6cm</Height>
-                          <Width>3.40973cm</Width>
+                          <Width>3.51556cm</Width>
                           <ZIndex>3</ZIndex>
                           <Style>
                             <Border>
@@ -340,7 +342,7 @@
                           </Paragraphs>
                           <rd:DefaultName>tempoDeInfusao</rd:DefaultName>
                           <Top>0.3175cm</Top>
-                          <Left>12.96742cm</Left>
+                          <Left>12.63004cm</Left>
                           <Height>0.6cm</Height>
                           <Width>1.34466cm</Width>
                           <ZIndex>4</ZIndex>
@@ -370,7 +372,7 @@
                           </Paragraphs>
                           <rd:DefaultName>unidadeTempoDeInfusao</rd:DefaultName>
                           <Top>0.3175cm</Top>
-                          <Left>14.31208cm</Left>
+                          <Left>13.9747cm</Left>
                           <Height>0.6cm</Height>
                           <Width>1.0486cm</Width>
                           <ZIndex>5</ZIndex>
@@ -432,7 +434,7 @@
                           <Top>0.3175cm</Top>
                           <Left>6.66964cm</Left>
                           <Height>0.6cm</Height>
-                          <Width>2.88806cm</Width>
+                          <Width>2.30373cm</Width>
                           <ZIndex>7</ZIndex>
                           <Style>
                             <Border>
@@ -444,19 +446,18 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <Rectangle Name="Rectangle9">
-                          <KeepTogether>true</KeepTogether>
-                          <Top>0.3175cm</Top>
-                          <Left>15.87437cm</Left>
-                          <Height>0.5975cm</Height>
-                          <Width>0.70935cm</Width>
+                        <Line Name="Line2">
+                          <Top>0.75816cm</Top>
+                          <Left>15.07622cm</Left>
+                          <Height>0cm</Height>
+                          <Width>1.79258cm</Width>
                           <ZIndex>8</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
                           </Style>
-                        </Rectangle>
+                        </Line>
                       </ReportItems>
                       <KeepTogether>true</KeepTogether>
                       <Style>
@@ -603,7 +604,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.77637cm</Height>
+              <Height>0.82929cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -624,6 +625,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>desc_medicacao</rd:DefaultName>
+                          <Top>0.05292cm</Top>
                           <Height>0.6cm</Height>
                           <Width>3.05514cm</Width>
                           <Style>
@@ -651,6 +653,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>desc_via_de_administracao1</rd:DefaultName>
+                          <Top>0.05292cm</Top>
                           <Left>6.4059cm</Left>
                           <Height>0.6cm</Height>
                           <Width>0.94452cm</Width>
@@ -680,68 +683,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>diluicao1</rd:DefaultName>
+                          <Top>0.05292cm</Top>
                           <Left>7.3857cm</Left>
                           <Height>0.6cm</Height>
-                          <Width>2.88297cm</Width>
+                          <Width>3.36804cm</Width>
                           <ZIndex>2</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <Textbox Name="tempoDeInfusao1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!tempoDeInfusao.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>tempoDeInfusao1</rd:DefaultName>
-                          <Left>10.26867cm</Left>
-                          <Height>0.6cm</Height>
-                          <Width>1.46813cm</Width>
-                          <ZIndex>3</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <Textbox Name="unidadeTempoDeInfusao1">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!unidadeTempoDeInfusao.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>unidadeTempoDeInfusao1</rd:DefaultName>
-                          <Left>11.7368cm</Left>
-                          <Height>0.6cm</Height>
-                          <Width>0.9484cm</Width>
-                          <ZIndex>4</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -767,10 +713,11 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>unidadeDose</rd:DefaultName>
+                          <Top>0.05292cm</Top>
                           <Left>4.89416cm</Left>
                           <Height>0.6cm</Height>
                           <Width>1.51173cm</Width>
-                          <ZIndex>5</ZIndex>
+                          <ZIndex>3</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -796,9 +743,51 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>dose_alterada1</rd:DefaultName>
+                          <Top>0.05292cm</Top>
                           <Left>3.05513cm</Left>
                           <Height>0.6cm</Height>
                           <Width>1.7332cm</Width>
+                          <ZIndex>4</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <Line Name="Line3">
+                          <Top>0.49417cm</Top>
+                          <Left>15.10268cm</Left>
+                          <Height>0cm</Height>
+                          <Width>1.79258cm</Width>
+                          <ZIndex>5</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                          </Style>
+                        </Line>
+                        <Textbox Name="unidadeTempoDeInfusao1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!unidadeTempoDeInfusao.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>unidadeTempoDeInfusao1</rd:DefaultName>
+                          <Left>12.33652cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>0.9484cm</Width>
                           <ZIndex>6</ZIndex>
                           <Style>
                             <Border>
@@ -810,31 +799,37 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <Rectangle Name="Rectangle7">
-                          <ReportItems>
-                            <Rectangle Name="Rectangle8">
-                              <KeepTogether>true</KeepTogether>
-                              <Height>0.51562cm</Height>
-                              <Width>0.70935cm</Width>
-                              <Style>
-                                <Border>
-                                  <Style>Solid</Style>
-                                </Border>
-                              </Style>
-                            </Rectangle>
-                          </ReportItems>
+                        <Textbox Name="tempoDeInfusao1">
+                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
-                          <Top>0.08438cm</Top>
-                          <Left>15.90083cm</Left>
-                          <Height>0.51562cm</Height>
-                          <Width>0.70935cm</Width>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!tempoDeInfusao.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>tempoDeInfusao1</rd:DefaultName>
+                          <Left>10.89485cm</Left>
+                          <Height>0.6cm</Height>
+                          <Width>1.44167cm</Width>
                           <ZIndex>7</ZIndex>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
                           </Style>
-                        </Rectangle>
+                        </Textbox>
                       </ReportItems>
                       <KeepTogether>true</KeepTogether>
                       <Style>
@@ -864,7 +859,7 @@
         <DataSetName>DataSet2</DataSetName>
         <Top>15.3465cm</Top>
         <Left>0.26644cm</Left>
-        <Height>0.77637cm</Height>
+        <Height>0.82929cm</Height>
         <Width>16.89527cm</Width>
         <ZIndex>9</ZIndex>
         <Style>

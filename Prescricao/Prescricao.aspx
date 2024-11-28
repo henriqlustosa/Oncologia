@@ -5,7 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
-
     <%-- <meta http-equiv="refresh" content="1000" />--%>
 
 
@@ -23,7 +22,7 @@
         .modal {
             z-index: 1050;
         }*/
-       /* #calc_main {
+        /* #calc_main {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -137,20 +136,45 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.4);
-            Optional: Dim background
+            background-color: rgba(0, 0, 0, 0.4); /* Dim background */
         }
         /*
         Styles for the modal content itself*/
         .modal-content {
-            width: 800px;
-            Fixed width height: 800px;
-            Fixed height background: white;
-            Optional: Background color border-radius: 8px;
-            Optional: Rounded corners box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            Optional: Box shadow for better visibility Centering the modal content within the container display: flex;
+            width: 400px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            background: white; /* Background color */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for better visibility */
+            display: flex; /* Centering the modal content within the container */
             justify-content: center;
             align-items: center;
+        }
+
+       
+.modal-content-medicamento {
+    width: 900px; /* Fixed width */
+    height: 600px; /* Fixed height */
+    background: white; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for better visibility */
+    display: flex; /* Centering the modal content within the container */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content-agendamento {
+    width: 600px; /* Fixed width */
+    height: 600px; /* Fixed height */
+    background: white; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for better visibility */
+    display: flex; /* Centering the modal content within the container */
+    justify-content: center;
+    align-items: center;
+}
+        .modal-content .modal-body{
+
         }
 
         /*  Custom styles for the first modal*/
@@ -160,13 +184,12 @@
             Blue border*/
         }
 
-        /* Custom styles for the second modal*/
+        /* Custom styles for the second modal */
         .modal-fade-two .modal-content {
-            width: 800px;
-            Fixed width height: 400px;
-            Fixed height background-color: #fff0f5;
-            /* LavenderBlush background border: 1px solid #ff69b4;
-            HotPink border*/
+            width: 800px; /* Fixed width */
+            height: 400px; /* Fixed height */
+            background-color: #fff0f5; /* LavenderBlush background */
+            border: 1px solid #ff69b4; /* HotPink border */
         }
 
 
@@ -191,8 +214,13 @@
 
         #myModalAgendamento .modal-body {
             max-height: 1000px; /* Altura específica para o modal customizado */
-            width: 500px; /* Largura específica para o modal customizado */
+            width: 600px; /* Largura específica para o modal customizado */
         }
+
+            #myModalMedicamento .modal-body {
+        max-height: 1000px; /* Altura específica para o modal customizado */
+        max-width: 800px; /* Largura específica para o modal customizado */
+    }
 
         .modal-body {
             max-height: 1000px;
@@ -261,6 +289,7 @@
         .danger {
             background-color: #c0392b;
             color: #fff;
+        }
     </style>
 
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server">
@@ -383,11 +412,12 @@
 
 
 
-                <form name="BodySurfaceArea_form" id="BodySurfaceArea_form" action="" onsubmit="return false;" onkeydown="clrResults(); resetInTime();" onkeyup="BodySurfaceArea_fx();">
+               <form id="BodySurfaceArea_form" action="" onsubmit="return false;" onkeydown="clrResults(); resetInTime();" onkeyup="BodySurfaceArea_fx();">
 
-                    <table width="100%" cellpadding="4" cellspacing="0" summary="EBMcalc Table">
+
+                    <table style="width: 100%;" cellpadding="4" cellspacing="0" summary="EBMcalc Table">
                         <tr>
-                            <td class="medCalcTitleBox" width="1%">
+                            <td class="medCalcTitleBox"style="width: 1%;">
                                 <br />
                             </td>
                             <td class="medCalcTitleBox">
@@ -405,7 +435,7 @@
                                 &nbsp;<br />
                                 <table cellpadding="3" cellspacing="0" summary="EBMcalc Table">
                                     <tr>
-                                        <td align="right" width="42%"><span class="medCalcFontOneBold">Altura</span> </td>
+                                        <td align="right" style="width: 42%;"><span class="medCalcFontOneBold">Altura</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
                         <input type="text" id="txbAltura" name="Height_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Height" runat="server" />
                                         </td>
@@ -416,7 +446,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="right" width="42%"><span class="medCalcFontOneBold">Peso</span> </td>
+                                        <td align="right" style="width: 42%;"><span class="medCalcFontOneBold">Peso</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
                         <input type="text" id="txbPeso" name="Weight_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="Use this input box to enter the value Weight" runat="server" />
                                         </td>
@@ -439,7 +469,7 @@
                                 &nbsp;<br />
                                 <table cellpadding="3" cellspacing="0" summary="EBMcalc Table">
                                     <tr>
-                                        <td align="right" width="42%"><span class="medCalcFontOneBold">BSA</span> </td>
+                                        <td align="right" style="width: 42%;"><span class="medCalcFontOneBold">BSA</span> </td>
                                         <td align="left" valign="top" nowrap="nowrap" width="5%">&nbsp;
        <input type="text" id="txbBSA" name="BSA_param" size="6" value="" onblur="BodySurfaceArea_fx(); minMaxCheck();" onchange="BodySurfaceArea_fx();" aria-label="This output box will display the calculated value BSA" runat="server" />
                                         </td>
@@ -452,8 +482,10 @@
 
                                     <tr>
 
-                                        <td colspan="3" align="center">                                        <br />
-   &nbsp;<br /><span class="medCalcFontResultParam">Decimal Precision</span>&nbsp;
+                                        <td colspan="3" align="center">
+                                            <br />
+                                            &nbsp;<br />
+                                            <span class="medCalcFontResultParam">Decimal Precision</span>&nbsp;
                                             <select name="decpts" onchange="BodySurfaceArea_fx();" class="medCalcFontSelect" aria-label="Use this pulldown selector to set the decimal precision of calculations">
                                                 <option selected="selected">2</option>
                                             </select>
@@ -462,7 +494,7 @@
                                 </table>
                             </center>
                         </div>
-                      
+
                     </div>
                     <div id="pretextrefs">
                         &nbsp;
@@ -473,14 +505,14 @@
                     <br />
                     &nbsp;<br />
 
-                    <div id="calc_notes">
+                   <%-- <div id="calc_notes">
                         <span class="medCalcFontOneBold">Nota</span>
                         <ul class="medCalcFontOne">
                             <li><font color="#aa0000">O valor padrão para a unidade de medida para peso é kilograma.  Por favor verifique se a correta unidade de medida foi selecionada.</font></li>
 
 
                         </ul>
-                    </div>
+                    </div>--%>
 
                     <br />
                     &nbsp;<br />
@@ -492,7 +524,7 @@
                         <div id="calc_equation">
                             <table cellspacing="0" cellpadding="10" summary="EBMcalc Table">
                                 <tr>
-                                    <td class="medCalcFormuliBox"><span class="medCalcFontFormuli">BSA = 0.007184 * Height<sup>0.725</sup> * Weight<sup>0.425</sup></span></td>
+                                    <td class="medCalcFormuliBox"><span class="medCalcFontFormuli"><font color="#aa0000">BSA = 0.007184 * Height<sup>0.725</sup> * Weight<sup>0.425</sup></font></span></td>
                                 </tr>
                             </table>
                             <br />
@@ -672,19 +704,19 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+                        <h5 class="modal-title" id="confirmationModalLabel">Confirmação</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Are you sure you want to proceed?
+                        Você tem certeza que quer gravar a prescrição?
      
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
-                        <asp:Button ID="btnTeste" runat="server" Text="Confirm" CssClass="btn btn-success imprimir"
+                        <asp:Button ID="btnTeste" runat="server" Text="Confirmar" CssClass="btn btn-success imprimir"
                             OnClick="btnGravar_Click" />
                     </div>
                 </div>
@@ -762,9 +794,9 @@
         <div class="modal fade three" id="myModalAgendamento">
             <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content">
+                <div class="modal-content-agendamento">
                     <div class="modal-header">
-                        <h4 class="modal-title">Informações dos Agendamento</h4>
+                        <h4 class="modal-title">Informações do Agendamento</h4>
                     </div>
                     <div class="modal-body">
                         <div class="modal-header">
@@ -845,7 +877,7 @@
         <div class="modal fade one" id="myModalMedicamento">
             <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content">
+                <div class="modal-content-medicamento">
                     <div class="modal-header">
                         <h4 class="modal-title">Informações dos Medicamentos</h4>
                     </div>
@@ -1156,7 +1188,7 @@
                 </div>
             </div>
 
-        </div>
+   
 
 
         <%--     <!-- The First Modal -->
@@ -1207,118 +1239,119 @@
                 </div>
             </div>
         </div>--%>
-        <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
-        <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
+    </div>
+    <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
+    <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
 
-        <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
+    <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
 
-        <script src="../js/decimal.min.js" type="text/javascript"></script>
+    <script src="../js/decimal.min.js" type="text/javascript"></script>
 
-        <script type="text/javascript">
-            function showModal(modalId) {
-                $('#' + modalId).modal('show');
+    <script type="text/javascript">
+        function showModal(modalId) {
+            $('#' + modalId).modal('show');
+        }
+        function openConfirmationModal() {
+            $('#confirmationModal').modal('show');
+        }
+        function openConfirmationModal2() {
+            $('#myModalImpressora').modal('show');
+        }
+        //function adjustZIndex() {
+        //    var visibleModals = $('.modal:visible');
+        //    visibleModals.each(function (index) {
+        //        var zIndex = 1050 + (10 * index);
+        //        $(this).css('z-index', zIndex);
+        //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
+        //    });
+        //}
+
+        //$('#myModalDosagem').on('shown.bs.modal', function () {
+        //    adjustZIndex();
+        //});
+
+        //$('#myModalMedicamento').on('shown.bs.modal', function () {
+        //    adjustZIndex();
+        //});
+
+        ////function adjustZIndex() {
+        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        ////    console.log("Adjusting z-index to:", zIndex);
+        ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
+        ////}
+
+        ////// Adjust the backdrop to ensure proper stacking order for the second modal
+        ////$('#myModalDosagem').on('show.bs.modal', function () {
+        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        ////    console.log("Showing second modal, z-index:", zIndex);
+        ////    $(this).css('z-index', zIndex);
+        ////    adjustZIndex();
+        ////});
+
+        ////// Adjust the backdrop to ensure proper stacking order for the first modal
+        ////$('#myModalMedicamento').on('show.bs.modal', function () {
+        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        ////    console.log("Showing first modal, z-index:", zIndex);
+        ////    $(this).css('z-index', zIndex);
+        ////    adjustZIndex();
+        //});
+        // Adjust the backdrop to ensure proper stacking order
+        //$('#myModalDosagem').on('show.bs.modal', function () {
+        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        //    $(this).css('z-index', zIndex);
+
+        //     adjustZIndex();
+        //});
+        //function adjustZIndex() {
+        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+        //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        //}
+        function calculateValorAtualizado() {
+
+            var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
+
+            var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
+            var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
+
+            if (valorProtocolo && percentagem) {
+                var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
+
+                valorAtualizado.value = result.replace('.', ',');
+            } else {
+                valorAtualizado.value = "";
             }
-            function openConfirmationModal() {
-                $('#confirmationModal').modal('show');
-            }
-            function openConfirmationModal2() {
-                $('#myModalImpressora').modal('show');
-            }
-            //function adjustZIndex() {
-            //    var visibleModals = $('.modal:visible');
-            //    visibleModals.each(function (index) {
-            //        var zIndex = 1050 + (10 * index);
-            //        $(this).css('z-index', zIndex);
-            //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
-            //    });
-            //}
+        }
 
-            //$('#myModalDosagem').on('shown.bs.modal', function () {
-            //    adjustZIndex();
-            //});
+        window.onload = function () {
+            document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
+            document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
+        }
 
-            //$('#myModalMedicamento').on('shown.bs.modal', function () {
-            //    adjustZIndex();
-            //});
+        //function showModal() {
+        //    $('#myModalMedicamento').modal('show');
+        //}
 
-            ////function adjustZIndex() {
-            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            ////    console.log("Adjusting z-index to:", zIndex);
-            ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
-            ////}
+        //function hideModal() {
+        //    $('#myModalMedicamento').modal('hiden');
 
-            ////// Adjust the backdrop to ensure proper stacking order for the second modal
-            ////$('#myModalDosagem').on('show.bs.modal', function () {
-            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            ////    console.log("Showing second modal, z-index:", zIndex);
-            ////    $(this).css('z-index', zIndex);
-            ////    adjustZIndex();
-            ////});
+        //}
 
-            ////// Adjust the backdrop to ensure proper stacking order for the first modal
-            ////$('#myModalMedicamento').on('show.bs.modal', function () {
-            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            ////    console.log("Showing first modal, z-index:", zIndex);
-            ////    $(this).css('z-index', zIndex);
-            ////    adjustZIndex();
-            //});
-            // Adjust the backdrop to ensure proper stacking order
-            //$('#myModalDosagem').on('show.bs.modal', function () {
-            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            //    $(this).css('z-index', zIndex);
+        //function showModalMedicamento() {
+        //    $('#myModalDosagem').modal('show');
+        //}
 
-            //     adjustZIndex();
-            //});
-            //function adjustZIndex() {
-            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-            //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-            //}
-            function calculateValorAtualizado() {
+        //function hideModal() {
+        //    $('#myModalDosagem').modal('hiden');
+        //}
+    </script>
 
-                var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
+    <script type="text/javascript">
 
-                var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
-                var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
+        window.addEventListener('keydown', function (e) {
 
-                if (valorProtocolo && percentagem) {
-                    var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
-
-                    valorAtualizado.value = result.replace('.', ',');
-                } else {
-                    valorAtualizado.value = "";
-                }
-            }
-
-            window.onload = function () {
-                document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
-                document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
-            }
-
-            //function showModal() {
-            //    $('#myModalMedicamento').modal('show');
-            //}
-
-            //function hideModal() {
-            //    $('#myModalMedicamento').modal('hiden');
-
-            //}
-
-            //function showModalMedicamento() {
-            //    $('#myModalDosagem').modal('show');
-            //}
-
-            //function hideModal() {
-            //    $('#myModalDosagem').modal('hiden');
-            //}
-        </script>
-
-        <script type="text/javascript">
-
-            window.addEventListener('keydown', function (e) {
-
-                if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
-                else return true;
-            });
+            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
+            else return true;
+        });
 
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
@@ -1384,271 +1417,282 @@
             }
         }--%>
 
-            function log(i) {
-                return Math.log(i) * Math.LOG10E;
-            }
+        function log(i) {
+            return Math.log(i) * Math.LOG10E;
+        }
 
-            function ln(i) {
-                return Math.log(i);
-            }
+        function ln(i) {
+            return Math.log(i);
+        }
 
-            function sq(i) {
-                return i * i;
-            }
+        function sq(i) {
+            return i * i;
+        }
 
-            function sqr(i) {
-                return Math.sqrt(i);
-            }
-
-
-            function power(x, y) {
-                return Math.pow(x, y);
-            }
-
-            function eTo(x) {
-                return Math.exp(x);
-            }
+        function sqr(i) {
+            return Math.sqrt(i);
+        }
 
 
-            function fixDP(r, dps) {
-                if (isNaN(r)) return "NaN";
-                var msign = '';
-                var mfin = '';
-                if (r < 0) msign = '-';
-                x = Math.abs(r);
-                if (x > Math.pow(10, 21)) return msign + x.toString();
-                var m = Math.round(x * Math.pow(10, dps)).toString();
-                if (dps == 0) return msign + m;
-                while (m.length <= dps) m = "0" + m;
-                mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
-                if (dps == 1) return mfin.replace('.0', '');
-                if (dps == 2) return mfin.replace('.00', '');
-                if (dps == 3) return mfin.replace('.000', '');
-                if (dps == 4) return mfin.replace('.0000', '');
-                return mfin;
-            }
+        function power(x, y) {
+            return Math.pow(x, y);
+        }
 
-            function fixNearest(x, y) {
-                return Math.round(x / y) * y;
-            }
-
-            function alertNaN(thisparam) {
-                alert(thisparam + ' is improperly formatted. You may only input the digits 0-9 and a decimal point.');
-                doCalc = false;
-                clrResults();
-            }
-
-            function clrValue(field) {
-                field.value = '';
-            }
-
-            var currenttimeout;
-
-            function resetInTime() {
-                if (currenttimeout) clearTimeout(currenttimeout);
-                currenttimeout = setTimeout('minMaxCheck();', 3000);
-            }
+        function eTo(x) {
+            return Math.exp(x);
+        }
 
 
+        function fixDP(r, dps) {
+            if (isNaN(r)) return "NaN";
+            var msign = '';
+            var mfin = '';
+            if (r < 0) msign = '-';
+            x = Math.abs(r);
+            if (x > Math.pow(10, 21)) return msign + x.toString();
+            var m = Math.round(x * Math.pow(10, dps)).toString();
+            if (dps == 0) return msign + m;
+            while (m.length <= dps) m = "0" + m;
+            mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
+            if (dps == 1) return mfin.replace('.0', '');
+            if (dps == 2) return mfin.replace('.00', '');
+            if (dps == 3) return mfin.replace('.000', '');
+            if (dps == 4) return mfin.replace('.0000', '');
+            return mfin;
+        }
 
-            var curelement;
+        function fixNearest(x, y) {
+            return Math.round(x / y) * y;
+        }
 
-            function togCB(thisid) {
-                thischeckbox = document.getElementById(thisid);
-                if (thischeckbox.checked) { thischeckbox.checked = false; }
-                else { thischeckbox.checked = true; }
-                BodySurfaceArea_fx();
-            }
+        function alertNaN(thisparam) {
+            alert(thisparam + ' está formatado incorretamente. Você pode inserir apenas os dígitos de 0 a 9 e um ponto decimal.');
+            doCalc = false;
+            clrResults();
+        }
 
-            function setRB(thisid) {
-                document.getElementById(thisid).checked = true;
-                BodySurfaceArea_fx();
-            }
+        function clrValue(field) {
+            field.value = '';
+        }
 
+        var currenttimeout;
 
-            var calctxt = '';
-            var xmltxt = '';
-            var xmlresult = '';
-            var htmtxt = '';
-            var postNow = false;
-            var printing = false;
-            var interptxt = '';
-            var interphtm = '';
-            var interpxml = '';
-            var rbchk = false;
-
-            function BodySurfaceArea_fx() {
-
-                with (document.forms[0]) {
-
-
-                    doCalc = true;
-
-                    param_value = parseFloat((<%= txbAltura.ClientID %>).value);
-
-                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                    unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
-                    Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                    param_value = parseFloat((<%= txbPeso.ClientID %>).value);
-                    if (isNaN(param_value)) { param_value = ""; doCalc = false; }
-                    unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
-                    Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
-                    dp = decpts.options[decpts.selectedIndex].text;
-                    BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
-
-                    unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
-                    if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+        function resetInTime() {
+            if (currenttimeout) clearTimeout(currenttimeout);
+            currenttimeout = setTimeout('minMaxCheck();', 3000);
+        }
 
 
 
+        var curelement;
+
+        function togCB(thisid) {
+            thischeckbox = document.getElementById(thisid);
+            if (thischeckbox.checked) { thischeckbox.checked = false; }
+            else { thischeckbox.checked = true; }
+            BodySurfaceArea_fx();
+        }
+
+        function setRB(thisid) {
+            document.getElementById(thisid).checked = true;
+            BodySurfaceArea_fx();
+        }
 
 
-                }
+        var calctxt = '';
+        var xmltxt = '';
+        var xmlresult = '';
+        var htmtxt = '';
+        var postNow = false;
+        var printing = false;
+        var interptxt = '';
+        var interphtm = '';
+        var interpxml = '';
+        var rbchk = false;
+
+        function BodySurfaceArea_fx() {
+
+            with (document.forms[0]) {
+
+
+                doCalc = true;
+
+                param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+
+                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
+                Height = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                param_value = parseFloat((<%= txbPeso.ClientID %>).value);
+                if (isNaN(param_value)) { param_value = ""; doCalc = false; }
+                unit_parts = Weight_unit.options[Weight_unit.selectedIndex].value.split('|');
+                Weight = param_value * parseFloat(unit_parts[0]) + parseFloat(unit_parts[1]);
+                dp = decpts.options[decpts.selectedIndex].text;
+                BSA = 0.007184 * power(Height, 0.725) * power(Weight, 0.425);
+
+                unit_parts = BSA_unit.options[BSA_unit.selectedIndex].value.split('|');
+                if (doCalc) (<%= txbBSA.ClientID %>).value = fixDP((BSA - parseFloat(unit_parts[1])) / parseFloat(unit_parts[0]), dp);
+
 
 
 
 
             }
 
-            function minMaxCheck() {
-                if (printing) return;
 
 
 
-                with (document.forms[0]) {
+        }
 
-                    if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Height'); }
-                    if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Weight'); }
+        function minMaxCheck() {
+            if (printing) return;
 
 
-                }
+
+            with (document.forms[0]) {
+
+                if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Altura'); }
+                if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Peso'); }
+
 
             }
 
+        }
 
 
-            function clrResults() {
+
+        function clrResults() {
 
 
-                with (document.forms[0]) {
+            with (document.forms[0]) {
 
-                    (<%= txbBSA.ClientID %>).value = '';
-
-
-                }
-
-            }
-
-            var Height = null,
-                Weight = null,
-                BSA = null,
-                param_value = null;
-
-
-            function mostraCalculo() {
-
-                var div = document.getElementById('divCalculoCorpo');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-            function mostraCID() {
-
-                var div = document.getElementById('divCID');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-            function mostraGeral() {
-
-                var div = document.getElementById('divGeral');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-            function mostraViasDeAcesso() {
-
-                var div = document.getElementById('divViasDeAcesso');
-
-                if (div.style.display == 'none') {
-                    div.style.display = 'block';
-                }
-                else {
-                    div.style.display = 'none';
-                }
-            }
-
-            function ClearInputs() {
-                (<%= txbAltura.ClientID %>).value = '';
-                (<%= txbPeso.ClientID %>).value = '';
                 (<%= txbBSA.ClientID %>).value = '';
 
-                $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
+
             }
-            $(document).ready(function () {
-                $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
-                $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
-                $("#<%=txbDtInicio.ClientID%>").datepicker({
-                    minDate: 0,
-                    dateFormat: 'dd/mm/yy',
-                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                    nextText: 'Proximo',
-                    prevText: 'Anterior'
-                });
+        }
+
+        var Height = null,
+            Weight = null,
+            BSA = null,
+            param_value = null;
 
 
-                $("#<%=txbDtInicio.ClientID%>").datepicker();
+        function mostraCalculo() {
 
-                $("#<%=txbDataAlterada.ClientID%>").datepicker({
-                    minDate: 0,
-                    dateFormat: 'dd/mm/yy',
-                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
-                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                    nextText: 'Proximo',
-                    prevText: 'Anterior'
-                });
-                $("#<%=txbDataAlterada.ClientID%>").mask("99/99/9999");
+            var div = document.getElementById('divCalculoCorpo');
 
-                $("#<%=txbDataAlterada.ClientID%>").datepicker();
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function mostraCID() {
 
-                $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
+            var div = document.getElementById('divCID');
 
-                $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
-                $("#<%=txbCiclos.ClientID%>").maskAsNumber({
-                    min: 1,
-                    max: 12
-                });
-                $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
-                    min: 1,
-                    max: 30
-                });
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function mostraGeral() {
+
+            var div = document.getElementById('divGeral');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+        function mostraViasDeAcesso() {
+
+            var div = document.getElementById('divViasDeAcesso');
+
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            }
+            else {
+                div.style.display = 'none';
+            }
+        }
+
+        function ClearInputs() {
+            (<%= txbAltura.ClientID %>).value = '';
+            (<%= txbPeso.ClientID %>).value = '';
+            (<%= txbBSA.ClientID %>).value = '';
+
+            $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
+        }
+        $(document).ready(function () {
+            $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
+            $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
+
+            $("#<%=txbDtInicio.ClientID%>").datepicker({
+                minDate: 0,
+                dateFormat: 'dd/mm/yy',
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                nextText: 'Proximo',
+                prevText: 'Anterior'
+            });
 
 
-                $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+            $("#<%=txbDtInicio.ClientID%>").datepicker();
+
+            $("#<%=txbDataAlterada.ClientID%>").datepicker({
+                minDate: 0,
+                dateFormat: 'dd/mm/yy',
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                nextText: 'Proximo',
+                prevText: 'Anterior'
+            });
+            $("#<%=txbDataAlterada.ClientID%>").mask("99/99/9999");
+
+            $("#<%=txbDataAlterada.ClientID%>").datepicker();
+
+            $('#<%= txbCreatinina.ClientID %>').inputmask({ 'mask': "9{0,1},9{0,2}", greedy: false });
+            $('#<%= txbCreatinina.ClientID %>').on('click', function () {
+                var input = this;
+
+                if (input.value === "") {
+                    // Set the cursor position to the start
+                    setTimeout(function () {
+                        input.setSelectionRange(0, 0);
+                    }, 0);
+                }
+                
+            });
+
+            $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
+            $("#<%=txbCiclos.ClientID%>").maskAsNumber({
+                min: 1,
+                max: 12
+            });
+            $("#<%=txbIntervalos.ClientID%>").maskAsNumber({
+                min: 1,
+                max: 30
+            });
 
 
-                    source: function (request, response) {
-                        var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
+            $("#<%= txbNomePaciente.ClientID %>").autocomplete({
+
+
+                source: function (request, response) {
+                    var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
                         $.ajax({
                             url: "Prescricao.aspx/GetNomeDePacientes",
                             data: JSON.stringify(param),
@@ -1708,10 +1752,10 @@
                 });
 
 
-                $("#<%= txbProntuario.ClientID %>").autocomplete({
+            $("#<%= txbProntuario.ClientID %>").autocomplete({
 
-                    source: function (request, response) {
-                        var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
+                source: function (request, response) {
+                    var param = { prefixo: $('#<%= txbProntuario.ClientID %>').val() };
                         $.ajax({
                             url: "Prescricao.aspx/GetNomeDePacientesPoRh",
                             data: JSON.stringify(param),
@@ -1766,31 +1810,46 @@
                     minLength: 1 //This is the Char length of inputTextBox    
 
                 });
-            });
+        });
 
-        </script>
+    </script>
 
-        <script type="text/javascript">
-            function MutExChkList(chk) {
-                var chkList = chk.parentNode.parentNode.parentNode;
-                var chks = chkList.getElementsByTagName("input");
-                for (var i = 0; i < chks.length; i++) {
-                    if (chks[i] != chk && chk.checked) {
-                        chks[i].checked = false;
-                    }
-                }
-            }
-            document.addEventListener('DOMContentLoaded', function () {
+    <script type="text/javascript">
+        //function MutExChkList(chk) {
+        //    var chkList = chk.parentNode.parentNode.parentNode;
+        //    var chks = chkList.getElementsByTagName("input");
+        //    for (var i = 0; i < chks.length; i++) {
+        //        if (chks[i] != chk && chk.checked) {
+        //            chks[i].checked = false;
+        //        }
+        //    }
+        //}
+        <%--    document.addEventListener('DOMContentLoaded', function () {
                 var checkBoxList = document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]');
                 checkBoxList.forEach(function (chk) {
                     chk.addEventListener('click', function () {
                         MutExChkList(this);
                     });
                 });
-            });
-        </script>
+            });--%>
 
-        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-        <script src="../js/jquery.mask.js" type="text/javascript"></script>
-        <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
+        function getSelectedViasDeAcesso() {
+            var selectedValues = [];
+            document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]:checked')
+                .forEach(function (checkbox) {
+                    selectedValues.push(checkbox.value);
+                });
+            return selectedValues;
+        }
+
+        document.querySelector('#btnGravar').addEventListener('click', function () {
+            var selectedVias = getSelectedViasDeAcesso();
+            // Enviar os valores para o servidor
+        });
+
+    </script>
+
+    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.mask.js" type="text/javascript"></script>
+    <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
 </asp:Content>

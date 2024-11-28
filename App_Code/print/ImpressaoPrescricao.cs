@@ -38,22 +38,25 @@ public class ImpressaoPrescricao
                 List<RelatorioProtocoloDosagem> protocolos = RelatorioProtocoloDosagemDAO.BuscarProtocolosPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
                 List<RelatorioPreQuimioDosagem> preQuimios = RelatorioPreQumioDosagemDAO.BuscarPrequimiosPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
                 List<CID_Prescricao> cids = CID_10_DAO.BuscarCIDsPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
+                List<ViasDeAcesso_Prescricao> listaViasDeAcesso = ViasDeAcessoDAO.BuscarViasDeAcessoPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
                 List<Agenda> agendas = AgendaDAO.BuscarAgendasPorCodPrescricao(relatorioPrescricao.cod_Prescricao);
 
                 IEnumerable<RelatorioPrescricao> RelatorioPrescricao = listaRelatorioPrescricao;
                 IEnumerable<RelatorioProtocoloDosagem> RelatorioProtocoloDosagem = protocolos;
                 IEnumerable<RelatorioPreQuimioDosagem> RelatorioPreQuimioDosagem = preQuimios;
                 IEnumerable<CID_Prescricao> RelatorioCID_Prescricao = cids;
+                IEnumerable<ViasDeAcesso_Prescricao> RelatorioViasDeAcesso_Prescricao = listaViasDeAcesso;
 
                 relatorio.DataSources.Add(new ReportDataSource("DataSet1", RelatorioPrescricao));
                 relatorio.DataSources.Add(new ReportDataSource("DataSet2", RelatorioProtocoloDosagem));
                 relatorio.DataSources.Add(new ReportDataSource("DataSet3", RelatorioPreQuimioDosagem));
                 relatorio.DataSources.Add(new ReportDataSource("DataSet4", RelatorioCID_Prescricao));
+                relatorio.DataSources.Add(new ReportDataSource("DataSet5", RelatorioViasDeAcesso_Prescricao));
 
                 foreach (var agenda in agendas)
                 {
                     List<Agenda> relatorioAgenda = new List<Agenda> { agenda };
-                    relatorio.DataSources.Add(new ReportDataSource("DataSet5", relatorioAgenda));
+                    relatorio.DataSources.Add(new ReportDataSource("DataSet6", relatorioAgenda));
 
                     Exportar(relatorio);
                     Imprimir(relatorio);

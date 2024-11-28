@@ -235,7 +235,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
     {
         // Variável que marca a data e hora da criação da prescrição
         DateTime dataCadastro = DateTime.Now;
-        string mensagem = "";
+        
         string usuario = User.Identity.Name.ToUpper();
         int cod_profissional = 0;
         MembershipUser currentUser = Membership.GetUser();
@@ -262,7 +262,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
 
             CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
 
-            Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
+            Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
 
             List<CID_10> listaDeCids = HandleCID();
 
@@ -322,7 +322,7 @@ public partial class Prescricao_EditarCadastroPrescricao : System.Web.UI.Page
     {
         // Variável que marca a data e hora da criação da prescrição
         DateTime dataCadastro = DateTime.Now;
-        string mensagem = "";
+      
 
 
         string usuario = User.Identity.Name.ToUpper();

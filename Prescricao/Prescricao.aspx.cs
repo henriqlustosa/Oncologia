@@ -12,538 +12,61 @@ using Serilog;
 using System.Reflection;
 using System.Web.Security;
 using Microsoft.Exchange.WebServices.Data;
+using System.Web.UI.HtmlControls;
 
 public partial class Prescricao_Prescricao : System.Web.UI.Page
 {
-    private int cod_Prescricao
+    // Propriedade centralizada para o código da prescrição
+    // Propriedade centralizada para o código da prescrição
+    private int CodPrescricao
     {
         get
         {
-            if (ViewState["cod_Prescicao"] == null)
-            {
-                ViewState["cod_Prescicao"] = 0;
-            }
-            return Convert.ToInt32(ViewState["cod_Prescicao"].ToString());
+            return GetFromViewState("CodPrescricao", 0);
         }
         set
         {
-            ViewState["cod_Prescicao"] = value;
+            ViewState["CodPrescricao"] = value;
         }
     }
-    private string nome_da_impressora
+
+    // Propriedade centralizada para o nome da impressora
+    private string NomeDaImpressora
     {
         get
         {
-            if (ViewState["nome_da_impressora"] == null)
-            {
-                ViewState["nome_da_impressora"] = "";
-            }
-            return ViewState["nome_da_impressora"].ToString();
+            return GetFromViewState("NomeDaImpressora", string.Empty);
         }
         set
         {
-            ViewState["nome_da_impressora"] = value;
+            ViewState["NomeDaImpressora"] = value;
         }
     }
+
+    // Método genérico para acessar valores do ViewState com valor padrão
+    private T GetFromViewState<T>(string key, T defaultValue)
+    {
+        if (ViewState[key] == null)
+        {
+            ViewState[key] = defaultValue;
+        }
+        return (T)ViewState[key];
+    }
+
+
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Log.Information("Loaded Page: {PageName}", this.GetType().Name);
+
         if (!IsPostBack)
         {
-            ddlProtocolo.DataSource = DescricaoProtocoloDAO.listaProtocolo();
-            ddlProtocolo.DataTextField = "descricao";
-            ddlProtocolo.DataValueField = "cod_protocolo";
-            ddlProtocolo.DataBind();
-
-            ddlFinalidade.DataSource = FinalidadeDoTratamentoDAO.ListaFinalidade();
-            ddlFinalidade.DataTextField = "desc_finalidade";
-            ddlFinalidade.DataValueField = "cod_finalidade";
-            ddlFinalidade.DataBind();
-
-            select1.DataSource = CID_10_DAO.listaCID_10();
-            select1.DataTextField = "DESCRABREV";
-            select1.DataValueField = "SUBCAT";
-            select1.DataBind();
-
-            cblViasDeAcesso.DataSource = ViasDeAcessoDAO.ListaViasDeAcesso();
-            cblViasDeAcesso.DataTextField = "descr_vias_de_acesso";
-            cblViasDeAcesso.DataValueField = "cod_vias_de_acesso";
-            cblViasDeAcesso.DataBind();
-
-
-            ddlImpressora.DataSource = ImpressoraDAO.ListaImpressora();
-            ddlImpressora.DataTextField = "nome_impressora";
-            ddlImpressora.DataValueField = "cod_impressora";
-            ddlImpressora.DataBind();
-            for (int i = 0; i < cblViasDeAcesso.Items.Count; i++)
-            {
-                cblViasDeAcesso.Items[i].Attributes.Add("onclick", "MutExChkList(this)");
-            }
-            btnAtualizar.Visible = false;
-            btnVisualizarMedicamento.Visible = false;
-            btnImprimir.Visible = false;
-            btnAgendar.Visible = false;
-            string ipAddress = IPUsuario();
-            var impressora = ImpressoraDAO.buscarNomeDaImpressoraPorIP(ipAddress);
-            string nome_da_impressora;
-            if (impressora == null || impressora.nome_impressora == null)
-            {
-                nome_da_impressora = "INFO";
-            }
-            else
-            {
-                nome_da_impressora = impressora.nome_impressora;
-            }
-            ddlImpressora.Items.FindByText(nome_da_impressora).Selected = true;
+            InicializarCombos();
+            ConfigurarImpressoraPorIP(IPUsuario());
+            OcultarBotoesAcoes();
         }
     }
-    [WebMethod]
-
-    public static List<Paciente> GetNomeDePacientes(string prefixo)
-    {
-
-        List<Paciente> pacientes = new List<Paciente>();
-        pacientes = PacienteDAO.GETNOME(prefixo.ToUpper());
-
-        return pacientes;
-    }
-
-    [WebMethod]
-
-    public static Paciente GetNomeDePacientesPoRh(string prefixo)
-    {
-
-        Paciente pacientes = new Paciente();
-        pacientes = PacienteDAO.GET(prefixo);
-
-        return pacientes;
-    }
-
-    protected void btnPesquisar_Click(object sender, EventArgs e)
-    {
-
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "#modalAdicionarPaciente", "$('#modalDadosDoPaciente').modal('show');", true);
-
-
-    }
-    public string IPUsuario()
-    {
-        string strIPUsuario = System.Web.HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-
-        if (!string.IsNullOrEmpty(strIPUsuario))
-        {
-            // If there are multiple IP addresses, take the first one
-            string[] addresses = strIPUsuario.Split(',');
-            if (addresses.Length != 0)
-            {
-                return addresses[0];
-            }
-        }
-        else
-        {
-            // Fall back to REMOTE_ADDR if HTTP_X_FORWARDED_FOR is not present
-            strIPUsuario = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-        }
-
-        // Check if the IP is "::1" (IPv6 loopback address) and handle it accordingly
-        if (strIPUsuario == "::1" || strIPUsuario == "127.0.0.1")
-        {
-            // Handle the loopback address case here (e.g., return a default message or a specific IP)
-            strIPUsuario = "Localhost";
-        }
-        // Fall back to REMOTE_ADDR if HTTP_X_FORWARDED_FOR is not present
-        return strIPUsuario;
-    }
-
-    protected void btnGravar_Click(object sender, EventArgs e)
-    {
-        string usuario = User.Identity.Name.ToUpper();
-        int cod_profissional =0;
-        MembershipUser currentUser = Membership.GetUser();
-        if (currentUser != null)
-        {
-            object userId = currentUser.ProviderUserKey;
-            cod_profissional = ProfissionalDAO.GetProfissionalByUserId(userId.ToString()).cod_profissional;
-        }
-        else
-        {
-            Response.Write("Failed to retrieve user information.");
-        }
-        
-
-        string mensagem = "";
-
-  
-
-      
-
-        // Variável que marca a data e hora da criação da prescrição
-        DateTime dataCadastro = DateTime.Now;
-
-        // Variável para salvar o prontuário que o usuário digitou no formulário
-        int cod_Paciente = int.Parse(txbProntuario.Text);
-
-
-        string message = PacienteOncologiaDAO.HandlePacienteOncologia(txbProntuario.Text, txbNomePaciente.Text, txbPais.Text,
-                                         txbTelefone.Text, txbDdd.Text, ddlSexo.SelectedItem.ToString(),
-                                         txbNascimento.Text, dataCadastro);
-        Log.Information(message);
-
-
-
-        CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
-
-        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
-
-        List<CID_10> listaDeCids = HandleCID();
-
-        CID_10_DAO.GravaCidsPorPrescricao(listaDeCids, prescricao.cod_Prescricao, dataCadastro);
-
-        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
-
-
-
-        CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
-        CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricao = new CalculoDosagemPrescricaoPreQuimio();
-
-
-
-
-        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodProtocolo(int.Parse(ddlProtocolo.SelectedValue.ToString()));
-
-        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
-        List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
-
-        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricao.calcular(prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
-        CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
-        CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
-
-
-
-
-
-        //while (vias > 0)
-        //{
-
-        //    ImpressaoPrescricao.imprimirFicha(prescricao.cod_Prescricao, nome_impressora);
-        //    vias--;
-        //}
-
-        //cod_Prescricao = prescricao.cod_Prescricao;
-        //MostrarTodosMedicamentos(cod_Prescricao);
-
-       
-        //ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
-        cod_Prescricao = prescricao.cod_Prescricao;
-
-        btnGravar.Visible = false;
-        btnAtualizar.Visible = true;
-        btnVisualizarMedicamento.Visible = true;
-        btnImprimir.Visible = true;
-        btnAgendar.Visible = true;
-        for (int i = 0; i < cblViasDeAcesso.Items.Count; i++)
-        {
-            cblViasDeAcesso.Items[i].Attributes.Add("onclick", "MutExChkList(this)");
-        }
-
-        //ClearInputs(Page.Controls);// limpa os textbox
-        //ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
-    }
-
-    private void MostrarTodosMedicamentos(int cod_Prescricao)
-    {
-        GridViewPreQuimio.DataSource = RelatorioPreQumioDosagemDAO.MostrarMedicamentosParaEdicao(cod_Prescricao);
-        GridViewPreQuimio.DataBind();
-
-        GridViewProtocolo.DataSource = RelatorioProtocoloDosagemDAO.MostrarMedicamentosParaEdicao(cod_Prescricao);
-
-        GridViewProtocolo.DataBind();
-    }
-
-    private void MostrarTodosAgendamentos(int cod_Prescricao)
-    {
-        GridViewAgendamento.DataSource = AgendaDAO.BuscarAgendasPorCodPrescricao(cod_Prescricao);
-        GridViewAgendamento.DataBind();
-
-     
-    }
-
-    public List<CID_10> HandleCID()
-    {
-
-
-
-        return select1.Items.Cast<ListItem>()
-                            .Where(i => i.Selected)
-                            .Select(i => new CID_10 { SUBCAT = i.Value })
-                            .ToList();
-
-    }
-
-
-
-
-
-    void ClearInputs(ControlCollection ctrls)
-    {
-        foreach (Control ctrl in ctrls)
-        {
-            if (ctrl is System.Web.UI.WebControls.TextBox)
-                ((System.Web.UI.WebControls.TextBox)ctrl).Text = string.Empty;
-
-            if (ctrl is CheckBoxList)
-                ((CheckBoxList)ctrl).ClearSelection();
-            if (ctrl is DropDownList)
-                ((DropDownList)ctrl).SelectedIndex = 0;
-            ClearInputs(ctrl.Controls);
-
-        }
-
-
-
-    }
-    protected void gridViewAgendamento_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-        int index = Convert.ToInt32(e.CommandArgument);
-        int idAgenda = Convert.ToInt32(GridViewAgendamento.DataKeys[index].Value.ToString()); //id da consulta
-        DateTime dataCadastro = DateTime.Now;
-
-        if (e.CommandName.Equals("editRecord"))
-        {
-
-            
-            GridViewRow row = GridViewAgendamento.Rows[index];
-
-            txbCodigoAgenda.Text = idAgenda.ToString();
-            lbPaciente.InnerText = HttpUtility.HtmlDecode(PacienteDAO.BuscarPacientePorCodPrescricao(cod_Prescricao).nome_paciente);
-            Agenda dadosAgenda = AgendaDAO.ApresentarDadosAgendamento(idAgenda);
-            txbDataAgenda.Text = dadosAgenda.data_agendada.ToString("dd/MM/yyyy");
-            // Initialize the dropdown list with a specific value
-            txbCodigoAgenda.Visible = false;
-            lbCodigoAgenda.Visible = false;
-            txbDataAlterada.Text = "";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalEdicaoAgenda');", true);
-        }
-        else if (e.CommandName.Equals("deleteRecord"))
-        {
-
-
-            AgendaDAO.DeletarAgendaIndividual(idAgenda, dataCadastro);
-
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
-
-            MostrarTodosAgendamentos(cod_Prescricao);
-
-        }
-    }
-        protected void gridViewPreQuimio_RowCommand(object sender, GridViewCommandEventArgs e)
-    {
-
-        int index = Convert.ToInt32(e.CommandArgument);
-        int idCalculoDosagemPreQuimio = Convert.ToInt32(GridViewPreQuimio.DataKeys[index].Value.ToString()); //id da consulta
-        DateTime dataCadastro = DateTime.Now;
-
-        if (e.CommandName.Equals("editRecord"))
-        {
-
-            lblNome.Text = "PreQuimio";
-            GridViewRow row = GridViewPreQuimio.Rows[index];
-
-            txbCodigo.Text = idCalculoDosagemPreQuimio.ToString();
-            lbMedicacao.InnerText = HttpUtility.HtmlDecode(row.Cells[0].Text);
-            CalculoDosagemPrescricaoPreQuimio dados = CalculoDosagemPrescricaoPreQuimioDAO.ApresentarDadosCalculoDosagemPreQuimio(idCalculoDosagemPreQuimio);
-            txbDoseProtocolo.Text = dados.dose.ToString();
-            txbCodigo.Visible = false;
-            lbCodigo.Visible = false;
-            // Initialize the dropdown list with a specific value
-            string initialPercentage = dados.porcentagemDiminuirDose.ToString(); // Example value 
-            ListItem selectedItem = ddlPercentagem.Items.FindByValue(initialPercentage);
-            ddlPercentagem.ClearSelection();
-            selectedItem.Selected = true;
-            txbDoseAlterada.Text = dados.dose_alterada.ToString();
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalDosagem');", true);
-        }
-        else if (e.CommandName.Equals("deleteRecord"))
-        {
-
-
-            CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioIndividual(idCalculoDosagemPreQuimio, dataCadastro);
-          
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
-
-            MostrarTodosMedicamentos(cod_Prescricao);
-
-        }
-
-
-
-
-
-
-    }
-    protected void btnCancelarDosagem_Click(object sender, EventArgs e)
-    {
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
-    }
-    protected void btnGravarImpressora_Click(object sender, EventArgs e)
-    {
-    }
-
-    protected void btnImprimir_Click(object sender, EventArgs e)
-    {
-
-        // Variável para armazenar o nome da impressora selecionada
-        string nome_impressora = ddlImpressora.SelectedItem.Text;
-        // Variável para armazenar a quantidade cópias de cada prescrição 
-        int vias = Convert.ToInt32(ddlVias.SelectedValue);
-        while (vias > 0)
-        {
-
-            ImpressaoPrescricao.imprimirFicha(cod_Prescricao, nome_impressora);
-            vias--;
-        }
-    }
-
-    protected void btnVisualizarMedicamento_Click(object sender, EventArgs e)
-    {
-        MostrarTodosMedicamentos(cod_Prescricao);
-
-
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
-    }
-
-    protected void btnAtualizar_Click(object sender, EventArgs e)
-    {
-        string mensagem = "";
-        
-        int cod_profissional = 0;
-        MembershipUser currentUser = Membership.GetUser();
-        if (currentUser != null)
-        {
-            object userId = currentUser.ProviderUserKey;
-            cod_profissional = ProfissionalDAO.GetProfissionalByUserId(userId.ToString()).cod_profissional;
-        }
-        else
-        {
-            Response.Write("Failed to retrieve user information.");
-        }
-
-        string usuario = User.Identity.Name.ToUpper();
-
-
-
-
-        // Variável que marca a data e hora da criação da prescrição
-        DateTime dataCadastro = DateTime.Now;
-
-        // Variável para salvar o prontuário que o usuário digitou no formulário
-        int cod_Paciente = int.Parse(txbProntuario.Text);
-
-
-        string message = PacienteOncologiaDAO.HandlePacienteOncologia(txbProntuario.Text, txbNomePaciente.Text, txbPais.Text,
-                                      txbTelefone.Text, txbDdd.Text, ddlSexo.SelectedItem.ToString(),
-                                      txbNascimento.Text, dataCadastro);
-        Log.Information(message);
-
-
-
-        Prescricao prescricaoAnterior = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(cod_Prescricao);
-
-        CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricaoAnterior.cod_Calculo);
-
-        CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataCadastro);
-
-        CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
-
-
-
-
-
-
-        List<CID_10> lista_cid_10 = HandleCID();
-
-
-
-
-        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(cod_Prescricao, cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
-
-
-
-
-
-
-        CID_10_DAO.DeletarCidsPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
-        CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao, dataCadastro);
-
-        AgendaDAO.DeletarAgendaTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
-        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_atualizacao);
-
-
-
-        CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
-
-
-
-        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodProtocolo(int.Parse(ddlProtocolo.SelectedValue.ToString()));
-        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
-
-
-        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricaoTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
-        CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
-
-        CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricaoPrequimio = new CalculoDosagemPrescricaoPreQuimio();
-
-      
-
-
-
-        List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
-        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricaoPrequimio.calcular(prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
-
-
-
-        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
-        CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
-
-
-
-
-        //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
-
-        //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
-
-        //ClearInputs(Page.Controls);// limpa os textbox
-        //ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
-        //Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
-
-    }
-
-
-
-    protected void btnGravarAgenda_Click(object sender, EventArgs e)
-    {
-        DateTime dataCadastro = DateTime.Now;
-        int cod_Codigo_Agenda = Convert.ToInt32(txbCodigoAgenda.Text);
-        string usuario = User.Identity.Name.ToUpper();
-        AgendaDAO.AtualizarAgenda(cod_Codigo_Agenda, dataCadastro, usuario,  DateTime.Parse(txbDataAlterada.Text.ToString()));
-
-       
-       
-
-        MostrarTodosAgendamentos(cod_Prescricao);
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
-    }
-
-
-
-
-
-
-    protected void btnCancelarAgenda_Click(object sender, EventArgs e)
-    {
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
-    }
-
 
     protected void btnGravarDosagem_Click(object sender, EventArgs e)
     {
@@ -552,8 +75,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
         string usuario = User.Identity.Name.ToUpper();
         if (lblNome.Text == "Protocolo")
         {
-            CalculoDosagemPrescricaoDAO.AtualizarCalculoDosagemPrescricao(cod_Codigo, dataCadastro, usuario,Convert.ToInt32(ddlPercentagem.SelectedValue), Convert.ToDecimal(txbDoseAlterada.Text));
-          
+            CalculoDosagemPrescricaoDAO.AtualizarCalculoDosagemPrescricao(cod_Codigo, dataCadastro, usuario, Convert.ToInt32(ddlPercentagem.SelectedValue), Convert.ToDecimal(txbDoseAlterada.Text));
+
         }
         else
         {
@@ -561,8 +84,8 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
         }
-        
-        MostrarTodosMedicamentos(cod_Prescricao);
+
+        MostrarTodosMedicamentos(CodPrescricao);
         ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
     }
     protected void gridViewProtocolo_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -601,7 +124,7 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
             CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricaoIndividual(idCalculoDosagemProtocolo, dataCadastro);
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
-            MostrarTodosMedicamentos(cod_Prescricao);
+            MostrarTodosMedicamentos(CodPrescricao);
 
         }
 
@@ -612,11 +135,498 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
     }
 
-   
+
+    private void CarregarHtmlSelect(HtmlSelect htmlSelect, object dataSource, string textField, string valueField)
+    {
+        htmlSelect.DataSource = dataSource;
+        htmlSelect.DataTextField = textField;
+        htmlSelect.DataValueField = valueField;
+        htmlSelect.DataBind();
+    }
+
+    // Inicialização dos combos (DDL e CheckBoxList)
+    private void InicializarCombos()
+    {
+        CarregarCombo(ddlProtocolo, DescricaoProtocoloDAO.listaProtocolo(), "descricao", "cod_protocolo");
+        CarregarCombo(ddlFinalidade, FinalidadeDoTratamentoDAO.ListaFinalidade(), "desc_finalidade", "cod_finalidade");
+        CarregarHtmlSelect(select1, CID_10_DAO.listaCID_10(), "DESCRABREV", "SUBCAT");
+        CarregarCheckBoxList(cblViasDeAcesso, ViasDeAcessoDAO.ListaViasDeAcesso(), "descr_vias_de_acesso", "cod_vias_de_acesso");
+        CarregarCombo(ddlImpressora, ImpressoraDAO.ListaImpressora(), "nome_impressora", "cod_impressora");
+    }
+
+    private void CarregarCombo(DropDownList ddl, object dataSource, string textField, string valueField)
+    {
+        ddl.DataSource = dataSource;
+        ddl.DataTextField = textField;
+        ddl.DataValueField = valueField;
+        ddl.DataBind();
+    }
+
+    private void CarregarCheckBoxList(CheckBoxList cbl, object dataSource, string textField, string valueField)
+    {
+        cbl.DataSource = dataSource;
+        cbl.DataTextField = textField;
+        cbl.DataValueField = valueField;
+        cbl.DataBind();
+    }
+
+    private void OcultarBotoesAcoes()
+    {
+        btnAtualizar.Visible = false;
+        btnVisualizarMedicamento.Visible = false;
+        btnImprimir.Visible = false;
+        btnAgendar.Visible = false;
+    }
+
+    private void ConfigurarImpressoraPorIP(string ipUsuario)
+    {
+        var impressora = ImpressoraDAO.buscarNomeDaImpressoraPorIP(ipUsuario);
+        if (impressora != null && impressora.nome_impressora != null)
+        {
+            NomeDaImpressora = impressora.nome_impressora;
+        }
+        else
+        {
+            NomeDaImpressora = "INFO";
+        }
+
+        var item = ddlImpressora.Items.FindByText(NomeDaImpressora);
+        if (item != null)
+        {
+            item.Selected = true;
+        }
+    }
+
+    public string IPUsuario()
+    {
+        string ip = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ??
+                    HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+
+        if (string.IsNullOrEmpty(ip) || ip == "::1" || ip == "127.0.0.1")
+        {
+            ip = "Localhost";
+        }
+
+        string[] addresses = ip.Split(',');
+        return addresses.Length > 0 ? addresses[0].Trim() : ip;
+
+    }
+
+    [WebMethod]
+    public static List<Paciente> GetNomeDePacientes(string prefixo)
+    {
+        return PacienteDAO.GETNOME(prefixo.ToUpper());
+    }
+
+    [WebMethod]
+    public static Paciente GetNomeDePacientesPoRh(string prefixo)
+    {
+        return PacienteDAO.GET(prefixo);
+    }
+
+    protected void btnGravar_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            int codProfissional = ObterCodigoProfissional();
+            DateTime dataCadastro = DateTime.Now;
+
+            // Validação de campos obrigatórios
+            if (!ValidarCamposObrigatorios())
+            {
+                MostrarMensagem("Preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            // Salvando os dados da prescrição
+            CodPrescricao = SalvarPrescricao(dataCadastro, codProfissional);
+            MostrarMensagem("Prescrição salva com sucesso!");
+
+            AtualizarUIPosGravacao();
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Erro ao gravar prescrição");
+            MostrarMensagem("Erro ao gravar prescrição. Tente novamente.");
+        }
+    }
+
+    private int ObterCodigoProfissional()
+    {
+        MembershipUser currentUser = Membership.GetUser();
+        if (currentUser != null)
+        {
+            return ProfissionalDAO.GetProfissionalByUserId(currentUser.ProviderUserKey.ToString()).cod_profissional;
+        }
+        throw new Exception("Usuário não autenticado.");
+    }
+
+    private int SalvarPrescricao(DateTime dataCadastro, int codProfissional)
+    {
+        string usuario = User.Identity.Name.ToUpper();
+
+
+        // Variável para salvar o prontuário que o usuário digitou no formulário
+        int cod_Paciente = int.Parse(txbProntuario.Text);
+
+
+        string message = PacienteOncologiaDAO.HandlePacienteOncologia(txbProntuario.Text, txbNomePaciente.Text, txbPais.Text,
+                                         txbTelefone.Text, txbDdd.Text, ddlSexo.SelectedItem.ToString(),
+                                         txbNascimento.Text, dataCadastro);
+        Log.Information(message);
+
+
+
+        CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
+
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoGravacao(cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, codProfissional);
+
+        List<CID_10> listaDeCids = HandleCID();
+
+        CID_10_DAO.GravaCidsPorPrescricao(listaDeCids, prescricao.cod_Prescricao, dataCadastro);
+
+
+        List<ViasDeAcesso> listaDeViasDeAcesso = HandleViasDeAcesso();
+        ViasDeAcessoDAO.GravaViasDeAcessoPorPrescricao(listaDeViasDeAcesso, prescricao.cod_Prescricao, dataCadastro);
+
+        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_cadastro);
+
+
+
+        CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
+        CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricao = new CalculoDosagemPrescricaoPreQuimio();
+
+
+
+
+        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodProtocolo(int.Parse(ddlProtocolo.SelectedValue.ToString()));
+
+        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+        List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
+
+        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricao.calcular(prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+        CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
+        CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
+
+
+
+
+
+
+
+
+        btnGravar.Visible = false;
+        btnAtualizar.Visible = true;
+        btnVisualizarMedicamento.Visible = true;
+        btnImprimir.Visible = true;
+        btnAgendar.Visible = true;
+        for (int i = 0; i < cblViasDeAcesso.Items.Count; i++)
+        {
+            cblViasDeAcesso.Items[i].Attributes.Add("onclick", "MutExChkList(this)");
+        }
+        CodPrescricao = prescricao.cod_Prescricao;
+        return prescricao.cod_Prescricao;  // Substitua pelo ID retornado ao salvar
+    }
+
+    private void AtualizarUIPosGravacao()
+    {
+        btnGravar.Visible = false;
+        btnAtualizar.Visible = true;
+        btnVisualizarMedicamento.Visible = true;
+        btnImprimir.Visible = true;
+        btnAgendar.Visible = true;
+    }
+
+    private bool ValidarCamposObrigatorios()
+    {
+        return !string.IsNullOrEmpty(txbProntuario.Text) && ddlProtocolo.SelectedValue != null;
+    }
+
+    private void MostrarMensagem(string mensagem)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('" + mensagem + "');", true);
+
+    }
+
+    public List<CID_10> HandleCID()
+    {
+
+
+
+        return select1.Items.Cast<ListItem>()
+                            .Where(i => i.Selected)
+                            .Select(i => new CID_10 { SUBCAT = i.Value })
+                            .ToList();
+
+    }
+
+    public List<ViasDeAcesso> HandleViasDeAcesso()
+    {
+
+
+
+        return cblViasDeAcesso.Items.Cast<ListItem>()
+                            .Where(i => i.Selected)
+                            .Select(i => new ViasDeAcesso { descr_vias_de_acesso = i.Text, cod_vias_de_acesso = int.Parse(i.Value) })// Convert string to int 
+                            .ToList();
+
+    }
+
+    protected void btnAtualizar_Click(object sender, EventArgs e)
+    {
+
+
+        int cod_profissional = 0;
+        MembershipUser currentUser = Membership.GetUser();
+        if (currentUser != null)
+        {
+            object userId = currentUser.ProviderUserKey;
+            cod_profissional = ProfissionalDAO.GetProfissionalByUserId(userId.ToString()).cod_profissional;
+        }
+        else
+        {
+            Response.Write("Failed to retrieve user information.");
+        }
+
+        string usuario = User.Identity.Name.ToUpper();
+
+
+
+
+        // Variável que marca a data e hora da criação da prescrição
+        DateTime dataCadastro = DateTime.Now;
+
+        // Variável para salvar o prontuário que o usuário digitou no formulário
+        int cod_Paciente = int.Parse(txbProntuario.Text);
+
+
+        string message = PacienteOncologiaDAO.HandlePacienteOncologia(txbProntuario.Text, txbNomePaciente.Text, txbPais.Text,
+                                      txbTelefone.Text, txbDdd.Text, ddlSexo.SelectedItem.ToString(),
+                                      txbNascimento.Text, dataCadastro);
+        Log.Information(message);
+
+
+
+        Prescricao prescricaoAnterior = PrescricaoDAO.BuscarPrescricaoPorCodPrescricao(CodPrescricao);
+
+        CalculoSuperficieCorporea calculoAnterior = CalculoSuperficieCorporeaDAO.BuscarCalculoSuperficieCorporeaPorCod_Calculo(prescricaoAnterior.cod_Calculo);
+
+        CalculoSuperficieCorporeaDAO.DeletarCalculoSuperficieCorporea(calculoAnterior, dataCadastro);
+
+        CalculoSuperficieCorporea calculo = CalculoSuperficieCorporeaDAO.HandleCalculoSuperficieCorporea(txbAltura.Value.ToString(), txbPeso.Value.ToString(), txbBSA.Value.ToString(), dataCadastro);
+
+
+
+
+
+
+        List<CID_10> lista_cid_10 = HandleCID();
+
+
+    
+        Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(CodPrescricao, cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
+
+        CodPrescricao = prescricao.cod_Prescricao;
+
+
+
+
+
+        CID_10_DAO.DeletarCidsPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao, dataCadastro);
+
+        AgendaDAO.DeletarAgendaTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        AgendaDAO.GravarAgenda(prescricao.data_inicio, prescricao.cod_Prescricao, prescricao.ciclos_provaveis, prescricao.intervalo_dias, prescricao.data_atualizacao);
+
+
+
+        CalculoDosagemPrescricao calculoDosagem = new CalculoDosagemPrescricao();
+
+
+
+        List<Protocolos> protocolos = ProtocolosDAO.BuscarProtocolosPorCodProtocolo(int.Parse(ddlProtocolo.SelectedValue.ToString()));
+        List<CalculoDosagemPrescricao> calculoDosagens = calculoDosagem.calcular(calculo, protocolos, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+
+
+        CalculoDosagemPrescricaoDAO.DeletarCalculoDosagemPrescricaoTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoDAO.GravarCalculoDosagemPrescricao(calculoDosagens);
+
+        CalculoDosagemPrescricaoPreQuimio calculoDosagemPrescricaoPrequimio = new CalculoDosagemPrescricaoPreQuimio();
+
+
+
+
+
+        List<MedicacaoPreQuimioDetalhe> prequimios = MedicacaoPreQuimioDetalhelDAO.BuscarPrequimiosPorCodPreQuimio(prescricao.cod_Prequimio);
+        List<CalculoDosagemPrescricaoPreQuimio> calculoDosagemPrescricaoPreQuimios = calculoDosagemPrescricaoPrequimio.calcular(prequimios, dataCadastro, prescricao, PacienteOncologiaDAO.ObterPacientePorRh(cod_Paciente), usuario);
+
+
+
+        CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioTodos(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        CalculoDosagemPrescricaoPreQuimioDAO.GravarCalculoDosagemPrescricaoPreQuimio(calculoDosagemPrescricaoPreQuimios);
+
+
+
+
+        //string mensagem = ProtocolosDAO.GravarProtocolo(protocolo);
+
+        //ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + mensagem + "');", true);
+
+        //ClearInputs(Page.Controls);// limpa os textbox
+        //ScriptManager.RegisterStartupScript(this, this.GetType(), "Your Comment", "ClearInputs();", true);
+        //Response.Redirect("~/Prescricao/HistoricoDeDocumentos.aspx");
+
+    }
+
+
+
+    protected void btnGravarAgenda_Click(object sender, EventArgs e)
+    {
+        DateTime dataCadastro = DateTime.Now;
+        int cod_Codigo_Agenda = Convert.ToInt32(txbCodigoAgenda.Text);
+        string usuario = User.Identity.Name.ToUpper();
+        AgendaDAO.AtualizarAgenda(cod_Codigo_Agenda, dataCadastro, usuario, DateTime.Parse(txbDataAlterada.Text.ToString()));
+
+
+
+
+        MostrarTodosAgendamentos(CodPrescricao);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
+    }
+    protected void gridViewAgendamento_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        int index = Convert.ToInt32(e.CommandArgument);
+        int idAgenda = Convert.ToInt32(GridViewAgendamento.DataKeys[index].Value.ToString()); //id da consulta
+        DateTime dataCadastro = DateTime.Now;
+
+        if (e.CommandName.Equals("editRecord"))
+        {
+
+
+            GridViewRow row = GridViewAgendamento.Rows[index];
+
+            txbCodigoAgenda.Text = idAgenda.ToString();
+            lbPaciente.InnerText = HttpUtility.HtmlDecode(PacienteDAO.BuscarPacientePorCodPrescricao(CodPrescricao).nome_paciente);
+            Agenda dadosAgenda = AgendaDAO.ApresentarDadosAgendamento(idAgenda);
+            txbDataAgenda.Text = dadosAgenda.data_agendada.ToString("dd/MM/yyyy");
+            // Initialize the dropdown list with a specific value
+            txbCodigoAgenda.Visible = false;
+            lbCodigoAgenda.Visible = false;
+            txbDataAlterada.Text = "";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalEdicaoAgenda');", true);
+        }
+        else if (e.CommandName.Equals("deleteRecord"))
+        {
+
+            // Criar uma função para atualizar a posição e o total de posições da agenda criada para uma mesma prescrição.(cod_Prescricao)
+            AgendaDAO.DeletarAgendaIndividual(idAgenda, dataCadastro);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
+
+            MostrarTodosAgendamentos(CodPrescricao);
+
+        }
+    }
+    protected void gridViewPreQuimio_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+
+        int index = Convert.ToInt32(e.CommandArgument);
+        int idCalculoDosagemPreQuimio = Convert.ToInt32(GridViewPreQuimio.DataKeys[index].Value.ToString()); //id da consulta
+        DateTime dataCadastro = DateTime.Now;
+
+        if (e.CommandName.Equals("editRecord"))
+        {
+
+            lblNome.Text = "PreQuimio";
+            GridViewRow row = GridViewPreQuimio.Rows[index];
+
+            txbCodigo.Text = idCalculoDosagemPreQuimio.ToString();
+            lbMedicacao.InnerText = HttpUtility.HtmlDecode(row.Cells[0].Text);
+            CalculoDosagemPrescricaoPreQuimio dados = CalculoDosagemPrescricaoPreQuimioDAO.ApresentarDadosCalculoDosagemPreQuimio(idCalculoDosagemPreQuimio);
+            txbDoseProtocolo.Text = dados.dose.ToString();
+            txbCodigo.Visible = false;
+            lbCodigo.Visible = false;
+            // Initialize the dropdown list with a specific value
+            string initialPercentage = dados.porcentagemDiminuirDose.ToString(); // Example value 
+            ListItem selectedItem = ddlPercentagem.Items.FindByValue(initialPercentage);
+            ddlPercentagem.ClearSelection();
+            selectedItem.Selected = true;
+            txbDoseAlterada.Text = dados.dose_alterada.ToString();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalDosagem');", true);
+        }
+        else if (e.CommandName.Equals("deleteRecord"))
+        {
+
+
+            CalculoDosagemPrescricaoPreQuimioDAO.DeletarCalculoDosagemPrescricaoPreQuimioIndividual(idCalculoDosagemPreQuimio, dataCadastro);
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
+
+            MostrarTodosMedicamentos(CodPrescricao);
+
+        }
+
+
+
+
+
+
+    }
+
+    protected void btnCancelarAgenda_Click(object sender, EventArgs e)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);
+    }
+    protected void btnImprimir_Click(object sender, EventArgs e)
+    {
+
+        // Variável para armazenar o nome da impressora selecionada
+        string nome_impressora = ddlImpressora.SelectedItem.Text;
+        // Variável para armazenar a quantidade cópias de cada prescrição 
+        int vias = Convert.ToInt32(ddlVias.SelectedValue);
+        while (vias > 0)
+        {
+
+            ImpressaoPrescricao.imprimirFicha(CodPrescricao, nome_impressora);
+            vias--;
+        }
+    }
+    private void MostrarTodosMedicamentos(int CodPrescricao)
+    {
+        GridViewPreQuimio.DataSource = RelatorioPreQumioDosagemDAO.MostrarMedicamentosParaEdicao(CodPrescricao);
+        GridViewPreQuimio.DataBind();
+
+        GridViewProtocolo.DataSource = RelatorioProtocoloDosagemDAO.MostrarMedicamentosParaEdicao(CodPrescricao);
+
+        GridViewProtocolo.DataBind();
+    }
+
+    private void MostrarTodosAgendamentos(int CodPrescricao)
+    {
+        GridViewAgendamento.DataSource = AgendaDAO.BuscarAgendasPorCodPrescricao(CodPrescricao);
+        GridViewAgendamento.DataBind();
+
+
+    }
+
+    protected void btnVisualizarMedicamento_Click(object sender, EventArgs e)
+    {
+        MostrarTodosMedicamentos(CodPrescricao);
+
+
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
+    }
+
+    protected void btnCancelarDosagem_Click(object sender, EventArgs e)
+    {
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalMedicamento');", true);
+
+    }
+
 
     protected void btnAgendar_Click(object sender, EventArgs e)
     {
-        MostrarTodosAgendamentos(cod_Prescricao);
+        MostrarTodosAgendamentos(CodPrescricao);
 
 
         ScriptManager.RegisterStartupScript(this, this.GetType(), "showModal", "showModal('myModalAgendamento');", true);

@@ -183,7 +183,7 @@ public class PrescricaoDAO
                 cmm.CommandText = "INSERT INTO [dbo].[Prescricao] " +
           " ( [cod_Paciente]" +
           " , [cod_Finalidade] " +
-          " , [cod_Vias_De_Acesso] " +
+         // " , [cod_Vias_De_Acesso] " +
           " , [cod_Protocolos] " +
           " , [cod_Calculo] " +
           " , [ciclos_provaveis] " +
@@ -202,7 +202,7 @@ public class PrescricaoDAO
     " VALUES" +
           " ( @cod_Paciente " +
           " , @cod_Finalidade " +
-          " , @cod_Vias_De_Acesso " +
+         // " , @cod_Vias_De_Acesso " +
           " , @cod_Protocolos " +
           " , @cod_Calculo " +
           " , @ciclos_provaveis " +
@@ -220,7 +220,7 @@ public class PrescricaoDAO
                 //cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
                 cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
                 cmm.Parameters.Add("@cod_Finalidade", SqlDbType.Int).Value = prescricao.cod_Finalidade;
-                cmm.Parameters.Add("@cod_Vias_De_Acesso", SqlDbType.Int).Value = prescricao.cod_Vias_De_Acesso;
+               // cmm.Parameters.Add("@cod_Vias_De_Acesso", SqlDbType.Int).Value = prescricao.cod_Vias_De_Acesso;
                 cmm.Parameters.Add("@cod_Protocolos", SqlDbType.Int).Value = prescricao.cod_Protocolos;
                 cmm.Parameters.Add("@cod_Calculo", SqlDbType.Int).Value = prescricao.cod_Calculo;
 
@@ -419,14 +419,14 @@ public class PrescricaoDAO
         return prescricao;  
        
     }
-    public static Prescricao HandlePrescricaoGravacao( int cod_Paciente, int cod_Finalidade, int cod_Vias_De_Acesso, int cod_Protocolos, int cod_Calculo, int ciclos_provaveis, int intervalo_dias, DateTime data_inicio, decimal creatinina, string observacao, DateTime data_cadastro, string nome_Usuario, int cod_profissional)
+    public static Prescricao HandlePrescricaoGravacao( int cod_Paciente, int cod_Finalidade, int cod_Protocolos, int cod_Calculo, int ciclos_provaveis, int intervalo_dias, DateTime data_inicio, decimal creatinina, string observacao, DateTime data_cadastro, string nome_Usuario, int cod_profissional)
     {
         Prescricao prescricao = new Prescricao
         {
             
             cod_Paciente = cod_Paciente,
             cod_Finalidade = cod_Finalidade,
-            cod_Vias_De_Acesso = cod_Vias_De_Acesso,
+            //cod_Vias_De_Acesso = cod_Vias_De_Acesso,
             cod_Protocolos = cod_Protocolos,
             cod_Calculo = cod_Calculo,
             ciclos_provaveis = ciclos_provaveis,

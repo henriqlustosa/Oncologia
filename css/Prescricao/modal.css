@@ -1,0 +1,94 @@
+﻿.modal-dialog-custom {
+    max-width: 50%; /* Adjust width as needed */
+}
+
+.modal-body-custom {
+    height: 500px; /* Adjust height as needed */
+    width: 500px;
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+/* Container for the modal that covers the entire viewport 	*/
+.custom-green-button {
+    background-color: green;
+    border-color: green;
+    color: white; /* Optional: To change the text color to white */
+}
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4); /* Dim background */
+}
+/*
+        Styles for the modal content itself*/
+.modal-content {
+    width: max-content; /* Fixed width */
+    height: auto; /* Fixed height */
+    background: white; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for better visibility */
+    display: flex; /* Centering the modal content within the container */
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content .modal-body {
+}
+
+/*  Custom styles for the first modal*/
+.modal-fade-one .modal-content {
+    /*  background-color: #f0f8ff;
+            AliceBlue background border: 1px solid #0000ff;
+            Blue border*/
+}
+
+/* Custom styles for the second modal */
+.modal-fade-two .modal-content {
+    width: 800px; /* Fixed width */
+    height: 400px; /* Fixed height */
+    background-color: #fff0f5; /* LavenderBlush background */
+    border: 1px solid #ff69b4; /* HotPink border */
+}
+
+
+
+.modal-content-custom {
+    width: 700px;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+.modal-fade-two .modal-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-fade-two .modal-body {
+    padding: 4rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+#myModalAgendamento .modal-body {
+    max-height: 1000px; /* Altura específica para o modal customizado */
+    width: 600px; /* Largura específica para o modal customizado */
+}
+
+#myModalMedicamento .modal-body {
+    max-height: 1000px; /* Altura específica para o modal customizado */
+    max-width: 800px; /* Largura específica para o modal customizado */
+}
+
+.modal-body {
+    max-height: 1000px;
+    overflow-y: auto;
+}

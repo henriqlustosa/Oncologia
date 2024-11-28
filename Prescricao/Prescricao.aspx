@@ -9,7 +9,7 @@
 
 
     <link href="../js_datepicker/jquery-ui.css" rel="stylesheet" />
-
+    <link href="../css/Prescricao/modal.css" rel="stylesheet" />
 
 
     <style type="text/css">
@@ -108,124 +108,6 @@
 
 
 
-        .modal-dialog-custom {
-            max-width: 50%; /* Adjust width as needed */
-        }
-
-
-
-        .modal-body-custom {
-            height: 500px; /* Adjust height as needed */
-            width: 500px;
-            overflow-y: auto; /* Enable scrolling if content overflows */
-        }
-
-        /* Container for the modal that covers the entire viewport 	*/
-        .custom-green-button {
-            background-color: green;
-            border-color: green;
-            color: white; /* Optional: To change the text color to white */
-        }
-
-        .modal-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.4); /* Dim background */
-        }
-        /*
-        Styles for the modal content itself*/
-        .modal-content {
-            width: 400px; /* Fixed width */
-            height: 400px; /* Fixed height */
-            background: white; /* Background color */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for better visibility */
-            display: flex; /* Centering the modal content within the container */
-            justify-content: center;
-            align-items: center;
-        }
-
-       
-.modal-content-medicamento {
-    width: 900px; /* Fixed width */
-    height: 600px; /* Fixed height */
-    background: white; /* Background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for better visibility */
-    display: flex; /* Centering the modal content within the container */
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content-agendamento {
-    width: 600px; /* Fixed width */
-    height: 600px; /* Fixed height */
-    background: white; /* Background color */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for better visibility */
-    display: flex; /* Centering the modal content within the container */
-    justify-content: center;
-    align-items: center;
-}
-        .modal-content .modal-body{
-
-        }
-
-        /*  Custom styles for the first modal*/
-        .modal-fade-one .modal-content {
-            /*  background-color: #f0f8ff;
-            AliceBlue background border: 1px solid #0000ff;
-            Blue border*/
-        }
-
-        /* Custom styles for the second modal */
-        .modal-fade-two .modal-content {
-            width: 800px; /* Fixed width */
-            height: 400px; /* Fixed height */
-            background-color: #fff0f5; /* LavenderBlush background */
-            border: 1px solid #ff69b4; /* HotPink border */
-        }
-
-
-
-        .modal-content-custom {
-            width: 700px;
-            border-radius: 15px;
-            justify-content: center;
-            align-items: center;
-            height: 300px;
-        }
-
-        .modal-fade-two .modal-header {
-            padding: 1rem;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .modal-fade-two .modal-body {
-            padding: 4rem;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        #myModalAgendamento .modal-body {
-            max-height: 1000px; /* Altura específica para o modal customizado */
-            width: 600px; /* Largura específica para o modal customizado */
-        }
-
-            #myModalMedicamento .modal-body {
-        max-height: 1000px; /* Altura específica para o modal customizado */
-        max-width: 800px; /* Largura específica para o modal customizado */
-    }
-
-        .modal-body {
-            max-height: 1000px;
-            overflow-y: auto;
-        }
 
 
         .gridview-custom th, .gridview-custom td {
@@ -322,6 +204,7 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         RH
+                   
                     </label>
                     <asp:TextBox ID="txbProntuario" runat="server" class="form-control numeric"></asp:TextBox>
                     <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbProntuario"
@@ -330,6 +213,7 @@
                 <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                     <label>
                         Nome
+                   
                     </label>
                     <asp:TextBox ID="txbNomePaciente" runat="server" class="form-control"></asp:TextBox>
                     <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbNomePaciente"
@@ -341,6 +225,7 @@
                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                     <label>
                         DDD
+                   
                     </label>
                     <asp:TextBox ID="txbDdd" runat="server" class="form-control"></asp:TextBox>
                 </div>
@@ -348,6 +233,7 @@
                 <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                     <label>
                         Telefone
+                   
                     </label>
                     <asp:TextBox ID="txbTelefone" runat="server" class="form-control"></asp:TextBox>
                 </div>
@@ -412,12 +298,12 @@
 
 
 
-               <form id="BodySurfaceArea_form" action="" onsubmit="return false;" onkeydown="clrResults(); resetInTime();" onkeyup="BodySurfaceArea_fx();">
+                <form id="BodySurfaceArea_form" action="" onsubmit="return false;" onkeydown="clrResults(); resetInTime();" onkeyup="BodySurfaceArea_fx();">
 
 
                     <table style="width: 100%;" cellpadding="4" cellspacing="0" summary="EBMcalc Table">
                         <tr>
-                            <td class="medCalcTitleBox"style="width: 1%;">
+                            <td class="medCalcTitleBox" style="width: 1%;">
                                 <br />
                             </td>
                             <td class="medCalcTitleBox">
@@ -498,6 +384,7 @@
                     </div>
                     <div id="pretextrefs">
                         &nbsp;
+                   
                     </div>
 
                     <div id="calc_tables_above_notes">
@@ -505,7 +392,7 @@
                     <br />
                     &nbsp;<br />
 
-                   <%-- <div id="calc_notes">
+                    <%-- <div id="calc_notes">
                         <span class="medCalcFontOneBold">Nota</span>
                         <ul class="medCalcFontOne">
                             <li><font color="#aa0000">O valor padrão para a unidade de medida para peso é kilograma.  Por favor verifique se a correta unidade de medida foi selecionada.</font></li>
@@ -559,6 +446,7 @@
                     <div class="x_panel">
                         <div class="col-5">
                             CID 10:
+                       
                         </div>
                         <div>
                             <select data-placeholder="Selecione uma opção" id="select1" multiple style="width: 750px"
@@ -582,6 +470,7 @@
                             <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                                 <label>
                                     Lista de Protocolo:
+                               
                                 </label>
 
 
@@ -596,6 +485,7 @@
                             <div class="col-md-2 form-group">
                                 <label>
                                     Ciclos Prováveis:
+                               
                                 </label>
                                 <asp:TextBox ID="txbCiclos" runat="server" class="form-control numeric"></asp:TextBox>
                                 <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbCiclos"
@@ -604,6 +494,7 @@
                             <div class="col-md-2  form-group">
                                 <label>
                                     Com Intervalo de:(DIAS)
+                               
                                 </label>
                                 <asp:TextBox ID="txbIntervalos" runat="server" class="form-control"></asp:TextBox>
                                 <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbIntervalos"
@@ -615,6 +506,7 @@
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
                                     Data de Início:
+                               
                                 </label>
                                 <asp:TextBox ID="txbDtInicio" class="form-control" runat="server"></asp:TextBox>
                                 <asp:RequiredFieldValidator ErrorMessage="Preencher o campo selecionado." ControlToValidate="txbDtInicio"
@@ -623,6 +515,7 @@
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
                                     Creatinina(mg/dl):
+                               
                                 </label>
                                 <asp:TextBox ID="txbCreatinina" class="form-control" runat="server"></asp:TextBox>
 
@@ -632,6 +525,7 @@
                             <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                 <label>
                                     Finalidade:
+                               
                                 </label>
                                 <asp:DropDownList ID="ddlFinalidade" runat="server" class="form-control"></asp:DropDownList>
 
@@ -641,6 +535,7 @@
                             <div class="col-md-5 col-sm-12 col-xs-12 form-group">
                                 <label>
                                     Observação:
+                               
                                 </label>
                                 <asp:TextBox ID="txbObservacao" runat="server" class="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
                             </div>
@@ -661,6 +556,7 @@
                     <div class="x_panel">
                         <div class="col-5">
                             Vias de Acesso:
+                       
                         </div>
                         <div>
 
@@ -712,6 +608,7 @@
                     <div class="modal-body">
                         Você tem certeza que quer gravar a prescrição?
      
+                   
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -746,11 +643,13 @@
 
                                     <div class="col-md-6 col-sm-12">
                                         Impressoras:
-    <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
-    </asp:DropDownList>
+   
+                                        <asp:DropDownList ID="ddlImpressora" class="form-control" runat="server">
+                                        </asp:DropDownList>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         Cópias:
+                                       
                                         <asp:DropDownList ID="ddlVias" class="form-control " runat="server">
                                             <asp:ListItem>1</asp:ListItem>
                                             <asp:ListItem>2</asp:ListItem>
@@ -794,7 +693,7 @@
         <div class="modal fade three" id="myModalAgendamento">
             <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content-agendamento">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Informações do Agendamento</h4>
                     </div>
@@ -877,7 +776,7 @@
         <div class="modal fade one" id="myModalMedicamento">
             <div class="modal-dialog">
                 <!-- Modal content-->
-                <div class="modal-content-medicamento">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Informações dos Medicamentos</h4>
                     </div>
@@ -1056,6 +955,7 @@
                                 <div class="col-md-3 col-sm-12">
                                     <label id="lbCodigoAgenda" for="txbCodigoAgenda" runat="server">
                                         Codigo:
+                                   
                                     </label>
                                     <asp:TextBox ID="txbCodigoAgenda" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
                                 </div>
@@ -1065,6 +965,7 @@
                                         <div class="col-md-6 col-sm-12">
                                             <label for="txbDataAgenda">
                                                 Data Agenda:
+                                           
                                             </label>
                                             <asp:TextBox ID="txbDataAgenda" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
                                         </div>
@@ -1072,6 +973,7 @@
                                         <div class="col-md-6 col-sm-12">
                                             <label for="txbDataAlterada">
                                                 Data Atualizada:
+                                           
                                             </label>
                                             <asp:TextBox ID="txbDataAlterada" runat="server" class="form-control"></asp:TextBox>
                                         </div>
@@ -1124,6 +1026,7 @@
                                 <div class="col-md-3 col-sm-12">
                                     <label id="lbCodigo" for="txbCodigo" runat="server">
                                         Codigo:
+                                   
                                     </label>
                                     <asp:TextBox ID="txbCodigo" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
                                 </div>
@@ -1133,12 +1036,14 @@
                                         <div class="col-md-4 col-sm-12">
                                             <label for="txbDoseProtocolo">
                                                 Valor Protocolo:
+                                           
                                             </label>
                                             <asp:TextBox ID="txbDoseProtocolo" runat="server" class="form-control" ReadOnly="true"></asp:TextBox>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <label for="ddlPercentagem">
                                                 Porcentagem:
+                                           
                                             </label>
                                             <asp:DropDownList ID="ddlPercentagem" runat="server" class="form-control">
                                                 <asp:ListItem Value="0">0%</asp:ListItem>
@@ -1157,6 +1062,7 @@
                                         <div class="col-md-4 col-sm-12">
                                             <label for="txbDoseAlterada">
                                                 Valor Atualizado:
+                                           
                                             </label>
                                             <asp:TextBox ID="txbDoseAlterada" runat="server" class="form-control"></asp:TextBox>
                                         </div>
@@ -1188,10 +1094,10 @@
                 </div>
             </div>
 
-   
 
 
-        <%--     <!-- The First Modal -->
+
+            <%--     <!-- The First Modal -->
             <div class="modal fade" id="myModal1">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -1239,93 +1145,93 @@
                 </div>
             </div>
         </div>--%>
-    </div>
-    <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
-    <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
+        </div>
+        <script src='<%= ResolveUrl("~/build/js/popper.min.js") %>' type="text/javascript"></script>
+        <script src='<%= ResolveUrl("~/build/js/bootstrap.min.js") %>' type="text/javascript"></script>
 
-    <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
+        <%-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js" type="text/javascript"></script>--%>
 
-    <script src="../js/decimal.min.js" type="text/javascript"></script>
+        <script src="../js/decimal.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript">
-        function showModal(modalId) {
-            $('#' + modalId).modal('show');
-        }
-        function openConfirmationModal() {
-            $('#confirmationModal').modal('show');
-        }
-        function openConfirmationModal2() {
-            $('#myModalImpressora').modal('show');
-        }
-        //function adjustZIndex() {
-        //    var visibleModals = $('.modal:visible');
-        //    visibleModals.each(function (index) {
-        //        var zIndex = 1050 + (10 * index);
-        //        $(this).css('z-index', zIndex);
-        //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
-        //    });
-        //}
+        <script type="text/javascript">
+            function showModal(modalId) {
+                $('#' + modalId).modal('show');
+            }
+            function openConfirmationModal() {
+                $('#confirmationModal').modal('show');
+            }
+            function openConfirmationModal2() {
+                $('#myModalImpressora').modal('show');
+            }
+            //function adjustZIndex() {
+            //    var visibleModals = $('.modal:visible');
+            //    visibleModals.each(function (index) {
+            //        var zIndex = 1050 + (10 * index);
+            //        $(this).css('z-index', zIndex);
+            //        $(this).next('.modal-backdrop').css('z-index', zIndex - 1);
+            //    });
+            //}
 
-        //$('#myModalDosagem').on('shown.bs.modal', function () {
-        //    adjustZIndex();
-        //});
+            //$('#myModalDosagem').on('shown.bs.modal', function () {
+            //    adjustZIndex();
+            //});
 
-        //$('#myModalMedicamento').on('shown.bs.modal', function () {
-        //    adjustZIndex();
-        //});
+            //$('#myModalMedicamento').on('shown.bs.modal', function () {
+            //    adjustZIndex();
+            //});
 
-        ////function adjustZIndex() {
-        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        ////    console.log("Adjusting z-index to:", zIndex);
-        ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
-        ////}
+            ////function adjustZIndex() {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Adjusting z-index to:", zIndex);
+            ////    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack').css('background-color', 'rgba(255, 0, 0, 0.5)'); // Add temporary red background
+            ////}
 
-        ////// Adjust the backdrop to ensure proper stacking order for the second modal
-        ////$('#myModalDosagem').on('show.bs.modal', function () {
-        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        ////    console.log("Showing second modal, z-index:", zIndex);
-        ////    $(this).css('z-index', zIndex);
-        ////    adjustZIndex();
-        ////});
+            ////// Adjust the backdrop to ensure proper stacking order for the second modal
+            ////$('#myModalDosagem').on('show.bs.modal', function () {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Showing second modal, z-index:", zIndex);
+            ////    $(this).css('z-index', zIndex);
+            ////    adjustZIndex();
+            ////});
 
-        ////// Adjust the backdrop to ensure proper stacking order for the first modal
-        ////$('#myModalMedicamento').on('show.bs.modal', function () {
-        ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        ////    console.log("Showing first modal, z-index:", zIndex);
-        ////    $(this).css('z-index', zIndex);
-        ////    adjustZIndex();
-        //});
-        // Adjust the backdrop to ensure proper stacking order
-        //$('#myModalDosagem').on('show.bs.modal', function () {
-        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        //    $(this).css('z-index', zIndex);
+            ////// Adjust the backdrop to ensure proper stacking order for the first modal
+            ////$('#myModalMedicamento').on('show.bs.modal', function () {
+            ////    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            ////    console.log("Showing first modal, z-index:", zIndex);
+            ////    $(this).css('z-index', zIndex);
+            ////    adjustZIndex();
+            //});
+            // Adjust the backdrop to ensure proper stacking order
+            //$('#myModalDosagem').on('show.bs.modal', function () {
+            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            //    $(this).css('z-index', zIndex);
 
-        //     adjustZIndex();
-        //});
-        //function adjustZIndex() {
-        //    var zIndex = 1040 + (10 * $('.modal:visible').length);
-        //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-        //}
-        function calculateValorAtualizado() {
+            //     adjustZIndex();
+            //});
+            //function adjustZIndex() {
+            //    var zIndex = 1040 + (10 * $('.modal:visible').length);
+            //    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            //}
+            function calculateValorAtualizado() {
 
-            var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
+                var valorProtocolo = new Decimal(document.getElementById('<%= txbDoseProtocolo.ClientID %>').value.replace(',', '.'));
 
             var percentagem = new Decimal(document.getElementById('<%= ddlPercentagem.ClientID %>').value.replace(',', '.'));
             var valorAtualizado = document.getElementById('<%= txbDoseAlterada.ClientID %>');
 
-            if (valorProtocolo && percentagem) {
-                var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
+                if (valorProtocolo && percentagem) {
+                    var result = valorProtocolo.times(percentagem).dividedBy(100).toFixed(2);
 
-                valorAtualizado.value = result.replace('.', ',');
-            } else {
-                valorAtualizado.value = "";
+                    valorAtualizado.value = result.replace('.', ',');
+                } else {
+                    valorAtualizado.value = "";
+                }
             }
-        }
 
-        window.onload = function () {
-            document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
+            window.onload = function () {
+                document.getElementById('<%= txbDoseProtocolo.ClientID %>').oninput = calculateValorAtualizado;
             document.getElementById('<%= ddlPercentagem.ClientID %>').onchange = calculateValorAtualizado;
-        }
+            }
 
         //function showModal() {
         //    $('#myModalMedicamento').modal('show');
@@ -1345,13 +1251,13 @@
         //}
     </script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
 
-        window.addEventListener('keydown', function (e) {
+            window.addEventListener('keydown', function (e) {
 
-            if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
-            else return true;
-        });
+                if (e.key == 'F5' || e.key == 'Enter') e.preventDefault();
+                else return true;
+            });
 
         <%--    function validaEntrada(args) {
             for (let i = 0; i < arguments.length; i++) {
@@ -1417,107 +1323,107 @@
             }
         }--%>
 
-        function log(i) {
-            return Math.log(i) * Math.LOG10E;
-        }
+            function log(i) {
+                return Math.log(i) * Math.LOG10E;
+            }
 
-        function ln(i) {
-            return Math.log(i);
-        }
+            function ln(i) {
+                return Math.log(i);
+            }
 
-        function sq(i) {
-            return i * i;
-        }
+            function sq(i) {
+                return i * i;
+            }
 
-        function sqr(i) {
-            return Math.sqrt(i);
-        }
-
-
-        function power(x, y) {
-            return Math.pow(x, y);
-        }
-
-        function eTo(x) {
-            return Math.exp(x);
-        }
+            function sqr(i) {
+                return Math.sqrt(i);
+            }
 
 
-        function fixDP(r, dps) {
-            if (isNaN(r)) return "NaN";
-            var msign = '';
-            var mfin = '';
-            if (r < 0) msign = '-';
-            x = Math.abs(r);
-            if (x > Math.pow(10, 21)) return msign + x.toString();
-            var m = Math.round(x * Math.pow(10, dps)).toString();
-            if (dps == 0) return msign + m;
-            while (m.length <= dps) m = "0" + m;
-            mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
-            if (dps == 1) return mfin.replace('.0', '');
-            if (dps == 2) return mfin.replace('.00', '');
-            if (dps == 3) return mfin.replace('.000', '');
-            if (dps == 4) return mfin.replace('.0000', '');
-            return mfin;
-        }
+            function power(x, y) {
+                return Math.pow(x, y);
+            }
 
-        function fixNearest(x, y) {
-            return Math.round(x / y) * y;
-        }
-
-        function alertNaN(thisparam) {
-            alert(thisparam + ' está formatado incorretamente. Você pode inserir apenas os dígitos de 0 a 9 e um ponto decimal.');
-            doCalc = false;
-            clrResults();
-        }
-
-        function clrValue(field) {
-            field.value = '';
-        }
-
-        var currenttimeout;
-
-        function resetInTime() {
-            if (currenttimeout) clearTimeout(currenttimeout);
-            currenttimeout = setTimeout('minMaxCheck();', 3000);
-        }
+            function eTo(x) {
+                return Math.exp(x);
+            }
 
 
+            function fixDP(r, dps) {
+                if (isNaN(r)) return "NaN";
+                var msign = '';
+                var mfin = '';
+                if (r < 0) msign = '-';
+                x = Math.abs(r);
+                if (x > Math.pow(10, 21)) return msign + x.toString();
+                var m = Math.round(x * Math.pow(10, dps)).toString();
+                if (dps == 0) return msign + m;
+                while (m.length <= dps) m = "0" + m;
+                mfin = msign + m.substring(0, m.length - dps) + "." + m.substring(m.length - dps);
+                if (dps == 1) return mfin.replace('.0', '');
+                if (dps == 2) return mfin.replace('.00', '');
+                if (dps == 3) return mfin.replace('.000', '');
+                if (dps == 4) return mfin.replace('.0000', '');
+                return mfin;
+            }
 
-        var curelement;
+            function fixNearest(x, y) {
+                return Math.round(x / y) * y;
+            }
 
-        function togCB(thisid) {
-            thischeckbox = document.getElementById(thisid);
-            if (thischeckbox.checked) { thischeckbox.checked = false; }
-            else { thischeckbox.checked = true; }
-            BodySurfaceArea_fx();
-        }
+            function alertNaN(thisparam) {
+                alert(thisparam + ' está formatado incorretamente. Você pode inserir apenas os dígitos de 0 a 9 e um ponto decimal.');
+                doCalc = false;
+                clrResults();
+            }
 
-        function setRB(thisid) {
-            document.getElementById(thisid).checked = true;
-            BodySurfaceArea_fx();
-        }
+            function clrValue(field) {
+                field.value = '';
+            }
 
+            var currenttimeout;
 
-        var calctxt = '';
-        var xmltxt = '';
-        var xmlresult = '';
-        var htmtxt = '';
-        var postNow = false;
-        var printing = false;
-        var interptxt = '';
-        var interphtm = '';
-        var interpxml = '';
-        var rbchk = false;
-
-        function BodySurfaceArea_fx() {
-
-            with (document.forms[0]) {
+            function resetInTime() {
+                if (currenttimeout) clearTimeout(currenttimeout);
+                currenttimeout = setTimeout('minMaxCheck();', 3000);
+            }
 
 
-                doCalc = true;
 
-                param_value = parseFloat((<%= txbAltura.ClientID %>).value);
+            var curelement;
+
+            function togCB(thisid) {
+                thischeckbox = document.getElementById(thisid);
+                if (thischeckbox.checked) { thischeckbox.checked = false; }
+                else { thischeckbox.checked = true; }
+                BodySurfaceArea_fx();
+            }
+
+            function setRB(thisid) {
+                document.getElementById(thisid).checked = true;
+                BodySurfaceArea_fx();
+            }
+
+
+            var calctxt = '';
+            var xmltxt = '';
+            var xmlresult = '';
+            var htmtxt = '';
+            var postNow = false;
+            var printing = false;
+            var interptxt = '';
+            var interphtm = '';
+            var interpxml = '';
+            var rbchk = false;
+
+            function BodySurfaceArea_fx() {
+
+                with (document.forms[0]) {
+
+
+                    doCalc = true;
+
+                    param_value = parseFloat((<%= txbAltura.ClientID %>).value);
 
                 if (isNaN(param_value)) { param_value = ""; doCalc = false; }
                 unit_parts = Height_unit.options[Height_unit.selectedIndex].value.split('|');
@@ -1536,102 +1442,102 @@
 
 
 
+                }
+
+
+
+
             }
 
+            function minMaxCheck() {
+                if (printing) return;
 
 
 
-        }
+                with (document.forms[0]) {
 
-        function minMaxCheck() {
-            if (printing) return;
-
-
-
-            with (document.forms[0]) {
-
-                if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Altura'); }
+                    if ((<%= txbAltura.ClientID %>).value && isNaN((<%= txbAltura.ClientID %>).value)) { clrValue((<%= txbAltura.ClientID %>)); alertNaN('Altura'); }
                 if ((<%= txbPeso.ClientID %>).value && isNaN((<%= txbPeso.ClientID %>).value)) { clrValue((<%= txbPeso.ClientID %>)); alertNaN('Peso'); }
 
 
-            }
-
-        }
-
-
-
-        function clrResults() {
-
-
-            with (document.forms[0]) {
-
-                (<%= txbBSA.ClientID %>).value = '';
-
+                }
 
             }
 
-        }
-
-        var Height = null,
-            Weight = null,
-            BSA = null,
-            param_value = null;
 
 
-        function mostraCalculo() {
+            function clrResults() {
 
-            var div = document.getElementById('divCalculoCorpo');
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
+                with (document.forms[0]) {
+
+                    (<%= txbBSA.ClientID %>).value = '';
+
+
+                }
+
             }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraCID() {
 
-            var div = document.getElementById('divCID');
+            var Height = null,
+                Weight = null,
+                BSA = null,
+                param_value = null;
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraGeral() {
 
-            var div = document.getElementById('divGeral');
+            function mostraCalculo() {
 
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
-            }
-            else {
-                div.style.display = 'none';
-            }
-        }
-        function mostraViasDeAcesso() {
+                var div = document.getElementById('divCalculoCorpo');
 
-            var div = document.getElementById('divViasDeAcesso');
-
-            if (div.style.display == 'none') {
-                div.style.display = 'block';
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
             }
-            else {
-                div.style.display = 'none';
-            }
-        }
+            function mostraCID() {
 
-        function ClearInputs() {
-            (<%= txbAltura.ClientID %>).value = '';
+                var div = document.getElementById('divCID');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+            function mostraGeral() {
+
+                var div = document.getElementById('divGeral');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+            function mostraViasDeAcesso() {
+
+                var div = document.getElementById('divViasDeAcesso');
+
+                if (div.style.display == 'none') {
+                    div.style.display = 'block';
+                }
+                else {
+                    div.style.display = 'none';
+                }
+            }
+
+            function ClearInputs() {
+                (<%= txbAltura.ClientID %>).value = '';
             (<%= txbPeso.ClientID %>).value = '';
             (<%= txbBSA.ClientID %>).value = '';
 
             $("#<%=select1.ClientID %>").val('').trigger("chosen:updated");
-        }
-        $(document).ready(function () {
-            $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
+            }
+            $(document).ready(function () {
+                $(<%= txbNascimento.ClientID %>).mask("99/99/9999");
             $("#<%=select1.ClientID %>").chosen({ no_results_text: "Nada encontrado!" });
 
             $("#<%=txbDtInicio.ClientID%>").datepicker({
@@ -1674,7 +1580,7 @@
                         input.setSelectionRange(0, 0);
                     }, 0);
                 }
-                
+
             });
 
             $("#<%=txbDtInicio.ClientID%>").mask("99/99/9999");
@@ -1693,63 +1599,63 @@
 
                 source: function (request, response) {
                     var param = { prefixo: $('#<%= txbNomePaciente.ClientID %>').val() };
-                        $.ajax({
-                            url: "Prescricao.aspx/GetNomeDePacientes",
-                            data: JSON.stringify(param),
-                            dataType: "json",
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            dataFilter: function (data) { return data; },
-                            success: function (data) {
+                    $.ajax({
+                        url: "Prescricao.aspx/GetNomeDePacientes",
+                        data: JSON.stringify(param),
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
 
 
-                                response($.map(data.d, function (item) {
+                            response($.map(data.d, function (item) {
 
-                                    return {
+                                return {
 
-                                        label: item.nm_nome,
-                                        value: item.nm_nome,
-
-
-                                        prontuario: item.cd_prontuario,
-                                        nr_ddd_fone: item.nr_ddd_fone,
-                                        nr_fone: item.nr_fone,
-                                        dt_nascimento: item.dt_data_nascimento,
-                                        idade: item.nr_idade,
-                                        sexo: item.in_sexo,
-                                        nome_pai_mae: item.nm_mae,
-
-                                    }
-                                }))
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                var err = eval("(" + XMLHttpRequest.responseText + ")");
-                                alert(err.Message)
-                            }
-                        });
-                    },
+                                    label: item.nm_nome,
+                                    value: item.nm_nome,
 
 
-                    select: function (e, i) {
+                                    prontuario: item.cd_prontuario,
+                                    nr_ddd_fone: item.nr_ddd_fone,
+                                    nr_fone: item.nr_fone,
+                                    dt_nascimento: item.dt_data_nascimento,
+                                    idade: item.nr_idade,
+                                    sexo: item.in_sexo,
+                                    nome_pai_mae: item.nm_mae,
+
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var err = eval("(" + XMLHttpRequest.responseText + ")");
+                            alert(err.Message)
+                        }
+                    });
+                },
+
+
+                select: function (e, i) {
 
 
 
 
-                        $("[id$=txbProntuario").val(i.item.prontuario);
-                        $("[id$=txbDdd").val(i.item.nr_ddd_fone);
-                        $("[id$=txbTelefone").val(i.item.nr_fone);
+                    $("[id$=txbProntuario").val(i.item.prontuario);
+                    $("[id$=txbDdd").val(i.item.nr_ddd_fone);
+                    $("[id$=txbTelefone").val(i.item.nr_fone);
 
-                        $("[id$=txbNomePaciente").val(i.item.nome_paciente);
-                        $("[id$=txbNascimento").val(i.item.dt_nascimento);
-                        $("[id$=txbIdade").val(i.item.idade);
-                        $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
-                        $("[id$=txbPais").val(i.item.nome_pai_mae);
-                    },
+                    $("[id$=txbNomePaciente").val(i.item.nome_paciente);
+                    $("[id$=txbNascimento").val(i.item.dt_nascimento);
+                    $("[id$=txbIdade").val(i.item.idade);
+                    $("[id$=ddlSexo").val(i.item.sexo == "M" ? "Masculino" : "Feminino");
+                    $("[id$=txbPais").val(i.item.nome_pai_mae);
+                },
 
-                    minLength: 1 //This is the Char length of inputTextBox  
+                minLength: 1 //This is the Char length of inputTextBox  
 
 
-                });
+            });
 
 
             $("#<%= txbProntuario.ClientID %>").autocomplete({
@@ -1810,11 +1716,11 @@
                     minLength: 1 //This is the Char length of inputTextBox    
 
                 });
-        });
+            });
 
     </script>
 
-    <script type="text/javascript">
+        <script type="text/javascript">
         //function MutExChkList(chk) {
         //    var chkList = chk.parentNode.parentNode.parentNode;
         //    var chks = chkList.getElementsByTagName("input");
@@ -1833,23 +1739,23 @@
                 });
             });--%>
 
-        function getSelectedViasDeAcesso() {
-            var selectedValues = [];
-            document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]:checked')
-                .forEach(function (checkbox) {
-                    selectedValues.push(checkbox.value);
-                });
-            return selectedValues;
-        }
+            function getSelectedViasDeAcesso() {
+                var selectedValues = [];
+                document.querySelectorAll('#<%= cblViasDeAcesso.ClientID %> input[type="checkbox"]:checked')
+                    .forEach(function (checkbox) {
+                        selectedValues.push(checkbox.value);
+                    });
+                return selectedValues;
+            }
 
-        document.querySelector('#btnGravar').addEventListener('click', function () {
-            var selectedVias = getSelectedViasDeAcesso();
-            // Enviar os valores para o servidor
-        });
+            document.querySelector('#btnGravar').addEventListener('click', function () {
+                var selectedVias = getSelectedViasDeAcesso();
+                // Enviar os valores para o servidor
+            });
 
     </script>
 
-    <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
-    <script src="../js/jquery.mask.js" type="text/javascript"></script>
-    <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
+        <script src="../js/chosen.jquery.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mask.js" type="text/javascript"></script>
+        <script src="../js_datepicker/jquery-mask-as-number.js" type="text/javascript"></script>
 </asp:Content>

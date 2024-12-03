@@ -421,17 +421,19 @@ public partial class Prescricao_Prescricao : System.Web.UI.Page
 
 
         List<CID_10> lista_cid_10 = HandleCID();
+        List<ViasDeAcesso> listaDeViasDeAcesso = HandleViasDeAcesso();
+        
 
 
-    
+
         Prescricao prescricao = PrescricaoDAO.HandlePrescricaoEdicao(CodPrescricao, cod_Paciente, int.Parse(ddlFinalidade.SelectedValue.ToString()), int.Parse(cblViasDeAcesso.SelectedValue.ToString()), int.Parse(ddlProtocolo.SelectedValue.ToString()), calculo.cod_Calculo, int.Parse(txbCiclos.Text.ToString()), int.Parse(txbIntervalos.Text.ToString()), DateTime.Parse(txbDtInicio.Text.ToString()), Convert.ToDecimal(txbCreatinina.Text), txbObservacao.Text.ToString(), dataCadastro, usuario, cod_profissional);
 
         CodPrescricao = prescricao.cod_Prescricao;
 
 
 
-
-
+        ViasDeAcessoDAO.DeletarViasDeAcessoPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
+        ViasDeAcessoDAO.GravaViasDeAcessoPorPrescricao(listaDeViasDeAcesso, prescricao.cod_Prescricao, dataCadastro);
         CID_10_DAO.DeletarCidsPorPrescricao(prescricao.cod_Prescricao, prescricao.data_atualizacao);
         CID_10_DAO.GravaCidsPorPrescricao(lista_cid_10, prescricao.cod_Prescricao, dataCadastro);
 

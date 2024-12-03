@@ -110,7 +110,7 @@ public class ViasDeAcessoDAO
 
             SqlCommand cmm = cnn.CreateCommand();
 
-            string sqlConsulta = "SELECT [cod_Vias_de_Acesso], [cod_vias_de_acesso],[data_cadastro],[status] FROM [hspmoncohomologacao].[dbo].[ViasDeAcesso_Prescricao] AS VP INNER JOIN [hspmoncohomologacao].[dbo].[Vias_De_Acesso] AS V.cod_Vias_De_Acesso ON VP.cod_Vias_De_Acesso   where status = 'A' and cod_Prescricao =" + cod_Prescricao;
+            string sqlConsulta = "SELECT V.[cod_Vias_de_Acesso],V.descricao FROM [hspmoncohomologacao].[dbo].[ViasDeAcesso_Prescricao] AS VP INNER JOIN [hspmoncohomologacao].[dbo].[Vias_De_Acesso] AS V ON VP.cod_Vias_De_Acesso = V.cod_Vias_De_Acesso   where VP.status = 'A' and cod_Prescricao =" + cod_Prescricao;
             cmm.CommandText = sqlConsulta;
             try
             {
@@ -120,8 +120,7 @@ public class ViasDeAcessoDAO
                 {
                     ViasDeAcesso_Prescricao ViasDeAcesso_Prescricao = new ViasDeAcesso_Prescricao();
                     ViasDeAcesso_Prescricao.cod_vias_de_acesso= dr1.GetInt32(0);
-                    ViasDeAcesso_Prescricao.cod_vias_de_acesso = dr1.GetInt32(1);
-                    ViasDeAcesso_Prescricao.descr_vias_de_acesso = dr1.GetString(2);
+                    ViasDeAcesso_Prescricao.descr_vias_de_acesso = dr1.GetString(1);
 
 
                     listaViasDeAcesso.Add(ViasDeAcesso_Prescricao);

@@ -99,7 +99,7 @@ public class PrescricaoDAO
             string sqlConsulta = "SELECT [cod_Prescricao]" +
       ",[cod_Paciente]" +
       ",[cod_Finalidade]" +
-      ",[cod_Vias_De_Acesso]" +
+      //",[cod_Vias_De_Acesso]" +
       ",[cod_Protocolos]" +
       ",[cod_Calculo]" +
       ",[ciclos_provaveis]" +
@@ -126,22 +126,24 @@ public class PrescricaoDAO
                     prescricao.cod_Prescricao = dr1.GetInt32(0);
                     prescricao.cod_Paciente = dr1.GetInt32(1);
                     prescricao.cod_Finalidade = dr1.GetInt32(2);
-                    prescricao.cod_Vias_De_Acesso = dr1.GetInt32(3);
-                    prescricao.cod_Protocolos = dr1.GetInt32(4);
-                    prescricao.cod_Calculo = dr1.GetInt32(5);
 
-                    prescricao.ciclos_provaveis = dr1.GetInt32(6);
-                    prescricao.intervalo_dias = dr1.GetInt32(7);
-                    prescricao.data_inicio = dr1.GetDateTime(8);
-                    prescricao.observacao = dr1.GetString(9);
-                    prescricao.data_cadastro = dr1.GetDateTime(10);
-                    prescricao.status = dr1.GetString(11);
-                    prescricao.data_atualizacao = dr1.IsDBNull(12) ? prescricao.data_atualizacao : dr1.GetDateTime(12);
-                    prescricao.nome_Usuario = dr1.GetString(13);
-                    prescricao.cod_Prequimio = dr1.GetInt32(14);
-                    prescricao.creatinina = dr1.GetDecimal(15);
-                    prescricao.nome_Usuario_Atualizacao = dr1.IsDBNull(16) ? "" : dr1.GetString(16);
-                    prescricao.cod_profissional = dr1.GetInt32(17);
+                    //Criar uma função  que a entrada é o cod_prescricao e a saída é a descrição de todas as vias de acesso selecionadas
+                  
+                    prescricao.cod_Protocolos = dr1.GetInt32(3);
+                    prescricao.cod_Calculo = dr1.GetInt32(4);
+
+                    prescricao.ciclos_provaveis = dr1.GetInt32(5);
+                    prescricao.intervalo_dias = dr1.GetInt32(6);
+                    prescricao.data_inicio = dr1.GetDateTime(7);
+                    prescricao.observacao = dr1.GetString(8);
+                    prescricao.data_cadastro = dr1.GetDateTime(9);
+                    prescricao.status = dr1.GetString(10);
+                    prescricao.data_atualizacao = dr1.IsDBNull(11) ? prescricao.data_atualizacao : dr1.GetDateTime(12);
+                    prescricao.nome_Usuario = dr1.GetString(12);
+                    prescricao.cod_Prequimio = dr1.GetInt32(13);
+                    prescricao.creatinina = dr1.GetDecimal(14);
+                    prescricao.nome_Usuario_Atualizacao = dr1.IsDBNull(15) ? "" : dr1.GetString(15);
+                    prescricao.cod_profissional = dr1.GetInt32(16);
 
 
 
@@ -277,7 +279,7 @@ public class PrescricaoDAO
                 cmm.CommandText = "UPDATE [dbo].[Prescricao] " +
    "SET[cod_Paciente] = @cod_Paciente" +
       ",[cod_Finalidade] = @cod_Finalidade" +
-      ",[cod_Vias_De_Acesso] = @cod_Vias_De_Acesso " +
+      //",[cod_Vias_De_Acesso] = @cod_Vias_De_Acesso " +
       ",[cod_Protocolos] = @cod_Protocolos" +
       ",[cod_Calculo] = @cod_Calculo " +
       ",[ciclos_provaveis] = @ciclos_provaveis " +
@@ -303,7 +305,7 @@ public class PrescricaoDAO
                 cmm.Parameters.Add("@cod_Prescricao", SqlDbType.Int).Value = prescricao.cod_Prescricao;
                 cmm.Parameters.Add("@cod_Paciente", SqlDbType.Int).Value = prescricao.cod_Paciente;
                 cmm.Parameters.Add("@cod_Finalidade", SqlDbType.Int).Value = prescricao.cod_Finalidade;
-                cmm.Parameters.Add("@cod_Vias_De_Acesso", SqlDbType.Int).Value = prescricao.cod_Vias_De_Acesso;
+                //cmm.Parameters.Add("@cod_Vias_De_Acesso", SqlDbType.Int).Value = prescricao.cod_Vias_De_Acesso;
                 cmm.Parameters.Add("@cod_Protocolos", SqlDbType.Int).Value = prescricao.cod_Protocolos;
                 cmm.Parameters.Add("@cod_Calculo", SqlDbType.Int).Value = prescricao.cod_Calculo;
 

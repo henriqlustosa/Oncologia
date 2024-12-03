@@ -91,7 +91,7 @@ public class RelatorioPrescricaoloDAO
             SqlCommand cmm = cnn.CreateCommand();
             cmm.CommandText = "SELECT [cod_Prescricao] " +
      " ,[desc_finalidade] " +
-     " ,[desc_vias_de_acesso] " +
+     //" ,[desc_vias_de_acesso] " +
      " ,[nome_paciente]" +
      " ,[altura]" +
      " ,[peso]" +
@@ -129,35 +129,35 @@ public class RelatorioPrescricaoloDAO
                  
                     relatorio.cod_Prescricao = dr1.GetInt32(0);
                     relatorio.desc_finalidade = dr1.GetString(1);
-                    relatorio.desc_vias_de_acesso = dr1.GetString(2);
-                    relatorio.nome_paciente = dr1.GetString(3);
+                    //relatorio.desc_vias_de_acesso = dr1.GetString(2);
+                    relatorio.nome_paciente = dr1.GetString(2);
 
-                    relatorio.altura = dr1.GetInt32(4);
+                    relatorio.altura = dr1.GetInt32(3);
                    
-                    relatorio.peso = dr1.GetInt32(5);
-                    relatorio.BSA = dr1.GetDecimal(6);
-                    relatorio.intervalo_dias = dr1.GetInt32(7);
-                    relatorio.data_inicio = dr1.GetDateTime(8);
+                    relatorio.peso = dr1.GetInt32(4);
+                    relatorio.BSA = dr1.GetDecimal(5);
+                    relatorio.intervalo_dias = dr1.GetInt32(6);
+                    relatorio.data_inicio = dr1.GetDateTime(7);
              
-                    relatorio.observacao = dr1.GetString(9);
-                    relatorio.data_cadastro = dr1.GetDateTime(10);
-                    relatorio.desc_protocolo = dr1.GetString(11);
+                    relatorio.observacao = dr1.GetString(8);
+                    relatorio.data_cadastro = dr1.GetDateTime(9);
+                    relatorio.desc_protocolo = dr1.GetString(10);
 
-                    relatorio.nome_Usuario = dr1.GetString(12);
-                    relatorio.cod_Paciente = dr1.GetInt32(13);
-                    relatorio.ddd_telefone = dr1.GetInt32(14);
-                    relatorio.telefone = dr1.GetInt32(15);
-                    relatorio.sexo = dr1.GetString(16);
-                    relatorio.data_nascimento = dr1.GetDateTime(17);
-                    relatorio.ciclos_provaveis = dr1.GetInt32(18);
-                    relatorio.desc_prequimio = dr1.GetString(19);
-                    relatorio.cod_prequimio = dr1.GetInt32(20);
-                    relatorio.cod_protocolo = dr1.GetInt32(21);
-                    relatorio.creatinina = dr1.GetDecimal(22);
+                    relatorio.nome_Usuario = dr1.GetString(11);
+                    relatorio.cod_Paciente = dr1.GetInt32(12);
+                    relatorio.ddd_telefone = dr1.GetInt32(13);
+                    relatorio.telefone = dr1.GetInt32(14);
+                    relatorio.sexo = dr1.GetString(15);
+                    relatorio.data_nascimento = dr1.GetDateTime(16);
+                    relatorio.ciclos_provaveis = dr1.GetInt32(17);
+                    relatorio.desc_prequimio = dr1.GetString(18);
+                    relatorio.cod_prequimio = dr1.GetInt32(19);
+                    relatorio.cod_protocolo = dr1.GetInt32(20);
+                    relatorio.creatinina = dr1.GetDecimal(21);
 
-                    relatorio.nome_profissional = dr1.GetString(23);
-                    relatorio.nr_conselho = dr1.GetInt32(24);
-                    relatorio.sigla_conselho = dr1.GetString(25);
+                    relatorio.nome_profissional = dr1.GetString(22);
+                    relatorio.nr_conselho = dr1.GetInt32(23);
+                    relatorio.sigla_conselho = dr1.GetString(24);
 
 
 
